@@ -1,0 +1,42 @@
+<div class="left">
+    <div class="left-top">
+        <div>
+            <span>{{model.organizationName}}</span>
+            <span>实时充电信息</span>
+        </div>
+        <div>
+            <ul>
+                <li *ngFor="let item of model.userList"><span>{{item.role_name}}数量</span><span>{{item.user_num}}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="left-down">
+        <div id="pieCharts"></div>
+    </div>
+</div>
+<div class="right">
+    <div class="right-top">
+        <ul>
+            <li>
+                <div><span>当日完成充电(次)</span><i></i></div>
+                <div><span>{{chargingInfo.todayFinishChargingTimes}}</span></div>
+            </li>
+            <li>
+                <div><span>正在充电(次)</span><i></i></div>
+                <div><span>{{chargingInfo.todayChargingTimes}}</span></div>
+            </li>
+            <li>
+                <div><span>充电桩警告(次)</span><i></i></div>
+                <div><span>{{chargingInfo.todayAlarmTimes}}</span></div>
+            </li>
+            <li>
+                <div><span>当日充电金额(元)</span><i></i></div>
+                <div><span>{{chargingInfo.todayTotalSum}}</span></div>
+            </li>
+        </ul>
+    </div>
+    <div class="right-down">
+        <div id="chargeLoad"></div>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+<div class="columns is-multiline">
+    <label class="upload-button">
+        <input type="file" ngFileSelect (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" multiple>
+    </label>
+    <div class="upload-file" *ngFor="let f of files; let i = index;">
+        <div class="progress-bar-container">
+            <div class="bar" [style.width]="f.progress.data.percentage + '%'" [ngClass]="{ 'green': f.progress.data.percentage === 100 }"></div>
+            <div>{{f.progress.data.percentage}}</div>
+        </div>
+    </div>
+</div>

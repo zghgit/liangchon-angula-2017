@@ -1,0 +1,43 @@
+<ng-container *ngIf="formData">
+    <form role="form" [formGroup]="form">
+        <div *ngFor="let field of this.formData" class="form-group">
+            <!--<label>{{field.label}}:-->
+            <!--<span *ngIf="field.require">*</span>-->
+            <!--<ng-container *ngFor="let item of field.errormsg">-->
+            <!--<i *ngIf="form.get(field.key).hasError(item.type)&&form.get(field.key).touched">{{item.content}}</i>-->
+            <!--</ng-container>-->
+            <!--{{form.get(field.key).valid}}-->
+            <!--</label>-->
+            <div>
+                <div [ngSwitch]="field.controlType">
+                    <ng-container *ngSwitchCase="'input'">
+                        <uc-input-text [model]="field" [form]="form"></uc-input-text>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'radio'">
+                        <uc-radio [model]="field" [form]="form"></uc-radio>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'checkbox'">
+                        <uc-checkbox [model]="field" [form]="form"></uc-checkbox>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'file'">
+                        <uc-upfile [model]="field" [form]="form"></uc-upfile>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'time'">
+                        <uc-time [model]="field" [form]="form"></uc-time>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'address'" >
+                        <uc-address [model]="field" [form]="form"></uc-address>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'inputadd'" >
+                        <uc-input-add [model]="field" [form]="form"></uc-input-add>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div>
+                <button type="button" class="btn btn-primary" (click)="save(form)" [disabled]="form.invalid">提交</button>
+            </div>
+        </div>
+    </form>
+</ng-container>

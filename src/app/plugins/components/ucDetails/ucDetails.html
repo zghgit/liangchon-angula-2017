@@ -1,0 +1,16 @@
+<table>
+    <tbody>
+        <ng-container *ngFor="let item of model.data">
+            <tr>
+                <td>{{item.label}}</td>
+                <ng-container [ngSwitch]="item.type">
+                    <td *ngSwitchCase="'text'">{{item.content}}</td>
+                    <td *ngSwitchCase="'html'">{{item.content}}</td>
+                    <td *ngSwitchCase="'img'">
+                        <img src="{{item.src}}" alt="{{item.alt}}">
+                    </td>
+                </ng-container>
+            </tr>
+        </ng-container>
+    </tbody>
+</table>

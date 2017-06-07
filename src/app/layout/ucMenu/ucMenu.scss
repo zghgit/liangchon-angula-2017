@@ -1,0 +1,184 @@
+$IMGPATH: '/assets/images/';
+aside{
+    float: left;
+    width: 200px;
+    background:#424f63;
+    min-height: 100vh;
+    position: fixed;
+    top: 0;
+    transition: all 0.1s;
+    z-index: 999;
+    &.shrunken{
+        width: 56px;
+        >div{
+
+            >img{
+                max-height: 28px;
+            }
+        }
+    }
+    >div{
+        width: 100%;
+        height: 56px;
+        text-align: center;
+        overflow: hidden;
+        line-height: 56px;
+        >img{
+            max-height: 56px;
+            transition: all 0.1s;
+        }
+    }
+    >ul{
+        font-size: 14px;
+        list-style: none;
+        padding: 0;
+        >li {
+            overflow: hidden;
+            >a {
+                width: 200px;
+                padding: 8px 10px;
+                line-height: 18px;
+                color: #fff;
+                display: block;
+                transition: background-color .4s;
+                text-decoration: none;
+                font-weight: 300;
+                font-family: -apple-system,PingFang SC,STHeiti,Microsoft YaHei,Microsoft JhengHei,Helvetica Neue,Arial,Source Han Sans SC,Noto Sans CJK SC,Source Han Sans CN,Noto Sans SC,Source Han Sans TC,Noto Sans CJK TC,WenQuanYi Micro Hei,SimSun,sans-serif;;
+                >i {
+                    position: relative;
+                    top: 3px;
+                    margin-left: 10px;
+                    margin-right: 14px;
+                    width: 18px;
+                    height: 18px;
+                    background-size: contain!important;
+                    display: inline-block;
+                    &.uc-icon-dashboard {
+                        background: url(#{$IMGPATH}dashboard.svg) no-repeat;
+                    }
+                    &.uc-icon-account {
+                        background: url(#{$IMGPATH}account.svg) no-repeat;
+                    }
+                    &.uc-icon-commodity{
+                        background: url(#{$IMGPATH}commodity.svg) no-repeat;
+                    }
+                    &.uc-icon-equipment {
+                        background: url(#{$IMGPATH}equipment.svg) no-repeat;
+                    }
+                    &.uc-icon-order {
+                        background: url(#{$IMGPATH}order.svg) no-repeat;
+                    }
+                    &.uc-icon-finance {
+                        background: url(#{$IMGPATH}finance.svg) no-repeat;
+                    }
+                    &.uc-icon-advertisement {
+                        background: url(#{$IMGPATH}advertisement.svg) no-repeat;
+                    }
+                    &.uc-icon-appManagement {
+                        background: url(#{$IMGPATH}appManagement.svg) no-repeat;
+                    }
+                    &.uc-icon-operation {
+                        background: url(#{$IMGPATH}operation.svg) no-repeat;
+                    }
+                    &.uc-icon-operationAnalysis {
+                        background: url(#{$IMGPATH}operationAnalysis.svg) no-repeat;
+                    }
+                    &.uc-icon-rechargeCard {
+                        background: url(#{$IMGPATH}rechargeCard.svg) no-repeat;
+                    }
+                    &.uc-icon-complained {
+                        background: url(#{$IMGPATH}complained.svg) no-repeat;
+                    }
+                    &.uc-icon-charge {
+                        background: url(#{$IMGPATH}charge.svg) no-repeat;
+                    }
+                    &.uc-icon-setting {
+                        background: url(#{$IMGPATH}setting.svg) no-repeat;
+                    }
+                }
+                &.folded {
+                    //&::before {
+                    //    content: '\e114';
+                    //    font-family: 'Glyphicons Halflings';
+                    //    font-size: 14px;
+                    //    float: right;
+                    //    margin: 4px 8px;
+                    //    transition: transform .4s;
+                    //}
+                }
+                span{
+                    float: right;
+                    margin: 4px 8px;
+                    font-size: 14px;
+                    transition:all 0.4s;
+                }
+                &.actived {
+                    background-color:  #00a9e8;   // rgba(0, 0, 0, .15);
+                    //&::before {
+                    //    transform: rotate(-180deg);
+                    //}
+                    span{
+                        transform: rotate3d(0, 0, 1, -180deg);
+                    }
+                }
+            }
+            >ul {
+                padding: 0;
+                transition: all 0.4s;
+                display: none;
+                //height: 0;
+                animation: fadeIn .4s;
+                @keyframes fadeIn {
+                    from {opacity: 0;}
+                    to {opacity: 1;}
+                }
+                &.showSubMenu{
+                    display: block;
+                    //height: auto;
+                }
+                >li {
+                    >a {
+                        padding: 10px 0 10px 56px;
+                        width: 200px;
+                        line-height: 18px;
+                        color: #fff;
+                        display: block;
+                        transition: background-color .4s;
+                        text-decoration: none;
+                        font-weight: 300;
+                        font-family: -apple-system,PingFang SC,STHeiti,Microsoft YaHei,Microsoft JhengHei,Helvetica Neue,Arial,Source Han Sans SC,Noto Sans CJK SC,Source Han Sans CN,Noto Sans SC,Source Han Sans TC,Noto Sans CJK TC,WenQuanYi Micro Hei,SimSun,sans-serif;;
+                        &.actived {
+                            color: #FFF;
+                            background:  #202c37;
+                        }
+                        &:hover {
+                            color: #FFF;
+                            background-color: #202c37;  // rgba(0, 0, 0, .065);
+                        }
+                    }
+                }
+            }
+        }
+        >li{
+            >a{
+                //&.folded {
+                //    &::before {
+                //        content: '\e114';
+                //        font-family: 'Glyphicons Halflings';
+                //        font-size: 14px;
+                //        float: right;
+                //        margin: 4px 8px;
+                //        transition: transform .4s;
+                //    }
+                //}
+                //&.actived {
+                //    background-color:  #00a9e8;   // rgba(0, 0, 0, .15);
+                //    &::before {
+                //        transform: rotate(-180deg);
+                //    }
+                //}
+            }
+
+        }
+    }
+}

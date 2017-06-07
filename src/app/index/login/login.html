@@ -1,0 +1,34 @@
+<div class="index-login">
+    <header>
+        <div class="uc-header-logo">
+            <a href=""></a>
+        </div>
+    </header>
+    <div class="uc-login">
+        <form #form="ngForm" role="form" (keydown.enter)="doLogin()">
+            <h1>充电桩充电监控管理系统</h1>
+            <div class="input">
+                <label for="userName">用户名</label><br>
+                <input type="text" autocomplete="off" id="userName" placeholder="请输入用户名" name="userName"
+                       [(ngModel)]="user.userName" required>
+            </div>
+            <div class="input">
+                <label for="password">密码</label><br>
+                <input type="password" autocomplete="off" id="password" placeholder="请输入密码" name="password"
+                       [(ngModel)]="user.password" required>
+            </div>
+            <div class="input code">
+                <label for="identifyCode">验证码</label><br>
+                <input type="text" autocomplete="off" id="identifyCode" maxlength="5" placeholder="请输入验证码"
+                       name="identifyCode" [(ngModel)]="user.identifyCode" required>
+                <img [src]="identifyCodeSrc" #identifyCode (click)="reloadIdentifyCode()">
+            </div>
+            <div class="forget">
+                <a href="/forget.html">忘记密码？</a>
+            </div>
+            <button type="button" (click)="doLogin()" [ngClass]="{'isDisable': !form.form.valid}" class="btn"
+                    [disabled]="!form.form.valid">登录
+            </button>
+        </form>
+    </div>
+</div>

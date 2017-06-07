@@ -1,0 +1,26 @@
+select{
+    outline: none;
+    min-width: 260px;
+    height: 34px;
+    color: #555;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    padding: 6px 0;
+    text-indent: 1em;
+    font-size: 14px;
+    background: #fff;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    &.has-error{
+        border-color: #f44455;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+        &:focus{
+            border-color: #ff4455;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #ce8483;
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #ce8483;
+        }
+    }
+}

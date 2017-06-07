@@ -1,0 +1,32 @@
+div{
+    >.item-title{
+        > label {
+            font-size: 14px;
+            font-weight: 700;
+            position: relative;
+            > span {
+                color: #f44455;
+                position: absolute;
+                top: -5px;
+                left: -5px;
+            }
+            i {
+                font-weight: normal;
+                font-style: normal;
+                color: #f44455;
+            }
+        }
+    }
+    .item-content{
+        padding-left: 1em;
+        min-height: 34px;
+        display: flex;
+        align-items: center;
+        label{
+            font-size: 14px;
+            font-weight: normal;
+            margin-bottom: 0;
+            margin-right: 1em;
+        }
+    }
+}

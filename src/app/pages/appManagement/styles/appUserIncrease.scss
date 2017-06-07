@@ -1,0 +1,16 @@
+div{
+    width: 100%;
+    padding: 20px 0;
+    background: white!important;
+    height: 870px;
+}
+@media screen and (min-width: 1439px) and (max-width: 1680px) {
+    #appUserIncrease{
+        height: 750px;
+    }
+}
+@media screen and (max-width: 1439px) {
+    #appUserIncrease{
+        height: 600px;
+    }
+}

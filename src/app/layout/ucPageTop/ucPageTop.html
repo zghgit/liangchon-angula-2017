@@ -1,0 +1,53 @@
+<div class="uc-page-top" [ngClass]="{'shrunken':isShrinked}">
+    <ul class="menu-current">
+        <li (click)="toggleMenu()">
+            <i class="glyphicon glyphicon-list"></i>
+        </li>
+        <li>
+            <a (click)="goBack()"><i class="glyphicon glyphicon-chevron-left"></i></a>
+        </li>
+        <li>
+            当前位置:&nbsp;&nbsp;{{currentPosition()}}
+        </li>
+    </ul>
+    <div class="user" (mouseenter)="showUserItem()" (mouseleave)="closeUserItem()">
+        <div class="user-title">
+            <img src="/assets/images/user.png" alt="">
+            <span><b>{{model.role}}:&nbsp;&nbsp;</b>{{model.user_name}}</span>
+            <i class="glyphicon glyphicon-chevron-down" [ngClass]="{'overturn':isShowUserItem}"></i>
+        </div>
+        <ul class="user-dropdown" [ngClass]="{'show': isShowUserItem}">
+            <li>
+                <a>
+                    <i class="glyphicon glyphicon-user"></i>
+                    <span>查看个人详情</span>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <i class="glyphicon glyphicon-edit"></i>
+                    <span>编辑个人信息</span>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <i class="glyphicon glyphicon-edit"></i>
+                    <span>更改密码</span>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <i class="glyphicon glyphicon-credit-card"></i>
+                    <span>收款配置</span>
+                </a>
+            </li>
+            <li class="divider"></li>
+            <li class="uc-hover" (click)="model.logout()">
+                <a>
+                    <i class="glyphicon glyphicon-off"></i>
+                    <span>退出系统</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

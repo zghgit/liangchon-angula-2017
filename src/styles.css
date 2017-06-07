@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+    background: #f0f0f0 !important;
+}
+/*::-moz-placeholder {*/
+    /*color: #cccccc;*/
+    /*font-size: 14px;*/
+/*}*/
+/*::-webkit-input-placeholder {*/
+    /*color: #cccccc;*/
+    /*font-size: 14px;*/
+/*}*/
+/*:-ms-input-placeholder {*/
+    /*color: #cccccc;*/
+    /*font-size: 14px;*/
+/*}*/
+/*时间选择器去掉margin-bottom:20px*/
+.well{
+    margin-bottom: 0!important;
+}
