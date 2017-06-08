@@ -33,8 +33,8 @@ import {Component, OnInit, Input,OnChanges} from '@angular/core';
 export class UcCheckboxComponent implements OnInit,OnChanges {
     @Input() model: any;
     @Input() form;
-    public checkedSet = new Set();
-    public checkedAll: boolean = false;
+    public checkedSet = new Set();//内容集合
+    public checkedAll: boolean = false;//全选
     constructor() {
     }
 
@@ -47,6 +47,7 @@ export class UcCheckboxComponent implements OnInit,OnChanges {
     ngOnInit() {
         this.initCheckbox();
     }
+    //初始化select内容
     initCheckbox(){
         for (let item of this.model.options) {
             if (item.checked) {
@@ -60,7 +61,7 @@ export class UcCheckboxComponent implements OnInit,OnChanges {
         }
         this.checkboxValue(this.checkedSet)
     }
-
+    //变化时更新
     onChange(checked: boolean, value: any) {
         if (checked) {
             this.checkedSet.add(value)
@@ -74,7 +75,7 @@ export class UcCheckboxComponent implements OnInit,OnChanges {
         }
         this.checkboxValue(this.checkedSet)
     }
-
+    //点击全选时
     changeCheckedAll(options) {
         this.checkedAll = !this.checkedAll;
         if (this.checkedAll) {
@@ -90,7 +91,7 @@ export class UcCheckboxComponent implements OnInit,OnChanges {
         }
         this.checkboxValue(this.checkedSet)
     }
-
+    //模型数据更新
     public checkboxValue(model) {
         if (model.size == 0) {
             this.model.value = "";

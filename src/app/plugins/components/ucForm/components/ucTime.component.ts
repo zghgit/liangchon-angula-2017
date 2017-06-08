@@ -124,7 +124,6 @@ export class UcTimeComponent implements OnInit {
     public confire() {
         this.showPicker = false;
     }
-
     public showTime() {
         this.showTimePicker = !this.showTimePicker;
         if (this.showTimePicker) {

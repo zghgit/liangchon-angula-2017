@@ -11,7 +11,7 @@ import {Component, OnInit, Input} from '@angular/core';
         <label>{{model.label}}
             <span *ngIf="model.require">*</span>
             <ng-container *ngFor="let item of model.errormsg">
-                <i *ngIf="form.get(model.key).hasError(item.type)&&form.get(model.key).touched">{{item.content}}</i>
+                <i *ngIf="form.get(model.key).hasError(item.type)">{{item.content}}</i>
             </ng-container>
             <i>{{errorMsg}}</i>
         </label>
@@ -21,7 +21,7 @@ import {Component, OnInit, Input} from '@angular/core';
     </div>
 </div>
 <div class="item-content">
-    <input class="form-control" type="text" placeholder="{{model.placeholder}}" [(ngModel)]="some" (input)="onKey(some)" [ngClass]="{'has-error': error}">
+    <input class="form-control" type="text" placeholder="{{model.placeholder}}" [(ngModel)]="some" (input)="onKey(some)" (click)="hasChanged(some)" [ngClass]="{'has-error': error}">
     <button class="btn btn-success" [disabled]="canConfirm" (click)="confirmValue(some)">{{model.content}}</button>
 </div>
 <div *ngIf="showData()" class="showData">
@@ -40,18 +40,17 @@ export class UcInputAddComponent implements OnInit {
     @Input() model: any;
     @Input() form;
     public reg = /^(0[0-9]{2,3}\-)?([2-9][0-9]{6,7})+(\-[0-9]{1,4})?$|(^(13[0-9]|15[0|3|6|7|8|9]|18[0-9])\d{8}$)|^[400|800]\d{7,9}$/;
-    public canConfirm:boolean = true;
-    public error:boolean=false;
-    public errorMsg:string = "";
-    public inputSet = new Set();
-    public some="";
+    public canConfirm:boolean = true;//不可以添加
+    public error:boolean=false;//验证不通过
+    public errorMsg:string = "";//验证提示
+    public inputSet = new Set();//内容集合
+    public some="";//输入内容
     constructor() {
     }
 
     ngOnInit() {
-        console.log(this.model);
-        console.log(this.reg)
     }
+    //输入时验证
     public onKey(data){
         console.log(data)
         if(this.reg.test(data)){
@@ -64,6 +63,7 @@ export class UcInputAddComponent implements OnInit {
             this.errorMsg ="请输入正确的联系电话";
         }
     }
+    //点击添加内容
     public confirmValue(data){
         if (data==""){
             this.error = true;
@@ -80,16 +80,19 @@ export class UcInputAddComponent implements OnInit {
         }
         this.uploadValue(this.inputSet)
     }
+    //删除集合项目
     public delSet(data){
         this.inputSet.delete(data);
         this.uploadValue(this.inputSet)
     }
+    //展示集合内容
     public showData(){
         if (this.inputSet.size == 0){
             return false
         }
         return true
     }
+    //更新表单数据
     public uploadValue(model) {
         if (model.size == 0) {
             this.model.value = "";

@@ -30,7 +30,7 @@ export class ucSelectComponent implements OnInit {
     ngOnInit() {
         this.placeholder = this.model.placeholder || "--请选择--";
     }
-
+    //发送数据
     public hasChanged(data) {
         this.geoChange.emit({
             name: this.model.name,

@@ -69,7 +69,7 @@ export class UcUpfileComponent implements OnInit {
     public uploadProgress = (evt) => {
         this.progressBar = Number((evt.loaded / evt.total).toFixed(2)) * 100 * 0.8;
     };
-
+    //上传完成时
     public uploadComplete = ({currentTarget}={currentTarget}) => {
         let responseText = JSON.parse(currentTarget.responseText);
         if (responseText.status) {

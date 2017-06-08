@@ -33,10 +33,10 @@ declare var swal: any;
 export class UcAddressComponent implements OnInit {
     @Input() model: any;
     @Input() form;
-    public provinceOptions: Array<any> = [];
-    public cityOptions: Array<any> = [];
-    public areaOptions: Array<any> = [];
-    public flag: boolean = false;
+    public provinceOptions: Array<any> = [];//省内容
+    public cityOptions: Array<any> = [];//市内容
+    public areaOptions: Array<any> = [];//地区内容
+    public flag: boolean = false;//点击后才进行验证
 
     constructor() {
         // this.form.valueChanges.subscribe(data => {console.log(data)});
@@ -45,6 +45,7 @@ export class UcAddressComponent implements OnInit {
         let province = this.model.config.province.value;
         let city = this.model.config.city.value;
         let area = this.model.config.area.value;
+        //初始化
         this.ajax(1, 0);
         if (city && city != 0) {
             this.ajax(2, province);
@@ -54,7 +55,7 @@ export class UcAddressComponent implements OnInit {
         }
 
     }
-
+    //封装的ajax
     public ajax = (params, value?) => {
         let xhr = new XMLHttpRequest();
         xhr.open("GET", this.model.url + params + '/' + value);
@@ -81,6 +82,7 @@ export class UcAddressComponent implements OnInit {
             }
         }
     }
+    //点击选择后进行省/市/区内容重置
     public afresh = (event) => {
         this.flag = true;
         if (event.name == "province_code") {
