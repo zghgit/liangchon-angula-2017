@@ -11,7 +11,7 @@ import {Component, OnInit, Input} from '@angular/core';
         <label>{{model.label}}
             <span *ngIf="model.require">*</span>
             <ng-container *ngFor="let item of model.errormsg">
-                <i *ngIf="form.get(model.key).hasError(item.type)">{{item.content}}</i>
+                <i *ngIf="form.get(model.key).hasError(item.type)&&flag">{{item.content}}</i>
             </ng-container>
             <i>{{errorMsg}}</i>
         </label>
@@ -45,14 +45,20 @@ export class UcInputAddComponent implements OnInit {
     public errorMsg:string = "";//验证提示
     public inputSet = new Set();//内容集合
     public some="";//输入内容
+    public flag:boolean=false;
     constructor() {
     }
 
     ngOnInit() {
+        if (this.model.options.length>0){
+            console.log(111)
+            for(let item of this.model.options){
+                this.inputSet.add(item);
+            }
+        }
     }
     //输入时验证
     public onKey(data){
-        console.log(data)
         if(this.reg.test(data)){
             this.error = false;
             this.canConfirm = false;
@@ -99,6 +105,10 @@ export class UcInputAddComponent implements OnInit {
         } else {
             this.model.value = JSON.stringify(Array.from(model))
         }
+    }
+    //点击后才进行验证
+    public hasChanged(data){
+        this.flag = true;
     }
 
 }

@@ -11,6 +11,9 @@ import {AccountComponent} from "./account.component";
 
 import {
     AgentListComponent,
+    AgentAddComponent,
+    AgentEditComponent,
+    AgentDetailComponent,
     ChildAccountListComponent,
     CitypartnerListComponent,
     CitypartnerDetailComponent,
@@ -20,6 +23,7 @@ import {
     merchantDetailComponent,
     MerchantAddComponent,
     MerchantEditComponent,
+    AllChildAccountListComponent,
 } from "./components";
 
 
@@ -33,6 +37,9 @@ import {
     declarations: [
         AccountComponent,
         AgentListComponent,
+        AgentAddComponent,
+        AgentEditComponent,
+        AgentDetailComponent,
         ChildAccountListComponent,
         CitypartnerListComponent,
         CitypartnerDetailComponent,
@@ -42,6 +49,7 @@ import {
         merchantDetailComponent,
         MerchantAddComponent,
         MerchantEditComponent,
+        AllChildAccountListComponent,
     ],
     providers: [],
 })

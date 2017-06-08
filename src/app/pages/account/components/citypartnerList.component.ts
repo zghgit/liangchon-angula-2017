@@ -170,7 +170,7 @@ export class CitypartnerListComponent implements OnInit {
                             class: "btn-secondary",
                             click: (data) => {
                                 let id = data[0].content;
-                                this.router.navigate(['pages/account/allAccountList', id]);
+                                this.router.navigate(['pages/account/allChildAccountList', id]);
                             }
                         })
                     }

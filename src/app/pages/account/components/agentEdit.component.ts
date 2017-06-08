@@ -1,36 +1,38 @@
 /**
- * Created by max on 2017/6/7.
+ * Created by max on 2017/6/8.
  */
 import {Component, OnInit} from '@angular/core';
 import {Validators} from '@angular/forms';
 import {Router, ActivatedRoute, Params} from "@angular/router";
-import {AppHttpService, UC} from "../../../plugins/globalservice";
+import {AppHttpService, UC, DataService} from "../../../plugins/globalservice";
 import {phoneValidator} from "../../../plugins/validators/phoneValidator";
 import {emailValidator} from "../../../plugins/validators/emailValidator";
 
 declare var swal;
 @Component({
-    selector: 'merchant-edit',
-    templateUrl: '../views/merchantEdit.html'
+    selector: 'agent-edit',
+    templateUrl: '../views/agentEdit.html'
 })
-export class MerchantEditComponent implements OnInit {
-    public city_partner_id: string;
+export class AgentEditComponent implements OnInit {
+    public agent_id: string;
     public user_name: string;
     public fields: Array<any>
+
     constructor(public uc: UC,
                 public appHttpService: AppHttpService,
                 public router: Router,
+                public dataService: DataService,
                 public activatedRoute: ActivatedRoute,) {
     }
 
     ngOnInit() {
         let params = this.activatedRoute.params;
-        params.subscribe(res=>{
-            this.city_partner_id = res.id;
+        params.subscribe(res => {
+            this.agent_id = res.id;
         })
 
         let data = this.activatedRoute.params
-            .switchMap((params: Params) => this.appHttpService.getData(this.uc.api.qc + "/get_business_user/hash/" + params['id']));
+            .switchMap((params: Params) => this.appHttpService.getData(this.uc.api.qc + "/get_agent_user/hash/" + params['id']));
         data.subscribe(res => {
             console.log(res);
             if (res.status) {
@@ -52,10 +54,6 @@ export class MerchantEditComponent implements OnInit {
                         content: role.content
                     })
                 }
-                let maintenance_man_mobile = [];
-                if(_data.maintenance_man_mobile){
-                    maintenance_man_mobile = _data.maintenance_man_mobile.split(",")
-                }
                 this.fields = [
                     {
                         label: "上级机构",
@@ -63,7 +61,7 @@ export class MerchantEditComponent implements OnInit {
                         controlType: "input",
                         inputType: "text",
                         disabled: true,
-                        value: _data.parent_name,
+                        value: this.dataService.getCookies("user_name"),
                     }, {
                         label: "账户名称",
                         key: "user_name",
@@ -71,7 +69,7 @@ export class MerchantEditComponent implements OnInit {
                         inputType: "text",
                         value: _data.user_name,
                         disabled: true,
-                        placeholder: "请输入账户名称"
+                        placeholder: "请输入账户名称",
                     }, {
                         label: "账户昵称",
                         key: "business_name",
@@ -95,7 +93,7 @@ export class MerchantEditComponent implements OnInit {
                         errormsg: [
                             {type: "required", content: "必填项目"}
                         ]
-                    },{
+                    }, {
                         label: "真实姓名",
                         key: "real_name",
                         controlType: "input",
@@ -180,57 +178,57 @@ export class MerchantEditComponent implements OnInit {
                         }
                     }, {
                         label: "营业执照-注册号",
-                        key: "certificate_1",
+                        key: "certificate_11",
                         controlType: "input",
                         inputType: "text",
                         value: _data.certificate_1,
                         placeholder: "请输入营业执照-注册号"
                     }, {
                         label: "营业执照-照片",
-                        key: "certificate_img_1",
+                        key: "certificate_img_11",
                         controlType: "file",
                         fileType: "img",
                         value: _data.certificate_img_1,
                         config: {
                             uploadurl: this.uc.api.qc + "/upload_file/hash/",
                             downloadurl: this.uc.api.qc + "/get_file/hash/",
-                            capsule: "certificate_img_1"
+                            capsule: "certificate_img_11"
                         },
                     }, {
                         label: "税务登记证-登记号",
-                        key: "certificate_2",
+                        key: "certificate_12",
                         controlType: "input",
                         inputType: "text",
                         value: _data.certificate_2,
                         placeholder: "请输入税务登记证-登记号"
                     }, {
                         label: "税务登记证-照片",
-                        key: "certificate_img_2",
+                        key: "certificate_img_12",
                         controlType: "file",
                         fileType: "img",
                         value: _data.certificate_img_2,
                         config: {
                             uploadurl: this.uc.api.qc + "/upload_file/hash/",
                             downloadurl: this.uc.api.qc + "/get_file/hash/",
-                            capsule: "certificate_img_2"
+                            capsule: "certificate_img_12"
                         }
                     }, {
                         label: "组织结构代码",
-                        key: "certificate_3",
+                        key: "certificate_13",
                         controlType: "input",
                         inputType: "text",
                         value: _data.certificate_3,
                         placeholder: "请输入组织结构代码"
                     }, {
                         label: "组织结构代码-照片",
-                        key: "certificate_img_3",
+                        key: "certificate_img_13",
                         controlType: "file",
                         fileType: "img",
                         value: _data.certificate_img_3,
                         config: {
                             uploadurl: this.uc.api.qc + "/upload_file/hash/",
                             downloadurl: this.uc.api.qc + "/get_file/hash/",
-                            capsule: "certificate_img_3"
+                            capsule: "certificate_img_13"
                         }
                     }, {
                         label: "性质",
@@ -295,75 +293,7 @@ export class MerchantEditComponent implements OnInit {
                         errormsg: [
                             {type: "required", content: "必填项目"}
                         ]
-                    },{
-                        label: "运维人员手机号码",
-                        key: "maintenance_man_mobile",
-                        controlType: "inputadd",
-                        value: _data.maintenance_man_mobile,
-                        placeholder: "请输入运维人员手机号码",
-                        content: "确认",
-                        options: maintenance_man_mobile
-                    }, {
-                        label: "电费单价(元)",
-                        key: "electricity_price",
-                        controlType: "input",
-                        inputType: "text",
-                        value:  _data.electricity_price,
-                        placeholder: "请输入电费单价",
-                        validator: [
-                            Validators.maxLength(7),
-                            Validators.pattern(this.uc.reg.ARITHMETIC_NUMBER)
-                        ],
-                        errormsg: [
-                            {type: "pattern", content: "输入的格式不正确(例：1.00)"},
-                            {type: "maxlength", content: "提现最大额度不能超过1,000,000 元"},
-                        ]
-                    }, {
-                        label: "结算",
-                        key: "whether_settlement",
-                        controlType: "radio",
-                        value: _data.whether_settlement,
-                        require: true,
-                        options: [
-                            {value: "1", content: "是"},
-                            {value: "2", content: "否"},
-                        ],
-                        validator: [
-                            Validators.required
-                        ],
-                        errormsg: [
-                            {type: "required", content: "必填项目"}
-                        ]
-                        , click: (data) => {
-                            if (data == 1) {
-                                this.fields[22].hidden = false;
-                                this.fields[23].hidden = false;
-                            }
-                            if (data == 2) {
-                                this.fields[22].hidden = true;
-                                this.fields[23].hidden = true;
-                            }
-
-                        }
-                    }, {
-                        label: "结算周期(月)",
-                        key: "settlement_cycle",
-                        controlType: "input",
-                        inputType: "text",
-                        require: true,
-                        hidden: _data.whether_settlement==2,
-                        value: _data.settlement_cycle,
-                        placeholder: "请输入结算周期"
-                    }, {
-                        label: "结算日(日)",
-                        key: "settlement_day",
-                        controlType: "input",
-                        inputType: "text",
-                        require: true,
-                        hidden: _data.whether_settlement==2,
-                        value: _data.settlement_day,
-                        placeholder: "请输入结算日"
-                    }
+                    },
                 ];
             } else {
                 swal("获取城市合伙人信息失败", res.error_msg, "error")
@@ -372,21 +302,10 @@ export class MerchantEditComponent implements OnInit {
     }
 
     saveData({value}={value}) {
-        let {whether_settlement, settlement_cycle, settlement_day,maintenance_man_mobile} = value;
-        if (whether_settlement == 1) {
-            if (settlement_cycle == "" || settlement_day == "") {
-                swal("提交失败", "请确认结算周期和结算日", "error")
-                return
-            }
-        }
-        let _maintenance_man_mobile = "";
-        if (maintenance_man_mobile){
-            _maintenance_man_mobile = JSON.parse(maintenance_man_mobile).join(",")
-        };
         let params = {
             params: {
-                business_id:this.city_partner_id,
-                business_info:{
+                agent_id: this.agent_id,
+                agent_info: {
                     user_name: this.user_name,
                     business_name: value.business_name.trim(),
                     password: value.password,
@@ -398,12 +317,12 @@ export class MerchantEditComponent implements OnInit {
                     province_code: value.business_address.province_code,
                     city_code: value.business_address.city_code,
                     district_code: value.business_address.district_code,
-                    certificate_1: value.certificate_1,
-                    certificate_img_1: value.certificate_img_1,
-                    certificate_2: value.certificate_2,
-                    certificate_img_2: value.certificate_img_2,
-                    certificate_3: value.certificate_3,
-                    certificate_img_3: value.certificate_img_3,
+                    certificate_1: value.certificate_11,
+                    certificate_img_1: value.certificate_img_11,
+                    certificate_2: value.certificate_12,
+                    certificate_img_2: value.certificate_img_12,
+                    certificate_3: value.certificate_13,
+                    certificate_img_3: value.certificate_img_13,
                     enterprise_nature: value.enterprise_nature,
                     service_validity: value.service_validity,
                     min_withdraw_cash: value.min_withdraw_cash,
@@ -411,20 +330,15 @@ export class MerchantEditComponent implements OnInit {
                     staff_no: '',
                     position: '',
                     module_permission: JSON.parse(value.module_permission).join(","),
-                    maintenance_man_mobile: _maintenance_man_mobile,
-                    electricity_price: value.electricity_price,
-                    whether_settlement: whether_settlement,
-                    settlement_cycle: settlement_cycle,
-                    settlement_day: settlement_day,
                 }
             }
         };
-        this.appHttpService.postData(this.uc.api.qc + "/update_business_user/hash", params).subscribe(
+        this.appHttpService.postData(this.uc.api.qc + "/update_agent_user/hash", params).subscribe(
             res => {
                 if (res.status) {
-                    this.router.navigateByUrl('pages/account/merchantList');
+                    this.router.navigateByUrl('pages/account/agentAccountList');
                 } else {
-                    swal("编辑商户失败", res.error_msg, "error")
+                    swal("编辑代理商失败", res.error_msg, "error")
                 }
             }
         )

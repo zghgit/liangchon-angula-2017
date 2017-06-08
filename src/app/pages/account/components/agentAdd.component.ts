@@ -10,10 +10,10 @@ import {emailValidator} from "../../../plugins/validators/emailValidator";
 
 declare var swal;
 @Component({
-    selector: 'citypartner-add',
-    templateUrl: '../views/citypartnerAdd.html'
+    selector: 'agent-add',
+    templateUrl: '../views/agentAdd.html'
 })
-export class CitypartnerAddComponent implements OnInit {
+export class AgentAddComponent implements OnInit {
     public isReBulid: boolean = false;
 
     constructor(public uc: UC,
@@ -188,57 +188,57 @@ export class CitypartnerAddComponent implements OnInit {
             }
         }, {
             label: "营业执照-注册号",
-            key: "certificate_21",
+            key: "certificate_11",
             controlType: "input",
             inputType: "text",
             value: "",
             placeholder: "请输入营业执照-注册号"
         }, {
             label: "营业执照-照片",
-            key: "certificate_img_21",
+            key: "certificate_img_11",
             controlType: "file",
             fileType: "img",
             value: "",
             config: {
                 uploadurl: this.uc.api.qc + "/upload_file/hash/",
                 downloadurl: this.uc.api.qc + "/get_file/hash/",
-                capsule: "certificate_img_21"
+                capsule: "certificate_img_11"
             },
         }, {
             label: "税务登记证-登记号",
-            key: "certificate_22",
+            key: "certificate_12",
             controlType: "input",
             inputType: "text",
             value: "",
             placeholder: "请输入税务登记证-登记号"
         }, {
             label: "税务登记证-照片",
-            key: "certificate_img_22",
+            key: "certificate_img_12",
             controlType: "file",
             fileType: "img",
             value: "",
             config: {
                 uploadurl: this.uc.api.qc + "/upload_file/hash/",
                 downloadurl: this.uc.api.qc + "/get_file/hash/",
-                capsule: "certificate_img_22"
+                capsule: "certificate_img_12"
             }
         }, {
             label: "组织结构代码",
-            key: "certificate_23",
+            key: "certificate_13",
             controlType: "input",
             inputType: "text",
             value: "",
             placeholder: "请输入组织结构代码"
         }, {
             label: "组织结构代码-照片",
-            key: "certificate_img_23",
+            key: "certificate_img_13",
             controlType: "file",
             fileType: "img",
             value: "",
             config: {
                 uploadurl: this.uc.api.qc + "/upload_file/hash/",
                 downloadurl: this.uc.api.qc + "/get_file/hash/",
-                capsule: "certificate_img_22"
+                capsule: "certificate_img_13"
             }
         }, {
             label: "性质",
@@ -308,12 +308,12 @@ export class CitypartnerAddComponent implements OnInit {
                 province_code: value.business_address.province_code,
                 city_code: value.business_address.city_code,
                 district_code: value.business_address.district_code,
-                certificate_1: value.certificate_21,
-                certificate_img_1: value.certificate_img_21,
-                certificate_2: value.certificate_22,
-                certificate_img_2: value.certificate_img_22,
-                certificate_3: value.certificate_23,
-                certificate_img_3: value.certificate_img_23,
+                certificate_1: value.certificate_11,
+                certificate_img_1: value.certificate_img_11,
+                certificate_2: value.certificate_12,
+                certificate_img_2: value.certificate_img_12,
+                certificate_3: value.certificate_13,
+                certificate_img_3: value.certificate_img_13,
                 enterprise_nature: value.enterprise_nature,
                 service_validity: value.service_validity,
                 min_withdraw_cash: value.min_withdraw_cash,
@@ -322,14 +322,16 @@ export class CitypartnerAddComponent implements OnInit {
                 position: ''
             }
         };
-        this.appHttpService.postData(this.uc.api.qc + "/add_city_partner_user/hash", params).subscribe(
+        this.appHttpService.postData(this.uc.api.qc + "/add_agent_user/hash", params).subscribe(
             res => {
                 if (res.status) {
-                    this.router.navigateByUrl('pages/account/citypartnerList');
+                    this.router.navigateByUrl('pages/account/agentAccountList');
                 } else {
-                    swal("新增城市合伙人失败", res.error_msg, "error")
+                    swal("新增代理商失败", res.error_msg, "error")
                 }
             }
         )
     }
-}
+}/**
+ * Created by max on 2017/6/8.
+ */

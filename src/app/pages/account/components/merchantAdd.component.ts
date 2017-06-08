@@ -7,6 +7,7 @@ import {Validators} from '@angular/forms';
 import {AppHttpService, UC, DataService} from "../../../plugins/globalservice";
 import {phoneValidator} from "../../../plugins/validators/phoneValidator";
 import {emailValidator} from "../../../plugins/validators/emailValidator";
+import {validate} from "codelyzer/walkerFactory/walkerFn";
 
 declare var swal;
 @Component({
@@ -59,7 +60,7 @@ export class MerchantAddComponent implements OnInit {
             key: "password",
             controlType: "input",
             inputType: "password",
-            value: "111111",
+            value: "",
             require: true,
             placeholder: "请输入密码",
             validator: [
@@ -195,7 +196,6 @@ export class MerchantAddComponent implements OnInit {
             label: "营业执照-照片",
             key: "certificate_img_1",
             controlType: "file",
-            id: "certificate_img_1",
             fileType: "img",
             value: "",
             config: {
@@ -214,7 +214,6 @@ export class MerchantAddComponent implements OnInit {
             label: "税务登记证-照片",
             key: "certificate_img_2",
             controlType: "file",
-            id: "certificate_img_2",
             fileType: "img",
             value: "",
             config: {
@@ -233,7 +232,6 @@ export class MerchantAddComponent implements OnInit {
             label: "组织结构代码-照片",
             key: "certificate_img_3",
             controlType: "file",
-            id: "certificate_img_3",
             fileType: "img",
             value: "",
             config: {
@@ -280,15 +278,17 @@ export class MerchantAddComponent implements OnInit {
             key: "min_withdraw_cash",
             controlType: "input",
             inputType: "text",
-            value: "",
             require: true,
+            value: "",
             placeholder: "请输入提现额度",
             validator: [
                 Validators.required,
+                Validators.maxLength(7),
                 Validators.pattern(this.uc.reg.ARITHMETIC_NUMBER)
             ],
             errormsg: [
                 {type: "required", content: "必填项目"},
+                {type: "maxlength", content: "提现最大额度不能超过1,000,000 元"},
                 {type: "pattern", content: "输入的格式不正确(例：1.00)"},
             ]
         }, {
@@ -296,21 +296,88 @@ export class MerchantAddComponent implements OnInit {
             key: "maintenance_man_mobile",
             controlType: "inputadd",
             value: "",
-            require: true,
             placeholder: "请输入运维人员手机号码",
-            content:"确认",
-            options:[],
+            content: "确认",
+            options: []
+        }, {
+            label: "电费单价(元)",
+            key: "electricity_price",
+            controlType: "input",
+            inputType: "text",
+            value: "",
+            placeholder: "请输入电费单价",
             validator: [
-                Validators.required,
+                Validators.maxLength(7),
+                Validators.pattern(this.uc.reg.ARITHMETIC_NUMBER)
+            ],
+            errormsg: [
+                {type: "pattern", content: "输入的格式不正确(例：1.00)"},
+                {type: "maxlength", content: "提现最大额度不能超过1,000,000 元"},
+            ]
+        }, {
+            label: "结算",
+            key: "whether_settlement",
+            controlType: "radio",
+            value: "2",
+            require: true,
+            options: [
+                {value: "1", content: "是"},
+                {value: "2", content: "否"},
+            ],
+            validator: [
+                Validators.required
             ],
             errormsg: [
                 {type: "required", content: "必填项目"}
             ]
+            , click: (data) => {
+                if (data == 1) {
+                    this.fields[23].hidden = false;
+                    this.fields[24].hidden = false;
+                }
+                if (data == 2) {
+                    this.fields[23].hidden = true;
+                    this.fields[24].hidden = true;
+                }
+
+            }
+        }, {
+            label: "结算周期(月)",
+            key: "settlement_cycle",
+            controlType: "input",
+            inputType: "text",
+            require: true,
+            hidden: true,
+            value: "",
+            placeholder: "请输入结算周期"
+        }, {
+            label: "结算日(日)",
+            key: "settlement_day",
+            controlType: "input",
+            inputType: "text",
+            require: true,
+            hidden: true,
+            value: "",
+            placeholder: "请输入结算日"
         }
     ];
 
     saveData({value}={value}) {
-        console.log(value)
+        console.log(value.maintenance_man_mobile)
+        let {whether_settlement, settlement_cycle, settlement_day,maintenance_man_mobile} = value;
+        if (whether_settlement == 1) {
+            if (settlement_cycle == "" || settlement_day == "") {
+                swal("提交失败", "请确认结算周期和结算日", "error")
+                return
+            }
+        }
+        let _maintenance_man_mobile
+        if (!maintenance_man_mobile){
+            _maintenance_man_mobile = ""
+        }else {
+            _maintenance_man_mobile = JSON.parse(maintenance_man_mobile).join(",")
+
+        };
         let params = {
             params: {
                 user_name: value.user_name.trim(),
@@ -324,26 +391,31 @@ export class MerchantAddComponent implements OnInit {
                 province_code: value.business_address.province_code,
                 city_code: value.business_address.city_code,
                 district_code: value.business_address.district_code,
-                certificate_1: value.certificate_21,
-                certificate_img_1: value.certificate_img_21,
-                certificate_2: value.certificate_22,
-                certificate_img_2: value.certificate_img_22,
-                certificate_3: value.certificate_23,
-                certificate_img_3: value.certificate_img_23,
+                certificate_1: value.certificate_1,
+                certificate_img_1: value.certificate_img_1,
+                certificate_2: value.certificate_2,
+                certificate_img_2: value.certificate_img_2,
+                certificate_3: value.certificate_3,
+                certificate_img_3: value.certificate_img_3,
                 enterprise_nature: value.enterprise_nature,
                 service_validity: value.service_validity,
                 min_withdraw_cash: value.min_withdraw_cash,
                 status: value.status,
                 staff_no: '',
-                position: ''
+                position: '',
+                maintenance_man_mobile: _maintenance_man_mobile,
+                electricity_price: value.electricity_price,
+                whether_settlement: whether_settlement,
+                settlement_cycle: settlement_cycle,
+                settlement_day: settlement_day,
             }
         };
-        this.appHttpService.postData(this.uc.api.qc + "/add_city_partner_user/hash", params).subscribe(
+        this.appHttpService.postData(this.uc.api.qc + "/add_business_user/hash", params).subscribe(
             res => {
                 if (res.status) {
-                    this.router.navigateByUrl('pages/account/citypartnerList');
+                    this.router.navigateByUrl('pages/account/merchantList');
                 } else {
-                    swal("新增城市合伙人失败", res.error_msg, "error")
+                    swal("新增商户失败", res.error_msg, "error")
                 }
             }
         )

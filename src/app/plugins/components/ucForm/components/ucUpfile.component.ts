@@ -18,13 +18,13 @@ declare var swal:any;
         <input type="hidden" [formControlName]="model.key" [(ngModel)]="model.value">
         <ng-container [ngSwitch]="model.fileType">
             <ng-container *ngSwitchCase="'img'">
-                <input type="file" id="{{model.id}}" class="form-control" (change)="canup($event)" [ngClass]="{'fileError':fileError}" accept="image/*">
+                <input type="file" id="{{model.key}}" class="form-control" (change)="canup($event)" [ngClass]="{'fileError':fileError}" accept="image/*">
             </ng-container>
             <ng-container *ngSwitchCase="'apk'">
-                <input type="file" id="{{model.id}}" class="form-control" (change)="canup($event)" [ngClass]="{'fileError':fileError}" accept=".apk">
+                <input type="file" id="{{model.key}}" class="form-control" (change)="canup($event)" [ngClass]="{'fileError':fileError}" accept=".apk">
             </ng-container>
             <ng-container *ngSwitchDefault>
-                <input type="file" id="{{model.id}}" class="form-control" (change)="canup($event)" [ngClass]="{'fileError':fileError}">
+                <input type="file" id="{{model.key}}" class="form-control" (change)="canup($event)" [ngClass]="{'fileError':fileError}">
             </ng-container>
         </ng-container>
         <div class="progressBar" [style.width]="progressBar+'%'" [ngClass]="{'fileError':fileError}"></div>
@@ -50,7 +50,7 @@ export class UcUpfileComponent implements OnInit {
     public canup(data) {
         this.fileError = false;
         var xhr = new XMLHttpRequest();
-        this.selectedFile = document.getElementById(this.model.id)
+        this.selectedFile = document.getElementById(this.model.key)
         this.file = this.selectedFile.files[0];
         if(this.file){
             let fd = new FormData();

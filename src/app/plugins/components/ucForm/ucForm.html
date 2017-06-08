@@ -8,7 +8,7 @@
             <!--</ng-container>-->
             <!--{{form.get(field.key).valid}}-->
             <!--</label>-->
-            <div>
+            <div *ngIf="!field.hidden">
                 <div [ngSwitch]="field.controlType">
                     <ng-container *ngSwitchCase="'input'">
                         <uc-input-text [model]="field" [form]="form"></uc-input-text>

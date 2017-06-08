@@ -1,71 +1,68 @@
 /**
- * Created by max on 2017/4/19.
+ * Created by max on 2017/6/8.
  */
+
 import {Component, OnInit} from '@angular/core';
-import {AppHttpService, UC} from "../../../plugins/globalservice";
-import {Router} from "@angular/router";
+import {AppHttpService, UC,DataService} from "../../../plugins/globalservice";
+import {Router,ActivatedRoute,Params} from "@angular/router";
+
 declare var swal;
 @Component({
-    selector: 'merchant-list',
-    templateUrl: '../views/merchantList.html',
-    styleUrls:["../styles/merchantList.scss"]
+    selector: 'allaccount-list',
+    templateUrl: '../views/allChildAccountList.html'
 })
-export class MerchantListComponent implements OnInit {
+export class AllChildAccountListComponent implements OnInit {
     public now: number = 1;
     public plugins: any = {};
 
-    constructor(public router: Router,
+    constructor(public uc: UC,
                 public appHttpService: AppHttpService,
-                public uc: UC) {
+                public router: Router,
+                public dataService: DataService,
+                public activatedRoute: ActivatedRoute,) {
     }
 
     ngOnInit() {
-        if (this.uc.powerfun(this.uc.constant.add_business_user)) {
-            this.plugins.button = {
-                class: 'btn-primary',
-                content: '新增商户',
-                click: () => {
-                    this.router.navigateByUrl('pages/account/merchantAdd');
-                }
-            };
-        }
         this.plugins.grid = {
             th: [
-                {content: '用户ID', hidden: true},
+                {content: '账户ID', hidden: true},
                 {content: '账户名'},
                 {content: '上级'},
                 {content: '账户类型'},
                 {content: '启用状态'},
                 {content: '手机号码'},
-                {content: '操作'},
+                {content: '操作'}
             ],
             tbody: [],
-            pagination : {
+            pagination: {
                 maxSize: 5,
                 itemsPerPage: 20,
                 currentPage: 1,
-                totalItems:1
+                totalItems: 1
             }
         }
-        this.getGridData({
-            page_now: this.now,
-            limit: 20,
-            sort_by: 'create_time',
-            sort_type: 'desc',
-            search_by: {
-                bind_status: 2,
-            },
+        let data = this.activatedRoute.params;
+        data.subscribe(res=>{
+            this.getGridData({
+                page_now: this.now,
+                limit: 20,
+                sort_by: 'create_time',
+                sort_type: 'desc',
+                search_by: {
+                    parent_id:res.id
+                },
 
-        })
+            })
+        });
     }
 
     public getGridData = function (params) {
-        let data = this.appHttpService.postData(this.uc.api.qc + "/get_business_user_list/hash", {params: params})
+        let data = this.appHttpService.postData(this.uc.api.qc + "/get_sub_user_list/hash", {params: params})
         data.subscribe(res => {
             if (res.status) {
                 let data = res.data;
                 let list = data.list;
-                this.plugins.grid.pagination['totalItems'] = data.total_num;
+                this.plugins.grid.pagination.totalItems = data.total_num;
                 this.plugins.grid.tbody = [];
                 for (let key of list) {
                     let tds: Array<any>;
@@ -73,28 +70,28 @@ export class MerchantListComponent implements OnInit {
                         {content: key.user_id, hidden: true},
                         {content: key.user_name},
                         {content: key.parent_name},
-                        {content: key.user_type_name},
-                        {content: key.status == '1' ? "启用" : "禁用"},
+                        {content: key.user_type==1?'主账户':'子账户'},
+                        {content: key.status==1?'启用':'禁用'},
                         {content: key.mobile_no},
                     ];
                     let operations = [];
-                    if (this.uc.powerfun(this.uc.constant.get_business_user) && key.operation.indexOf(this.uc.powercontroll.read) >= 0) {
+                    if (this.uc.powerfun(this.uc.constant.get_sub_user) && key.operation.indexOf(this.uc.powercontroll.read) >= 0) {
                         operations.push({
                             content: "查看",
                             class: "btn-info",
                             click: (data) => {
                                 let id = data[0].content;
-                                this.router.navigate(['pages/account/merchantDetail', id]);
+                                this.router.navigate(['pages/account/citypartnerDetail', id]);
                             }
                         })
                     }
-                    if (this.uc.powerfun(this.uc.constant.update_business_user) && key.operation.indexOf(this.uc.powercontroll.update) >= 0) {
+                    if (this.uc.powerfun(this.uc.constant.update_sub_user) && key.operation.indexOf(this.uc.powercontroll.update) >= 0) {
                         operations.push({
                             content: "编辑",
                             class: "btn-primary",
                             click: (data) => {
                                 let id = data[0].content;
-                                this.router.navigate(['pages/account/merchantEdit', id]);
+                                this.router.navigate(['pages/account/citypartnerEdit', id]);
                             }
                         })
                     }
@@ -170,7 +167,7 @@ export class MerchantListComponent implements OnInit {
                             class: "btn-secondary",
                             click: (data) => {
                                 let id = data[0].content;
-                                this.router.navigate(['pages/account/allChildAccountList', id]);
+                                this.router.navigate(['pages/account/allAccountList', id]);
                             }
                         })
                     }
@@ -178,23 +175,18 @@ export class MerchantListComponent implements OnInit {
                     this.plugins.grid.tbody.push(tds)
                 }
             }
-        },error=>{
-            console.log(error)
         })
     };
 
     public pageBeChanged(event) {
-        console.log(event);
         this.getGridData({
             page_now: event.page,
             limit: event.itemsPerPage,
             sort_by: 'create_time',
             sort_type: 'desc',
-            search_by: {
-                user_name: '',
-                role: ''
-            },
+            search_by: {},
         })
     }
+
 
 }

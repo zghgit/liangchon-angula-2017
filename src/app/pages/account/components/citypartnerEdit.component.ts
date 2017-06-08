@@ -68,14 +68,8 @@ export class CitypartnerEditComponent implements OnInit {
                         controlType: "input",
                         inputType: "text",
                         value: _data.user_name,
-                        require: true,
+                        disabled: true,
                         placeholder: "请输入账户名称",
-                        validator: [
-                            Validators.required
-                        ],
-                        errormsg: [
-                            {type: "required", content: "必填项目"}
-                        ]
                     }, {
                         label: "账户昵称",
                         key: "business_name",
@@ -193,7 +187,6 @@ export class CitypartnerEditComponent implements OnInit {
                         label: "营业执照-照片",
                         key: "certificate_img_21",
                         controlType: "file",
-                        id: "certificate_img_21",
                         fileType: "img",
                         value: _data.certificate_img_1,
                         config: {
@@ -212,7 +205,6 @@ export class CitypartnerEditComponent implements OnInit {
                         label: "税务登记证-照片",
                         key: "certificate_img_22",
                         controlType: "file",
-                        id: "certificate_img_22",
                         fileType: "img",
                         value: _data.certificate_img_2,
                         config: {
@@ -231,7 +223,6 @@ export class CitypartnerEditComponent implements OnInit {
                         label: "组织结构代码-照片",
                         key: "certificate_img_23",
                         controlType: "file",
-                        id: "certificate_img_23",
                         fileType: "img",
                         value: _data.certificate_img_3,
                         config: {
@@ -290,7 +281,7 @@ export class CitypartnerEditComponent implements OnInit {
                             {type: "pattern", content: "输入的格式不正确(例：1.00)"},
                         ]
                     }, {
-                        label: "权限",
+                        label: "权限模块",
                         key: "module_permission",
                         controlType: "checkbox",
                         require: true,

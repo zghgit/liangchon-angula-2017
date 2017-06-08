@@ -204,15 +204,15 @@ export class UC {
             }, {
                 "show": false,
                 "name": "子账户列表",
-                "href": "allAccountList"
+                "href": "allChildAccountList"
             }, {
                 "show": false,
                 "name": "编辑子账户",
-                "href": "allAccountEdit"
+                "href": "allChildAccountEdit"
             }, {
                 "show": false,
                 "name": "查看子账户详情",
-                "href": "allAccountDetail"
+                "href": "allChildAccountDetail"
             }, {
                 "show": true,
                 "name": "代理商管理",

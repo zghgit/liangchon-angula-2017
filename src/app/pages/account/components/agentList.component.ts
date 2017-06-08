@@ -7,201 +7,194 @@
  *
  */
 
-import { Component, OnInit } from '@angular/core';
-import { Validators } from '@angular/forms';
-import { AppHttpService,UC} from "../../../plugins/globalservice";
+import {Component, OnInit} from '@angular/core';
+import {AppHttpService, UC} from "../../../plugins/globalservice";
+import {Router} from "@angular/router";
+
+declare var swal;
 @Component({
     selector: 'agent-list',
-    templateUrl: '../views/agentList.html'
+    templateUrl: '../views/agentList.html',
+    styleUrls:['../styles/agentList.scss']
 })
 export class AgentListComponent implements OnInit {
-    constructor(public uc:UC) { }
-    public fields= [
-        {
-            label: "用户名",
-            key:"username",
-            controlType:"input",
-            inputType:"text",
-            require:true,
-            value:"",
-            placeholder: "用户名",
-            validator:[
-                Validators.required,
-                Validators.pattern("^[0-9]+$")
-            ],
-            errormsg:[
-                {type:"required",content:"必填项目"},
-                {type:"pattern",content:"只能是数字"},
-            ]
-        },
-        {
-            label: "常用邮箱",
-            key:"email",
-            controlType:"input",
-            inputType:"text",
-            require:true,
-            placeholder: "常用邮箱",
-            validator:[
-                Validators.required,
-                Validators.pattern("^[0-9]+$")
-            ],
-            errormsg:[
-                {type:"required",content:"必填项目"},
-                {type:"pattern",content:"只能是数字"},
-            ]
-        },
-        {
-            label: "密码",
-            key:"password",
-            controlType:"input",
-            inputType:"password",
-            value:"111111",
-            require:true,
-            placeholder: "密码，至少8位",
-            validator:[
-                Validators.required,
-                Validators.pattern("^[0-9]+$")
-            ],
-            errormsg:[
-                {type:"required",content:"必填项目"},
-                {type:"pattern",content:"只能是数字"},
-            ]
-        },
-        {
-            label: "能力",
-            key:"power",
-            controlType:"radio",
-            value:"1",
-            require:true,
-            options:[
-                {value:"1",content:"启用",checked:true},
-                {value:"2",content:"禁用"}
-            ],
-            validator:[
-                Validators.required
-            ],
-            errormsg:[
-                {type:"required",content:"必填项目"}
-            ]
-        },{
-            label: "展示",
-            key:"show1",
-            controlType:"checkbox",
-            require:true,
-            value:"",
-            options:[
-                {checked:true,value:"1",content:"商品1"},
-                {checked:false,value:"2",content:"商品2"},
-                {checked:false,value:"3",content:"商品3"},
-                {checked:false,value:"4",content:"商品4"},
-            ],
-            validator:[
-                Validators.required
-            ],
-            errormsg:[
-                {type:"required",content:"必填项目"}
-            ]
-        },
-        {
-            label: "重复密码",
-            key:"repassword",
-            controlType:"input",
-            inputType:"password",
-            require:true,
-            placeholder: "重复密码",
-            validator:[
-                Validators.required,
-                Validators.pattern("^[0-9]+$")
-            ],
-            errormsg:[
-                {type:"required",content:"必填项目"},
-                {type:"pattern",content:"只能是数字"},
-            ]
-        },
-        {
-            label: "个人简介",
-            key:"summary",
-            controlType:"input",
-            require:true,
-            inputType:"textarea",
-            placeholder: "个人简介，最多140字，不能放链接。",
-            validator:[
-                Validators.required,
-            ],
-            errormsg:[
-                {type:"required",content:"必填项目"},
-            ]
-        },
-        {
-            label: "上传文件",
-            key:"uploader",
-            controlType:"file",
-            fileType:"img",
-            require:true,
-            value:"",
-            config:{
-                uploadurl:this.uc.api.qc +"/upload_file/hash/",
-                downloadurl:this.uc.api.qc +"/get_file/hash/",
-                capsule:"ccm"
-            },
-            validator:[
-                Validators.required,
-            ],
-            errormsg:[
-                {type:"required",content:"必填项目"},
-            ]
-        },{
-            label:"时间",
-            key:"start_time",
-            controlType:"time",
-            value:"",
-            require:true,
-            config:{
-                showTimePicker:false,
-                format:0,
-            },
-            placeholder:"选择开始时间",
-            validator:[
-                Validators.required
-            ],
-            errormsg:[
-                {type:"required",content:"必填项目"}
-            ]
-        },{
-            label:"地址",
-            key:"address",
-            controlType:"address",
-            hasChildGroup:true,
-            require:true,
-            url:this.uc.api.qc + '/get_geo_list/hash/',
-            config: {
-                province: {
-                    name: 'province_code',
-                    value:"2",
-                    placeholder: "--请选择省--",
-                },
-                city: {
-                    name: 'city_code',
-                    value:'37',
-                    placeholder: "--请选择市--",
-                },
-                area: {
-                    name: 'district_code',
-                    value:'397',
-                    placeholder: "--请选择区--",
-                }
-            },
-            validator:[
-                Validators.required
-            ],
-            errormsg:[
-                {type:"required",content:"必填项目"}
-            ]
-        }
-    ];
-    title = "代理疝";
-    public mmm:string;
-    ngOnInit() {
+    public now: number = 1;
+    public plugins: any = {};
+
+    constructor(public router: Router,
+                public appHttpService: AppHttpService,
+                public uc: UC) {
     }
+
+    ngOnInit() {
+        if (this.uc.powerfun(this.uc.constant.add_city_partner_user)) {
+            this.plugins.button = {
+                class: 'btn-primary',
+                content: '新增代理商',
+                click: () => {
+                    this.router.navigateByUrl('pages/account/agentAccountAdd');
+                }
+            };
+        }
+        this.plugins.grid = {
+            th: [
+                {content: '账户ID', hidden: true},
+                {content: '账户名'},
+                {content: '上级'},
+                {content: '账户类型'},
+                {content: '启用状态'},
+                {content: '手机号码'},
+                {content: '操作'}
+            ],
+            tbody: [],
+            pagination: {
+                maxSize: 5,
+                itemsPerPage: 20,
+                currentPage: 1,
+                totalItems: 1
+            }
+        }
+        this.getGridData({
+            page_now: this.now,
+            limit: 20,
+            sort_by: 'create_time',
+            sort_type: 'desc',
+            search_by: {},
+
+        })
+    }
+
+    public getGridData = function (params) {
+        let data = this.appHttpService.postData(this.uc.api.qc + "/get_agent_user_list/hash", {params: params})
+        data.subscribe(res => {
+            if (res.status) {
+                let data = res.data;
+                let list = data.list;
+                this.plugins.grid.pagination.totalItems = data.total_num;
+                this.plugins.grid.tbody = [];
+                for (let key of list) {
+                    let tds: Array<any>;
+                    tds = [
+                        {content: key.user_id, hidden: true},
+                        {content: key.user_name},
+                        {content: key.parent_name},
+                        {content: key.user_type_name},
+                        {content: key.status == 1 ? '启用' : '禁用'},
+                        {content: key.mobile_no},
+                    ];
+                    let operations = [];
+                    if (this.uc.powerfun(this.uc.constant.get_city_partner_user) && key.operation.indexOf(this.uc.powercontroll.read) >= 0) {
+                        operations.push({
+                            content: "查看",
+                            class: "btn-info",
+                            click: (data) => {
+                                let id = data[0].content;
+                                this.router.navigate(['pages/account/agentAccountDetail', id]);
+                            }
+                        })
+                    }
+                    if (this.uc.powerfun(this.uc.constant.update_city_partner_user) && key.operation.indexOf(this.uc.powercontroll.update) >= 0) {
+                        operations.push({
+                            content: "编辑",
+                            class: "btn-primary",
+                            click: (data) => {
+                                let id = data[0].content;
+                                this.router.navigate(['pages/account/agentAccountEdit', id]);
+                            }
+                        })
+                    }
+                    if (this.uc.powerfun(this.uc.constant.disable_user) && key.status == '1' && key.operation.indexOf(this.uc.powercontroll.update) >= 0) {
+                        operations.push({
+                            content: "禁用",
+                            class: "btn-danger",
+                            click: (data) => {
+                                let id = data[0].content;
+                                swal({
+                                    title: '确定禁用?',
+                                    text: '',
+                                    type: 'warning',
+                                    showCancelButton: true,
+                                    confirmButtonText: '确定!',
+                                    cancelButtonText: '取消',
+                                    showLoaderOnConfirm: true,
+                                    confirmButtonColor: "#DD6B55",
+                                }).then((isConfirm) => {
+                                    if (isConfirm === true) {
+                                        this.appHttpService.postData(this.uc.api.qc + "/disable_user/hash/" + id
+                                        ).subscribe(res => {
+                                            if (res.status) {
+                                                swal("禁用成功!", "", "success");
+                                                this.getGridData(params);
+                                            } else {
+                                                swal("禁用失败!", res.error_msg, "error");
+                                            }
+                                        })
+                                    }
+                                }, () => {
+                                });
+
+                            }
+                        })
+                    }
+                    if (this.uc.powerfun(this.uc.constant.start_user) && key.status == '2' && key.operation.indexOf(this.uc.powercontroll.update) >= 0) {
+                        operations.push({
+                            content: "启用",
+                            class: "btn-success",
+                            click: (data) => {
+                                let id = data[0].content;
+                                swal({
+                                    title: '确定启用?',
+                                    text: '',
+                                    type: 'warning',
+                                    showCancelButton: true,
+                                    confirmButtonText: '确定!',
+                                    cancelButtonText: '取消',
+                                    showLoaderOnConfirm: true,
+                                    confirmButtonColor: "#DD6B55",
+                                }).then((isConfirm) => {
+                                    if (isConfirm === true) {
+                                        this.appHttpService.postData(this.uc.api.qc + "/start_user/hash/"+id
+                                        ).subscribe(res => {
+                                            if (res.status) {
+                                                swal("启用成功!", "", "success");
+                                                this.getGridData(params);
+                                            } else {
+                                                swal("启用失败!", res.error_msg, "error");
+                                            }
+                                        })
+                                    }
+                                }, () => {
+                                });
+
+                            }
+                        })
+                    }
+                    if (this.uc.powerfun(this.uc.constant.get_sub_user_list)) {
+                        operations.push({
+                            content: "子账户",
+                            class: "btn-secondary",
+                            click: (data) => {
+                                let id = data[0].content;
+                                this.router.navigate(['pages/account/allChildAccountList', id]);
+                            }
+                        })
+                    }
+                    tds.push({type: "operation", operation: operations})
+                    this.plugins.grid.tbody.push(tds)
+                }
+            }
+        })
+    };
+
+    public pageBeChanged(event) {
+        this.getGridData({
+            page_now: event.page,
+            limit: event.itemsPerPage,
+            sort_by: 'create_time',
+            sort_type: 'desc',
+            search_by: {},
+        })
+    }
+
 
 }

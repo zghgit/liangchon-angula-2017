@@ -2,7 +2,7 @@
  * Created by max on 2017/5/17.
  */
 
-import {Component, OnInit, Input,Output,EventEmitter,OnChanges} from '@angular/core';
+import {Component, OnInit, Input,Output,EventEmitter,OnChanges,AfterContentChecked} from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 @Component({
     selector: 'uc-form',
@@ -15,14 +15,12 @@ export class UcFormComponent implements OnInit {
     @Output() upformdata = new EventEmitter<any>();
     public form: FormGroup;
     public count:number=0;
-    public isReBulid:boolean = false;
     constructor() { }
 
     ngOnInit() {
         if(this.formData){
             this.form = this.toFormGroup(this.formData);
         }
-        // this.form.valueChanges.subscribe(data => {console.log(data)});
     }
     toFormGroup(fields) {
         let group: any = {};

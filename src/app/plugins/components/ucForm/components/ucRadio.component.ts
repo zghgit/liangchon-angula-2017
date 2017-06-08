@@ -16,22 +16,28 @@ import {Component, OnInit, Input} from '@angular/core';
     </div>
     <div class="item-content">
         <ng-container *ngFor="let item of model.options">
-            <label><input type="radio" [(ngModel)]="model.value" [formControlName]="model.key" [value]="item.value" (change)="ischange()">{{item.content}}</label>
+            <label><input type="radio" [(ngModel)]="model.value" [formControlName]="model.key" [value]="item.value" (click)="model.click?model.click(item.value):0" (change)="hasChanged(model.value)">{{item.content}}</label>
         </ng-container>
     </div>
 </div>
 `,
-    styleUrls:["../styles/ucRadio.scss"]
+    styleUrls: ["../styles/ucRadio.scss"]
 })
 export class UcRadioComponent implements OnInit {
     @Input() model: any;
     @Input() form;
-    public flag:boolean = false;
+    public flag: boolean = false;
+
     constructor() {
     }
+
     ngOnInit() {
+        // this.form.get(this.model.key).valueChanges.subscribe(data => {
+        //     console.log(data)
+        // });
     }
-    public ischange(){
+
+    public hasChanged(data) {
         this.flag = true;
     }
 }

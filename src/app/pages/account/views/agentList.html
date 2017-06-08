@@ -1,1 +1,4 @@
-<uc-form [formData]="fields"></uc-form>
+<ng-container *ngIf="plugins.button">
+    <uc-button [model]="plugins.button"></uc-button>
+</ng-container>
+<uc-table [model]="plugins.grid" (pageBeChanged)="pageBeChanged($event)"></uc-table>
