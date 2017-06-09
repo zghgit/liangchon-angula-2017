@@ -60,7 +60,7 @@ export class complainedDetailComponent implements OnInit {
                 ];
             } else {
                 swal({
-                    title: "获取申诉详情失败!",
+                    title: "获取申诉信息失败!",
                     text: res.error_msg,
                     type: "error"
                 });

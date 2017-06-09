@@ -1,5 +1,8 @@
 /**
- * Created by max on 2017/6/6.
+ * Created by max on 2017/6/9.
+ */
+/**
+ * Created by max on 2017/6/9.
  */
 import {Component, OnInit} from '@angular/core';
 import {Validators} from '@angular/forms';
@@ -10,13 +13,13 @@ import {emailValidator} from "../../../plugins/validators/emailValidator";
 
 declare var swal;
 @Component({
-    selector: 'citypartner-edit',
-    templateUrl: '../views/citypartnerEdit.html'
+    selector: 'allchildaccount-edit',
+    templateUrl: '../views/allChildAccountEdit.html'
 })
-export class CitypartnerEditComponent implements OnInit {
-    public city_partner_id: string;
+export class AllChildAccountEditComponent implements OnInit {
+    public sub_user_id: string;
     public user_name: string;
-    public fields: Array<any>;
+    public fields: Array<any>
 
     constructor(public uc: UC,
                 public appHttpService: AppHttpService,
@@ -28,11 +31,11 @@ export class CitypartnerEditComponent implements OnInit {
     ngOnInit() {
         let params = this.activatedRoute.params;
         params.subscribe(res => {
-            this.city_partner_id = res.id;
+            this.sub_user_id = res.id;
         })
 
         let data = this.activatedRoute.params
-            .switchMap((params: Params) => this.appHttpService.getData(this.uc.api.qc + "/get_city_partner_user/hash/" + params['id']));
+            .switchMap((params: Params) => this.appHttpService.getData(this.uc.api.qc + "/get_sub_user/hash/" + params['id']));
         data.subscribe(res => {
             console.log(res);
             if (res.status) {
@@ -56,7 +59,7 @@ export class CitypartnerEditComponent implements OnInit {
                 }
                 this.fields = [
                     {
-                        label: "上级机构",
+                        label: "父账户",
                         key: "old_user_name",
                         controlType: "input",
                         inputType: "text",
@@ -154,98 +157,76 @@ export class CitypartnerEditComponent implements OnInit {
                             {type: "emailValidator", content: "请填写正确的电子邮箱"},
                         ]
                     }, {
-                        label: "业务地址",
+                        label: "联系地址",
                         key: "business_address",
-                        controlType: "address",
-                        hasChildGroup: true,
-                        url: this.uc.api.qc + '/get_geo_list/hash/',
-                        config: {
-                            province: {
-                                name: 'province_code',
-                                value: _data.province_code,
-                                placeholder: "--请选择省--",
-                            },
-                            city: {
-                                name: 'city_code',
-                                value: _data.city_code,
-                                placeholder: "--请选择市--",
-                            },
-                            area: {
-                                name: 'district_code',
-                                value: _data.district_code,
-                                placeholder: "--请选择区--",
-                            }
-                        }
-                    }, {
-                        label: "营业执照-注册号",
-                        key: "certificate_21",
                         controlType: "input",
                         inputType: "text",
-                        value: _data.certificate_1,
-                        placeholder: "请输入营业执照-注册号"
-                    }, {
-                        label: "营业执照-照片",
-                        key: "certificate_img_21",
-                        controlType: "file",
-                        fileType: "img",
-                        value: _data.certificate_img_1,
-                        config: {
-                            uploadurl: this.uc.api.qc + "/upload_file/hash/",
-                            downloadurl: this.uc.api.qc + "/get_file/hash/",
-                            capsule: "certificate_img_21"
-                        },
-                    }, {
-                        label: "税务登记证-登记号",
-                        key: "certificate_22",
-                        controlType: "input",
-                        inputType: "text",
-                        value: _data.certificate_2,
-                        placeholder: "请输入税务登记证-登记号"
-                    }, {
-                        label: "税务登记证-照片",
-                        key: "certificate_img_22",
-                        controlType: "file",
-                        fileType: "img",
-                        value: _data.certificate_img_2,
-                        config: {
-                            uploadurl: this.uc.api.qc + "/upload_file/hash/",
-                            downloadurl: this.uc.api.qc + "/get_file/hash/",
-                            capsule: "certificate_img_22"
-                        }
-                    }, {
-                        label: "组织结构代码",
-                        key: "certificate_23",
-                        controlType: "input",
-                        inputType: "text",
-                        value: _data.certificate_3,
-                        placeholder: "请输入组织结构代码"
-                    }, {
-                        label: "组织结构代码-照片",
-                        key: "certificate_img_23",
-                        controlType: "file",
-                        fileType: "img",
-                        value: _data.certificate_img_3,
-                        config: {
-                            uploadurl: this.uc.api.qc + "/upload_file/hash/",
-                            downloadurl: this.uc.api.qc + "/get_file/hash/",
-                            capsule: "certificate_img_22"
-                        }
-                    }, {
-                        label: "性质",
-                        key: "enterprise_nature",
-                        controlType: "radio",
-                        value: _data.enterprise_nature,
+                        value: _data.business_address,
                         require: true,
-                        options: [
-                            {value: "1", content: "企业"},
-                            {value: "2", content: "个人"},
-                            {value: "3", content: "个人工商户"},
-                        ],
+                        placeholder: "请输入联系地址",
                         validator: [
                             Validators.required
                         ],
                         errormsg: [
-                            {type: "required", content: "必填项目"}
+                            {type: "required", content: "必填项目"},
+                        ]
+                    }, {
+                        label: "部门名称",
+                        key: "department",
+                        controlType: "input",
+                        inputType: "text",
+                        value: _data.department,
+                        require: true,
+                        placeholder: "请输入部门名称",
+                        validator: [
+                            Validators.required
+                        ],
+                        errormsg: [
+                            {type: "required", content: "必填项目"},
+                        ]
+                    }, {
+                        label: "工号",
+                        key: "staff_no",
+                        controlType: "input",
+                        inputType: "text",
+                        value: _data.staff_no,
+                        require: true,
+                        placeholder: "请输入工号",
+                        validator: [
+                            Validators.required
+                        ],
+                        errormsg: [
+                            {type: "required", content: "必填项目"},
+                        ]
+                    }, {
+                        label: "职位",
+                        key: "position",
+                        controlType: "input",
+                        inputType: "text",
+                        value: _data.position,
+                        require: true,
+                        placeholder: "请输入职位",
+                        validator: [
+                            Validators.required
+                        ],
+                        errormsg: [
+                            {type: "required", content: "必填项目"},
+                        ]
+                    }, {
+                        label: "最小提现额度(元)",
+                        key: "min_withdraw_cash",
+                        controlType: "input",
+                        inputType: "text",
+                        value: _data.min_withdraw_cash,
+                        require: true,
+                        placeholder: "请输入提现额度",
+                        validator: [
+                            Validators.required,
+                            Validators.pattern(this.uc.reg.ARITHMETIC_NUMBER)
+                        ],
+                        errormsg: [
+                            {type: "required", content: "必填项目"},
+                            {type: "pattern", content: "输入的格式不正确(例：1.00)"},
                         ]
                     }, {
                         label: "服务有效期至",
@@ -265,22 +246,6 @@ export class CitypartnerEditComponent implements OnInit {
                             {type: "required", content: "必填项目"}
                         ]
                     }, {
-                        label: "最小提现额度(元)",
-                        key: "min_withdraw_cash",
-                        controlType: "input",
-                        inputType: "text",
-                        value: _data.min_withdraw_cash,
-                        require: true,
-                        placeholder: "请输入提现额度",
-                        validator: [
-                            Validators.required,
-                            Validators.pattern(this.uc.reg.ARITHMETIC_NUMBER)
-                        ],
-                        errormsg: [
-                            {type: "required", content: "必填项目"},
-                            {type: "pattern", content: "输入的格式不正确(例：1.00)"},
-                        ]
-                    }, {
                         label: "权限模块",
                         key: "module_permission",
                         controlType: "checkbox",
@@ -296,7 +261,7 @@ export class CitypartnerEditComponent implements OnInit {
                     },
                 ];
             } else {
-                swal("获取城市合伙人信息失败", res.error_msg, "error")
+                swal("获取子账户信息失败", res.error_msg, "error")
             }
         })
     }
@@ -304,41 +269,33 @@ export class CitypartnerEditComponent implements OnInit {
     saveData({value}={value}) {
         let params = {
             params: {
-                city_partner_id: this.city_partner_id,
-                city_partner_info: {
+                sub_user_id: this.sub_user_id,
+                sub_user_info: {
                     user_name: this.user_name,
                     business_name: value.business_name.trim(),
                     password: value.password,
                     real_name: value.real_name.trim(),
                     service_phone: value.service_phone,
                     email: value.email,
-                    mobile_no: value.mobile_no,
-                    business_address: "",
-                    province_code: value.business_address.province_code,
-                    city_code: value.business_address.city_code,
-                    district_code: value.business_address.district_code,
-                    certificate_1: value.certificate_21,
-                    certificate_img_1: value.certificate_img_21,
-                    certificate_2: value.certificate_22,
-                    certificate_img_2: value.certificate_img_22,
-                    certificate_3: value.certificate_23,
-                    certificate_img_3: value.certificate_img_23,
-                    enterprise_nature: value.enterprise_nature,
-                    service_validity: value.service_validity,
-                    min_withdraw_cash: value.min_withdraw_cash,
                     status: value.status,
-                    staff_no: '',
-                    position: '',
+                    mobile_no: value.mobile_no,
+                    business_address: value.business_address,
+                    department: value.department,
+                    staff_no: value.staff_no,
+                    position: value.position,
+                    service_validity: value.service_validity,
+                    min_withdraw_cash:value.min_withdraw_cash,
                     module_permission: JSON.parse(value.module_permission).join(","),
                 }
             }
         };
-        this.appHttpService.postData(this.uc.api.qc + "/update_city_partner_user/hash", params).subscribe(
+        this.appHttpService.postData(this.uc.api.qc + "/update_sub_user/hash", params).subscribe(
             res => {
                 if (res.status) {
-                    this.router.navigateByUrl('pages/account/citypartnerList');
+                    let id = localStorage.getItem("currentLowerId");
+                    this.router.navigateByUrl('pages/account/allChildAccountList/'+id);
                 } else {
-                    swal("编辑城市合伙人失败", res.error_msg, "error")
+                    swal("编辑子账户失败", res.error_msg, "error")
                 }
             }
         )

@@ -11,7 +11,7 @@ import {Component, OnInit, Input,OnChanges} from '@angular/core';
             <label>{{model.label}}:
                 <span *ngIf="model.require">*</span>
                 <ng-container *ngFor="let item of model.errormsg">
-                    <i *ngIf="form.get(model.key).hasError(item.type)">{{item.content}}</i>
+                    <i *ngIf="form.get(model.key).hasError(item.type)&&flag">{{item.content}}</i>
                 </ng-container>
             </label>
         </div>
@@ -35,6 +35,7 @@ export class UcCheckboxComponent implements OnInit,OnChanges {
     @Input() form;
     public checkedSet = new Set();//内容集合
     public checkedAll: boolean = false;//全选
+    public flag:boolean = false;
     constructor() {
     }
 
@@ -73,6 +74,7 @@ export class UcCheckboxComponent implements OnInit,OnChanges {
         } else {
             this.checkedAll = false;
         }
+        this.flag = true;
         this.checkboxValue(this.checkedSet)
     }
     //点击全选时
@@ -89,6 +91,7 @@ export class UcCheckboxComponent implements OnInit,OnChanges {
                 item.checked = false;
             }
         }
+        this.flag = true;
         this.checkboxValue(this.checkedSet)
     }
     //模型数据更新

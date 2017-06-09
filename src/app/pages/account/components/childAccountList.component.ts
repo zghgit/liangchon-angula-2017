@@ -1,28 +1,52 @@
 /**
- * Created by max on 2017/6/8.
+ * Created by max on 2017/4/19.
  */
-
 import {Component, OnInit} from '@angular/core';
-import {AppHttpService, UC,DataService} from "../../../plugins/globalservice";
-import {Router,ActivatedRoute,Params} from "@angular/router";
+import {AppHttpService, UC, DataService} from "../../../plugins/globalservice";
+import {Router} from "@angular/router";
 
 declare var swal;
+
 @Component({
-    selector: 'allaccount-list',
-    templateUrl: '../views/allChildAccountList.html'
+    selector: 'childaccount-list',
+    templateUrl: '../views/childAccountList.html'
 })
-export class AllChildAccountListComponent implements OnInit {
+export class ChildAccountListComponent implements OnInit {
     public now: number = 1;
     public plugins: any = {};
+    public admin_flg:number|string;
 
-    constructor(public uc: UC,
+    constructor(public router: Router,
+                public dataService:DataService,
                 public appHttpService: AppHttpService,
-                public router: Router,
-                public dataService: DataService,
-                public activatedRoute: ActivatedRoute,) {
+                public uc: UC) {
     }
 
     ngOnInit() {
+        let user_id   = this.dataService.getCookies('user_id');
+        let parent_id = this.dataService.getCookies('parent_id');
+        let user_type = this.dataService.getCookies("user_type");//1是主账户  2是子账户
+         this.admin_flg = this.dataService.getCookies("admin_flg");//1是微云冲  2是另外三个
+        let search_id;
+        if (user_type == 2) {
+            search_id = parent_id;
+        } else {
+            search_id = user_id;
+        }
+
+        if (this.uc.powerfun(this.uc.constant.add_sub_user)) {
+            this.plugins.button = {
+                class: 'btn-primary',
+                content: '新增子账户',
+                click: () => {
+                    if (this.admin_flg == 1) {
+                        this.router.navigateByUrl('pages/account/childAccountAdd');
+                    } else if (this.admin_flg == 2) {//子账户可以添加子账户，平级，属于同一个上级
+                        this.router.navigateByUrl('pages/account/childAccountOtherAdd');
+                    }
+                }
+            };
+        }
         this.plugins.grid = {
             th: [
                 {content: '账户ID', hidden: true},
@@ -40,21 +64,17 @@ export class AllChildAccountListComponent implements OnInit {
                 currentPage: 1,
                 totalItems: 1
             }
-        }
-        let data = this.activatedRoute.params;
-        data.subscribe(res=>{
-            localStorage.setItem("currentLowerId",res.id);
-            this.getGridData({
-                page_now: this.now,
-                limit: 20,
-                sort_by: 'create_time',
-                sort_type: 'desc',
-                search_by: {
-                    parent_id:res.id
-                },
+        };
+        this.getGridData({
+            page_now: this.now,
+            limit: 20,
+            sort_by: 'create_time',
+            sort_type: 'desc',
+            search_by: {
+                parent_id: search_id
+            },
 
-            })
-        });
+        })
     }
 
     public getGridData = function (params) {
@@ -71,8 +91,8 @@ export class AllChildAccountListComponent implements OnInit {
                         {content: key.user_id, hidden: true},
                         {content: key.user_name},
                         {content: key.parent_name},
-                        {content: key.user_type==1?'主账户':'子账户'},
-                        {content: key.status==1?'启用':'禁用'},
+                        {content: key.user_type_name+'-'+key.role},
+                        {content: key.status == 1 ? '启用' : '禁用'},
                         {content: key.mobile_no},
                     ];
                     let operations = [];
@@ -82,7 +102,7 @@ export class AllChildAccountListComponent implements OnInit {
                             class: "btn-info",
                             click: (data) => {
                                 let id = data[0].content;
-                                this.router.navigate(['pages/account/allChildAccountDetail', id]);
+                                this.router.navigate(['pages/account/childAccountDetail', id]);
                             }
                         })
                     }
@@ -92,7 +112,11 @@ export class AllChildAccountListComponent implements OnInit {
                             class: "btn-primary",
                             click: (data) => {
                                 let id = data[0].content;
-                                this.router.navigate(['pages/account/allChildAccountEdit', id]);
+                                if (this.admin_flg == 1) {
+                                    this.router.navigate(['pages/account/childAccountEdit', id]);
+                                } else if (this.admin_flg == 2) {//子账户可以添加子账户，平级，属于同一个上级
+                                    this.router.navigate(['pages/account/childAccountOtherEdit', id]);
+                                }
                             }
                         })
                     }

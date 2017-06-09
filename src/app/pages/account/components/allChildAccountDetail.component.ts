@@ -1,16 +1,15 @@
 /**
- * Created by max on 2017/6/6.
+ * Created by max on 2017/6/9.
  */
-
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params}   from '@angular/router';
 import {AppHttpService, UC} from "../../../plugins/globalservice";
 declare var swal: any;
 @Component({
-    selector: 'citypartner-detail',
-    templateUrl: '../views/citypartnerDetail.html'
+    selector: 'allchildaccount-detail',
+    templateUrl: '../views/allChildAccountDetail.html'
 })
-export class CitypartnerDetailComponent implements OnInit {
+export class AllChildAccountDetailComponent implements OnInit {
     public plugins: any = {
         table: {
             data: []
@@ -24,23 +23,13 @@ export class CitypartnerDetailComponent implements OnInit {
 
     ngOnInit() {
         let data = this.activatedRoute.params
-            .switchMap((params: Params) => this.appHttpService.getData(this.uc.api.qc + "/get_city_partner_user/hash/"+params['id']));
+            .switchMap((params: Params) => this.appHttpService.getData(this.uc.api.qc + "/get_sub_user/hash/" + params['id']));
         data.subscribe((res) => {
             if (res.status) {
                 let _data = res.data;
                 let module_permission = '';
                 for (let i = 0; i < _data.module_permission.length; i++) {
                     module_permission += _data.module_permission[i].content + ', '
-                }
-                let business_address = '';
-                if(_data.province_code_name){
-                    business_address += _data.province_code_name;
-                }
-                if(_data.city_code_name){
-                    business_address += '-'+_data.city_code_name;
-                }
-                if(_data.district_code_name){
-                    business_address += '-'+_data.district_code_name;
                 }
                 this.plugins.table.data = [
                     {
@@ -51,7 +40,7 @@ export class CitypartnerDetailComponent implements OnInit {
                         type: 'text',
                         label: '账户名',
                         content: _data.user_name
-                    },{
+                    }, {
                         type: 'text',
                         label: '账户昵称',
                         content: _data.business_name
@@ -62,7 +51,7 @@ export class CitypartnerDetailComponent implements OnInit {
                     }, {
                         type: 'text',
                         label: '启用状态',
-                        content: _data.status==1?'启用':'禁用'
+                        content: _data.status == 1 ? '启用' : '禁用'
                     }, {
                         type: 'text',
                         label: '真实姓名',
@@ -81,55 +70,41 @@ export class CitypartnerDetailComponent implements OnInit {
                         content: _data.email
                     }, {
                         type: 'text',
-                        label: '业务地址',
-                        content: business_address
-                    },
-                    {
-                        type: 'text',
-                        label: '营业执照-注册号',
-                        content: _data.certificate_1
-                    },
-                    {
-                        type: 'img',
-                        label: '营业执照-照片',
-                        src: _data.certificate_img_1
+                        label: '联系地址',
+                        content: _data.business_address
                     }, {
                         type: 'text',
-                        label: '税务登记证-登记号',
-                        content: _data.certificate_2
-                    }, {
-                        type: 'img',
-                        label: '税务登记证-照片',
-                        src: _data.certificate_img_2
+                        label: '部门名称',
+                        content: _data.department
                     }, {
                         type: 'text',
-                        label: '组织结构代码',
-                        content: _data.certificate_3
-                    }, {
-                        type: 'img',
-                        label: '组织结构代码-照片',
-                        src: _data.certificate_img_3
+                        label: '工号',
+                        content: _data.staff_no
                     }, {
                         type: 'text',
-                        label: '性质',
-                        content: _data.enterprise_nature==1?'企业':_data.enterprise_nature==2?'个人':'个人工商户'
-                    }, {
-                        type: 'text',
-                        label: '服务有效期至',
-                        content: _data.service_validity
+                        label: '职位',
+                        content: _data.position
                     }, {
                         type: 'text',
                         label: '最小提现额度',
-                        content: _data.min_withdraw_cash+" 元"
+                        content: _data.min_withdraw_cash + " 元"
+                    }, {
+                        type: 'text',
+                        label: '权限模板',
+                        content: _data.role
                     }, {
                         type: 'text',
                         label: '权限',
                         content: module_permission
+                    }, {
+                        type: 'text',
+                        label: '服务有效期至',
+                        content: _data.service_validity
                     }
                 ];
             } else {
                 swal({
-                    title: "获取商户信息失败!",
+                    title: "获取子账户信息失败!",
                     text: res.error_msg,
                     type: "error"
                 });

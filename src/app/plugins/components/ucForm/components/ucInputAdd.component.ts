@@ -51,7 +51,6 @@ export class UcInputAddComponent implements OnInit {
 
     ngOnInit() {
         if (this.model.options.length>0){
-            console.log(111)
             for(let item of this.model.options){
                 this.inputSet.add(item);
             }

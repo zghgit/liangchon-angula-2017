@@ -14,7 +14,6 @@ declare var swal;
     styleUrls: ['../styles/commodityAdd.scss']
 })
 export class CommodityAddComponent implements OnInit {
-    public isReBulid:boolean = false;
     constructor(public uc: UC,
                 public appHttpService: AppHttpService,
                 public router: Router) {

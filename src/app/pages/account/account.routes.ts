@@ -9,6 +9,11 @@ import {
   AgentEditComponent,
   AgentDetailComponent,
   ChildAccountListComponent,
+  ChildAccountAddComponent,
+  ChildAccountEditComponent,
+  ChildAccountDetailComponent,
+  ChildAccountOtherAddComponent,
+  ChildAccountOtherEditComponent,
   CitypartnerListComponent,
   CitypartnerDetailComponent,
   CitypartnerAddComponent,
@@ -18,6 +23,9 @@ import {
   MerchantAddComponent,
   MerchantEditComponent,
   AllChildAccountListComponent,
+  AllChildAccountDetailComponent,
+  AllChildAccountEditComponent,
+
 } from "./components";
 export const AccountRoutes :Routes = [
   { path: "",
@@ -25,6 +33,11 @@ export const AccountRoutes :Routes = [
     children:[
       { path: "",redirectTo:"childAccountList",pathMatch:"full" },
       { path: "childAccountList", component: ChildAccountListComponent },
+      { path: "childAccountAdd", component: ChildAccountAddComponent },
+      { path: "childAccountEdit/:id", component: ChildAccountEditComponent },
+      { path: "childAccountDetail/:id", component: ChildAccountDetailComponent },
+      { path: "childAccountOtherAdd", component: ChildAccountOtherAddComponent },
+      { path: "childAccountOtherEdit/:id", component: ChildAccountOtherEditComponent },
       { path: "agentAccountList", component: AgentListComponent },
       { path: "agentAccountAdd", component: AgentAddComponent },
       { path: "agentAccountEdit/:id", component: AgentEditComponent },
@@ -38,6 +51,8 @@ export const AccountRoutes :Routes = [
       { path: "merchantEdit/:id", component: MerchantEditComponent },
       { path: "merchantDetail/:id", component: merchantDetailComponent },
       { path: "allChildAccountList/:id", component: AllChildAccountListComponent },
+      { path: "allChildAccountDetail/:id", component: AllChildAccountDetailComponent },
+      { path: "allChildAccountEdit/:id", component: AllChildAccountEditComponent },
     ]
   },
 ];

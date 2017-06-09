@@ -11,7 +11,6 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class UcFormComponent implements OnInit {
     @Input() formData:any;
-    @Input() canReBulid:boolean;
     @Output() upformdata = new EventEmitter<any>();
     public form: FormGroup;
     public count:number=0;

@@ -25,14 +25,14 @@ export class DataService {
         return JSON.parse(this.data[key] || false);
     };
 
-    public setCookies(key: string, value: string, Days?: number): void {
+    public setCookies(key: string, value: string|number, Days?: number): void {
         let d = new Date();
         d.setTime(d.getTime() + (Days * 24 * 60 * 60 * 1000));
         let expires = "expires=" + d.toUTCString();
         document.cookie = key + "=" + value + "; " + expires;
     };
 
-    public getCookies(key: string): string {
+    public getCookies(key: string): string|number {
         let data = document.cookie;
         let dataArray = data.split("; ");
         for (let i = 0; i < dataArray.length; i++) {

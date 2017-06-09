@@ -56,7 +56,7 @@ export class CommodityDetailComponent implements OnInit {
                 ];
             } else {
                 swal({
-                    title: "获取商品详情失败!",
+                    title: "获取商品信息失败!",
                     text: res.error_msg,
                     type: "error"
                 });

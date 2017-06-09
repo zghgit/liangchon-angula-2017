@@ -296,7 +296,7 @@ export class AgentEditComponent implements OnInit {
                     },
                 ];
             } else {
-                swal("获取城市合伙人信息失败", res.error_msg, "error")
+                swal("获取代理商信息失败", res.error_msg, "error")
             }
         })
     }

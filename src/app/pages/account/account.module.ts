@@ -15,6 +15,11 @@ import {
     AgentEditComponent,
     AgentDetailComponent,
     ChildAccountListComponent,
+    ChildAccountAddComponent,
+    ChildAccountEditComponent,
+    ChildAccountDetailComponent,
+    ChildAccountOtherAddComponent,
+    ChildAccountOtherEditComponent,
     CitypartnerListComponent,
     CitypartnerDetailComponent,
     CitypartnerAddComponent,
@@ -24,6 +29,8 @@ import {
     MerchantAddComponent,
     MerchantEditComponent,
     AllChildAccountListComponent,
+    AllChildAccountDetailComponent,
+    AllChildAccountEditComponent,
 } from "./components";
 
 
@@ -41,6 +48,11 @@ import {
         AgentEditComponent,
         AgentDetailComponent,
         ChildAccountListComponent,
+        ChildAccountAddComponent,
+        ChildAccountEditComponent,
+        ChildAccountDetailComponent,
+        ChildAccountOtherAddComponent,
+        ChildAccountOtherEditComponent,
         CitypartnerListComponent,
         CitypartnerDetailComponent,
         CitypartnerAddComponent,
@@ -50,6 +62,8 @@ import {
         MerchantAddComponent,
         MerchantEditComponent,
         AllChildAccountListComponent,
+        AllChildAccountDetailComponent,
+        AllChildAccountEditComponent,
     ],
     providers: [],
 })

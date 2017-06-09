@@ -14,7 +14,6 @@ declare var swal;
     templateUrl: '../views/citypartnerAdd.html'
 })
 export class CitypartnerAddComponent implements OnInit {
-    public isReBulid: boolean = false;
 
     constructor(public uc: UC,
                 public appHttpService: AppHttpService,

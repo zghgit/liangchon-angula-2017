@@ -156,7 +156,7 @@ export class merchantDetailComponent implements OnInit {
                 }
             } else {
                 swal({
-                    title: "获取商品详情失败!",
+                    title: "获取商户信息失败!",
                     text: res.error_msg,
                     type: "error"
                 });

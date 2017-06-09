@@ -14,7 +14,6 @@ declare var swal;
     styleUrls: ['../styles/complainedAdd.scss']
 })
 export class complainedAddComponent implements OnInit {
-    public isReBulid:boolean = false;
     constructor(public uc: UC,
                 public appHttpService: AppHttpService,
                 public router: Router) {
