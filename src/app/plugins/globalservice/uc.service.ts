@@ -261,19 +261,21 @@ export class UC {
                 "show": false,
                 "name": "查看商户信息",
                 "href": "merchantDetail"
-            }, {
-                "show": false,
-                "name": "修改用户",
-                "href": "userEdit"
-            }, {
-                "show": false,
-                "name": "修改密码",
-                "href": "userPwdEdit"
-            }, {
-                "show": false,
-                "name": "用户详情",
-                "href": "userList"
-            }]
+            }
+            // , {
+            //     "show": false,
+            //     "name": "修改用户",
+            //     "href": "userEdit"
+            // }, {
+            //     "show": false,
+            //     "name": "修改密码",
+            //     "href": "userPwdEdit"
+            // }, {
+            //     "show": false,
+            //     "name": "用户详情",
+            //     "href": "userList"
+            // }
+            ]
         },
         "commodity": {
             "show": true,
@@ -563,7 +565,7 @@ export class UC {
         "user": {
             "show": false,
             "title": "user",
-            "hasSubmenu": false,
+            "hasSubmenu": true,
             "name": "系统用户管理",
             "icon": "user",
             "submenu": [{
@@ -573,11 +575,11 @@ export class UC {
             }, {
                 "show": false,
                 "name": "修改密码",
-                "href": "userEditPwd"
+                "href": "userPwdEdit"
             }, {
                 "show": false,
                 "name": "用户详情",
-                "href": "userList"
+                "href": "userInfo"
             }]
         },
         "setting": {

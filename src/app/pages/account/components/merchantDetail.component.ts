@@ -76,11 +76,11 @@ export class merchantDetailComponent implements OnInit {
                         content: _data.service_phone
                     }, {
                         type: 'text',
-                        label: '手机号',
+                        label: '手机号码',
                         content: _data.mobile_no
                     }, {
                         type: 'text',
-                        label: '邮箱',
+                        label: '邮箱地址',
                         content: _data.email
                     }, {
                         type: 'text',

@@ -39,7 +39,7 @@ export class AgentListComponent implements OnInit {
         this.plugins.grid = {
             th: [
                 {content: '账户ID', hidden: true},
-                {content: '账户名'},
+                {content: '账户名称'},
                 {content: '上级'},
                 {content: '账户类型'},
                 {content: '启用状态'},
@@ -83,7 +83,7 @@ export class AgentListComponent implements OnInit {
                         {content: key.mobile_no},
                     ];
                     let operations = [];
-                    if (this.uc.powerfun(this.uc.constant.get_city_partner_user) && key.operation.indexOf(this.uc.powercontroll.read) >= 0) {
+                    if (this.uc.powerfun(this.uc.constant.get_agent_user) && key.operation.indexOf(this.uc.powercontroll.read) >= 0) {
                         operations.push({
                             content: "查看",
                             class: "btn-info",
@@ -93,7 +93,7 @@ export class AgentListComponent implements OnInit {
                             }
                         })
                     }
-                    if (this.uc.powerfun(this.uc.constant.update_city_partner_user) && key.operation.indexOf(this.uc.powercontroll.update) >= 0) {
+                    if (this.uc.powerfun(this.uc.constant.update_agent_user) && key.operation.indexOf(this.uc.powercontroll.update) >= 0) {
                         operations.push({
                             content: "编辑",
                             class: "btn-primary",

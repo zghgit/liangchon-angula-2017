@@ -132,13 +132,13 @@ export class CitypartnerAddComponent implements OnInit {
                 {type: "phoneValidator", content: "请填写正确的电话号码"},
             ]
         }, {
-            label: "手机号",
+            label: "手机号码",
             key: "mobile_no",
             controlType: "input",
             inputType: "text",
             value: "",
             require: true,
-            placeholder: "请输入服务电话",
+            placeholder: "请输入手机号码",
             validator: [
                 Validators.required,
                 phoneValidator,
@@ -148,13 +148,13 @@ export class CitypartnerAddComponent implements OnInit {
                 {type: "phoneValidator", content: "请填写正确的电话号码"},
             ]
         }, {
-            label: "邮箱",
+            label: "邮箱地址",
             key: "email",
             controlType: "input",
             inputType: "text",
             value: "",
             require: true,
-            placeholder: "请输入邮箱",
+            placeholder: "请输入邮箱地址",
             validator: [
                 Validators.required, emailValidator
             ],

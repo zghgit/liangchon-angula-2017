@@ -20,6 +20,7 @@ export const pagesRoutes: Routes = [
             {path: "operationAnalysis", loadChildren: "./operationAnalysis/operationAnalysis.module#OperationAnalysisModule"},
             {path: "operationManagement", loadChildren: "./operationManagement/operationManagement.module#OperationManagementModule"},
             {path: "appManagement", loadChildren: "./appManagement/appManagement.module#AppManagementModule"},
+            {path: "user", loadChildren: "./user/user.module#UserModule"},
         ]
     }
 ]

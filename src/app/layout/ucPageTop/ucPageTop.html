@@ -17,26 +17,26 @@
             <i class="glyphicon glyphicon-chevron-down" [ngClass]="{'overturn':isShowUserItem}"></i>
         </div>
         <ul class="user-dropdown" [ngClass]="{'show': isShowUserItem}">
-            <li>
-                <a>
+            <li *ngIf="navigation.userInfo.show">
+                <a [routerLink]="navigation.userInfo.href">
                     <i class="glyphicon glyphicon-user"></i>
                     <span>查看个人详情</span>
                 </a>
             </li>
-            <li>
-                <a>
+            <li *ngIf="navigation.userEdit.show">
+                <a [routerLink]="navigation.userEdit.href">
                     <i class="glyphicon glyphicon-edit"></i>
                     <span>编辑个人信息</span>
                 </a>
             </li>
-            <li>
-                <a>
+            <li *ngIf="navigation.userPwdEdit.show">
+                <a [routerLink]="navigation.userPwdEdit.href">
                     <i class="glyphicon glyphicon-edit"></i>
                     <span>更改密码</span>
                 </a>
             </li>
-            <li>
-                <a>
+            <li *ngIf="navigation.payConfigList.show">
+                <a [routerLink]="navigation.payConfigList.href">
                     <i class="glyphicon glyphicon-credit-card"></i>
                     <span>收款配置</span>
                 </a>

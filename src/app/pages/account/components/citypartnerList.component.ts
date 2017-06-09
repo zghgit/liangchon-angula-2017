@@ -34,7 +34,7 @@ export class CitypartnerListComponent implements OnInit {
         this.plugins.grid = {
             th: [
                 {content: '账户ID', hidden: true},
-                {content: '账户名'},
+                {content: '账户名称'},
                 {content: '上级'},
                 {content: '账户类型'},
                 {content: '启用状态'},

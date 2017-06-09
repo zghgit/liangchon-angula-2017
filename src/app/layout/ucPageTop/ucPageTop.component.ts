@@ -4,7 +4,7 @@
 import {Component, Input} from "@angular/core";
 import {Router, RouterState, RouterStateSnapshot} from '@angular/router';
 import {Location} from '@angular/common';
-import {DataService, GlobalState} from "../../plugins/globalservice";
+import {DataService, GlobalState,UC} from "../../plugins/globalservice";
 
 @Component({
     selector: "uc-page-top",
@@ -16,10 +16,11 @@ export class UcPageTopComponent {
     public menu: any;
     public isShrinked: boolean = false;//主菜单收缩
     public isShowUserItem: boolean = false;
-
+    public navigation:any = {};
     constructor(public router: Router,
                 public globalState: GlobalState,
                 public dataService: DataService,
+                public uc:UC,
                 public location: Location,) {
     };
 
@@ -27,6 +28,26 @@ export class UcPageTopComponent {
         this.globalState.toggleMenu.subscribe((data: boolean) => {
             this.isShrinked = data;
         })
+        let userId = this.dataService.getCookies("user_id");
+        //用户模块的url
+        this.navigation = {
+            userInfo:{
+                show:true,
+                href:"user/userInfo/"+userId
+            },
+            userEdit:{
+                show:true,
+                href:"user/userEdit/"+userId
+            },
+            userPwdEdit:{
+                show:true,
+                href:"user/userPwdEdit/"+userId
+            },
+            payConfigList:{
+                show:this.uc.powerfun(this.uc.constant.get_alipay_config) || this.uc.powerfun(this.uc.constant.get_wxpay_config) || this.uc.powerfun(this.uc.constant.get_foucs_wyc_wx_user),
+                href:"user/payConfigList"
+            }
+        }
     };
 
     public toggleMenu() {
