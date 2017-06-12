@@ -1,0 +1,24 @@
+.wechat-bind {
+    text-align: center;
+    background: #FFFFFF;
+    > h2 {
+        color: #ff0000;
+        text-align: center;
+        padding: 20px 0;
+    }
+    > span {
+        display: block;
+        color: #00b3ee;
+        text-align: center;
+    }
+    > div {
+        > h3 {
+            color: #000000;
+            text-align: left;
+            font-size: 16px;
+        }
+        > hr {
+            border: 1px solid #000000;
+        }
+    }
+}

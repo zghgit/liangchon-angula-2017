@@ -5,7 +5,8 @@ import { Routes } from '@angular/router';
 
 import { OperationManagementComponent } from './operationManagement.component';
 import {
-    OperationManagementListComponent
+    OperationManagementListComponent,
+    MaintenanceManComponent
 
 } from './components';
 export const operationAnalysisRoutes :Routes = [
@@ -13,7 +14,8 @@ export const operationAnalysisRoutes :Routes = [
         component:OperationManagementComponent,
         children:[
             { path: "",redirectTo:"operationManagementList",pathMatch:"full" },
-            { path: 'operationManagementList', component: OperationManagementListComponent }
+            { path: 'operationManagementList', component: OperationManagementListComponent },
+            { path: 'maintenanceMan', component: MaintenanceManComponent }
         ]
     },
 ];

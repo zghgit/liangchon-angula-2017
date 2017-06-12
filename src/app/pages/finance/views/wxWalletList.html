@@ -1,0 +1,12 @@
+<div class="wechat-bind">
+    <h2>请用手机微信扫描下面的二维码进行绑定</h2>
+    <img src="{{QRcode}}" alt="微信二维码">
+    <span *ngIf="hideRecord">目前该账号还没有绑定微信号</span>
+    <div *ngIf="!hideRecord">
+        <h3>已经绑定记录</h3>
+        <hr>
+    </div>
+</div>
+<ng-container *ngIf="!hideRecord">
+    <uc-table [model]="plugins.grid" (pageBeChanged)="pageBeChanged($event)"></uc-table>
+</ng-container>

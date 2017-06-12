@@ -45,7 +45,7 @@ export class UcPageTopComponent {
             },
             payConfigList:{
                 show:this.uc.powerfun(this.uc.constant.get_alipay_config) || this.uc.powerfun(this.uc.constant.get_wxpay_config) || this.uc.powerfun(this.uc.constant.get_foucs_wyc_wx_user),
-                href:"user/payConfigList"
+                href:"finance/payConfigList"
             }
         }
     };

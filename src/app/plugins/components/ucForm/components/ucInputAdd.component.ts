@@ -54,6 +54,7 @@ export class UcInputAddComponent implements OnInit {
             for(let item of this.model.options){
                 this.inputSet.add(item);
             }
+            this.uploadValue(this.model.options);
         }
     }
     //输入时验证

@@ -370,8 +370,11 @@ export class MerchantAddComponent implements OnInit {
                 swal("提交失败", "请确认结算周期和结算日", "error")
                 return
             }
+        }else {
+            settlement_cycle ="";
+            settlement_day ="";
         }
-        let _maintenance_man_mobile
+        let _maintenance_man_mobile;
         if (!maintenance_man_mobile){
             _maintenance_man_mobile = ""
         }else {

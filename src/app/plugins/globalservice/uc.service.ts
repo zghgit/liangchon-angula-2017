@@ -25,7 +25,7 @@ export class UC {
         //手机号
         MOBILE_NUMBER: "^(0[0-9]{2,3}\-)?([2-9][0-9]{6,7})+(\-[0-9]{1,4})?$|(^1\d{10}$)|^[400|800]\d{7,9}$",
         //email
-        EMAIL:"^\w+([\.-]?\w+)?@\w+([\.-]?\w+)?(\.\w{2,6})+$",
+        EMAIL: "^\w+([\.-]?\w+)?@\w+([\.-]?\w+)?(\.\w{2,6})+$",
         //url
         W_URL: "^(http|https|ftp)\:\/\/([a-zA-Z0-9\.\-]+(\:[a-zA-Z0-9\.&amp;%\$\-]+)*@)?((25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9])\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[0-9])|([a-zA-Z0-9\-]+\.)*[a-zA-Z0-9\-]+\.[a-zA-Z]{2,4})(\:[0-9]+)?(\/[^/][a-zA-Z0-9\.\,\?\'\\/\+&amp;%\$#\=~_\-@]*)*$"
     };
@@ -261,21 +261,7 @@ export class UC {
                 "show": false,
                 "name": "查看商户信息",
                 "href": "merchantDetail"
-            }
-            // , {
-            //     "show": false,
-            //     "name": "修改用户",
-            //     "href": "userEdit"
-            // }, {
-            //     "show": false,
-            //     "name": "修改密码",
-            //     "href": "userPwdEdit"
-            // }, {
-            //     "show": false,
-            //     "name": "用户详情",
-            //     "href": "userList"
-            // }
-            ]
+            }]
         },
         "commodity": {
             "show": true,
@@ -386,7 +372,7 @@ export class UC {
             "submenu": [{
                 "show": true,
                 "name": "财务一览",
-                "href": "financeManagement"
+                "href": "financeList"
             }, {
                 "show": false,
                 "name": "申请提现",
@@ -398,27 +384,23 @@ export class UC {
             }, {
                 "show": false,
                 "name": "支付宝配置",
-                "href": "alipayWalletConf"
+                "href": "alipayConfAdd"
             }, {
                 "show": false,
                 "name": "支付宝配置编辑",
-                "href": "alipayWalletConfEdit"
+                "href": "alipayConfEdit"
             }, {
                 "show": false,
                 "name": "微信公众号设置",
-                "href": "wechatPubNoConf"
+                "href": "wxPubConfAdd"
             }, {
                 "show": false,
                 "name": "微信公众号设置编辑",
-                "href": "wechatPubNoConfEdit"
+                "href": "wxPubConfEdit"
             }, {
                 "show": false,
                 "name": "微信零钱包设置",
-                "href": "wechatWalletConf"
-            }, {
-                "show": false,
-                "name": "微信零钱包编辑",
-                "href": "wechatWalletConfEdit"
+                "href": "wxWalletList"
             }, {
                 "show": true,
                 "name": "电费结算",

@@ -8,6 +8,7 @@
             <!--</ng-container>-->
             <!--{{form.get(field.key).valid}}-->
             <!--</label>-->
+            <div class="form-title" *ngIf="field.title">{{field.title}}</div>
             <div *ngIf="!field.hidden">
                 <div [ngSwitch]="field.controlType">
                     <ng-container *ngSwitchCase="'input'">

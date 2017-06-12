@@ -3,3 +3,4 @@
  */
 export * from "./userInfo.component";
 export * from "./userEdit.component";
+export * from "./userPwdEdit.component"

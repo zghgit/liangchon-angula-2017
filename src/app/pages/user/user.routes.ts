@@ -6,6 +6,7 @@ import { UserComponent } from "./user.component";
 import {
     UserInfoComponent,
     UserEditComponent,
+    UserPwdEditComponent,
 } from "./components";
 export const UserRoutes :Routes = [
     { path: "",
@@ -14,6 +15,7 @@ export const UserRoutes :Routes = [
             { path: "",redirectTo:"userInfo",pathMatch:"full" },
             { path: "userInfo/:id", component: UserInfoComponent },
             { path: "userEdit/:id", component: UserEditComponent },
+            { path: "userPwdEdit/:id", component: UserPwdEditComponent },
         ]
     },
 ];

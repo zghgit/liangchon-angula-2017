@@ -3,7 +3,7 @@
  */
 
 import { Component, OnInit } from '@angular/core';
-import {AppHttpService, UC} from "../../../plugins/globalservice";
+import {AppHttpService, UC,DataService} from "../../../plugins/globalservice";
 import {Router} from "@angular/router";
 
 declare var swal;
@@ -17,10 +17,22 @@ export class OperationManagementListComponent implements OnInit {
 
     constructor(public router: Router,
                 public appHttpService: AppHttpService,
+                public dataService:DataService,
                 public uc: UC) {
     }
 
     ngOnInit() {
+        let user_type = this.dataService.getCookies("user_type");//1是主账户  2是子账户
+        let admin_flg = this.dataService.getCookies("admin_flg");//1是微云冲  2是另外三个
+        if(admin_flg != 1 && user_type == 1){
+            this.plugins.button = {
+                class:'btn-primary',
+                content:'运维人员配置',
+                click:()=>{
+                    this.router.navigateByUrl('pages/operationManagement/maintenanceMan');
+                }
+            };
+        }
         this.plugins.grid = {
             th: [
                 {content: '设备编号ID', hidden: true},

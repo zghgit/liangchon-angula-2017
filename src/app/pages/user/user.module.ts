@@ -12,6 +12,7 @@ import {UserComponent} from "./user.component";
 import {
     UserInfoComponent,
     UserEditComponent,
+    UserPwdEditComponent,
 } from "./components";
 
 
@@ -26,6 +27,7 @@ import {
         UserComponent,
         UserInfoComponent,
         UserEditComponent,
+        UserPwdEditComponent,
     ],
     providers: [],
 })

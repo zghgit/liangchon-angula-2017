@@ -14,9 +14,8 @@ declare var swal;
     templateUrl: '../views/UserEdit.html'
 })
 export class UserEditComponent implements OnInit {
-    public sub_user_id: string;
-    public user_name: string;
-    public fields: Array<any>
+    public user_id: string;
+    public fields: Array<any>;
 
     constructor(public uc: UC,
                 public appHttpService: AppHttpService,
@@ -28,16 +27,14 @@ export class UserEditComponent implements OnInit {
     ngOnInit() {
         let params = this.activatedRoute.params;
         params.subscribe(res => {
-            this.sub_user_id = res.id;
+            this.user_id = res.id;
         })
-
         let data = this.activatedRoute.params
             .switchMap((params: Params) => this.appHttpService.getData(this.uc.api.qc + "/get_user/hash/" + params['id']));
         data.subscribe(res => {
             console.log(res);
             if (res.status) {
                 let _data = res.data;
-                this.user_name = _data.user_name;
                 this.fields = [
                     {
                         label: "账户名称",
@@ -54,22 +51,6 @@ export class UserEditComponent implements OnInit {
                         inputType: "text",
                         value: _data.business_name,
                         placeholder: "请输入账户昵称"
-                    }, {
-                        label: "账号状态",
-                        key: "status",
-                        controlType: "radio",
-                        value: _data.status,
-                        require: true,
-                        options: [
-                            {value: "1", content: "启用"},
-                            {value: "2", content: "禁用"},
-                        ],
-                        validator: [
-                            Validators.required
-                        ],
-                        errormsg: [
-                            {type: "required", content: "必填项目"}
-                        ]
                     }, {
                         label: "真实姓名",
                         key: "real_name",
@@ -149,11 +130,12 @@ export class UserEditComponent implements OnInit {
                             {type: "required", content: "必填项目"},
                         ]
                     })
-                };
+                }
+                ;
                 if (admin_flg != 1 && _data.user_type == 1) {
                     this.fields.push({
                         label: "业务地址",
-                        key: "business_address",
+                        key: "business_address1",
                         controlType: "address",
                         hasChildGroup: true,
                         url: this.uc.api.qc + '/get_geo_list/hash/',
@@ -176,13 +158,13 @@ export class UserEditComponent implements OnInit {
                         }
                     })
                     let role = this.dataService.getCookies("role");
-                    if(role == "商户"){
+                    if (role == "商户") {
                         this.fields.push({
                             label: "电费单价(元)",
                             key: "electricity_price",
                             controlType: "input",
                             inputType: "text",
-                            value:  _data.electricity_price,
+                            value: _data.electricity_price,
                             placeholder: "请输入电费单价",
                             validator: [
                                 Validators.maxLength(7),
@@ -211,12 +193,12 @@ export class UserEditComponent implements OnInit {
                             ]
                             , click: (data) => {
                                 if (data == 1) {
-                                    this.fields[22].hidden = false;
-                                    this.fields[23].hidden = false;
+                                    this.fields[9].hidden = false;
+                                    this.fields[10].hidden = false;
                                 }
                                 if (data == 2) {
-                                    this.fields[22].hidden = true;
-                                    this.fields[23].hidden = true;
+                                    this.fields[9].hidden = true;
+                                    this.fields[10].hidden = true;
                                 }
 
                             }
@@ -227,7 +209,7 @@ export class UserEditComponent implements OnInit {
                             controlType: "input",
                             inputType: "text",
                             require: true,
-                            hidden: _data.whether_settlement==2,
+                            hidden: _data.whether_settlement == 2,
                             value: _data.settlement_cycle,
                             placeholder: "请输入结算周期"
                         });
@@ -237,13 +219,14 @@ export class UserEditComponent implements OnInit {
                             controlType: "input",
                             inputType: "text",
                             require: true,
-                            hidden: _data.whether_settlement==2,
+                            hidden: _data.whether_settlement == 2,
                             value: _data.settlement_day,
                             placeholder: "请输入结算日"
                         });
                     }
-                };
-                if (_data.user_type ==2){
+                }
+                ;
+                if (_data.user_type == 2) {
                     this.fields.push({
                         label: "联系地址",
                         key: "business_address",
@@ -312,33 +295,44 @@ export class UserEditComponent implements OnInit {
     }
 
     saveData({value}={value}) {
+        let {whether_settlement, settlement_cycle, settlement_day} = value;
+        if (whether_settlement == 1) {
+            if (settlement_cycle == "" || settlement_day == "") {
+                swal("提交失败", "请确认结算周期和结算日", "error")
+                return
+            }
+        } else {
+            settlement_cycle = "";
+            settlement_day = "";
+        }
         let params = {
             params: {
-                sub_user_id: this.sub_user_id,
-                sub_user_info: {
-                    user_name: this.user_name,
+                user_info: {
                     business_name: value.business_name.trim(),
-                    password: value.password,
                     real_name: value.real_name.trim(),
                     service_phone: value.service_phone,
                     email: value.email,
-                    status: value.status,
                     mobile_no: value.mobile_no,
-                    business_address: value.business_address,
-                    department: value.department,
-                    staff_no: value.staff_no,
-                    position: value.position,
-                    service_validity: value.service_validity,
-                    module_permission: JSON.parse(value.module_permission).join(","),
+                    business_address: value.business_address || "",
+                    department: value.department || "",
+                    staff_no: value.staff_no || "",
+                    position: value.position || "",
+                    province_code: value.business_address1 ? value.business_address1.province_code : "0",
+                    city_code: value.business_address1 ? value.business_address1.city_code : "0",
+                    district_code: value.business_address1 ? value.business_address1.district_code : "0",
+                    electricity_price: value.electricity_price || 0,
+                    whether_settlement: whether_settlement,
+                    settlement_cycle: settlement_cycle,
+                    settlement_day: settlement_day,
                 }
             }
         };
-        this.appHttpService.postData(this.uc.api.qc + "/update_sub_user/hash", params).subscribe(
+        this.appHttpService.postData(this.uc.api.qc + "/update_user_info/hash", params).subscribe(
             res => {
                 if (res.status) {
-                    this.router.navigateByUrl('pages/account/childAccountList');
+                    this.router.navigateByUrl('pages/user/userInfo/' + this.user_id);
                 } else {
-                    swal("编辑子账户失败", res.error_msg, "error")
+                    swal("编辑用户信息失败", res.error_msg, "error")
                 }
             }
         )

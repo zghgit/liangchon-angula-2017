@@ -378,10 +378,13 @@ export class MerchantEditComponent implements OnInit {
                 swal("提交失败", "请确认结算周期和结算日", "error")
                 return
             }
+        }else {
+            settlement_cycle ="";
+            settlement_day ="";
         }
         let _maintenance_man_mobile = "";
         if (maintenance_man_mobile){
-            _maintenance_man_mobile = JSON.parse(maintenance_man_mobile).join(",")
+            _maintenance_man_mobile = (JSON.parse(maintenance_man_mobile)).join(",")
         };
         let params = {
             params: {
@@ -410,7 +413,7 @@ export class MerchantEditComponent implements OnInit {
                     status: value.status,
                     staff_no: '',
                     position: '',
-                    module_permission: JSON.parse(value.module_permission).join(","),
+                    module_permission: (JSON.parse(value.module_permission)).join(","),
                     maintenance_man_mobile: _maintenance_man_mobile,
                     electricity_price: value.electricity_price,
                     whether_settlement: whether_settlement,
