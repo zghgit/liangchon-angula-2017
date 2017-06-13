@@ -10,9 +10,20 @@ import {Component, OnInit, Input} from '@angular/core';
 })
 export class UcDetailsComponent implements OnInit {
     @Input() model;
+    public showZoom:boolean = false;
+    public zoomSrc:string;
     constructor() { }
 
     ngOnInit() {
     }
-
+    public zoomImg({target}={target}){
+        console.log(target.localName)
+        if(target.localName == "img"){
+            this.showZoom = true;
+            this.zoomSrc = target.src;
+        }
+    }
+    public closeZoomImg(){
+        this.showZoom = false;
+    }
 }

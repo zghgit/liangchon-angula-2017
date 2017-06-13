@@ -3,6 +3,8 @@
  */
 import {NgModule} from '@angular/core';
 import {RouterModule} from "@angular/router";
+import {CustomFormsModule} from "ng2-validation";
+
 import {CommonModule}  from '@angular/common';
 import {UcFormModule} from "../../plugins/UcFormModule";
 
@@ -36,6 +38,7 @@ import {
 
 @NgModule({
     imports: [
+        CustomFormsModule,
         CommonModule,
         UcFormModule,
         RouterModule.forChild(AccountRoutes)

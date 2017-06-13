@@ -1,14 +1,11 @@
 /**
  * Created by max on 2017/6/13.
  */
-/**
- * Created by max on 2017/6/2.
- */
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {Validators} from '@angular/forms';
 import {AppHttpService, UC} from "../../../plugins/globalservice";
-
+import {CustomValidators} from 'ng2-validation';
 declare var swal;
 @Component({
     selector: 'advertisement-add',
@@ -68,11 +65,11 @@ export class advertisementAddComponent implements OnInit {
             placeholder: "请输入链接地址",
             validator: [
                 Validators.required,
-                Validators.pattern("^[0-9]+$"),
+                CustomValidators.url
             ],
             errormsg: [
                 {type: "required", content: "必填项目"},
-                {type: "pattern", content: "只能是数字"},
+                {type: "url", content: "请输入有效的链接地址,含协议部分(如：http,https,ftp等)"},
             ]
         }, {
             label: "广告显示时间(秒)",
@@ -84,11 +81,31 @@ export class advertisementAddComponent implements OnInit {
             placeholder: "请输入广告显示时间",
             validator: [
                 Validators.required,
-                Validators.pattern("^[0-9]+$")
+                CustomValidators.min(0),
+                CustomValidators.number,
+                CustomValidators.max(30),
             ],
             errormsg: [
                 {type: "required", content: "必填项目"},
-                {type: "pattern", content: "只能是数字"},
+                {type: "min", content: "最少只能0秒"},
+                {type: "max", content: "最多只能30秒"},
+            ]
+        }, {
+            label: "投放区域",
+            key: "advertisement_range",
+            controlType: "inputpacs",
+            require: true,
+            value: "",
+            placeholder: "请选择投放区域",
+            content: "确认",
+            options: [],
+            check_all:true,
+            url: this.uc.api.qc + '/get_geo_list/hash/',
+            validator: [
+                Validators.required
+            ],
+            errormsg: [
+                {type: "required", content: "必填项目"}
             ]
         }, {
             label: "显示位置",

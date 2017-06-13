@@ -15,6 +15,7 @@ export class AdvertisementListComponent implements OnInit {
     public now: number = 1;
     public plugins: any = {};
 
+
     constructor(public router: Router,
                 public appHttpService: AppHttpService,
                 public uc: UC) {
@@ -259,6 +260,4 @@ export class AdvertisementListComponent implements OnInit {
             search_by: {},
         })
     }
-
-
 }

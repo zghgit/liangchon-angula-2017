@@ -5,6 +5,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule} from "@angular/router";
 import {CommonModule}  from '@angular/common';
 import {UcFormModule} from "../../plugins/UcFormModule";
+import {CustomFormsModule} from "ng2-validation";
 
 import {AdvertisementRoutes} from "./advertisement.routes";
 import { AdvertisementComponent } from "./advertisement.component";
@@ -18,6 +19,7 @@ import {
 @NgModule({
     imports: [
         CommonModule,
+        CustomFormsModule,
         UcFormModule,
         RouterModule.forChild(AdvertisementRoutes)
     ],

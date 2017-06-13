@@ -1,4 +1,4 @@
-<table>
+<table (click)="zoomImg($event)">
     <tbody>
         <ng-container *ngFor="let item of model.data">
             <tr>
@@ -14,3 +14,6 @@
         </ng-container>
     </tbody>
 </table>
+<div class="zoom" *ngIf="showZoom" (click)="closeZoomImg($event)">
+    <img src="{{zoomSrc}}" alt="">
+</div>

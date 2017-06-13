@@ -1,4 +1,4 @@
-<table>
+<table (click)="zoomImg($event)">
     <caption *ngIf="model.caption">{{model.caption}}</caption>
     <thead>
     <th *ngFor="let th of model.th" [ngClass]="{'hidden':th.hidden}">
@@ -32,3 +32,6 @@
             previousText="上一页" nextText="下一页"
             [boundaryLinks]="true" [rotate]="false" (numPages)="numPages = $event" [align]="true"
             (pageChanged)="pageChanged($event)" class="pagination-sm"></pagination>
+<div class="zoom" *ngIf="showZoom" (click)="closeZoomImg($event)">
+    <img src="{{zoomSrc}}" alt="">
+</div>

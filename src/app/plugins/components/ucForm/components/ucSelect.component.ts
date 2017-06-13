@@ -32,9 +32,16 @@ export class ucSelectComponent implements OnInit {
     }
     //发送数据
     public hasChanged(data) {
+        let content="";
+        for(let option of this.options){
+            if(option.geo_id ==data){
+                content = option.name;
+            }
+        }
         this.geoChange.emit({
             name: this.model.name,
-            value: data
+            value: data,
+            content:content,
         })
     }
 }

@@ -7,6 +7,7 @@ export * from "./ucRadio.component"
 export * from "./ucCheckbox.component";
 export * from "./ucInput.component";
 export * from "./ucInputAdd.component";
+export * from "./ucInputPacs.component";
 export * from "./ucTime.component";
 export * from "./ucSelect.component";
 export * from "./ucAddress.component";

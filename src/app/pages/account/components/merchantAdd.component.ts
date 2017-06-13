@@ -7,7 +7,6 @@ import {Validators} from '@angular/forms';
 import {AppHttpService, UC, DataService} from "../../../plugins/globalservice";
 import {phoneValidator} from "../../../plugins/validators/phoneValidator";
 import {emailValidator} from "../../../plugins/validators/emailValidator";
-import {validate} from "codelyzer/walkerFactory/walkerFn";
 
 declare var swal;
 @Component({

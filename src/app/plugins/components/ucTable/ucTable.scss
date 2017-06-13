@@ -67,3 +67,22 @@ table{
         }
     }
 }
+.zoom{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    text-align: center;
+    background: rgba(0,0,0,.74);
+    z-index: 9999;
+    img{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        max-width: 88%;
+        max-height: 88%;
+        -webkit-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%);
+    }
+}
