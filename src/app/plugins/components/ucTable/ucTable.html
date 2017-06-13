@@ -10,13 +10,18 @@
     <tbody>
     <tr *ngFor="let tr of model.tbody">
         <td *ngFor="let td of tr" [ngClass]="{'hidden':td.hidden}">
-            <ng-container>{{td.content}}</ng-container>
-            <ng-container *ngIf="td.type =='operation'">
-                <ng-container>
-                    <button *ngFor="let item of td.operation" class="btn btn-sm {{item.class}}" (click)="item.click(tr)">
-                        {{item.content}}
-                    </button>
+            <ng-container [ngSwitch]="td.type">
+                <ng-container *ngSwitchCase="'img'">
+                    <img src="{{td.content}}" alt="">
                 </ng-container>
+                <ng-container *ngSwitchCase="'operation'">
+                    <ng-container>
+                        <button *ngFor="let item of td.operation" class="btn btn-sm {{item.class}}" (click)="item.click(tr)">
+                            {{item.content}}
+                        </button>
+                    </ng-container>
+                </ng-container>
+                <ng-container *ngSwitchDefault>{{td.content}}</ng-container>
             </ng-container>
         </td>
     </tr>

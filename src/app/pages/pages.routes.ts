@@ -21,6 +21,7 @@ export const pagesRoutes: Routes = [
             {path: "operationManagement", loadChildren: "./operationManagement/operationManagement.module#OperationManagementModule"},
             {path: "appManagement", loadChildren: "./appManagement/appManagement.module#AppManagementModule"},
             {path: "finance", loadChildren: "./finance/finance.module#FinanceModule"},
+            {path: "advertisement", loadChildren: "./advertisement/advertisement.module#AdvertisementModule"},
             {path: "user", loadChildren: "./user/user.module#UserModule"},
         ]
     }
