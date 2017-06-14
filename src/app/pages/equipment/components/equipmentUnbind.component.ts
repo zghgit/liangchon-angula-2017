@@ -122,7 +122,6 @@ export class EquipmentUnbindComponent implements OnInit {
     }
 
     public pageBeChanged(event) {
-        console.log(event);
         this.getGridData({
             page_now: event.page,
             limit: event.itemsPerPage,

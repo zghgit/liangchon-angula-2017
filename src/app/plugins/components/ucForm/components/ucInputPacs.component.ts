@@ -101,6 +101,14 @@ export class UcInputPacsComponent implements OnInit {
         this.ajax(1, 0);
         if (this.model.options.length > 0) {
             for (let item of this.model.options) {
+                this.backValue.selectedSet.push({
+                    province_code:item.province_code,
+                    province_name:item.province_name,
+                    city_code:item.city_code,
+                    city_name:item.city_name,
+                    district_code:item.district_code,
+                    district_name:item.district_name,
+                })
             }
         }
 
@@ -109,7 +117,6 @@ export class UcInputPacsComponent implements OnInit {
     public isSelectedAll(data){
         if(data){
             this.showSelect = false;
-
             this.backValue.check_all = 1;
         }else {
             this.showSelect = true;

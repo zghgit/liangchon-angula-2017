@@ -32,7 +32,6 @@ export class PagesComponent implements OnInit {
         this.config.logout = () => {
             let data = this.appHttpService.postData(this.uc.api.qc + "/logout/hash");
             data.subscribe((res) => {
-                console.log(res)
                 if (res.status) {
                     this.router.navigateByUrl("/login");
                     this.dataService.clearAll();

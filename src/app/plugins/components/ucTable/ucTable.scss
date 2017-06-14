@@ -59,6 +59,22 @@ table{
                         color: white;
                         background: #202c37;
                     }
+                    &.btn-purple{
+                        color: white;
+                        background: #7b72e9;
+                        &:hover{
+                            background: #5c51de;
+                        }
+
+                    }
+                    &.btn-black{
+                        color: white;
+                        background: #444;
+                        &:hover{
+                            background: #000;
+                        }
+
+                    }
                 }
                 img{
                     height: 35px;

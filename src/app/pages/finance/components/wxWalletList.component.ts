@@ -62,7 +62,6 @@ export class WxWalletListComponent implements OnInit {
             if (res.status) {
                 let data = res.data.foucs_config;
                 let list = data.list;
-                console.log(list)
                 if (list.length>0){
                     this.hideRecord = false;
                 }else {

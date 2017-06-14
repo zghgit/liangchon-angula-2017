@@ -102,7 +102,7 @@ export class AgentListComponent implements OnInit {
                     if (this.uc.powerfun(this.uc.constant.disable_user) && key.status == '1' && key.operation.indexOf(this.uc.powercontroll.update) >= 0) {
                         operations.push({
                             content: "禁用",
-                            class: "btn-danger",
+                            class: "btn-black",
                             click: (data) => {
                                 let id = data[0].content;
                                 swal({
@@ -168,7 +168,7 @@ export class AgentListComponent implements OnInit {
                     if (this.uc.powerfun(this.uc.constant.get_sub_user_list)) {
                         operations.push({
                             content: "子账户",
-                            class: "btn-secondary",
+                            class: "btn-purple",
                             click: (data) => {
                                 let id = data[0].content;
                                 this.router.navigate(['pages/account/allChildAccountList', id]);

@@ -22,7 +22,6 @@ export class MaintenanceManComponent implements OnInit {
     ngOnInit() {
         let data = this.appHttpService.getData(this.uc.api.qc+"/get_user/hash/");
         data.subscribe(res => {
-            console.log(res);
             if (res.status) {
                 let _data = res.data;
                 let maintenance_man_mobile = [];
@@ -41,7 +40,7 @@ export class MaintenanceManComponent implements OnInit {
                     },
                 ];
             } else {
-                swal("获取用户信息失败", res.error_msg, "error")
+                swal("获取运维人员信息失败", res.error_msg, "error")
             }
         })
     }

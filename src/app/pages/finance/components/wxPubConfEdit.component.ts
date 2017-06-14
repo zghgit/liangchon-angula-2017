@@ -28,7 +28,6 @@ export class WxPubConfEditComponent implements OnInit {
     ngOnInit() {
         let data = this.appHttpService.getData(this.uc.api.qc + "/get_wxpay_config/hash")
         data.subscribe(res => {
-            console.log(res);
             if (res.status) {
                 let _data = res.data.wxpay_config;
                 this.wxpay_config_id = _data.wxpay_config_id;
@@ -240,7 +239,6 @@ export class WxPubConfEditComponent implements OnInit {
     }
 
     saveData = ({value}={value}) => {
-        console.log(value);
         let params = {
             params: {
                 wxpay_config_id: this.wxpay_config_id,

@@ -106,7 +106,6 @@ export class AlipayConfAddComponent implements OnInit {
     ];
 
     saveData = ({value}={value}) => {
-        console.log(value);
         let params = {
             params: {
                 app_id: value.app_id,

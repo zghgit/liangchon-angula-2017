@@ -7,7 +7,7 @@ import {Router} from "@angular/router";
 declare var swal;
 @Component({
     selector: 'app-management-list',
-    templateUrl: '../views/appManagementList.html'
+    templateUrl: '../views/appUserList.html'
 })
 export class AppManagementListComponent implements OnInit {
     public now: number = 1;
@@ -65,14 +65,85 @@ export class AppManagementListComponent implements OnInit {
                         {content: key.status == 1 ? '启用' : '禁用'},
                     ];
                     let operations = [];
-                    if (this.uc.powerfun(this.uc.constant.order_finish) && (key.order_status == '6' || key.order_status == '4')) {
+
+                    if (this.uc.powerfun(this.uc.constant.get_app_user)) {
                         operations.push({
-                            content: "完成",
+                            content: "查看",
+                            class: "btn-info",
+                            click: (data) => {
+                                let id = data[0].content;
+                                this.router.navigate(['pages/appManagement/appUserDetail', id]);
+                            }
+                        })
+                    }
+                    if (this.uc.powerfun(this.uc.constant.get_app_user)) {
+                        operations.push({
+                            content: "消息推送",
+                            class: "btn-primary",
+                            click: (data) => {
+                                let id = data[1].content;
+                                this.router.navigate(['pages/appManagement/appMessagePush', id]);
+                            }
+                        })
+                    }
+                    if (this.uc.powerfun(this.uc.constant.get_app_user)) {
+                        operations.push({
+                            content: "收支明细",
+                            class: "btn-purple",
+                            click: (data) => {
+                                let id = data[0].content;
+                                this.router.navigate(['pages/appManagement/appChargeRecord', id]);
+                            }
+                        })
+                    }
+                    if (this.uc.powerfun(this.uc.constant.update_app_user) && key.status == '1') {
+                        operations.push({
+                            content: "禁用",
+                            class: "btn-black",
+                            click: (data) => {
+                                let id = data[0].content;
+                                swal({
+                                    title: '确定禁用?',
+                                    text: '',
+                                    type: 'warning',
+                                    showCancelButton: true,
+                                    confirmButtonText: '确定!',
+                                    cancelButtonText: '取消',
+                                    showLoaderOnConfirm: true,
+                                    confirmButtonColor: "#DD6B55",
+                                }).then((isConfirm) => {
+                                    if (isConfirm === true) {
+                                        this.appHttpService.postData(this.uc.api.qc + "/update_app_user/hash/", {
+                                                params: {
+                                                    app_user_id: id,
+                                                    app_user_info: {
+                                                        status: 2
+                                                    }
+                                                }
+                                            }
+                                        ).subscribe(res => {
+                                            if (res.status) {
+                                                swal("禁用成功!", "", "success");
+                                                this.getGridData(params);
+                                            } else {
+                                                swal("禁用失败!", res.error_msg, "error");
+                                            }
+                                        })
+                                    }
+                                }, () => {
+                                });
+
+                            }
+                        })
+                    };
+                    if (this.uc.powerfun(this.uc.constant.update_app_user) && key.status == '2') {
+                        operations.push({
+                            content: "启用",
                             class: "btn-success",
                             click: (data) => {
                                 let id = data[0].content;
                                 swal({
-                                    title: '确定完成?',
+                                    title: '确定启用?',
                                     text: '',
                                     type: 'warning',
                                     showCancelButton: true,
@@ -82,17 +153,20 @@ export class AppManagementListComponent implements OnInit {
                                     confirmButtonColor: "#DD6B55",
                                 }).then((isConfirm) => {
                                     if (isConfirm === true) {
-                                        this.appHttpService.postData(this.uc.api.qc + "/card_order_finish/hash/", {
+                                        this.appHttpService.postData(this.uc.api.qc + "/update_app_user/hash/", {
                                                 params: {
-                                                    order_id: id
+                                                    app_user_id: id,
+                                                    app_user_info: {
+                                                        status: 1
+                                                    }
                                                 }
                                             }
-                                        ).subscribe(res=>{
-                                            if (res.status){
-                                                swal("完成成功!", "", "success");
+                                        ).subscribe(res => {
+                                            if (res.status) {
+                                                swal("启用成功!", "", "success");
                                                 this.getGridData(params);
-                                            }else {
-                                                swal("完成失败!", res.error_msg, "error");
+                                            } else {
+                                                swal("启用失败!", res.error_msg, "error");
                                             }
                                         })
                                     }
@@ -101,44 +175,7 @@ export class AppManagementListComponent implements OnInit {
 
                             }
                         })
-                    }
-                    if (this.uc.powerfun(this.uc.constant.order_refund) && (key.order_status == '6' || key.order_status == '4')) {
-                        operations.push({
-                            content: "退费",
-                            class: "btn-warning",
-                            click: (data) => {
-                                let id = data[0].content;
-                                swal({
-                                    title: '确定退费?',
-                                    text: '',
-                                    type: 'warning',
-                                    showCancelButton: true,
-                                    confirmButtonText: '确定!',
-                                    cancelButtonText: '取消',
-                                    showLoaderOnConfirm: true,
-                                    confirmButtonColor: "#DD6B55",
-                                }).then((isConfirm) => {
-                                    if (isConfirm === true) {
-                                        this.appHttpService.postData(this.uc.api.qc + "/card_order_refund/hash/", {
-                                                params: {
-                                                    order_id: id
-                                                }
-                                            }
-                                        ).subscribe(res=>{
-                                            if (res.status){
-                                                swal("退费成功!", "", "success");
-                                                this.getGridData(params);
-                                            }else {
-                                                swal("退费失败!", res.error_msg, "error");
-                                            }
-                                        })
-                                    }
-                                }, () => {
-                                });
-
-                            }
-                        })
-                    }
+                    };
                     tds.push({type: "operation", operation: operations})
                     this.plugins.grid.tbody.push(tds)
                 }

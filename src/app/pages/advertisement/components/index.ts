@@ -3,3 +3,5 @@
  */
 export * from "./advertisementList.compontent";
 export * from "./advertisementAdd.component";
+export * from "./advertisementDetail.component";
+export * from "./advertisementEdit.component";

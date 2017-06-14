@@ -1,37 +1,46 @@
 /**
- * Created by max on 2017/5/9.
+ * Created by max on 2017/6/14.
  */
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {AppHttpService, UC} from "../../../plugins/globalservice";
-import {Router} from "@angular/router";
+import {Router,ActivatedRoute} from "@angular/router";
 declare var swal;
-
 @Component({
-    selector: "equipment-onoff",
-    templateUrl: "../views/equipmentOnOffRecord.html"
+    selector: 'app-charge-record',
+    templateUrl: '../views/appChargeRecord.html'
 })
-export class EquipmentOnOffComponent implements OnInit {
+export class AppChargeRecordComponent implements OnInit {
     public now: number = 1;
     public plugins: any = {};
+    public app_user_id:string = "";
 
     constructor(public router: Router,
                 public appHttpService: AppHttpService,
+                public activatedRoute:ActivatedRoute,
                 public uc: UC) {
     }
 
     ngOnInit() {
+        let params = this.activatedRoute.params;
+        params.subscribe(res => {
+            this.app_user_id = res.id;
+        })
+
         this.plugins.grid = {
             th: [
-                {content: '操作时间'},
-                {content: '设备编号'},
-                {content: '设备名称'},
-                {content: '设备状态'},
+                {content: '用户ID', hidden: true},
+                {content: '用户名'},
+                {content: '金额(元)'},
+                {content: '支付类型'},
+                {content: '收支类型'},
+                {content: '时间'}
             ],
             tbody: [],
             pagination: {
                 maxSize: 5,
                 itemsPerPage: 20,
-                currentPage: 1
+                currentPage: 1,
+                totalItems: 1
             }
         }
         this.getGridData({
@@ -40,33 +49,35 @@ export class EquipmentOnOffComponent implements OnInit {
             sort_by: 'create_time',
             sort_type: 'desc',
             search_by: {
-                bind_status:'2'
+                app_user_id:this.app_user_id,
             },
 
         })
     }
 
     public getGridData = function (params) {
-        let data = this.appHttpService.postData(this.uc.api.qc + "/get_device_net_log_list/hash", {params: params})
+        let data = this.appHttpService.postData(this.uc.api.qc + "/get_app_user_deposit_detail/hash", {params: params})
         data.subscribe(res => {
             if (res.status) {
                 let data = res.data;
                 let list = data.list;
-                this.plugins.grid.tbody = [];
                 this.plugins.grid.pagination.totalItems = data.total_num;
+                this.plugins.grid.tbody = [];
                 for (let key of list) {
                     let tds: Array<any>;
                     tds = [
-                        {content: key.update_time ? key.update_time: key.create_time},
-                        {content: key.device_no},
-                        {content: key.device_name},
-                        {content: key.net_status =='1'? "在线":"离线（"+key.online_duration+")"},
+                        {content: key.user_id, hidden: true},
+                        {content: key.app_user_name},
+                        {content: key.pay_sum},
+                        {content: key.pay_type_name},
+                        {content: key.spending_type_name},
+                        {content: key.create_time}
                     ];
                     this.plugins.grid.tbody.push(tds)
                 }
             }
         })
-    }
+    };
 
     public pageBeChanged(event) {
         this.getGridData({
@@ -74,9 +85,7 @@ export class EquipmentOnOffComponent implements OnInit {
             limit: event.itemsPerPage,
             sort_by: 'create_time',
             sort_type: 'desc',
-            search_by: {
-                bind_status: 2,
-            },
+            search_by: {},
         })
     }
 

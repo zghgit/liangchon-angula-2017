@@ -1,10 +1,6 @@
 /**
  * Created by max on 2017/6/7.
  */
-/**
- * Created by max on 2017/6/6.
- */
-
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params}   from '@angular/router';
 import {AppHttpService, UC} from "../../../plugins/globalservice";

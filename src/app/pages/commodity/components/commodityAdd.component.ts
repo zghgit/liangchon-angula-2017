@@ -39,8 +39,7 @@ export class CommodityAddComponent implements OnInit {
             errormsg: [
                 {type: "required", content: "必填项目"}
             ]
-        },
-        {
+        }, {
             label: "商品描述",
             key: "commodity_description",
             controlType: "input",
@@ -53,8 +52,7 @@ export class CommodityAddComponent implements OnInit {
             errormsg: [
                 {type: "required", content: "必填项目"},
             ]
-        },
-        {
+        }, {
             label: "充电时长(分钟)",
             key: "charge_duration",
             controlType: "input",
@@ -72,8 +70,7 @@ export class CommodityAddComponent implements OnInit {
                 {type: "pattern", content: "只能是数字"},
                 {type: "ChargeDurationValidator", content: "充电时长只能是10的倍数"},
             ]
-        },
-        {
+        }, {
             label: "价格(元)",
             key: "charge_price",
             controlType: "input",
@@ -89,8 +86,7 @@ export class CommodityAddComponent implements OnInit {
                 {type: "required", content: "必填项目"},
                 {type: "pattern", content: "只能是数字"},
             ]
-        },
-        {
+        }, {
             label: "启用状态",
             key: "status",
             controlType: "radio",
@@ -110,7 +106,6 @@ export class CommodityAddComponent implements OnInit {
     ];
 
     saveData({value}={value}) {
-        console.log(value)
         let params = {
             params: value
         }
@@ -118,8 +113,8 @@ export class CommodityAddComponent implements OnInit {
             res => {
                 if (res.status) {
                     this.router.navigateByUrl('pages/commodity/commodityList');
-                }else {
-                    swal("新增商品失败",res.error_msg,"error")
+                } else {
+                    swal("新增商品失败", res.error_msg, "error")
                 }
             }
         )

@@ -440,7 +440,7 @@ export class UC {
             "submenu": [{
                 "show": true,
                 "name": "用户一览",
-                "href": "appManagementList"
+                "href": "appUserList"
             }, {
                 "show": true,
                 "name": "APP用户增速",
@@ -448,11 +448,11 @@ export class UC {
             }, {
                 "show": false,
                 "name": "APP用户查看",
-                "href": "appManagementDetail"
+                "href": "appUserDetail"
             }, {
                 "show": true,
                 "name": "消息推送",
-                "href": "appMessagePush/:id/:num"
+                "href": "appMessagePush"
             }, {
                 "show": true,
                 "name": "资讯管理",
@@ -472,7 +472,7 @@ export class UC {
             }, {
                 "show": true,
                 "name": "收支明细",
-                "href": "appChargeRecord/:id"
+                "href": "appChargeRecord"
             }]
         },
         "operation": {

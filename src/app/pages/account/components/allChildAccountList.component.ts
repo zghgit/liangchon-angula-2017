@@ -99,7 +99,7 @@ export class AllChildAccountListComponent implements OnInit {
                     if (this.uc.powerfun(this.uc.constant.disable_user) && key.status == '1' && key.operation.indexOf(this.uc.powercontroll.update) >= 0) {
                         operations.push({
                             content: "禁用",
-                            class: "btn-danger",
+                            class: "btn-black",
                             click: (data) => {
                                 let id = data[0].content;
                                 swal({

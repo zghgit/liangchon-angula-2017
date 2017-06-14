@@ -74,7 +74,6 @@ export class complainedAddComponent implements OnInit {
     ];
 
     saveData({value}={value}) {
-        console.log(value)
         let params = {
             params: value
         }

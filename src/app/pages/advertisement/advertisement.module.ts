@@ -13,6 +13,8 @@ import { AdvertisementComponent } from "./advertisement.component";
 import {
     AdvertisementListComponent,
     advertisementAddComponent,
+    AdvertisementDetailComponent,
+    AdvertisementEditComponent,
 } from "./components";
 
 
@@ -28,6 +30,8 @@ import {
         AdvertisementComponent,
         AdvertisementListComponent,
         advertisementAddComponent,
+        AdvertisementDetailComponent,
+        AdvertisementEditComponent,
     ],
     providers: [],
 })

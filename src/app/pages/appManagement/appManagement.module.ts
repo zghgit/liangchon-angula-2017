@@ -12,6 +12,9 @@ import {
     AppUserIncreaseComponent,
     AppInformationComponent,
     AppInformationAddComponent,
+    AppUserDetailComponent,
+    AppChargeRecordComponent,
+    AppMessagePushComponent,
 }from "./components";
 
 @NgModule({
@@ -25,7 +28,10 @@ import {
         AppManagementListComponent,
         AppUserIncreaseComponent,
         AppInformationComponent,
-        AppInformationAddComponent
+        AppInformationAddComponent,
+        AppUserDetailComponent,
+        AppChargeRecordComponent,
+        AppMessagePushComponent,
     ],
     providers: [],
 })

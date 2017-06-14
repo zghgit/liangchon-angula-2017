@@ -34,7 +34,6 @@ export class AgentEditComponent implements OnInit {
         let data = this.activatedRoute.params
             .switchMap((params: Params) => this.appHttpService.getData(this.uc.api.qc + "/get_agent_user/hash/" + params['id']));
         data.subscribe(res => {
-            console.log(res);
             if (res.status) {
                 let _data = res.data;
                 this.user_name = _data.user_name;

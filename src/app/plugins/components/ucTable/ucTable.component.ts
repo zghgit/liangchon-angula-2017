@@ -23,7 +23,6 @@ export class UcTableComponent implements OnInit {
         this.pageBeChanged.emit(event);
     }
     public zoomImg({target}={target}){
-        console.log(target.localName)
         if(target.localName == "img"){
             this.showZoom = true;
             this.zoomSrc = target.src;

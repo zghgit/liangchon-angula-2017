@@ -93,7 +93,7 @@ export class AdvertisementListComponent implements OnInit {
                     tds = [
                         {content: key.advertisement_id, hidden: true},
                         {content: key.advertisement_name},  // 广告名称
-                        {type:"img",content: this.uc.api.qc+'/get_file/hash/' + key.advertisement_url},   // 图片
+                        {type:"img",content: key.advertisement_url},   // 图片
                         {content: key.link_url},  // 链接
                         {content: key.show_duration},   // 显示时间
                         {content: key.click_times},   // 点击次数
@@ -108,7 +108,7 @@ export class AdvertisementListComponent implements OnInit {
                             class: "btn-info",
                             click: (data) => {
                                 let id = data[0].content;
-                                this.router.navigate(['pages/account/agentAccountDetail', id]);
+                                this.router.navigate(['pages/advertisement/advertisementDetail', id]);
                             }
                         })
                     }
@@ -118,7 +118,7 @@ export class AdvertisementListComponent implements OnInit {
                             class: "btn-primary",
                             click: (data) => {
                                 let id = data[0].content;
-                                this.router.navigate(['pages/account/agentAccountEdit', id]);
+                                this.router.navigate(['pages/advertisement/advertisementEdit', id]);
                             }
                         })
                     }
@@ -165,7 +165,7 @@ export class AdvertisementListComponent implements OnInit {
                     if (this.uc.powerfun(this.uc.constant.update_advertisement) && key.status == '1') {
                         operations.push({
                             content: "禁用",
-                            class: "btn-danger",
+                            class: "btn-black",
                             click: (data) => {
                                 let id = data[0].content;
                                 swal({
@@ -201,8 +201,7 @@ export class AdvertisementListComponent implements OnInit {
 
                             }
                         })
-                    }
-                    ;
+                    };
                     if (this.uc.powerfun(this.uc.constant.update_advertisement) && key.status == '2') {
                         operations.push({
                             content: "启用",
@@ -242,7 +241,47 @@ export class AdvertisementListComponent implements OnInit {
 
                             }
                         })
-                    }
+                    };
+                    if (this.uc.powerfun(this.uc.constant.delete_advertisement)) {
+                        operations.push({
+                            content: "删除",
+                            class: "btn-danger",
+                            click: (data) => {
+                                let id = data[0].content;
+                                swal({
+                                    title: '确定删除?',
+                                    text: '',
+                                    type: 'warning',
+                                    showCancelButton: true,
+                                    confirmButtonText: '确定!',
+                                    cancelButtonText: '取消',
+                                    showLoaderOnConfirm: true,
+                                    confirmButtonColor: "#DD6B55",
+                                }).then((isConfirm) => {
+                                    if (isConfirm === true) {
+                                        this.appHttpService.postData(this.uc.api.qc + "/delete_advertisement/hash/", {
+                                                params: {
+                                                    advertisement_id: id,
+                                                    advertisement_info: {
+                                                        status: 1
+                                                    }
+                                                }
+                                            }
+                                        ).subscribe(res => {
+                                            if (res.status) {
+                                                swal("删除成功!", "", "success");
+                                                this.getGridData(params);
+                                            } else {
+                                                swal("删除失败!", res.error_msg, "error");
+                                            }
+                                        })
+                                    }
+                                }, () => {
+                                });
+
+                            }
+                        })
+                    };
 
                     tds.push({type: "operation", operation: operations})
                     this.plugins.grid.tbody.push(tds)

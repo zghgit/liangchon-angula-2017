@@ -7,18 +7,26 @@ import {
     AppManagementListComponent,
     AppUserIncreaseComponent,
     AppInformationComponent,
-    AppInformationAddComponent
+    AppInformationAddComponent,
+    AppUserDetailComponent,
+    AppChargeRecordComponent,
+    AppMessagePushComponent,
 } from "./components";
 export const appManagementRoutes: Routes = [
     {
         path: "",
         component: AppManagementComponent,
         children: [
-            {path: "", redirectTo: "appManagementList", pathMatch: "full"},
-            {path: "appManagementList", component: AppManagementListComponent},
+            {path: "", redirectTo: "appUserList", pathMatch: "full"},
+            {path: "appUserList", component: AppManagementListComponent},
+            {path: "appUserDetail/:id", component: AppUserDetailComponent},
             {path: "appUserIncrease", component: AppUserIncreaseComponent},
             {path: "appInformationList", component: AppInformationComponent},
             {path: "appInformationAdd", component: AppInformationAddComponent},
+            {path: "appChargeRecord", component: AppChargeRecordComponent},
+            {path: "appChargeRecord/:id", component: AppChargeRecordComponent},
+            {path: "appMessagePush", component: AppMessagePushComponent},
+            {path: "appMessagePush/:id", component: AppMessagePushComponent},
         ]
     }
 ]

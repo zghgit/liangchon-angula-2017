@@ -85,7 +85,7 @@ export class EquipmentListComponent implements OnInit {
                     })
                     operations.push({
                         content: "禁用",
-                        class: "btn-warning",
+                        class: "btn-black",
                         click: () => {
                             console.log(11111)
 
@@ -100,7 +100,7 @@ export class EquipmentListComponent implements OnInit {
                     })
                     operations.push({
                         content: "二维码",
-                        class: "btn-secondary",
+                        class: "btn-purple",
                         click: () => {
                             console.log(11111)
                         }

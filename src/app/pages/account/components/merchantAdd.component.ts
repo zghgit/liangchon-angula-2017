@@ -362,7 +362,6 @@ export class MerchantAddComponent implements OnInit {
     ];
 
     saveData({value}={value}) {
-        console.log(value.maintenance_man_mobile)
         let {whether_settlement, settlement_cycle, settlement_day,maintenance_man_mobile} = value;
         if (whether_settlement == 1) {
             if (settlement_cycle == "" || settlement_day == "") {

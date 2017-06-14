@@ -265,7 +265,6 @@ export class ChildAccountAddComponent implements OnInit {
     ];
 
     saveData({value}={value}) {
-        console.log(value)
         let params = {
             params: {
                 user_name: value.user_name.trim(),

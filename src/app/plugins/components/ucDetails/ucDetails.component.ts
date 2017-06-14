@@ -17,7 +17,6 @@ export class UcDetailsComponent implements OnInit {
     ngOnInit() {
     }
     public zoomImg({target}={target}){
-        console.log(target.localName)
         if(target.localName == "img"){
             this.showZoom = true;
             this.zoomSrc = target.src;

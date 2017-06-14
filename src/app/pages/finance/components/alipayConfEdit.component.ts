@@ -28,7 +28,6 @@ export class AlipayConfEditComponent implements OnInit {
     ngOnInit() {
         let data = this.appHttpService.getData(this.uc.api.qc + "/get_alipay_config/hash")
         data.subscribe(res => {
-            console.log(res);
             if (res.status) {
                 let _data = res.data.ailpay_config;
                 this.alipay_config_id = _data.alipay_config_id;
@@ -115,7 +114,6 @@ export class AlipayConfEditComponent implements OnInit {
     }
 
     saveData = ({value}={value}) => {
-        console.log(value);
         let params = {
             params: {
                 alipay_config_id: this.alipay_config_id,

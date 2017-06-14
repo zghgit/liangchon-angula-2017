@@ -25,7 +25,6 @@ export class CommodityEditComponent implements OnInit {
         let data = this.activatedRoute.params
             .switchMap((params: Params) => this.appHttpService.postData(this.uc.api.qc + "/get_commodity/hash", {params: {commodity_id: params['id']}}));
         data.subscribe(res=>{
-            console.log(res);
             if (res.status){
                 let _data = res.data;
                 this.commodity_id = _data.commodity_id;
@@ -207,7 +206,6 @@ export class CommodityEditComponent implements OnInit {
     // ];
 
     saveData=({value}={value})=> {
-        console.log(value);
         let params = {
             params: {
                 commodity_info:value,

@@ -55,7 +55,6 @@ export class AppInformationAddComponent implements OnInit {
     ];
 
     saveData({value}={value}) {
-        console.log(value)
         let params = {
             params: value
         }

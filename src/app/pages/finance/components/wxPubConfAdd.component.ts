@@ -227,7 +227,6 @@ export class WxPubConfAddComponent implements OnInit {
 ];
 
     saveData = ({value}={value}) => {
-        console.log(value);
         let params = {
             params: {
                 appp_id: value.appp_id.trim(),

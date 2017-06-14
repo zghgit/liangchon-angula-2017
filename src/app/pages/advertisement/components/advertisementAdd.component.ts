@@ -57,7 +57,7 @@ export class advertisementAddComponent implements OnInit {
             ]
         }, {
             label: "链接地址",
-            key: "charge_duration",
+            key: "link_url",
             controlType: "input",
             inputType: "text",
             require: true,
@@ -99,7 +99,7 @@ export class advertisementAddComponent implements OnInit {
             placeholder: "请选择投放区域",
             content: "确认",
             options: [],
-            check_all:true,
+            check_all: true,
             url: this.uc.api.qc + '/get_geo_list/hash/',
             validator: [
                 Validators.required
@@ -161,11 +161,37 @@ export class advertisementAddComponent implements OnInit {
     ];
 
     saveData({value}={value}) {
-        console.log(value)
-        let params = {
-            params: value
+        let{advertisement_range}=value;
+        let advertisementRange = JSON.parse(advertisement_range);
+        if (advertisementRange.check_all==2&&advertisementRange.selectedSet.length==0){
+            swal("新增广告失败", "地址是必选的", "error");
+            return
         }
-        this.appHttpService.postData(this.uc.api.qc + "/add_commodity/hash", params).subscribe(
+        if (advertisementRange.check_all == 1){
+            advertisementRange.selectedSet=[{
+                province_code: "0",
+                city_code: "0",
+                district_code: "0"
+            }]
+        }
+        let params = {
+            params: {
+                advertisement_info: {
+                    advertisement_name: value.advertisement_name,
+                    advertisement_url: value.advertisement_url,
+                    link_url: value.link_url,
+                    show_position: value.show_position,
+                    show_duration: value.show_duration,
+                    status: value.status,
+                    default_display: value.default_display,
+                },
+                advertisement_range: {
+                    check_all: advertisementRange.check_all,
+                    advertisement_range_info: advertisementRange.selectedSet
+                }
+            }
+        }
+        this.appHttpService.postData(this.uc.api.qc + "/add_advertisement/hash", params).subscribe(
             res => {
                 if (res.status) {
                     this.router.navigateByUrl('pages/advertisement/advertisementList');
