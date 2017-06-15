@@ -323,6 +323,10 @@ export class UC {
                 "href": "equipmentOnOffRecord"
             }, {
                 "show": false,
+                "name": "设备初始化",
+                "href": "equipmentInitAdd"
+            }, {
+                "show": false,
                 "name": "设备初始化编辑",
                 "href": "equipmentInitEdit"
             }, {

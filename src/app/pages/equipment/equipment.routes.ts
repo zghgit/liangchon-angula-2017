@@ -9,6 +9,7 @@ import {
     EquipmentDetailComponent,
     EquipmentUnbindComponent,
     EquipmentOnOffComponent,
+    EquipmentInitAddComponent,
 } from "./components/";
 
 
@@ -23,6 +24,7 @@ export const routes: Routes = [
             {path: "chargingPileConfig", component: ChargingPileConfigComponent},
             {path: "equipmentUnbind", component: EquipmentUnbindComponent},
             {path: "equipmentOnOffRecord", component: EquipmentOnOffComponent},
+            {path: "equipmentInitAdd", component: EquipmentInitAddComponent},
         ]
     },
 ];

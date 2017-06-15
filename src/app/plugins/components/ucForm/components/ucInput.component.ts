@@ -13,6 +13,7 @@ import {Component, OnInit, Input} from '@angular/core';
             <ng-container *ngFor="let item of model.errormsg">
                 <i *ngIf="form.get(model.key).hasError(item.type)&&form.get(model.key).touched">{{item.content}}</i>
             </ng-container>
+            <button *ngIf="model.button" class="btn {{model.button.class}}" (click)="model.button.click()">{{model.button.content}}</button>
         </label>
     </div>
     <ng-container [ngSwitch]="model.inputType">

@@ -1,0 +1,23 @@
+form{
+    margin-bottom: 20px;
+    padding: 20px;
+    background: #fff;
+    float: left;
+    width: 100%;
+    border: 1px solid #dfdfdf;
+    background: white;
+    box-shadow: 0 1px 7px rgba(0, 0, 0, 0.1);
+    >div{
+        >label{
+            font-size: 14px;
+            font-weight: 500;
+            position: relative;
+            >span{
+                color: #f44455;
+                position: absolute;
+                top: -5px;
+                left: -5px;
+            }
+        }
+    }
+}

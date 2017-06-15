@@ -1,7 +1,7 @@
 /**
  * Created by max on 2017/4/27.
  */
-import {Component, OnInit, NgModule, HostListener} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router, ActivatedRouteSnapshot, RouterState, RouterStateSnapshot} from '@angular/router';
 import {User} from "../loginDataModel";
 import {AppHttpService, DataService, UC} from "../../plugins/globalservice";

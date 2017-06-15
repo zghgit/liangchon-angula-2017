@@ -2,8 +2,11 @@
  * Created by max on 2017/5/9.
  */
 import {NgModule} from '@angular/core';
+import {CommonModule}  from '@angular/common';
 import {RouterModule} from "@angular/router";
 import {routes} from "./equipment.routes";
+import {FormsModule} from '@angular/forms';
+
 import {UcFormModule} from "../../plugins/UcFormModule";
 
 
@@ -15,13 +18,16 @@ import {
     EquipmentDetailComponent,
     EquipmentUnbindComponent,
     EquipmentOnOffComponent,
+    EquipmentInitAddComponent,
 } from "./components";
 
 
 @NgModule({
     imports: [
         RouterModule.forChild(routes),
-        UcFormModule
+        UcFormModule,
+        CommonModule,
+        FormsModule
     ],
     exports: [],
     declarations: [
@@ -31,6 +37,7 @@ import {
         EquipmentDetailComponent,
         EquipmentUnbindComponent,
         EquipmentOnOffComponent,
+        EquipmentInitAddComponent,
     ],
     providers: [],
 })
