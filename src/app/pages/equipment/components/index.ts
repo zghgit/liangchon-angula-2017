@@ -7,4 +7,6 @@ export * from "./equipmentDetail.component";
 export * from "./equipmentUnbind.component";
 export * from "./equipmentOnOffRecord.component";
 export * from "./equipmentInitAdd.component";
-
+export * from "./equipmentInitEdit.component";
+export * from "./equipmentAdd.component";
+export * from "./equipmentImport.component";

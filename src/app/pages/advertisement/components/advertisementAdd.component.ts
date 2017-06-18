@@ -45,6 +45,8 @@ export class advertisementAddComponent implements OnInit {
             require: true,
             value: "",
             config: {
+                value: "",
+                accept:"image/*",
                 uploadurl: this.uc.api.qc + "/upload_file/hash/",
                 downloadurl: this.uc.api.qc + "/get_file/hash/",
                 capsule: "advertisement_url"

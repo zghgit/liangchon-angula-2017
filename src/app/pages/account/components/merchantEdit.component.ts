@@ -191,6 +191,8 @@ export class MerchantEditComponent implements OnInit {
                         fileType: "img",
                         value: _data.certificate_img_1,
                         config: {
+                            value: _data.certificate_img_1,
+                            accept:"image/*",
                             uploadurl: this.uc.api.qc + "/upload_file/hash/",
                             downloadurl: this.uc.api.qc + "/get_file/hash/",
                             capsule: "certificate_img_1"
@@ -209,10 +211,12 @@ export class MerchantEditComponent implements OnInit {
                         fileType: "img",
                         value: _data.certificate_img_2,
                         config: {
+                            value: _data.certificate_img_2,
+                            accept:"image/*",
                             uploadurl: this.uc.api.qc + "/upload_file/hash/",
                             downloadurl: this.uc.api.qc + "/get_file/hash/",
                             capsule: "certificate_img_2"
-                        }
+                        },
                     }, {
                         label: "组织结构代码",
                         key: "certificate_3",
@@ -227,10 +231,12 @@ export class MerchantEditComponent implements OnInit {
                         fileType: "img",
                         value: _data.certificate_img_3,
                         config: {
+                            value: _data.certificate_img_3,
+                            accept:"image/*",
                             uploadurl: this.uc.api.qc + "/upload_file/hash/",
                             downloadurl: this.uc.api.qc + "/get_file/hash/",
                             capsule: "certificate_img_3"
-                        }
+                        },
                     }, {
                         label: "性质",
                         key: "enterprise_nature",

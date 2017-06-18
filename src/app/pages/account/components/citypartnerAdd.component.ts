@@ -199,6 +199,8 @@ export class CitypartnerAddComponent implements OnInit {
             fileType: "img",
             value: "",
             config: {
+                value: "",
+                accept:"image/*",
                 uploadurl: this.uc.api.qc + "/upload_file/hash/",
                 downloadurl: this.uc.api.qc + "/get_file/hash/",
                 capsule: "certificate_img_21"
@@ -217,10 +219,12 @@ export class CitypartnerAddComponent implements OnInit {
             fileType: "img",
             value: "",
             config: {
+                value: "",
+                accept:"image/*",
                 uploadurl: this.uc.api.qc + "/upload_file/hash/",
                 downloadurl: this.uc.api.qc + "/get_file/hash/",
                 capsule: "certificate_img_22"
-            }
+            },
         }, {
             label: "组织结构代码",
             key: "certificate_23",
@@ -235,10 +239,12 @@ export class CitypartnerAddComponent implements OnInit {
             fileType: "img",
             value: "",
             config: {
+                value: "",
+                accept:"image/*",
                 uploadurl: this.uc.api.qc + "/upload_file/hash/",
                 downloadurl: this.uc.api.qc + "/get_file/hash/",
-                capsule: "certificate_img_22"
-            }
+                capsule: "certificate_img_23"
+            },
         }, {
             label: "性质",
             key: "enterprise_nature",

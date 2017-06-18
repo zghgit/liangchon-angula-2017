@@ -156,8 +156,8 @@ export class UserEditComponent implements OnInit {
                             }
                         }
                     })
-                    let role = this.dataService.getCookies("role");
-                    if (role == "商户") {
+                    let role = (this.dataService.getCookies("role")).toString();
+                    if (decodeURI(role) == "商户") {
                         this.fields.push({
                             label: "电费单价(元)",
                             key: "electricity_price",

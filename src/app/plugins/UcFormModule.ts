@@ -27,6 +27,7 @@ import {
     UcTimeComponent,
     ucSelectComponent,
     UcAddressComponent,
+    BaseUpfileComponent,
 } from "./components";
 
 const NGX_COMPONENTS = [
@@ -43,6 +44,7 @@ const NGX_COMPONENTS = [
     UcTimeComponent,
     ucSelectComponent,
     UcAddressComponent,
+    BaseUpfileComponent,
 ];
 @NgModule({
     declarations: [

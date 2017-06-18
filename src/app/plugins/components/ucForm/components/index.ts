@@ -11,3 +11,4 @@ export * from "./ucInputPacs.component";
 export * from "./ucTime.component";
 export * from "./ucSelect.component";
 export * from "./ucAddress.component";
+export * from "./base";

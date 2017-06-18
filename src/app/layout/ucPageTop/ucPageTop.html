@@ -13,7 +13,8 @@
     <div class="user" (mouseenter)="showUserItem()" (mouseleave)="closeUserItem()">
         <div class="user-title">
             <img src="/assets/images/user.png" alt="">
-            <span><b>{{model.role}}:&nbsp;&nbsp;</b>{{model.user_name}}</span>
+            <span>{{model.role}}:&nbsp;&nbsp;</span>
+            <span>{{model.user_name}}</span>
             <i class="glyphicon glyphicon-chevron-down" [ngClass]="{'overturn':isShowUserItem}"></i>
         </div>
         <ul class="user-dropdown" [ngClass]="{'show': isShowUserItem}">

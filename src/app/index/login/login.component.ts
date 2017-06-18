@@ -62,7 +62,8 @@ export class LoginComponent implements OnInit {
                     if (res.status) {
                         let data = res.data;
                         this.dataService.setCookies("admin_flg", data.admin_flg);
-                        this.dataService.setCookies("role", data.role);
+                        this.dataService.setCookies("role", encodeURI(data.role));
+                        console.log(data.role);
                         this.dataService.setCookies("user_name", data.user_name);
                         this.dataService.setCookies("user_type", data.user_type);
                         this.dataService.setCookies("user_id", data.user_id);

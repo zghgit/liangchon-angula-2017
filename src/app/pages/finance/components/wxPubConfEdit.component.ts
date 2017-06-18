@@ -96,6 +96,8 @@ export class WxPubConfEditComponent implements OnInit {
                         require: true,
                         value: _data.apiclient_cert_p,
                         config: {
+                            value: _data.apiclient_cert_p,
+                            accept: "",
                             uploadurl: this.uc.api.qc + "/upload_file/hash/",
                             downloadurl: this.uc.api.qc + "/get_file/hash/",
                             capsule: "apiclient_cert_p" + new Date().getTime()
@@ -113,6 +115,8 @@ export class WxPubConfEditComponent implements OnInit {
                         require: true,
                         value: _data.apiclient_key_p,
                         config: {
+                            value: _data.apiclient_key_p,
+                            accept: "",
                             uploadurl: this.uc.api.qc + "/upload_file/hash/",
                             downloadurl: this.uc.api.qc + "/get_file/hash/",
                             capsule: "apiclient_key_p" + new Date().getTime()
@@ -187,6 +191,8 @@ export class WxPubConfEditComponent implements OnInit {
                         require: true,
                         value: _data.apiclient_cert_g,
                         config: {
+                            value: _data.apiclient_cert_g,
+                            accept: "",
                             uploadurl: this.uc.api.qc + "/upload_file/hash/",
                             downloadurl: this.uc.api.qc + "/get_file/hash/",
                             capsule: "apiclient_cert_g" + new Date().getTime()
@@ -204,6 +210,8 @@ export class WxPubConfEditComponent implements OnInit {
                         require: true,
                         value: _data.apiclient_key_g,
                         config: {
+                            value: _data.apiclient_key_g,
+                            accept: "",
                             uploadurl: this.uc.api.qc + "/upload_file/hash/",
                             downloadurl: this.uc.api.qc + "/get_file/hash/",
                             capsule: "apiclient_key_g" + new Date().getTime()

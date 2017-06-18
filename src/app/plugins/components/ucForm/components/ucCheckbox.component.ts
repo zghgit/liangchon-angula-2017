@@ -2,7 +2,8 @@
  * Created by max on 2017/5/18.
  */
 
-import {Component, OnInit, Input,OnChanges} from '@angular/core';
+import {Component, OnInit, Input,OnChanges,DoCheck} from '@angular/core';
+import {factoryOrValue} from "rxjs/operator/multicast";
 @Component({
     selector: 'uc-checkbox',
     template: `
@@ -36,6 +37,7 @@ export class UcCheckboxComponent implements OnInit,OnChanges {
     public checkedSet = new Set();//内容集合
     public checkedAll: boolean = false;//全选
     public flag:boolean = false;
+    public can:boolean = true;
     constructor() {
     }
 
@@ -44,7 +46,12 @@ export class UcCheckboxComponent implements OnInit,OnChanges {
             this.initCheckbox();
         }
     }
-
+    ngDoCheck(){
+        if(this.model.options.length>0&&this.can){
+            this.initCheckbox();
+            this.can = false;
+        }
+    }
     ngOnInit() {
         this.initCheckbox();
     }

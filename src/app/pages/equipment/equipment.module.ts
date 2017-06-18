@@ -19,6 +19,9 @@ import {
     EquipmentUnbindComponent,
     EquipmentOnOffComponent,
     EquipmentInitAddComponent,
+    EquipmentInitEditComponent,
+    EquipmentAddComponent,
+    EquipmentImportComponent,
 } from "./components";
 
 
@@ -38,6 +41,9 @@ import {
         EquipmentUnbindComponent,
         EquipmentOnOffComponent,
         EquipmentInitAddComponent,
+        EquipmentInitEditComponent,
+        EquipmentAddComponent,
+        EquipmentImportComponent,
     ],
     providers: [],
 })

@@ -1,1 +1,9 @@
-设备圧
+<uc-form [formData]="fields" (upformdata)="saveData($event)"></uc-form>
+<div class="map-container" *ngIf="showMap">
+    <div class="map-wrap">
+        <div id="coordinate">
+
+        </div>
+        <button class="btn btn-sm btn-success" (click)="confirmMap()">确认位置和坐标</button>
+    </div>
+</div>

@@ -1,1 +1,13 @@
-设备导入
+<form #form="ngForm">
+    <div class="form-group">
+        <label>
+            <span>*</span>
+            未绑定设备的批量上传
+        </label>
+        <base-upfile [model]="file.config" (fileready)="filehasup($event)"></base-upfile>
+    </div>
+    <div class="form-group">
+        <button type="button" class="btn btn-primary" [disabled]="!form.form.valid" >上传</button>
+        <button type="button" class="btn btn-primary">下载模板</button>
+    </div>
+</form>

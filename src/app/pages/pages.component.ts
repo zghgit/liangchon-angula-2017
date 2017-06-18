@@ -27,7 +27,8 @@ export class PagesComponent implements OnInit {
         this.globalState.toggleMenu.subscribe((data: boolean) => {
             this.isShrinked = data;
         })
-        this.config.role = this.dataService.getCookies("role");
+        let role=(this.dataService.getCookies("role")).toString();
+        this.config.role = decodeURI(role);
         this.config.user_name = this.dataService.getCookies("user_name");
         this.config.logout = () => {
             let data = this.appHttpService.postData(this.uc.api.qc + "/logout/hash");

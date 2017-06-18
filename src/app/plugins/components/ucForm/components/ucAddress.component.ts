@@ -87,14 +87,17 @@ export class UcAddressComponent implements OnInit {
         this.flag = true;
         if (event.name == "province_code") {
             let params = 2;
+            this.model.config.province["content"] = event.content;
             this.model.config.city.value = "0";
             this.model.config.area.value = "0";
             this.ajax(params, event.value);
         } else if (event.name == "city_code") {
             let params = 3;
+            this.model.config.city["content"] = event.content;
             this.model.config.area.value = "0";
             this.ajax(params, event.value);
         } else if (event.name = "district_code") {
+            this.model.config.area["content"] = event.content;
 
         }
     }
