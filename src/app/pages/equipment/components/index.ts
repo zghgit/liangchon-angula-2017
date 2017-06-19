@@ -10,3 +10,4 @@ export * from "./equipmentInitAdd.component";
 export * from "./equipmentInitEdit.component";
 export * from "./equipmentAdd.component";
 export * from "./equipmentImport.component";
+export * from "./equipmentBatchSet.component";

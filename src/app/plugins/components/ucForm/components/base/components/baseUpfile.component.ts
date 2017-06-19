@@ -42,7 +42,6 @@ export class BaseUpfileComponent implements OnInit {
     public selectFile() {
         let file = document.getElementById(this.model.capsule);
         file.click()
-        console.log(file)
     }
 
     public canup(data) {
@@ -74,7 +73,6 @@ export class BaseUpfileComponent implements OnInit {
             this.flag = false;
             this.progressBar = 100;
             this.fileSrc = this.model.downloadurl + "/" + responseText.data.capsule + "/" + responseText.data.md5;
-            console.log(111);
             this.fileready.emit(
                 {
                     value: "/" + responseText.data.capsule + "/" + responseText.data.md5

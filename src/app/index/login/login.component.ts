@@ -2,7 +2,7 @@
  * Created by max on 2017/4/27.
  */
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router, ActivatedRouteSnapshot, RouterState, RouterStateSnapshot} from '@angular/router';
+import {Router} from '@angular/router';
 import {User} from "../loginDataModel";
 import {AppHttpService, DataService, UC} from "../../plugins/globalservice";
 declare var swal: any;
@@ -18,21 +18,13 @@ export class LoginComponent implements OnInit {
     public canAjax: boolean = true;
 
     constructor(public router: Router,
-                public activatedRoute: ActivatedRoute,
                 public uc: UC,
                 public dataService: DataService,
                 public appHttpService: AppHttpService) {
     };
 
     ngOnInit() {
-        let activatedRouteSnapshot: ActivatedRouteSnapshot = this.activatedRoute.snapshot;
-        let routerState: RouterState = this.router.routerState;
-        let routerStateSnapshot: RouterStateSnapshot = routerState.snapshot;
-        console.log(activatedRouteSnapshot);
-        console.log(routerState);
-        console.log(routerStateSnapshot);
         this.identifyCodeSrc = "/api/wyc/get_identifying_code/hash";
-        console.log(this.uc.navModel)
     }
 
     public doLogin(): void {
@@ -63,7 +55,6 @@ export class LoginComponent implements OnInit {
                         let data = res.data;
                         this.dataService.setCookies("admin_flg", data.admin_flg);
                         this.dataService.setCookies("role", encodeURI(data.role));
-                        console.log(data.role);
                         this.dataService.setCookies("user_name", data.user_name);
                         this.dataService.setCookies("user_type", data.user_type);
                         this.dataService.setCookies("user_id", data.user_id);
@@ -80,7 +71,7 @@ export class LoginComponent implements OnInit {
                         // localStorage.setItem('powernav', JSON.stringify(JSON.parse(data.navigation)));
                         localStorage.setItem('powernav', JSON.stringify(this.uc.navModel));
                         //导航
-                        this.dataService.setCookies("menu","home");
+                        this.dataService.setCookies("menu", "home");
                         this.router.navigateByUrl("/pages");
                     } else {
                         this.canAjax = true;

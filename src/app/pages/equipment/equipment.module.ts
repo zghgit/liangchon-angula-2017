@@ -22,6 +22,7 @@ import {
     EquipmentInitEditComponent,
     EquipmentAddComponent,
     EquipmentImportComponent,
+    EquipmentBatchSetComponent,
 } from "./components";
 
 
@@ -44,6 +45,7 @@ import {
         EquipmentInitEditComponent,
         EquipmentAddComponent,
         EquipmentImportComponent,
+        EquipmentBatchSetComponent,
     ],
     providers: [],
 })

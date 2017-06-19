@@ -1,0 +1,32 @@
+.map-container{
+    background: white;
+    box-shadow: 0 1px 7px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    display: flex;
+    .map-left{
+        width: calc(2/3*100%);
+        min-width: 680px;
+        height: 800px;
+    }
+    .map-right{
+        width: calc(1/3*100%);
+        min-width: 340px;
+        height: 800px;
+    }
+}
+@media screen and (min-width: 1439px) and (max-width: 1680px) {
+    .map-left{
+        height: 760px!important;
+    }
+    .map-right{
+        height: 760px!important;
+    }
+}
+@media screen and (max-width: 1439px) {
+    .map-left{
+        height: 600px!important;
+    }
+    .map-right{
+        height: 600px!important;
+    }
+}

@@ -15,6 +15,14 @@ declare var swal;
 })
 export class EquipmentImportComponent implements OnInit {
     public file: any = {}
+    public selectedFile;
+    public progressBar: number = 0;
+    public fileError: boolean = false;
+    public flag: boolean = false;
+    public id: string = "template";
+    public uploadurl: string;
+    public accept: string = "application/vnd.ms-excel";
+    public cannotupload:boolean = true;
 
     constructor(public uc: UC,
                 public appHttpService: AppHttpService,
@@ -22,31 +30,86 @@ export class EquipmentImportComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.file = {
-            config: {
-                id:"certificate_img_1",
-                value: "",
-                accept:"",
-                uploadurl: this.uc.api.qc + "/upload_file/hash/",
-                downloadurl: this.uc.api.qc + "/get_file/hash/",
-                capsule: "certificate_img_1"
-            },
+        this.uploadurl = this.uc.api.qc + "/create_device_by_excel/hash/"
+    }
+
+    filehasup(ev) {
+        console.log(ev);
+    }
+
+    uploadTemplate() {
+        var xhr = new XMLHttpRequest();
+        let fd = new FormData();
+        fd.append("file", this.file);
+        xhr.upload.addEventListener("progress", this.uploadProgress, false);
+        xhr.addEventListener("load", this.uploadComplete, false);
+        xhr.addEventListener("error", this.uploadFailed, false);
+        xhr.addEventListener("abort", this.uploadCanceled, false);
+        /* 下面的url一定要改成你要发送文件的服务器url */
+        xhr.open("POST", this.uploadurl);
+        xhr.send(fd);
+    }
+
+    public selectFile() {
+        let file = document.getElementById(this.id);
+        file.click()
+    }
+
+    public canup(data) {
+        this.fileError = false;
+        this.selectedFile = document.getElementById(this.id)
+        this.file = this.selectedFile.files[0];
+        if (this.file) {
+            this.cannotupload = false;
+        } else {
+            this.cannotupload = true;
         }
-        this.appHttpService.getBinary(this.uc.api.qc+'/download_device_template/hash/').subscribe(res=>{
+    }
+
+    public uploadProgress = (evt) => {
+        this.progressBar = Number((evt.loaded / evt.total).toFixed(2)) * 100 * 0.8;
+    };
+    //上传完成时
+    public uploadComplete = ({currentTarget}={currentTarget}) => {
+        let responseText = JSON.parse(currentTarget.responseText);
+        if (responseText.status) {
+            this.flag = false;
+            this.progressBar = 100;
+        } else {
+            this.flag = true;
+            this.progressBar = 0;
+            this.fileError = true;
+            this.selectedFile.value = "";
+            swal({
+                title: "上传文件失败!",
+                text: responseText.error_msg,
+                type: "error"
+            });
+        }
+    }
+
+    public uploadFailed() {
+        console.log("error")
+    }
+
+    public uploadCanceled() {
+        console.log("abort")
+    }
+
+    downloadTemplate() {
+        this.appHttpService.getBinary(this.uc.api.qc + '/download_device_template/hash/').subscribe(res => {
             let disposition = res.headers._headers.get("content-disposition");
 
-            if (!disposition){
+            if (!disposition) {
                 swal("下载模板失败", res.error_msg, "error")
-            }else {
+            } else {
                 let blob = new Blob([res._body], {type: "application/vnd.ms-excel"});
                 let objectUrl = URL.createObjectURL(blob);
                 let a = document.createElement('a');
                 let filename = disposition[0].split(";")[1].trim().split("=")[1]
-                console.log(filename);
-                console.log("template.xls");
-                try{
+                try {
                     filename = JSON.parse(filename)
-                }catch (e){
+                } catch (e) {
                     console.log(e);
                 }
                 document.body.appendChild(a);
@@ -58,12 +121,5 @@ export class EquipmentImportComponent implements OnInit {
             }
 
         })
-
     }
-    filehasup(ev){
-        console.log(ev);
-    }
-
-    //form数据
-
 }

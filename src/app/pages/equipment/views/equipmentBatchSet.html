@@ -1,1 +1,21 @@
-<h1>批量添加设备</h1>
+<form #form="ngForm">
+    <div class="form-group">
+        <label>
+            <span>*</span>
+            商品
+        </label>
+        <!--<base-upfile [model]="file.config" (fileready)="filehasup($event)"></base-upfile>-->
+        <base-checkbox [model]="commoditys" (checkboxData)="checkboxBack($event)"></base-checkbox>
+    </div>
+    <div class="form-group">
+        <label>
+            <span>*</span>
+            全部设备
+        </label>
+        <!--<base-upfile [model]="file.config" (fileready)="filehasup($event)"></base-upfile>-->
+        <base-checkbox [model]="commoditys" (checkboxData)="checkboxBack($event)"></base-checkbox>
+    </div>
+    <div class="form-group">
+        <button type="button" class="btn btn-primary" [disabled]="cannotupdata" (click)="updataform()">提交</button>
+    </div>
+</form>

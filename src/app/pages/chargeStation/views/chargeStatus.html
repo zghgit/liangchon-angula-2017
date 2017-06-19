@@ -1,0 +1,66 @@
+<div class="charge-status">
+    <div class="charge-status-left">
+        <h2>充电桩名称：{{evseStatistics.title}}</h2>
+        <div class="charge-yellow">
+            <div>
+                <span [ngClass]="{'small-font':evseStatistics.contIsSmall}">{{evseStatistics.chargeCount}}</span>
+                <i>次</i>
+                <br>
+                <i>充电次数</i>
+            </div>
+            <i style="height: 100%;width: 0;vertical-align: middle"></i>
+        </div>
+        <div class="charge-green">
+            <div>
+                <span [ngClass]="{'small-font':evseStatistics.timeIsSmall}">{{evseStatistics.chargeTime}}</span>
+                <i>小时</i>
+                <br>
+                <i>充电时间</i>
+            </div>
+        </div>
+        <div class="charge-blue">
+            <div>
+                <span [ngClass]="{'small-font':evseStatistics.degreeIsSmall}">{{evseStatistics.chargeDegree}}</span>
+                <i>度</i>
+                <br>
+                <i>充电电量</i>
+            </div>
+        </div>
+    </div>
+    <div class="charge-status-right">
+        <div *ngFor="let item of evses">
+            <div [ngClass]="item.backgroundClass" *ngIf="item.type=='charge-ing'">
+                <span>{{item.no}}</span>
+                <div>
+                    <img *ngFor="let pic of item.pic" [ngClass]="pic.picClass" src="{{pic.picSrc}}" alt="{{pic.picAlt}}">
+                    <p>
+                        <span *ngIf="item.timeLeft">{{item.timeLeft}}</span>
+                        <i [ngClass]="item.contentClass">{{item.content}}</i>
+                    </p>
+                </div>
+                <p>{{item.evseStatus}}</p>
+            </div>
+            <div [ngClass]="item.backgroundClass" *ngIf="item.type=='charge-free'">
+                <span>{{item.no}}</span>
+                <div>
+                    <ng-container  *ngFor="let pic of item.pic">
+                        <img [ngClass]="pic.picClass" src="{{pic.picSrc}}" alt="{{pic.picAlt}}">
+                    </ng-container>
+                </div>
+                <p>{{item.evseStatus}}</p>
+            </div>
+            <div [ngClass]="item.backgroundClass" *ngIf="item.type=='charge-error'">
+                <span>{{item.no}}</span>
+                <div>
+                    <img *ngFor="let pic of item.pic" [ngClass]="pic.picClass" src="{{pic.picSrc}}" alt="{{pic.picAlt}}">
+                    <p>
+                        <span *ngIf="item.timeLeft">{{item.timeLeft}}</span>
+                        <i [ngClass]="item.contentClass">{{item.content}}</i>
+                    </p>
+                </div>
+                <p>{{item.evseStatus}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<uc-table [model]="plugins.grid" (pageBeChanged)="pageBeChanged($event)"></uc-table>

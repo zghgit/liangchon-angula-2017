@@ -12,7 +12,7 @@ import {DataService, GlobalState} from "../../plugins/globalservice";
 })
 export class UcMenuComponent {
     public ucMenu: any;
-    public menu: Array<any> = [];
+    public menu: Array<any>;
     public isShrinked: boolean = false;//主菜单收缩
     public isShowSubmenu: any = {
         home: false,
@@ -56,10 +56,10 @@ export class UcMenuComponent {
     };
 
     public ngOnInit(): void {
-        this.ucMenu = this.dataService.getLocalStorage("powernav");
-        for (let i in this.ucMenu) {
-            this.menu.push(this.ucMenu[i])
-        }
+        this.menu = this.dataService.getLocalStorage("powernav");
+        // for (let i in this.ucMenu) {
+        //     this.menu.push(this.ucMenu[i])
+        // }
         this.globalState.toggleMenu.subscribe((data: boolean) => {
             this.isShrinked = data;
             if (data) {

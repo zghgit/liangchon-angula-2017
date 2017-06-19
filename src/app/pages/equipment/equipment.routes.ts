@@ -13,6 +13,7 @@ import {
     EquipmentInitEditComponent,
     EquipmentAddComponent,
     EquipmentImportComponent,
+    EquipmentBatchSetComponent
 } from "./components/";
 
 
@@ -28,9 +29,11 @@ export const routes: Routes = [
             {path: "equipmentUnbind", component: EquipmentUnbindComponent},
             {path: "equipmentOnOffRecord", component: EquipmentOnOffComponent},
             {path: "equipmentInitAdd", component: EquipmentInitAddComponent},
+            {path: "equipmentInitAdd/:id", component: EquipmentInitAddComponent},
             {path: "equipmentAdd", component: EquipmentAddComponent},
             {path: "equipmentInitEdit/:id", component: EquipmentInitEditComponent},
             {path: "equipmentImport", component: EquipmentImportComponent},
+            {path: "equipmentBatchSet", component: EquipmentBatchSetComponent},
         ]
     },
 ];

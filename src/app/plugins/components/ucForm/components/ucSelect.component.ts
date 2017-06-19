@@ -43,7 +43,5 @@ export class ucSelectComponent implements OnInit {
             value: data,
             content:content,
         })
-        console.log(this.geoChange)
-
     }
 }

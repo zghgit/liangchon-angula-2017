@@ -2,7 +2,7 @@
  * Created by max on 2017/6/13.
  */
 import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
+import {Router,ActivatedRoute} from "@angular/router";
 import {Validators} from '@angular/forms';
 import {AppHttpService, UC} from "../../../plugins/globalservice";
 declare var swal;
@@ -24,11 +24,18 @@ export class EquipmentInitAddComponent implements OnInit {
 
     constructor(public uc: UC,
                 public appHttpService: AppHttpService,
+                public activatedRoute:ActivatedRoute,
                 public router: Router) {
     }
 
     ngOnInit() {
-
+        this.activatedRoute.params.subscribe(params=>{
+            if (params.id){
+                this.showForm = true;
+                this.device_no = params.id;
+                this.validateDevice();
+            }
+        })
     }
 
     validateDevice() {

@@ -176,7 +176,8 @@ export class EquipmentListComponent implements OnInit {
                             content: "桩状态",
                             class: "btn-warning",
                             click: (data) => {
-                                this.router.navigate(['pages/equipment/equipmentDetail', key.device_id]);
+                                let id = data[0].content;
+                                this.router.navigate(['pages/charge/chargeStatus', id]);
                             }
                         })
                     }
@@ -258,7 +259,6 @@ export class EquipmentListComponent implements OnInit {
     }
 
     public pageBeChanged(event) {
-        console.log(event);
         this.getGridData({
             page_now: event.page,
             limit: event.itemsPerPage,

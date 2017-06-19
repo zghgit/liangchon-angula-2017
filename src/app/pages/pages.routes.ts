@@ -23,6 +23,7 @@ export const pagesRoutes: Routes = [
             {path: "finance", loadChildren: "./finance/finance.module#FinanceModule"},
             {path: "advertisement", loadChildren: "./advertisement/advertisement.module#AdvertisementModule"},
             {path: "user", loadChildren: "./user/user.module#UserModule"},
+            {path: "charge", loadChildren: "./chargeStation/chargeStation.module#ChargeStationModule"},
         ]
     }
 ]

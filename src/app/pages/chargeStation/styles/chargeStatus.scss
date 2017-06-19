@@ -1,0 +1,256 @@
+.charge-status{
+    overflow-x: auto;
+    margin-bottom: 16px;
+    >.charge-status-left{
+        width: 500px;
+        height: 560px;
+        background: #FFFFFF;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        position: absolute;
+        box-shadow: 0 1px 7px rgba(0,0,0,.1);
+        z-index: 2;
+        >h2{
+            color: #333333;
+            font-size: 24px;
+            text-align: center;
+            margin-top: 60px;
+        }
+        >div{
+            border-radius: 50%;
+            text-align: center;
+            >div{
+                height: 84px;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                margin: auto;
+                left: 0;
+                right: 0;
+                span{
+                    display: inline-block;
+                    height: 48px;
+                    color: #FFFFFF;
+                    font-size: 48px;
+                    line-height: 1;
+                    vertical-align: bottom;
+                    &.small-font{
+                        font-size: 28px;
+                        padding-top: 20px;
+                        box-sizing: border-box;
+                    }
+                }
+                >i{
+                    color: #FFFFFF;
+                    font-size: 18px;
+                    font-style: normal;
+                }
+            }
+            &.charge-green{
+                width: 194px;
+                height: 194px;
+                position: absolute;
+                top:175px;
+                left: 220px;
+                background: #42ded1;
+            }
+            &.charge-blue{
+                width: 170px;
+                height: 170px;
+                position: absolute;
+                top:295px;
+                left: 144px;
+                background: #36b6f2;
+            }
+            &.charge-yellow{
+                width: 160px;
+                height: 160px;
+                position: absolute;
+                top: 180px;
+                left: 88px;
+                background: #f0d32e;
+            }
+        }
+    }
+    >.charge-status-right{
+        height: 560px;
+        width: calc(100% - 520px);
+        margin-left: 520px;
+        min-width: 1044px;
+        background: #FFFFFF;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        box-shadow: 0 1px 7px rgba(0,0,0,.1);
+        display: flex;
+        flex-wrap:wrap;
+        >div{
+            width: 20%;
+            height: 198px;
+            margin-top: 50px;
+            >div{
+                width: 166px;height: 100%;
+                box-sizing: border-box;
+                margin: 0 auto;
+                text-align: center;
+                >span{
+                    height: 64px;
+                    font-size: 44px;
+                    color: #FFFFFF;
+                    display: inline-block;
+                }
+                >div{
+                    width: 160px;
+                    height: 89px;
+                    overflow: hidden;
+                    position: relative;
+                    left: 3px;
+                    >p{
+                        color: #FFFFFF;
+                        position: absolute;
+                        left: 0;
+                        right: 0;
+                        top: 18px;
+                        >span{
+                            font-size: 24px;
+                            display: block;
+                        }
+                        >i{
+                            font-size: 12px;
+                            font-style: normal;
+                            &.chargeOperation{
+                                display: inline-block;
+                                margin-top: 20px;
+                                font-size: 16px;
+                            }
+                        }
+                    }
+                }
+                >p{
+                    color: #FFFFFF;
+                    height: 40px;
+                    line-height: 40px;
+                    text-align: center;
+                    font-size: 16px;
+                    margin: 0;
+                }
+                &.charge-free{
+                    background: url("/assets/images/charge/charge-free.png");
+                    >div{
+                        >img{
+                            position: absolute;
+                            &.charge-free-step1{
+                                top: 60px;
+                                left:54px;
+                            }
+                            &.charge-free-step2{
+                                top: 34px;
+                                left:72px;
+                                animation: flash-step2 3s linear infinite;
+                                animation-fill-mode:both;
+                            }
+                            &.charge-free-step3{
+                                top: 14px;
+                                left:100px;
+                                animation: flash-step3 3s linear infinite;
+                                animation-fill-mode:both;
+                            }
+                        }
+                    }
+                }
+                &.charge-ing{
+                    background: url("/assets/images/charge/charge-ing.png");
+                    >div{
+                        >img{
+                            position: absolute;
+                            top: 0;
+                            bottom: 0;
+                            left: -160px;
+                            right: 0;
+                            margin: auto;
+                            &.charge-ing{
+                                animation: swing 10s linear infinite;
+                            }
+                        }
+                    }
+                }
+                &.charge-error{
+                    background: url("/assets/images/charge/charge-error.png");
+                    >div{
+                        >img{
+                            position: absolute;
+                            top: 0;
+                            bottom: 0;
+                            left: 0;
+                            right: 0;
+                            margin: auto;
+                            &.charge-light{
+                                animation: flash-light 2s linear infinite;
+                            }
+                            &.charge-dark{
+                                animation: flash-dark 2s linear infinite;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@keyframes swing {
+    0%{
+        left: -160px;
+    }
+    100%{
+        left:0;
+    }
+}
+@keyframes flash-light {
+    0%{
+        opacity: 1;
+    }
+    50%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+@keyframes flash-dark {
+    0%{
+        opacity: 0;
+    }
+    50%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+@keyframes flash-step2 {
+    0%{
+        opacity: 0;
+    }
+    32%{
+        opacity: 0;
+    }
+    33%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+@keyframes flash-step3 {
+    0%{
+        opacity: 0;
+    }
+    65%{
+        opacity: 0;
+    }
+    66%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 1;
+    }
+}

@@ -72,6 +72,7 @@ export class FinanceListComponent implements OnInit {
                 let list = data.list;
                 this.plugins.grid.pagination.totalItems = data.total_num;
                 this.plugins.grid.tbody = [];
+                let index = 1;
                 for (let key of list) {
                     let tds: Array<any>;
                     var cash_status;
@@ -84,7 +85,7 @@ export class FinanceListComponent implements OnInit {
                     }
                     tds = [
                         {content: key.cash_id, hidden: true},
-                        {content: key+1},
+                        {content: index++},
                         {content: key.cash_sum},
                         {content: key.pay_type_name},
                         {content: key.applicant_name},

@@ -14,6 +14,8 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {EqualValidator} from "./validators/equalValidator";
 
 import {
+    BaseUpfileComponent,
+    BaseCheckboxComponent,
     UcButtonComponent,
     UcUpfileComponent,
     UcTableComponent,
@@ -27,10 +29,11 @@ import {
     UcTimeComponent,
     ucSelectComponent,
     UcAddressComponent,
-    BaseUpfileComponent,
 } from "./components";
 
 const NGX_COMPONENTS = [
+    BaseUpfileComponent,
+    BaseCheckboxComponent,
     UcButtonComponent,
     UcUpfileComponent,
     UcTableComponent,
@@ -44,7 +47,6 @@ const NGX_COMPONENTS = [
     UcTimeComponent,
     ucSelectComponent,
     UcAddressComponent,
-    BaseUpfileComponent,
 ];
 @NgModule({
     declarations: [

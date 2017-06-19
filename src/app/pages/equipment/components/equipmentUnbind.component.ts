@@ -70,13 +70,16 @@ export class EquipmentUnbindComponent implements OnInit {
                         {content: key.meters_no},
                     ];
                     let operations = [];
-                    operations.push({
-                        content: "查看",
-                        class: "btn-info",
-                        click: () => {
-                            this.router.navigate(['pages/equipment/equipmentDetail', key.device_id]);
-                        }
-                    })
+                    if(this.uc.powerfun(this.uc.constant.device_binding)){
+                        operations.push({
+                            content: "去绑定设备",
+                            class: "btn-primary",
+                            click: (data) => {
+                                let id = data[1].content;
+                                this.router.navigate(['pages/equipment/equipmentInitAdd', id]);
+                            }
+                        })
+                    }
                     if (this.uc.powerfun(this.uc.constant.delete_device)) {
                         operations.push({
                             content: "删除",

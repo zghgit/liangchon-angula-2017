@@ -162,8 +162,8 @@ export class UC {
         var gps = {lat: tempLat, lon: tempLon};
         return gps;
     };
-    public navModel = {
-        "home": {
+    public navModel = [
+        {
             "show": true,
             "title": "home",
             "hasSubmenu": false,
@@ -171,7 +171,7 @@ export class UC {
             "href": "home",
             "icon": "dashboard"
         },
-        "account": {
+        {
             "show": true,
             "title": "account",
             "hasSubmenu": true,
@@ -263,7 +263,7 @@ export class UC {
                 "href": "merchantDetail"
             }]
         },
-        "commodity": {
+        {
             "show": true,
             "title": "commodity",
             "hasSubmenu": true,
@@ -287,7 +287,7 @@ export class UC {
                 "href": "commodityEdit"
             }]
         },
-        "equipment": {
+        {
             "show": true,
             "title": "equipment",
             "hasSubmenu": true,
@@ -339,7 +339,7 @@ export class UC {
                 "href": "evseCardConfig"
             }]
         },
-        "order": {
+        {
             "show": true,
             "title": "order",
             "hasSubmenu": true,
@@ -355,7 +355,7 @@ export class UC {
                 "href": "refundRecordList"
             }]
         },
-        "rechargeCard": {
+        {
             "show": true,
             "title": "rechargeCard",
             "hasSubmenu": true,
@@ -367,7 +367,7 @@ export class UC {
                 "href": "rechargeCardRecord"
             }]
         },
-        "finance": {
+        {
             "show": true,
             "title": "finance",
             "hasSubmenu": true,
@@ -411,7 +411,7 @@ export class UC {
                 "href": "settlement"
             }]
         },
-        "advertisement": {
+        {
             "show": true,
             "title": "advertisement",
             "hasSubmenu": true,
@@ -435,7 +435,7 @@ export class UC {
                 "href": "advertisementDetail"
             }]
         },
-        "appManagement": {
+        {
             "show": true,
             "title": "appManagement",
             "hasSubmenu": true,
@@ -479,7 +479,7 @@ export class UC {
                 "href": "appChargeRecord"
             }]
         },
-        "operation": {
+        {
             "show": true,
             "title": "operationManagement",
             "hasSubmenu": true,
@@ -495,7 +495,7 @@ export class UC {
                 "href": "maintenanceMan"
             }]
         },
-        "operationAnalysis": {
+        {
             "show": true,
             "title": "operationAnalysis",
             "hasSubmenu": true,
@@ -512,7 +512,7 @@ export class UC {
             }]
         },
 
-        "complained": {
+        {
             "show": true,
             "title": "complained",
             "hasSubmenu": true,
@@ -532,7 +532,7 @@ export class UC {
                 "href": "complainedDetail"
             }]
         },
-        "charge": {
+        {
             "show": true,
             "title": "charge",
             "hasSubmenu": true,
@@ -545,10 +545,10 @@ export class UC {
             }, {
                 "show": false,
                 "name": "充电桩状态",
-                "href": "chargeStatus/:id"
+                "href": "chargeStatus"
             }]
         },
-        "user": {
+        {
             "show": false,
             "title": "user",
             "hasSubmenu": true,
@@ -568,7 +568,7 @@ export class UC {
                 "href": "userInfo"
             }]
         },
-        "setting": {
+        {
             "show": true,
             "title": "setting",
             "hasSubmenu": true,
@@ -584,5 +584,5 @@ export class UC {
                 "href": "userAgreement"
             }]
         }
-    }
+    ]
 }

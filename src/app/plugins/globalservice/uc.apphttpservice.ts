@@ -10,6 +10,7 @@ export class AppHttpService {
 
     constructor(public http: Http) {
     };
+
     public postData(url: string, params?: any): Observable<any> {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
@@ -17,7 +18,11 @@ export class AppHttpService {
             .post(url, JSON.stringify(params), {headers: headers})
             .map((res: Response) => {
                 let result = res.json();
-                return result;
+                // if (result.error_code === 901 || result.error_code === 102){
+                //     location.href="";
+                // }else {
+                    return result;
+                // }
             })
             .catch((error: any) => Observable.throw(error || 'Server error'));
     };
@@ -26,7 +31,11 @@ export class AppHttpService {
         return this.http.get(url)
             .map((res: Response) => {
                 let result = res.json();
-                return result;
+                // if (result.error_code === 901 || result.error_code === 102){
+                //     location.href="";
+                // }else {
+                    return result;
+                // }
             })
             .catch((error: any) => Observable.throw(error || 'Server error'));
     };
@@ -37,7 +46,6 @@ export class AppHttpService {
         let options = new RequestOptions({headers: headers, responseType: 2});
         return this.http
             .post(url, JSON.stringify(params), options).map(res => {
-                console.log(res);
                 return res
             })
             .catch((error: any) => Observable.throw(error || 'Server error'));

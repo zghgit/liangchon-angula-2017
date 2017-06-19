@@ -1,0 +1,18 @@
+.checkAll{
+    padding-left: 1em;
+    label{
+        font-weight: normal;
+    }
+}
+.item-content{
+    padding-left: 1em;
+    min-height: 34px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    label{
+        font-size: 14px;
+        font-weight: normal;
+        margin-right: 1em;
+    }
+}

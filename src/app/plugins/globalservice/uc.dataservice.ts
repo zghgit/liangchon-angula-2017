@@ -48,7 +48,7 @@ export class DataService {
         localStorage.setItem(key, JSON.stringify(value))
     }
 
-    public getLocalStorage(key: string): string {
+    public getLocalStorage(key: string){
         return JSON.parse(localStorage.getItem(key))
     }
 
