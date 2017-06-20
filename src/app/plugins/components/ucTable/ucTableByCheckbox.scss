@@ -1,0 +1,87 @@
+:host{
+    display: flex;
+    flex-direction: column;
+    overflow-x: auto;
+    pagination{
+        align-self: center;
+    }
+}
+table{
+    width: 100%;
+    color: #373A3C;
+    font-size: 14px;
+    background: #FFF;
+    border-collapse: collapse;
+    box-shadow: 0 1px 7px rgba(0,0,0,.1);
+    >caption{
+        padding: 8px 16px 8px 15px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        background-color: #fff;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    >thead {
+        th {
+            padding: 8px 16px;
+            text-align: left;
+            -webkit-font-smoothing: subpixel-antialiased;
+            white-space: nowrap;
+            -webkit-text-stroke: 1px transparent;
+            font-weight: normal;
+            &.hidden{
+                display: none;
+            }
+        }
+    }
+    >tbody {
+        >tr {
+            transition: background .4s;
+            &:nth-of-type(odd) {
+                background: #F9F9F9;
+            }
+            &:hover {
+                background: #EEE;
+            }
+            >td {
+                max-width: 360px;
+                padding: 8px 16px;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                &.hidden{
+                    display: none;
+                }
+                button{
+                    margin-right: 1em;
+                    cursor: pointer;
+                    line-height: 1.2;
+                    &.forbid{
+                        color: white;
+                        background: #202c37;
+                    }
+                    &.btn-purple{
+                        color: white;
+                        background: #7b72e9;
+                        &:hover{
+                            background: #5c51de;
+                        }
+
+                    }
+                    &.btn-black{
+                        color: white;
+                        background: #444;
+                        &:hover{
+                            background: #000;
+                        }
+
+                    }
+                }
+                img{
+                    height: 35px;
+                }
+            }
+        }
+    }
+}
+

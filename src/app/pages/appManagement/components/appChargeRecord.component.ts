@@ -12,7 +12,7 @@ declare var swal;
 export class AppChargeRecordComponent implements OnInit {
     public now: number = 1;
     public plugins: any = {};
-    public app_user_id:string = "";
+    public app_user_name:string = "";
 
     constructor(public router: Router,
                 public appHttpService: AppHttpService,
@@ -23,7 +23,7 @@ export class AppChargeRecordComponent implements OnInit {
     ngOnInit() {
         let params = this.activatedRoute.params;
         params.subscribe(res => {
-            this.app_user_id = res.id;
+            this.app_user_name = res.id;
         })
 
         this.plugins.grid = {
@@ -49,7 +49,7 @@ export class AppChargeRecordComponent implements OnInit {
             sort_by: 'create_time',
             sort_type: 'desc',
             search_by: {
-                app_user_id:this.app_user_id,
+                app_user_name:this.app_user_name,
             },
 
         })

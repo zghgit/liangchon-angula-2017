@@ -1,0 +1,37 @@
+<form #form="ngForm">
+    <div class="form-group">
+        <label>
+            <span>*</span>
+            全部提现订单
+            <i>{{orderTip}}</i>
+        </label>
+        <small>可提现金额总计:{{total_sum}}</small>
+        <uc-table-checkbox [model]="grids" (pageBeChanged)="pageBeChanged($event)"></uc-table-checkbox>
+    </div>
+    <div class="form-group">
+        <label>
+            <span></span>
+            提现金额(元)
+        </label>
+        <input type="text" class="form-control" [value]="money.toFixed(2)" disabled>
+    </div>
+    <div class="form-group">
+        <label>
+            <span></span>
+            提现金额(元)
+        </label>
+        <div class="item-content">
+            <ng-container *ngFor="let item of radioModel.options">
+                <label><input type="radio" [(ngModel)]="radioModel.value" [value]="item.value"  name="{{radioModel.name}}">{{item.content}}</label>
+            </ng-container>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="item-content">
+            <uc-select [model]="wx" [options]="wx.options" (geoChange)="afresh($event)" [error]="false"></uc-select>
+        </div>
+    </div>
+    <div class="form-group">
+        <button type="button" class="btn btn-primary" [disabled]="cannotupdata" (click)="updataform()">提交</button>
+    </div>
+</form>

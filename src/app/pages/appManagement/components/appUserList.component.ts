@@ -91,7 +91,7 @@ export class AppManagementListComponent implements OnInit {
                             content: "收支明细",
                             class: "btn-purple",
                             click: (data) => {
-                                let id = data[0].content;
+                                let id = data[1].content;
                                 this.router.navigate(['pages/appManagement/appChargeRecord', id]);
                             }
                         })

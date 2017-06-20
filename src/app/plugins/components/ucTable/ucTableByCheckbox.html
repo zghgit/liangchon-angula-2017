@@ -1,0 +1,40 @@
+<table>
+    <caption *ngIf="model.caption">{{model.caption}}</caption>
+    <thead>
+    <th *ngFor="let th of model.th.array" [ngClass]="{'hidden':th.hidden}">
+        <ng-container [ngSwitch]="th.type">
+            <ng-container *ngSwitchCase="'checkbox'">
+                <label><input type="checkbox" [value]="th.value" [(ngModel)]="model.th.checked" (click)="model.th.click(model)">{{th.content}}</label>
+            </ng-container>
+            <ng-container *ngSwitchDefault>{{th.content}}</ng-container>
+        </ng-container>
+    </th>
+    </thead>
+    <tbody>
+    <tr *ngFor="let tr of model.tbody" (click)="tr.click(tr)">
+        <td *ngFor="let td of tr.array" [ngClass]="{'hidden':td.hidden}">
+            <ng-container [ngSwitch]="td.type">
+                <ng-container *ngSwitchCase="'checkbox'">
+                    <label><input type="checkbox" [value]="td.value" [(ngModel)]="tr.checked">{{td.content}}</label>
+                </ng-container>
+                <ng-container *ngSwitchCase="'img'">
+                    <img src="{{td.content}}" alt="">
+                </ng-container>
+                <ng-container *ngSwitchCase="'operation'">
+                    <ng-container>
+                        <button *ngFor="let item of td.operation" class="btn btn-sm {{item.class}}" (click)="item.click(tr)">
+                            {{item.content}}
+                        </button>
+                    </ng-container>
+                </ng-container>
+                <ng-container *ngSwitchDefault>{{td.content}}</ng-container>
+            </ng-container>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<pagination *ngIf="model.pagination" [totalItems]="model.pagination.totalItems" [maxSize]="model.pagination.maxSize" [itemsPerPage]="model.pagination.itemsPerPage" [(ngModel)]="model.pagination.currentPage"
+            firstText="首页" lastText="末页"
+            previousText="上一页" nextText="下一页"
+            [boundaryLinks]="true" [rotate]="false" (numPages)="numPages = $event" [align]="true"
+            (pageChanged)="pageChanged($event)" class="pagination-sm"></pagination>

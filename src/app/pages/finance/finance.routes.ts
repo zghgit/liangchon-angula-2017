@@ -13,6 +13,7 @@ import {
     WxPubConfAddComponent,
     AlipayConfAddComponent,
     AlipayConfEditComponent,
+    CashWithdrawalComponent,
 } from './components';
 export const FinanceRoutes :Routes = [
     { path: "",
@@ -27,6 +28,7 @@ export const FinanceRoutes :Routes = [
             { path: 'wxPubConfAdd', component: WxPubConfAddComponent },
             { path: 'alipayConfAdd', component: AlipayConfAddComponent },
             { path: 'alipayConfEdit', component: AlipayConfEditComponent },
+            { path: 'cashWithdrawal', component: CashWithdrawalComponent },
         ]
     },
 ];

@@ -27,8 +27,24 @@ form {
             }
 
         }
+        >small{
+            display: block;
+            text-indent: 1em;
+        }
         >button{
             min-width: 110px;
+        }
+        .item-content{
+            padding-left: 1em;
+            min-height: 34px;
+            display: flex;
+            align-items: center;
+            label{
+                font-size: 14px;
+                font-weight: normal;
+                margin-bottom: 0;
+                margin-right: 1em;
+            }
         }
 
     }

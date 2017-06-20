@@ -9,3 +9,4 @@ export * from "./wxPubConfEdit.component";
 export * from "./wxPubConfAdd.component";
 export * from "./alipayConfAdd.component";
 export * from "./alipayConfEdit.component";
+export * from "./cashWithdrawal.component";

@@ -2,3 +2,15 @@
     <uc-button [model]="plugins.button"></uc-button>
 </ng-container>
 <uc-table [model]="plugins.grid" (pageBeChanged)="pageBeChanged($event)"></uc-table>
+
+<div class="reject-reason" *ngIf="showRejectInfo">
+    <div>
+        <h2>ID:<span style="color:#000000">{{rejectInfo.cash_id}}</span></h2>
+        <p><span>申请人：{{rejectInfo.applicant_name}}</span>
+            <span>申请时间：{{rejectInfo.apply_time}}</span></p>
+        <h2>拒绝理由<i>*</i><span *ngIf="rejectInfo.valid">{{rejectInfo.valid}}</span></h2>
+        <textarea name="rejectReason" id="rejectReason" cols="30" rows="10" [(ngModel)]="rejectInfo.reject_reason" class="{{rejectInfo.class}}"></textarea>
+        <button class="btn btn-primary" [disabled]="!rejectInfo.reject_reason" (click)="confirmReject(rejectInfo)">驳回</button>
+        <button class="btn btn-danger" (click)="closeRejectInfo()">取消</button>
+    </div>
+</div>

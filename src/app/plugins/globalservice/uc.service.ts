@@ -380,7 +380,7 @@ export class UC {
             }, {
                 "show": false,
                 "name": "申请提现",
-                "href": "cashWithdrawalApplication"
+                "href": "cashWithdrawal"
             }, {
                 "show": false,
                 "name": "收款配置",
@@ -511,7 +511,6 @@ export class UC {
                 "href": "organizationStatistics"
             }]
         },
-
         {
             "show": true,
             "title": "complained",
