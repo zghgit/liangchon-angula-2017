@@ -23,20 +23,16 @@ export class UserAgreementComponent implements OnInit {
         placeholder: "请输入协议..."
     };
     onEditorBlured(quill) {
-        console.log('editor blur!', quill);
     }
 
     onEditorFocused(quill) {
-        console.log('editor focus!', quill);
     }
 
     onEditorCreated(quill) {
         this.editor = quill;
-        console.log('quill is ready! this is current quill instance object', quill);
     }
 
     onContentChanged({quill, html, text}) {
-        console.log('quill content is changed!', quill, html, text);
     }
 
 
@@ -45,12 +41,10 @@ export class UserAgreementComponent implements OnInit {
         data.subscribe(res=>{
             if(res.status){
                 let data = res.data;
-                console.log(data);
                 for(let item of data){
                     this.settingData[item.config_key] = item.config_value;
                     this.editorContent = this.settingData.user_agreement;
                 }
-                console.log(this.settingData)
             }else {
                 swal("系统设置信息失败", res.error_msg, "error")
             }

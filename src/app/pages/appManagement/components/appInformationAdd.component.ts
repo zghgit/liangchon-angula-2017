@@ -26,26 +26,26 @@ export class AppInformationAddComponent implements OnInit {
 
 
     onEditorBlured(quill) {
-        console.log('editor blur!', quill);
+
     }
 
     onEditorFocused(quill) {
-        console.log('editor focus!', quill);
+
     }
 
     onEditorCreated(quill) {
         this.editor = quill;
-        console.log('quill is ready! this is current quill instance object', quill);
+
     }
 
     onContentChanged({ quill, html, text }) {
-        console.log('quill content is changed!', quill, html, text);
+
     }
 
     ngOnInit() {
     }
     uploaddata(){
-        console.log(!this.editorContent)
+
         let params = {
             params: {
                 information_title:this.information_title,

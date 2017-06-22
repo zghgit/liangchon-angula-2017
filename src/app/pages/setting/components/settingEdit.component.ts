@@ -26,7 +26,6 @@ export class SettingEditComponent implements OnInit,AfterViewInit {
         data.subscribe(res => {
             if (res.status) {
                 let data = res.data;
-                console.log(data);
                 for (let item of data) {
                     this.settingData[item.config_key] = item.config_value
                 }

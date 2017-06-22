@@ -181,7 +181,7 @@ export class EquipmentBatchSetComponent implements OnInit {
     updataform(){
         let commodity_ids = this.commoditySet;
         let device_ids = Array.from(this.deviceSet);
-        console.log(commodity_ids.length==0,device_ids.length==0)
+
         if(commodity_ids.length==0){
             this.commodityTip ="请添加商品"
             return

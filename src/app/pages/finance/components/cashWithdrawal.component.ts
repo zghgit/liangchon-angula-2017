@@ -70,7 +70,6 @@ export class CashWithdrawalComponent implements OnInit {
                             this.money = 0;
                         }
                     }
-                    console.log(this.money.toFixed(2))
                 }
             },
             tbody: []
@@ -118,7 +117,6 @@ export class CashWithdrawalComponent implements OnInit {
                         checked: false,
                         click: (data) => {
                             data.checked = !data.checked;
-                            console.log(data)
                             if (data.checked) {
                                 this.orderSet.add(data.array[1].value)
                                 this.money += Number(data.array[4].content)
@@ -133,7 +131,6 @@ export class CashWithdrawalComponent implements OnInit {
                                 this.grids.th.checked = false;
                                 this.apply_type = 2;
                             }
-                            console.log(this.money.toFixed(2))
                         }
                     })
                 }
@@ -177,7 +174,6 @@ export class CashWithdrawalComponent implements OnInit {
 
     //选择回填
     afresh(ev) {
-        console.log(ev);
         this.applicant_account = ev.content;
         this.applicant_name = ev.value;
     }

@@ -28,20 +28,20 @@ export class AppInformationEditComponent implements OnInit {
 
 
     onEditorBlured(quill) {
-        console.log('editor blur!', quill);
+
     }
 
     onEditorFocused(quill) {
-        console.log('editor focus!', quill);
+
     }
 
     onEditorCreated(quill) {
         this.editor = quill;
-        console.log('quill is ready! this is current quill instance object', quill);
+
     }
 
     onContentChanged({quill, html, text}) {
-        console.log('quill content is changed!', quill, html, text);
+
     }
 
     ngOnInit() {
@@ -57,7 +57,7 @@ export class AppInformationEditComponent implements OnInit {
             }));
         data.subscribe(res => {
             if (res.status) {
-                console.log(res);
+
                 let data = res.data;
                 this.information_id = data.information_id;
                 this.information_title = data.information_title;
@@ -67,7 +67,7 @@ export class AppInformationEditComponent implements OnInit {
     }
 
     uploaddata() {
-        console.log(!this.editorContent)
+
         let params = {
             params: {
                 information_title: this.information_title,

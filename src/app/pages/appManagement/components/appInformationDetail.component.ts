@@ -32,7 +32,7 @@ export class AppInformationDetailComponent implements OnInit {
             }));
         data.subscribe(res => {
             if (res.status) {
-                console.log(res);
+
                 let data = res.data;
                 this.information["title"] = data.information_title;
                 this.information["creater_name"] = data.creater_name;
