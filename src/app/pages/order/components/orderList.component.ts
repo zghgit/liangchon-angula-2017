@@ -23,6 +23,97 @@ export class OrderListComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.plugins.search = [
+            {
+                title: "开始时间:",
+                key: "start_time",
+                controlType: "time",
+                value: "",
+                config: {
+                    showTimePicker: false,
+                    format: 0,
+                },
+                placeholder: "请点击选择日期",
+            }, {
+                title: "结束时间:",
+                key: "end_time",
+                controlType: "time",
+                value: "",
+                config: {
+                    showTimePicker: false,
+                    format: 0,
+                },
+                placeholder: "请点击选择日期",
+            }, {
+                title: '订单编号:',
+                key: "order_no",
+                controlType: "input",
+                inputType: "text",
+                value: "",
+                placeholder: "请输入账户名称"
+            }, {
+                title: '订单状态:',
+                key: "order_status",
+                controlType: "select",
+                value: "0",
+                placeholder: "请选择订单状态",
+                options: [{
+                    name: '进行中',
+                    geo_id: "1"
+                }, {
+                    name: '已完成',
+                    geo_id: "2"
+                }, {
+                    name: '已退费',
+                    geo_id: "3"
+                }, {
+                    name: '续费中',
+                    geo_id: "4"
+                }, {
+                    name: '充电中',
+                    geo_id: "5"
+                }]
+            }, {
+                title: '支付方式:',
+                key: "pay_type",
+                controlType: "select",
+                value: "0",
+                placeholder: "请选择支付方式",
+                options: [{
+                    name: '支付宝',
+                    geo_id: "1"
+                }, {
+                    name: '微信',
+                    geo_id: "2"
+                }, {
+                    name: '充点',
+                    geo_id: "3"
+                }]
+            },{
+                title: "业务地址",
+                key: "business_address",
+                controlType: "address",
+                hasChildGroup: true,
+                url: this.uc.api.qc + '/get_geo_list/hash/',
+                config: {
+                    province: {
+                        name: 'province_code',
+                        value: "0",
+                        placeholder: "--请选择省--",
+                    },
+                    city: {
+                        name: 'city_code',
+                        value: '0',
+                        placeholder: "--请选择市--",
+                    },
+                    area: {
+                        name: 'district_code',
+                        value: '0',
+                        placeholder: "--请选择区--",
+                    }
+                }
+            },
+        ]
         this.plugins.grid = {
             th: [
                 {content: '订单ID', hidden: true},
@@ -116,11 +207,11 @@ export class OrderListComponent implements OnInit {
                                                     order_id: id
                                                 }
                                             }
-                                        ).subscribe(res=>{
-                                            if (res.status){
+                                        ).subscribe(res => {
+                                            if (res.status) {
                                                 swal("完成成功!", "", "success");
                                                 this.getGridData(params);
-                                            }else {
+                                            } else {
                                                 swal("完成失败!", res.error_msg, "error");
                                             }
                                         })
@@ -153,11 +244,11 @@ export class OrderListComponent implements OnInit {
                                                     order_id: id
                                                 }
                                             }
-                                        ).subscribe(res=>{
-                                            if (res.status){
+                                        ).subscribe(res => {
+                                            if (res.status) {
                                                 swal("完成成功!", "", "success");
                                                 this.getGridData(params);
-                                            }else {
+                                            } else {
                                                 swal("完成失败!", res.error_msg, "error");
                                             }
                                         })
@@ -190,11 +281,11 @@ export class OrderListComponent implements OnInit {
                                                     order_id: id
                                                 }
                                             }
-                                        ).subscribe(res=>{
-                                            if (res.status){
+                                        ).subscribe(res => {
+                                            if (res.status) {
                                                 swal("退费成功!", "", "success");
                                                 this.getGridData(params);
-                                            }else {
+                                            } else {
                                                 swal("退费失败!", res.error_msg, "error");
                                             }
                                         })
@@ -222,4 +313,7 @@ export class OrderListComponent implements OnInit {
         })
     }
 
+    searchData({value}={value}) {
+        console.log(value)
+    }
 }

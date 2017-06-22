@@ -1,0 +1,29 @@
+<ng-container *ngIf="searchData">
+    <form role="form" [formGroup]="form">
+        <section class="search-class">
+            <div *ngFor="let field of this.searchData" class="form-group">
+                <div [ngSwitch]="field.controlType">
+                    <ng-container *ngSwitchCase="'input'">
+                        <span>{{field.title}}</span>
+                        <input class="form-control" type="text" [(ngModel)]="field.value"  [formControlName]="field.key" placeholder="{{field.placeholder}}"/>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'time'">
+                        <span>{{field.title}}</span><uc-time [model]="field" [form]="form"></uc-time>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'address'" >
+                        <span>{{field.title}}</span><uc-address [model]="field" [form]="form"></uc-address>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'select'" >
+                        <span>{{field.title}}</span><uc-single-select [model]="field" [form]="form"></uc-single-select>
+                    </ng-container>
+                </div>
+            </div>
+        </section>
+        <div class="clearfix"></div>
+        <div class="form-group">
+            <div>
+                <button type="button" class="btn btn-primary" (click)="save(form)">提交</button>
+            </div>
+        </div>
+    </form>
+</ng-container>

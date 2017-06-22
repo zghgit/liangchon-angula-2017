@@ -29,7 +29,9 @@ import {
     UcCheckboxComponent,
     UcTimeComponent,
     ucSelectComponent,
+    UcSingleSelectComponent,
     UcAddressComponent,
+    ucSearchComponent,
 } from "./components";
 
 const NGX_COMPONENTS = [
@@ -48,7 +50,9 @@ const NGX_COMPONENTS = [
     UcCheckboxComponent,
     UcTimeComponent,
     ucSelectComponent,
+    UcSingleSelectComponent,
     UcAddressComponent,
+    ucSearchComponent,
 ];
 @NgModule({
     declarations: [

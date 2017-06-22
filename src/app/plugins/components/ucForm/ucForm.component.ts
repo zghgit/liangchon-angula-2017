@@ -13,7 +13,6 @@ export class UcFormComponent implements OnInit {
     @Input() formData:any;
     @Output() upformdata = new EventEmitter<any>();
     public form: FormGroup;
-    public count:number=0;
     constructor() { }
 
     ngOnInit() {

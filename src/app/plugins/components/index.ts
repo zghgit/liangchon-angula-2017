@@ -4,4 +4,5 @@
 
 export * from "./ucForm";
 export * from "./ucTable";
-export * from "./ucDetails"
+export * from "./ucDetails";
+export * from "./ucSearch";

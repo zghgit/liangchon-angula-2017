@@ -1,0 +1,52 @@
+form {
+    margin-bottom: 16px;
+    padding: 16px;
+    background: #fff;
+    width: 100%;
+    border: 1px solid #dfdfdf;
+    box-shadow: 0 1px 7px rgba(0, 0, 0, .1);
+    section{
+        //display: flex;
+        //flex-wrap: wrap;
+        > div {
+            margin-right: 1em;
+            height: 34px;
+            float: left;
+            >div{
+                height: 34px;
+                span{
+                    float: left;
+                    margin-top: 7px;
+                }
+                input{
+                    width: 328px;
+                    float: left;
+                }
+                uc-time /deep/{
+                    position: relative;
+                    float: left;
+                    input{
+                        width: 328px;
+                    }
+                }
+                uc-address /deep/{
+                    float: left;
+                }
+                uc-single-select /deep/{
+                    float: left;
+                    select{
+                        width: 328px;
+                    }
+                }
+            }
+        }
+    }
+    button{
+        min-width: 80px;
+        font-size: 14px;
+        font-weight: normal;
+        height: 34px;
+        padding: 8px 4px;
+    }
+
+}

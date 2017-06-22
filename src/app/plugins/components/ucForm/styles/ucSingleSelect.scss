@@ -1,0 +1,20 @@
+div {
+    > .item-title {
+        > label {
+            font-size: 14px;
+            font-weight: 500;
+            position: relative;
+            > span {
+                color: #f44455;
+                position: absolute;
+                top: -5px;
+                left: -5px;
+            }
+            i {
+                font-weight: normal;
+                font-style: normal;
+                color: #f44455;
+            }
+        }
+    }
+}
