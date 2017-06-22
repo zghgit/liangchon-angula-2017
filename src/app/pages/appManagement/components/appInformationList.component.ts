@@ -79,8 +79,9 @@ export class AppInformationComponent implements OnInit {
                         operations.push({
                             content: "查看",
                             class: "btn-info",
-                            click: () => {
-                                this.router.navigate(['pages/commodity/commodityDetail', key.commodity_id]);
+                            click: (data) => {
+                                let id = data[0].content;
+                                this.router.navigate(['pages/appManagement/appInformationDetail', id]);
                             }
                         })
                     }
@@ -88,8 +89,9 @@ export class AppInformationComponent implements OnInit {
                         operations.push({
                             content: "编辑",
                             class: "btn-primary",
-                            click: () => {
-                                this.router.navigate(['pages/commodity/commodityEdit', key.commodity_id]);
+                            click: (data) => {
+                                let id = data[0].content;
+                                this.router.navigate(['pages/appManagement/appInformationEdit', id]);
                             }
                         })
                     }

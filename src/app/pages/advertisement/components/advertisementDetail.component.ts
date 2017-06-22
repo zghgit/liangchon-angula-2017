@@ -56,6 +56,7 @@ export class AdvertisementDetailComponent implements OnInit {
                 }
             }));
         data.subscribe((res) => {
+            let basesrc=this.uc.api.qc+"/get_file/hash/";
             if (res.status) {
                 let _data = res.data;
                 let show_position;
@@ -103,7 +104,7 @@ export class AdvertisementDetailComponent implements OnInit {
                     }, {
                         type: 'img',
                         label: '广告图片',
-                        src: _data.advertisement_url
+                        src: basesrc+_data.advertisement_url
                     }, {
                         type: 'text',
                         label: '链接地址',

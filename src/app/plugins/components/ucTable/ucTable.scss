@@ -1,19 +1,20 @@
-:host{
+:host {
     display: flex;
     flex-direction: column;
     overflow-x: auto;
-    pagination{
+    pagination {
         align-self: center;
     }
 }
-table{
+
+table {
     width: 100%;
     color: #373A3C;
     font-size: 14px;
     background: #FFF;
     border-collapse: collapse;
-    box-shadow: 0 1px 7px rgba(0,0,0,.1);
-    >caption{
+    box-shadow: 0 1px 7px rgba(0, 0, 0, .1);
+    > caption {
         padding: 8px 16px 8px 15px;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -21,20 +22,20 @@ table{
         background-color: #fff;
         border-bottom: 1px solid #f0f0f0;
     }
-    >thead {
+    > thead {
         th {
             padding: 8px 16px;
             text-align: left;
             -webkit-font-smoothing: subpixel-antialiased;
             white-space: nowrap;
             -webkit-text-stroke: 1px transparent;
-            &.hidden{
+            &.hidden {
                 display: none;
             }
         }
     }
-    >tbody {
-        >tr {
+    > tbody {
+        > tr {
             transition: background .4s;
             &:nth-of-type(odd) {
                 background: #F9F9F9;
@@ -42,63 +43,64 @@ table{
             &:hover {
                 background: #EEE;
             }
-            >td {
+            > td {
                 max-width: 360px;
                 padding: 8px 16px;
                 white-space: nowrap;
                 text-overflow: ellipsis;
                 overflow: hidden;
-                &.hidden{
+                &.hidden {
                     display: none;
                 }
-                button{
+                button {
                     margin-right: 1em;
                     cursor: pointer;
                     line-height: 1.2;
-                    &.forbid{
+                    &.forbid {
                         color: white;
                         background: #202c37;
                     }
-                    &.btn-purple{
+                    &.btn-purple {
                         color: white;
                         background: #7b72e9;
-                        &:hover{
+                        &:hover {
                             background: #5c51de;
                         }
 
                     }
-                    &.btn-black{
+                    &.btn-black {
                         color: white;
                         background: #444;
-                        &:hover{
+                        &:hover {
                             background: #000;
                         }
 
                     }
                 }
-                img{
+                img {
                     height: 35px;
                 }
             }
         }
     }
 }
-.zoom{
+
+.zoom {
     width: 100vw;
     height: 100vh;
     position: fixed;
     top: 0;
     left: 0;
     text-align: center;
-    background: rgba(0,0,0,.74);
+    background: rgba(0, 0, 0, .4);
     z-index: 9999;
-    img{
+    img {
         position: absolute;
         top: 50%;
         left: 50%;
         max-width: 88%;
         max-height: 88%;
-        -webkit-transform: translate(-50%,-50%);
-        transform: translate(-50%,-50%);
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
     }
 }

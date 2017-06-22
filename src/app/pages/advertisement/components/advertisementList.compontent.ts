@@ -70,6 +70,7 @@ export class AdvertisementListComponent implements OnInit {
                 let list = data.list;
                 this.plugins.grid.pagination.totalItems = data.total_num;
                 this.plugins.grid.tbody = [];
+                let basesrc=this.uc.api.qc+"/get_file/hash/";
                 for (let key of list) {
                     let tds: Array<any>;
                     var show_position;
@@ -93,7 +94,7 @@ export class AdvertisementListComponent implements OnInit {
                     tds = [
                         {content: key.advertisement_id, hidden: true},
                         {content: key.advertisement_name},  // 广告名称
-                        {type:"img",content: key.advertisement_url},   // 图片
+                        {type:"img",content: basesrc+key.advertisement_url},   // 图片
                         {content: key.link_url},  // 链接
                         {content: key.show_duration},   // 显示时间
                         {content: key.click_times},   // 点击次数

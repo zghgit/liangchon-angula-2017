@@ -576,7 +576,7 @@ export class UC {
             "submenu": [{
                 "show": true,
                 "name": "系统设置",
-                "href": "setting"
+                "href": "settingEdit"
             }, {
                 "show": true,
                 "name": "用户协议",

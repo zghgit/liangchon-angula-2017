@@ -1,12 +1,11 @@
 form {
-    margin-bottom: 16px;
     padding: 16px;
+    padding-bottom: 0;
     background: #fff;
-    float: left;
     width: 100%;
     border: 1px solid #dfdfdf;
+    border-bottom: none;
     background: white;
-    box-shadow: 0 1px 7px rgba(0, 0, 0, 0.1);
 
     > div {
 
@@ -21,15 +20,22 @@ form {
                 top: -5px;
                 left: -5px;
             }
-            >i{
-                font-style: normal;
-                color: #f44455;
-            }
 
         }
         >button{
             min-width: 110px;
         }
 
+    }
+}
+.editor{
+    background: white;
+    padding: 16px;
+    border: 1px solid #dfdfdf;
+    border-top: none;
+    margin-top: -25px;
+    >button{
+        margin-top: 16px;
+        min-width: 80px;
     }
 }

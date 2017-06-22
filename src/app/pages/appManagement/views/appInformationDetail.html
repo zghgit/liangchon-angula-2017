@@ -1,0 +1,8 @@
+<section class="appInformationDetails">
+    <h2>资讯头部</h2>
+    <div>标题：{{information.title}}</div>
+    <span>作者：{{information.creater_name}}</span>
+    <span>发布时间：{{information.create_time}}</span>
+    <h2>正文内容</h2>
+    <section [innerHtml]="information.content"></section>
+</section>

@@ -1,0 +1,13 @@
+<div class="editor">
+    <label>
+        <span>*</span>
+        协议内容
+    </label>
+    <quill-editor [(ngModel)]="editorContent"
+                  [options]="editorOptions"
+                  (blur)="onEditorBlured($event)"
+                  (focus)="onEditorFocused($event)"
+                  (ready)="onEditorCreated($event)"
+                  (change)="onContentChanged($event)">
+    </quill-editor>
+    <button type="button" class="btn btn-primary" [disabled]="!editorContent" (click)="uploaddata()">提交</button>

@@ -1,0 +1,22 @@
+.editor{
+    background: white;
+    padding: 16px;
+    border: 1px solid #dfdfdf;
+    > label {
+        font-size: 14px;
+        font-weight: 500;
+        position: relative;
+        margin-bottom: 16px;
+        > span {
+            color: #f44455;
+            position: absolute;
+            top: -5px;
+            left: -5px;
+        }
+
+    }
+    >button{
+        margin-top: 16px;
+        min-width: 80px;
+    }
+}

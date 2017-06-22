@@ -1,0 +1,92 @@
+<form #form="ngForm">
+    <section>
+        <header>基本设置</header>
+        <div class="form-group">
+            <label><span>*</span>代收款扣除(例：千分之八 输入 8)<i>{{formErrors.generation_collection}}</i></label>
+            <div class="main-content">
+                <input class="form-control" pattern="^[0-9]{0,3}$|^1000$" type="text" placeholder="请输入代收款扣除比例" [(ngModel)]="settingData.generation_collection" name="generation_collection" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label><span>*</span>超级管理员权限</label>
+            <div class="main-content">
+                <label><input type="radio" value="1" [(ngModel)]="settingData.edit_resource" name="edit_resource"><span>允许</span></label>
+                <label><input type="radio" value="2" [(ngModel)]="settingData.edit_resource" name="edit_resource"><span>禁止</span></label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label><span>*</span>代理商发展下级</label>
+            <div class="main-content">
+                <label><input type="radio" value="1" [(ngModel)]="settingData.development_of_line" name="development_of_line"><span>允许</span></label>
+                <label><input type="radio" value="2" [(ngModel)]="settingData.development_of_line" name="development_of_line"><span>禁止</span></label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label><span>*</span>使用充点支付</label>
+            <div class="main-content">
+                <label><input type="radio" value="1" [(ngModel)]="settingData.yunbi_pay" name="yunbi_pay"><span>允许</span></label>
+                <label><input type="radio" value="2" [(ngModel)]="settingData.yunbi_pay" name="yunbi_pay"><span>禁止</span></label>
+            </div>
+        </div>
+    </section>
+    <section>
+        <header>提示语</header>
+        <div class="form-group">
+            <label><span>*</span>支付成功<i>{{formErrors.pay_success}}</i></label>
+            <div class="main-content">
+                <input class="form-control" type="text" placeholder="请输入支付成功的提示语" [(ngModel)]="settingData.pay_success" name="pay_success" required>
+            </div>
+        </div>
+    </section>
+    <section>
+        <header>广告参数</header>
+        <div class="form-group">
+            <label><span>*</span>欢迎页面</label>
+            <div class="main-content">
+                <label><input type="radio" value="1" [(ngModel)]="settingData.welcome_page" name="welcome_page"><span>启用</span></label>
+                <label><input type="radio" value="2" [(ngModel)]="settingData.welcome_page" name="welcome_page"><span>禁用</span></label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label><span>*</span>Banner</label>
+            <div class="main-content">
+                <label><input type="radio" value="1" [(ngModel)]="settingData.banner_page" name="banner_page"><span>启用</span></label>
+                <label><input type="radio" value="2" [(ngModel)]="settingData.banner_page" name="banner_page"><span>禁用</span></label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label><span>*</span>结算页面</label>
+            <div class="main-content">
+                <label><input type="radio" value="1" [(ngModel)]="settingData.settlement_page" name="settlement_page"><span>启用</span></label>
+                <label><input type="radio" value="2" [(ngModel)]="settingData.settlement_page" name="settlement_page"><span>禁用</span></label>
+            </div>
+        </div>
+    </section>
+    <section>
+        <header>APP版本管理</header>
+        <div class="form-group">
+            <label><span>*</span>强制更新</label>
+            <div class="main-content">
+                <label><input type="radio" value="1" [(ngModel)]="settingData.enforced_update" name="enforced_update"><span>启用</span></label>
+                <label><input type="radio" value="2" [(ngModel)]="settingData.enforced_update" name="enforced_update"><span>禁用</span></label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label><span>*</span>目标版本号<i>{{formErrors.version_number}}</i></label>
+            <div class="main-content">
+                <input class="form-control" pattern="\d+(\.\d+){2}" type="text" placeholder="请输入目标版本号" [(ngModel)]="settingData.version_number" #evn (change)="iscanupload(evn)" name="version_number" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label><span>*</span>上传apk版本<i *ngIf="!formErrors.download_link">{{apktip}}</i><i>{{formErrors.download_link}}</i></label>
+            <div class="main-content">
+                <input class="form-control" type="hidden" [value]="settingData.download_link" name="download_link" required>
+                <base-upfile [model]="apkconfig" (fileready)="filehasup($event)"></base-upfile>
+                <div [ngClass]="{'disabled':notallowload}"></div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <button type="button" class="btn btn-primary" [disabled]="!form.form.valid" (click)="uploadformdata()">保存</button>
+    </section>
+</form>

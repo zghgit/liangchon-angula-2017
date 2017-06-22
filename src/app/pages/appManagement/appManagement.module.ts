@@ -7,6 +7,11 @@ import {UcFormModule} from "../../plugins/UcFormModule";
 
 import {AppManagementComponent} from './appManagement.component';
 import {appManagementRoutes} from "./appManagement.routes"
+
+import { QuillEditorModule } from 'ngx-quill-editor';
+
+import {FormsModule} from '@angular/forms';
+
 import {
     AppManagementListComponent,
     AppUserIncreaseComponent,
@@ -15,12 +20,16 @@ import {
     AppUserDetailComponent,
     AppChargeRecordComponent,
     AppMessagePushComponent,
+    AppInformationEditComponent,
+    AppInformationDetailComponent,
 }from "./components";
 
 @NgModule({
     imports: [
         UcFormModule,
-        RouterModule.forChild(appManagementRoutes)
+        RouterModule.forChild(appManagementRoutes),
+        QuillEditorModule,
+        FormsModule
     ],
     exports: [],
     declarations: [
@@ -32,6 +41,8 @@ import {
         AppUserDetailComponent,
         AppChargeRecordComponent,
         AppMessagePushComponent,
+        AppInformationEditComponent,
+        AppInformationDetailComponent,
     ],
     providers: [],
 })

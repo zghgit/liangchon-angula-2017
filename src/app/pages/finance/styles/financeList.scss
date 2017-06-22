@@ -1,13 +1,13 @@
 //申请提现的拒绝理由
-.reject-reason{
+.reject-reason {
     width: 100vw;
     height: 100vh;
     position: fixed;
     top: 0;
     left: 0;
-    background: rgba(0, 0, 0, 0.74);
+    background: rgba(0, 0, 0, .4);
     z-index: 9999;
-    >div{
+    > div {
         width: 50%;
         background: white;
         padding: 16px;
@@ -15,37 +15,37 @@
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%,-50%);
-        >h2{
+        transform: translate(-50%, -50%);
+        > h2 {
             color: #000000;
             font-size: 14px;
             font-weight: 700;
             margin-top: 0;
             margin-bottom: 10px;
-            >i{
+            > i {
                 position: relative;
                 top: 3px;
                 padding-left: .2em;
                 color: #f44455;
             }
-            >span{
+            > span {
                 color: #ff0000;
                 font-weight: normal;
             }
         }
-        >p{
-            >span{
-                margin-right: 20px;
+        > p {
+            > span {
+                margin-right: 16px;
                 font-size: 14px;
             }
         }
-        >textarea{
+        > textarea {
             box-sizing: border-box;
             display: block;
             width: 100%;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
-        >button{
+        > button {
             min-width: 110px;
         }
     }
