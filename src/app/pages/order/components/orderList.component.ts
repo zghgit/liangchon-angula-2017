@@ -25,7 +25,7 @@ export class OrderListComponent implements OnInit {
     ngOnInit() {
         this.plugins.search = [
             {
-                title: "开始时间:",
+                title: "开始时间",
                 key: "start_time",
                 controlType: "time",
                 value: "",
@@ -35,7 +35,7 @@ export class OrderListComponent implements OnInit {
                 },
                 placeholder: "请点击选择日期",
             }, {
-                title: "结束时间:",
+                title: "结束时间",
                 key: "end_time",
                 controlType: "time",
                 value: "",
@@ -45,14 +45,14 @@ export class OrderListComponent implements OnInit {
                 },
                 placeholder: "请点击选择日期",
             }, {
-                title: '订单编号:',
+                title: '订单编号',
                 key: "order_no",
                 controlType: "input",
                 inputType: "text",
                 value: "",
                 placeholder: "请输入账户名称"
             }, {
-                title: '订单状态:',
+                title: '订单状态',
                 key: "order_status",
                 controlType: "select",
                 value: "0",
@@ -74,7 +74,7 @@ export class OrderListComponent implements OnInit {
                     geo_id: "5"
                 }]
             }, {
-                title: '支付方式:',
+                title: '支付方式',
                 key: "pay_type",
                 controlType: "select",
                 value: "0",

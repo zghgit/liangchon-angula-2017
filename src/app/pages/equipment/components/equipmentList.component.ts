@@ -5,6 +5,7 @@ import {Component, OnInit} from '@angular/core';
 import {AppHttpService, UC} from "../../../plugins/globalservice";
 import {Router} from "@angular/router";
 declare var swal;
+declare var window;
 
 @Component({
     selector: "equipmentList",
@@ -14,7 +15,7 @@ declare var swal;
 export class EquipmentListComponent implements OnInit {
     public now: number = 1;
     public plugins: any = {};
-
+    public zoomInfo:any={};
     constructor(public router: Router,
                 public appHttpService: AppHttpService,
                 public uc: UC) {
@@ -187,6 +188,22 @@ export class EquipmentListComponent implements OnInit {
                             content: "二维码",
                             class: "btn-purple",
                             click: (data) => {
+                                let device_no = data[1].content;
+                                this.appHttpService.postData(this.uc.api.qc + "/generate_qr_code/hash/", {
+                                        params: {
+                                            device_no: device_no,
+                                        }
+                                    }
+                                ).subscribe(res => {
+                                    if (res.status) {
+                                        this.zoomInfo['src'] = res.data.src;
+                                        this.zoomInfo['show'] = true;
+                                        this.zoomInfo['device_no'] = device_no;
+
+                                    } else {
+                                        swal("获取设备二维码失败!", res.error_msg, "error");
+                                    }
+                                })
                             }
                         })
                     }
@@ -267,6 +284,23 @@ export class EquipmentListComponent implements OnInit {
             search_by: {
                 bind_status: 2,
             },
+        })
+    }
+    public closeZoom(){
+        this.zoomInfo['show']=false;
+    }
+    public downloadimg(){
+        this.appHttpService.postData(this.uc.api.qc + "/download_qr_code_zip/hash/", {
+                params: {
+                    device_no: this.zoomInfo['device_no'],
+                }
+            }
+        ).subscribe(res => {
+            if (res.status) {
+                window.location = res.data.src;
+            } else {
+                swal("下载设备二维码失败!", res.error_msg, "error");
+            }
         })
     }
 
