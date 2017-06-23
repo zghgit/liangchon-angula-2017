@@ -222,10 +222,10 @@ export class EquipmentListComponent implements OnInit {
                             class: "btn-danger",
                             click: (data) => {
                                 if (key.device_type == 1) {
-                                    this.router.navigate(['pages/equipment/evseConfig', key.device_id]);
+                                    this.router.navigate(['pages/equipment/equipmentConfig', key.device_no]);
                                 }
                                 if (key.device_type == 2) {
-                                    this.router.navigate(['pages/equipment/evseCardConfig', key.device_id]);
+                                    this.router.navigate(['pages/equipment/evseCardConfig', key.device_no]);
 
                                 }
                             }

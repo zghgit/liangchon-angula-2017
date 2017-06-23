@@ -332,7 +332,7 @@ export class UC {
             }, {
                 "show": false,
                 "name": "充电桩参数配置",
-                "href": "evseConfig"
+                "href": "equipmentConfig"
             }, {
                 "show": false,
                 "name": "充值机参数配置",

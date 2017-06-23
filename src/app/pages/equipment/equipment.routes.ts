@@ -4,7 +4,6 @@
 import {Routes} from '@angular/router';
 import {EquipmentComponent} from './equipment.component';
 import {
-    ChargingPileConfigComponent,
     EquipmentListComponent,
     EquipmentDetailComponent,
     EquipmentUnbindComponent,
@@ -13,7 +12,8 @@ import {
     EquipmentInitEditComponent,
     EquipmentAddComponent,
     EquipmentImportComponent,
-    EquipmentBatchSetComponent
+    EquipmentBatchSetComponent,
+    EquipmentConfigComponent,
 } from "./components/";
 
 
@@ -22,10 +22,9 @@ export const routes: Routes = [
         path: "",
         component: EquipmentComponent,
         children: [
-            {path: "", redirectTo:"equipmentList",pathMatch:"full"},
+            {path: "", redirectTo: "equipmentList", pathMatch: "full"},
             {path: "equipmentList", component: EquipmentListComponent},
             {path: "equipmentDetail/:id", component: EquipmentDetailComponent},
-            {path: "chargingPileConfig", component: ChargingPileConfigComponent},
             {path: "equipmentUnbind", component: EquipmentUnbindComponent},
             {path: "equipmentOnOffRecord", component: EquipmentOnOffComponent},
             {path: "equipmentInitAdd", component: EquipmentInitAddComponent},
@@ -34,6 +33,7 @@ export const routes: Routes = [
             {path: "equipmentInitEdit/:id", component: EquipmentInitEditComponent},
             {path: "equipmentImport", component: EquipmentImportComponent},
             {path: "equipmentBatchSet", component: EquipmentBatchSetComponent},
+            {path: "equipmentConfig/:id", component: EquipmentConfigComponent},
         ]
     },
 ];

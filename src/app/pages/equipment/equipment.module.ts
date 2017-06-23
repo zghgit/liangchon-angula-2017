@@ -13,7 +13,6 @@ import {UcFormModule} from "../../plugins/UcFormModule";
 
 import {EquipmentComponent} from './equipment.component';
 import {
-    ChargingPileConfigComponent,
     EquipmentListComponent,
     EquipmentDetailComponent,
     EquipmentUnbindComponent,
@@ -23,6 +22,7 @@ import {
     EquipmentAddComponent,
     EquipmentImportComponent,
     EquipmentBatchSetComponent,
+    EquipmentConfigComponent,
 } from "./components";
 
 
@@ -36,7 +36,6 @@ import {
     exports: [],
     declarations: [
         EquipmentComponent,
-        ChargingPileConfigComponent,
         EquipmentListComponent,
         EquipmentDetailComponent,
         EquipmentUnbindComponent,
@@ -46,6 +45,7 @@ import {
         EquipmentAddComponent,
         EquipmentImportComponent,
         EquipmentBatchSetComponent,
+        EquipmentConfigComponent,
     ],
     providers: [],
 })
