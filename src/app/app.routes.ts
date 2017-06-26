@@ -2,7 +2,7 @@
  * Created by max on 2017/4/19.
  */
 import { Routes } from "@angular/router";
-import { LoginComponent } from "./index/login/login.component";
+import { LoginComponent,RepasswordComponent } from "./index";
 export const appRoutes:Routes = [
     {
         path:"",
@@ -11,6 +11,9 @@ export const appRoutes:Routes = [
     },{
         path:"login",
         component:LoginComponent
+    },{
+        path:"repassword",
+        component:RepasswordComponent
     },{
         path:"pages",
         loadChildren:"./pages/pages.module#PagesModule"

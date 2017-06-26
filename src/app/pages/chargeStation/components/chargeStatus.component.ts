@@ -177,6 +177,13 @@ export class ChargeStatusComponent implements OnInit {
                         });
                     }
                 }
+            }else {
+                swal({
+                    title: "获取充电信息失败!",
+                    text: res.error_msg,
+                    type: "error",
+                    timer:"1500"
+                });
             }
         })
     };

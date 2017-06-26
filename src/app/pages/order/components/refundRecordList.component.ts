@@ -18,6 +18,10 @@ declare var swal;
 export class refundRecordListComponent implements OnInit {
     public now: number = 1;
     public plugins: any = {};
+    public searchBy: any = {
+        order_status: '3',
+    };
+
     constructor(public router: Router,
                 public appHttpService: AppHttpService,
                 public uc: UC) {
@@ -43,7 +47,77 @@ export class refundRecordListComponent implements OnInit {
                 currentPage: 1,
                 totalItems: 1
             }
-        }
+        };
+        this.plugins.search = [
+            {
+                title: '订单编号',
+                key: "order_no",
+                controlType: "input",
+                value: "",
+                placeholder: "请输入账户名称"
+            }, {
+                title: '退款方式',
+                key: "refund_type",
+                controlType: "select",
+                value: "0",
+                placeholder: "请选择订单状态",
+                options: [{
+                    name: '支付宝',
+                    geo_id: "1"
+                }, {
+                    name: '微信',
+                    geo_id: "2"
+                }, {
+                    name: '充点',
+                    geo_id: "3"
+                }]
+            }
+        ]
+        this.plugins.buttons = [
+            {
+                type: "form",
+                class: "btn-primary",
+                content: "搜索",
+                click: ({value}={value}) => {
+                    let {
+                        order_no,
+                        refund_type,
+                    } = value;
+                    this.searchBy = {
+                        order_status: '3',
+                        order_no: order_no ? order_no.trim() : "",
+                        refund_type: refund_type,
+                    }
+                    this.now = 1;
+                    this.getGridData({
+                        page_now: this.now,
+                        limit: 20,
+                        sort_by: 'create_time',
+                        sort_type: 'desc',
+                        search_by: this.searchBy,
+
+                    })
+                }
+            },  {
+                type: "reset",
+                class: "btn-danger",
+                content: "重置",
+                click: () => {
+                    this.searchBy={
+                        order_status: '3',
+                    };
+                    this.now = 1;
+                    this.getGridData({
+                        page_now: this.now,
+                        limit: 20,
+                        sort_by: 'create_time',
+                        sort_type: 'desc',
+                        search_by: this.searchBy,
+
+                    })
+                }
+            },
+        ]
         this.getGridData({
             page_now: this.now,
             limit: 20,
@@ -77,6 +151,13 @@ export class refundRecordListComponent implements OnInit {
                     ];
                     this.plugins.grid.tbody.push(tds)
                 }
+            }else {
+                swal({
+                    title: "获取退款信息失败!",
+                    text: res.error_msg,
+                    type: "error",
+                    timer:"1500"
+                });
             }
         })
     };
@@ -87,7 +168,7 @@ export class refundRecordListComponent implements OnInit {
             limit: event.itemsPerPage,
             sort_by: 'create_time',
             sort_type: 'desc',
-            search_by: {},
+            search_by: this.searchBy,
         })
     }
 

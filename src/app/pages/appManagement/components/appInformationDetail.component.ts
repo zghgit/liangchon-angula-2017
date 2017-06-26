@@ -32,12 +32,18 @@ export class AppInformationDetailComponent implements OnInit {
             }));
         data.subscribe(res => {
             if (res.status) {
-
                 let data = res.data;
                 this.information["title"] = data.information_title;
                 this.information["creater_name"] = data.creater_name;
                 this.information["create_time"] = data.create_time;
                 this.information["content"] = data.information_content;
+            }else {
+                swal({
+                    title: "获取资讯信息失败!",
+                    text: res.error_msg,
+                    type: "error",
+                    timer:"1500"
+                });
             }
         })
     }

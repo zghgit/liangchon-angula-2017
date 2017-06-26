@@ -16,13 +16,29 @@ declare var swal;
 export class SettlementComponent implements OnInit {
     public now: number = 1;
     public plugins: any = {};
-
+    public searchBy: any = {};
     constructor(public router: Router,
                 public appHttpService: AppHttpService,
                 public uc: UC) {
     }
 
     ngOnInit() {
+        let startYear = 2017;
+        let endYear = new Date().getFullYear();
+        let yearOption = [];
+        for (let year = startYear; year <= endYear; year++) {
+            yearOption.push({
+                name: year + "年",
+                geo_id: year
+            })
+        }
+        let dayOption = [];
+        for (let day = 1; day <= 12; day++) {
+            dayOption.push({
+                name: (day<10? ("0"+day):day) + "月",
+                geo_id: day
+            })
+        }
         this.plugins.grid = {
             th: [
                 {content: '订单ID', hidden: true},
@@ -44,7 +60,97 @@ export class SettlementComponent implements OnInit {
                 currentPage: 1,
                 totalItems: 1
             }
-        }
+        };
+        this.plugins.search = [
+            {
+                title: '商户名称',
+                key: "merchant_name",
+                controlType: "input",
+                value: "",
+                placeholder: "请输入商户账号/昵称/真实姓名"
+            }, {
+                title: '结算状态',
+                key: "settlement_type",
+                controlType: "select",
+                value: "0",
+                placeholder: "请选择结算状态",
+                options: [{
+                    name: '已结算',
+                    geo_id: "1"
+                }, {
+                    name: '未结算',
+                    geo_id: "2"
+                }]
+            },{
+                title: '年份选择',
+                key: "settlement_year",
+                controlType: "select",
+                value: "0",
+                placeholder: "请选择年份",
+                options: yearOption
+            }, {
+                title: '月份选择',
+                key: "settlement_month",
+                controlType: "select",
+                value: "0",
+                placeholder: "请选择月份",
+                options: dayOption
+            },
+        ];
+        this.plugins.buttons = [
+            {
+                type: "form",
+                class: "btn-primary",
+                content: "搜索",
+                click: ({value}={value}) => {
+                    let {
+                        merchant_name,
+                        settlement_type,
+                        settlement_year,
+                        settlement_month,
+                    } = value;
+                    if(settlement_month){
+                        swal({
+                            title: "请选择年份!",
+                            text: "",
+                            type: "error",
+                            timer: "1500"
+                        });
+                    }
+                    this.searchBy = {
+                        merchant_name: merchant_name ? merchant_name.trim() : "",
+                        settlement_type:settlement_type,
+                        settlement_year:settlement_year,
+                        settlement_month:settlement_month,
+                    }
+                    this.now = 1;
+                    this.getGridData({
+                        page_now: this.now,
+                        limit: 20000,
+                        sort_by: 'create_time',
+                        sort_type: 'desc',
+                        search_by: this.searchBy,
+
+                    })
+                }
+            }, {
+                type: "reset",
+                class: "btn-danger",
+                content: "重置",
+                click: () => {
+                    this.searchBy = {};
+                    this.now = 1;
+                    this.getGridData({
+                        page_now: this.now,
+                        limit: 20000,
+                        sort_by: 'create_time',
+                        sort_type: 'desc',
+                        search_by: this.searchBy,
+
+                    })
+                }
+            },
+        ];
         this.getGridData({
             page_now: this.now,
             limit: 20,
@@ -81,43 +187,6 @@ export class SettlementComponent implements OnInit {
                     if (key.settlement_type == 2 &&this.uc.powerfun(this.uc.constant.update_settlement_fine)) {
                         operations.push({
                             content: "结算",
-                            class: "btn-success",
-                            click: (data) => {
-                                let id = data[0].content;
-                                swal({
-                                    title: '确定结算?',
-                                    text: '',
-                                    type: 'warning',
-                                    showCancelButton: true,
-                                    confirmButtonText: '确定!',
-                                    cancelButtonText: '取消',
-                                    showLoaderOnConfirm: true,
-                                    confirmButtonColor: "#DD6B55",
-                                }).then((isConfirm) => {
-                                    if (isConfirm === true) {
-                                        this.appHttpService.postData(this.uc.api.qc + "/update_settlement_fine/hash/", {
-                                                params: {
-                                                    commodity_id: id
-                                                }
-                                            }
-                                        ).subscribe(res=>{
-                                            if (res.status){
-                                                swal("结算成功!", "", "success");
-                                                this.getGridData(params);
-                                            }else {
-                                                swal("结算失败!", res.error_msg, "error");
-                                            }
-                                        })
-                                    }
-                                }, () => {
-                                });
-
-                            }
-                        })
-                    };
-                    if (this.uc.powerfun(this.uc.constant.update_settlement_fine)) {
-                        operations.push({
-                            content: "下载结算详情",
                             class: "btn-primary",
                             click: (data) => {
                                 let id = data[0].content;
@@ -139,7 +208,12 @@ export class SettlementComponent implements OnInit {
                                             }
                                         ).subscribe(res=>{
                                             if (res.status){
-                                                swal("结算成功!", "", "success");
+                                                swal({
+                                                    title: "结算成功!",
+                                                    text: "",
+                                                    type: "success",
+                                                    timer:"1500"
+                                                });
                                                 this.getGridData(params);
                                             }else {
                                                 swal("结算失败!", res.error_msg, "error");
@@ -151,10 +225,42 @@ export class SettlementComponent implements OnInit {
 
                             }
                         })
+                    };
+                    if (this.uc.powerfun(this.uc.constant.update_settlement_fine)) {
+                        operations.push({
+                            content: "下载结算详情",
+                            class: "btn-info",
+                            click: (data) => {
+                                let id = data[0].content;
+                                swal({
+                                    title: '确定结算?',
+                                    text: '',
+                                    type: 'warning',
+                                    showCancelButton: true,
+                                    confirmButtonText: '确定!',
+                                    cancelButtonText: '取消',
+                                    showLoaderOnConfirm: true,
+                                    confirmButtonColor: "#DD6B55",
+                                }).then((isConfirm) => {
+                                    if (isConfirm === true) {
+                                        this.downloadTemplate({commodity_id: id});
+                                    }
+                                }, () => {
+                                });
+
+                            }
+                        })
                     }
                     tds.push({type: "operation", operation: operations})
                     this.plugins.grid.tbody.push(tds)
                 }
+            }else {
+                swal({
+                    title: "获取结算信息失败!",
+                    text: res.error_msg,
+                    type: "error",
+                    timer:"1500"
+                });
             }
         })
     };
@@ -165,9 +271,35 @@ export class SettlementComponent implements OnInit {
             limit: event.itemsPerPage,
             sort_by: 'create_time',
             sort_type: 'desc',
-            search_by: {},
+            search_by: this.searchBy,
         })
     }
+//下载
+    downloadTemplate(params) {
+        this.appHttpService.getBinary(this.uc.api.qc + '/download_order_info/hash/',{params:params}).subscribe(res => {
+            let disposition = res.headers._headers.get("content-disposition");
 
+            if (!disposition) {
+                swal("下载失败", res.error_msg, "error")
+            } else {
+                let blob = new Blob([res._body], {type: "application/vnd.ms-excel"});
+                let objectUrl = URL.createObjectURL(blob);
+                let a = document.createElement('a');
+                let filename = disposition[0].split(";")[1].trim().split("=")[1]
+                try {
+                    filename = JSON.parse(filename)
+                } catch (e) {
+                    console.log(e);
+                }
+                document.body.appendChild(a);
+                a.setAttribute('style', 'display:none');
+                a.setAttribute('href', objectUrl);
+                a.setAttribute('download', filename);
+                a.click();
+                URL.revokeObjectURL(objectUrl);
+            }
+
+        })
+    }
 
 }

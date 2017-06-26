@@ -5,7 +5,6 @@
  * Created by max on 2017/5/26.
  */
 import {Component, OnInit, Input} from '@angular/core';
-declare var swal: any;
 
 @Component({
     selector: 'uc-single-select',
@@ -41,7 +40,6 @@ export class UcSingleSelectComponent implements OnInit {
     //点击选择后进行省/市/区内容重置
     public afresh = (event) => {
         this.flag = true;
-        console.log(event);
         this.model.value = event.value;
     }
 }

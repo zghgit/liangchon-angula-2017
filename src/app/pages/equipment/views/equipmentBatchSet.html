@@ -1,8 +1,10 @@
+<uc-search [searchData]="plugins.search" [buttons]="plugins.buttons" (upsearhdata)="searchData($event)"></uc-search>
+
 <form #form="ngForm">
     <div class="form-group">
         <label>
             <span>*</span>
-            商品
+            全部商品
             <i>{{commodityTip}}</i>
         </label>
         <!--<base-upfile [model]="file.config" (fileready)="filehasup($event)"></base-upfile>-->

@@ -1,9 +1,12 @@
 :host {
     display: flex;
     flex-direction: column;
-    overflow-x: auto;
     pagination {
         align-self: center;
+    }
+    .my-table{
+        overflow-x: scroll;
+        box-shadow: 0 1px 7px rgba(0, 0, 0, .1);
     }
 }
 
@@ -13,7 +16,6 @@ table {
     font-size: 14px;
     background: #FFF;
     border-collapse: collapse;
-    box-shadow: 0 1px 7px rgba(0, 0, 0, .1);
     > caption {
         padding: 8px 16px 8px 15px;
         text-overflow: ellipsis;
@@ -44,11 +46,9 @@ table {
                 background: #EEE;
             }
             > td {
-                max-width: 360px;
                 padding: 8px 16px;
                 white-space: nowrap;
                 text-overflow: ellipsis;
-                overflow: hidden;
                 &.hidden {
                     display: none;
                 }

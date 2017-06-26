@@ -96,12 +96,13 @@ export class ChildAccountAddComponent implements OnInit {
             errormsg: [
                 {type: "required", content: "必填项目"},
                 {type: "pattern", content: "密码长度6~16,只能包含数字、字母、._!@#"},
+                {type: "validateEqual", content: "两次密码不一致"},
             ]
         }, {
             label: "确认密码",
             key: "repassword",
             controlType: "input",
-            inputType: "password",
+            inputType: "repassword",
             value: "",
             require: true,
             placeholder: "请输入密码",

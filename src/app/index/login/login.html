@@ -24,7 +24,7 @@
                 <img [src]="identifyCodeSrc" #identifyCode (click)="reloadIdentifyCode()">
             </div>
             <div class="forget">
-                <a href="/forget.html">忘记密码？</a>
+                <a [routerLink]="'/repassword'">忘记密码？</a>
             </div>
             <button type="button" (click)="doLogin()" [ngClass]="{'isDisable': !form.form.valid}" class="btn"
                     [disabled]="!form.form.valid">登录

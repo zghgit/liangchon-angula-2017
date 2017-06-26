@@ -32,7 +32,12 @@ export class SettingEditComponent implements OnInit,AfterViewInit {
                 this.version_number = this.settingData['version_number'];
                 this.apktip='只有在目标版本大于当前版本( ' + this.version_number + ' )时才能上传apk文件';
             } else {
-                swal("获取系统设置信息失败", res.error_msg, "error")
+                swal({
+                    title: "获取系统设置信息失败!",
+                    text: res.error_msg,
+                    type: "error",
+                    timer:"1500"
+                });
             }
         })
         this.apkconfig = {
@@ -162,7 +167,12 @@ export class SettingEditComponent implements OnInit,AfterViewInit {
         this.appHttpService.postData(this.uc.api.qc + "/update_system_config/hash", params).subscribe(
             res => {
                 if (res.status) {
-                    swal("配置保存成功", res.error_msg, "success")
+                    swal({
+                        title: "配置保存成功!",
+                        text: "",
+                        type: "success",
+                        timer:"1500"
+                    });
                 } else {
                     swal("配置保存失败", res.error_msg, "error")
                 }

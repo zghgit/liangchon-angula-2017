@@ -8,8 +8,8 @@ h1 {
     padding: 16px;
     width: calc(100% - 200px);
     transition: all 0.1s;
-    position: relative;
-    background-clip: content-box;
+    //position: relative;
+    //background-clip: content-box;
     &.shrunken {
         margin-left: 56px;
         width: calc(100% - 56px);

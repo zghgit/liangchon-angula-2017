@@ -14,6 +14,16 @@ form {
             float: left;
             >div{
                 height: 34px;
+                .nothing{
+                    width: 384px;
+                    height: 34px;
+                    span{
+                        display: none;
+                    }
+                    input{
+                        display: none;
+                    }
+                }
                 span{
                     float: left;
                     margin-top: 7px;
@@ -25,6 +35,7 @@ form {
                 uc-time /deep/{
                     position: relative;
                     float: left;
+                    z-index: 999;
                     input{
                         width: 328px;
                     }
@@ -41,12 +52,16 @@ form {
             }
         }
     }
-    button{
-        min-width: 80px;
-        font-size: 14px;
-        font-weight: normal;
-        height: 34px;
-        padding: 8px 4px;
+    >div{
+        margin: 0;
+        button{
+            min-width: 80px;
+            font-size: 14px;
+            font-weight: normal;
+            height: 34px;
+            line-height:1;
+            padding: 8px 4px;
+        }
     }
 
 }

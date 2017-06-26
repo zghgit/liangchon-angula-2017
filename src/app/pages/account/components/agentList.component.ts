@@ -119,7 +119,12 @@ export class AgentListComponent implements OnInit {
                                         this.appHttpService.postData(this.uc.api.qc + "/disable_user/hash/" + id
                                         ).subscribe(res => {
                                             if (res.status) {
-                                                swal("禁用成功!", "", "success");
+                                                swal({
+                                                    title:"禁用成功!",
+                                                    text:res.error_msg,
+                                                    type:"success",
+                                                    timer:"1500"
+                                                });
                                                 this.getGridData(params);
                                             } else {
                                                 swal("禁用失败!", res.error_msg, "error");
@@ -152,7 +157,12 @@ export class AgentListComponent implements OnInit {
                                         this.appHttpService.postData(this.uc.api.qc + "/start_user/hash/"+id
                                         ).subscribe(res => {
                                             if (res.status) {
-                                                swal("启用成功!", "", "success");
+                                                swal({
+                                                    title:"启用成功!",
+                                                    text:"",
+                                                    type:"success",
+                                                    timer:"1500"
+                                                });
                                                 this.getGridData(params);
                                             } else {
                                                 swal("启用失败!", res.error_msg, "error");
@@ -178,6 +188,13 @@ export class AgentListComponent implements OnInit {
                     tds.push({type: "operation", operation: operations})
                     this.plugins.grid.tbody.push(tds)
                 }
+            }else {
+                swal({
+                    title: "获取代理信息失败!",
+                    text: res.error_msg,
+                    type: "error",
+                    timer:"1500"
+                });
             }
         })
     };

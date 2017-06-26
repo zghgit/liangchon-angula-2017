@@ -3,8 +3,8 @@
  */
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {Validators} from '@angular/forms';
 import {AppHttpService, UC} from "../../../plugins/globalservice";
+import {Validators} from '@angular/forms';
 import {CustomValidators} from 'ng2-validation';
 declare var swal;
 @Component({
@@ -89,6 +89,7 @@ export class advertisementAddComponent implements OnInit {
             ],
             errormsg: [
                 {type: "required", content: "必填项目"},
+                {type: "number", content: "只能是数字"},
                 {type: "min", content: "最少只能0秒"},
                 {type: "max", content: "最多只能30秒"},
             ]
@@ -166,7 +167,12 @@ export class advertisementAddComponent implements OnInit {
         let{advertisement_range}=value;
         let advertisementRange = JSON.parse(advertisement_range);
         if (advertisementRange.check_all==2&&advertisementRange.selectedSet.length==0){
-            swal("新增广告失败", "地址是必选的", "error");
+            swal({
+                title: "新增广告失败!",
+                text: "地址是必选的",
+                type: "error",
+                timer:"1500"
+            });
             return
         }
         if (advertisementRange.check_all == 1){

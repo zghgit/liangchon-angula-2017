@@ -150,7 +150,12 @@ export class AdvertisementListComponent implements OnInit {
                                             }
                                         ).subscribe(res => {
                                             if (res.status) {
-                                                swal("设置默认广告成功!", "", "success");
+                                                swal({
+                                                    title: "设置默认广告成功!",
+                                                    text: "",
+                                                    type: "success",
+                                                    timer:"1500"
+                                                });
                                                 this.getGridData(params);
                                             } else {
                                                 swal("设置默认广告失败!", res.error_msg, "error");
@@ -190,7 +195,12 @@ export class AdvertisementListComponent implements OnInit {
                                             }
                                         ).subscribe(res => {
                                             if (res.status) {
-                                                swal("禁用成功!", "", "success");
+                                                swal({
+                                                    title: "禁用成功!",
+                                                    text: "",
+                                                    type: "success",
+                                                    timer:"1500"
+                                                });
                                                 this.getGridData(params);
                                             } else {
                                                 swal("禁用失败!", res.error_msg, "error");
@@ -230,7 +240,12 @@ export class AdvertisementListComponent implements OnInit {
                                             }
                                         ).subscribe(res => {
                                             if (res.status) {
-                                                swal("启用成功!", "", "success");
+                                                swal({
+                                                    title: "启用成功!",
+                                                    text: "",
+                                                    type: "success",
+                                                    timer:"1500"
+                                                });
                                                 this.getGridData(params);
                                             } else {
                                                 swal("启用失败!", res.error_msg, "error");
@@ -270,7 +285,12 @@ export class AdvertisementListComponent implements OnInit {
                                             }
                                         ).subscribe(res => {
                                             if (res.status) {
-                                                swal("删除成功!", "", "success");
+                                                swal({
+                                                    title: "删除成功!",
+                                                    text: "",
+                                                    type: "success",
+                                                    timer:"1500"
+                                                });
                                                 this.getGridData(params);
                                             } else {
                                                 swal("删除失败!", res.error_msg, "error");
@@ -287,6 +307,13 @@ export class AdvertisementListComponent implements OnInit {
                     tds.push({type: "operation", operation: operations})
                     this.plugins.grid.tbody.push(tds)
                 }
+            }else {
+                swal({
+                    title: "获取广告信息失败!",
+                    text: res.error_msg,
+                    type: "error",
+                    timer:"1500"
+                });
             }
         })
     };

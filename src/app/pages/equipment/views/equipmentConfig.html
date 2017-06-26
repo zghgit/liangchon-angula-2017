@@ -1,1 +1,4 @@
+<ng-container *ngIf="button">
+    <uc-button [model]="button"></uc-button>
+</ng-container>
 <uc-form [formData]="fields" (upformdata)="saveData($event)"></uc-form>

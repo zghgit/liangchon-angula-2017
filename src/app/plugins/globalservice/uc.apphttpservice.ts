@@ -4,6 +4,7 @@
 import {Injectable} from "@angular/core";
 import {Http, Headers, Response, RequestOptions} from "@angular/http";
 import {Observable} from "rxjs";
+declare var swal;
 @Injectable()
 export class AppHttpService {
     public error: Error;
@@ -18,11 +19,19 @@ export class AppHttpService {
             .post(url, JSON.stringify(params), {headers: headers})
             .map((res: Response) => {
                 let result = res.json();
-                // if (result.error_code === 901 || result.error_code === 102){
-                //     location.href="";
-                // }else {
+                if (result.error_code === 901 || result.error_code === 102){
+                    swal({
+                        title: "登陆超时!",
+                        text: "请重新登陆",
+                        type: "error",
+                        timer:"1500"
+                    });
+                    setTimeout(()=>{
+                        location.href="";
+                    },2000)
+                }else {
                     return result;
-                // }
+                }
             })
             .catch((error: any) => Observable.throw(error || 'Server error'));
     };
@@ -31,11 +40,19 @@ export class AppHttpService {
         return this.http.get(url)
             .map((res: Response) => {
                 let result = res.json();
-                // if (result.error_code === 901 || result.error_code === 102){
-                //     location.href="";
-                // }else {
+                if (result.error_code === 901 || result.error_code === 102){
+                    swal({
+                        title: "登陆超时!",
+                        text: "请重新登陆",
+                        type: "error",
+                        timer:"1500"
+                    });
+                    setTimeout(()=>{
+                        location.href="";
+                    },2000)
+                }else {
                     return result;
-                // }
+                }
             })
             .catch((error: any) => Observable.throw(error || 'Server error'));
     };

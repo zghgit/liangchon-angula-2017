@@ -17,6 +17,11 @@ export class EquipmentBatchSetComponent implements OnInit {
     public commoditySet:Array<any>=[];//内容集合
     public commodityTip:string="";
     public deviceTip:string="";
+    public plugins: any = {};
+    public searchBy: any = {
+        bind_status:2,
+        device_type:1
+    };
     constructor(
         public appHttpService:AppHttpService,
         public uc:UC,
@@ -30,12 +35,71 @@ export class EquipmentBatchSetComponent implements OnInit {
             limit: 20,
             sort_by: 'create_time',
             sort_type: 'desc',
-            search_by: {
-                bind_status:2,
-                device_type:1
-            },
+            search_by: this.searchBy,
 
         });
+        this.plugins.search = [
+            {
+                title: '设备编号',
+                key: "device_no",
+                controlType: "input",
+                value: "",
+                placeholder: "请输入账户名称"
+            },{
+                title: '所属商家',
+                key: "owner_name",
+                controlType: "input",
+                value: "",
+                placeholder: "请输入所属商家"
+            }
+        ]
+        this.plugins.buttons = [
+            {
+                type: "form",
+                class: "btn-primary",
+                content: "搜索",
+                click: ({value}={value}) => {
+                    let {
+                        device_no,
+                        owner_name,
+                    } = value;
+                    this.searchBy = {
+                        bind_status:2,
+                        device_type:1,
+                        device_no: device_no ? device_no.trim() : "",
+                        owner_name:owner_name,
+                    }
+                    this.now = 1;
+                    this.getGridData({
+                        page_now: this.now,
+                        limit: 20,
+                        sort_by: 'create_time',
+                        sort_type: 'desc',
+                        search_by: this.searchBy,
+
+                    })
+                }
+            },  {
+                type: "reset",
+                class: "btn-danger",
+                content: "重置",
+                click: () => {
+                    this.searchBy={
+                        bind_status:2,
+                        device_type:1,
+                    };
+                    this.now = 1;
+                    this.getGridData({
+                        page_now: this.now,
+                        limit: 20,
+                        sort_by: 'create_time',
+                        sort_type: 'desc',
+                        search_by: this.searchBy,
+
+                    })
+                }
+            },
+        ]
         //设备信息及全选逻辑
         this.grids = {
             th:{
@@ -109,7 +173,8 @@ export class EquipmentBatchSetComponent implements OnInit {
                 swal({
                     title: "获取商品信息失败!",
                     text: res.error_msg,
-                    type: "error"
+                    type: "error",
+                    timer:"1500"
                 });
             }
         })
@@ -158,7 +223,8 @@ export class EquipmentBatchSetComponent implements OnInit {
                 swal({
                     title: "获取设备信息失败!",
                     text: res.error_msg,
-                    type: "error"
+                    type: "error",
+                    timer:"1500"
                 });
             }
         })
@@ -170,9 +236,7 @@ export class EquipmentBatchSetComponent implements OnInit {
             limit: event.itemsPerPage,
             sort_by: 'create_time',
             sort_type: 'desc',
-            search_by: {
-                bind_status: 2,
-            },
+            search_by: this.searchBy,
         })
     }
     checkboxBack(ev){

@@ -13,6 +13,9 @@ declare var swal;
 export class EquipmentOnOffComponent implements OnInit {
     public now: number = 1;
     public plugins: any = {};
+    public searchBy: any = {
+        bind_status:2
+    };
 
     constructor(public router: Router,
                 public appHttpService: AppHttpService,
@@ -33,7 +36,75 @@ export class EquipmentOnOffComponent implements OnInit {
                 itemsPerPage: 20,
                 currentPage: 1
             }
-        }
+        };
+
+        this.plugins.search = [
+            {
+                title: '设备编号',
+                key: "device_no",
+                controlType: "input",
+                value: "",
+                placeholder: "请输入设备编号"
+            }, {
+                title: '设备状态',
+                key: "net_status",
+                controlType: "select",
+                value: "0",
+                placeholder: "请选择设备状态",
+                options: [{
+                    name: '在线',
+                    geo_id: "1"
+                }, {
+                    name: '离线',
+                    geo_id: "2"
+                }]
+            }
+        ]
+        this.plugins.buttons = [
+            {
+                type: "form",
+                class: "btn-primary",
+                content: "搜索",
+                click: ({value}={value}) => {
+                    let {
+                        device_no,
+                        net_status,
+                    } = value;
+                    this.searchBy = {
+                        bind_status:2,
+                        device_no: device_no ? device_no.trim() : "",
+                        net_status: net_status,
+                    }
+                    this.now = 1;
+                    this.getGridData({
+                        page_now: this.now,
+                        limit: 20,
+                        sort_by: 'create_time',
+                        sort_type: 'desc',
+                        search_by: this.searchBy,
+
+                    })
+                }
+            },  {
+                type: "reset",
+                class: "btn-danger",
+                content: "重置",
+                click: () => {
+                    this.searchBy={
+                        bind_status:2
+                    };
+                    this.now = 1;
+                    this.getGridData({
+                        page_now: this.now,
+                        limit: 20,
+                        sort_by: 'create_time',
+                        sort_type: 'desc',
+                        search_by: this.searchBy,
+
+                    })
+                }
+            },
+        ]
         this.getGridData({
             page_now: this.now,
             limit: 20,
@@ -64,6 +135,13 @@ export class EquipmentOnOffComponent implements OnInit {
                     ];
                     this.plugins.grid.tbody.push(tds)
                 }
+            }else {
+                swal({
+                    title: "获取设备状态失败!",
+                    text: res.error_msg,
+                    type: "error",
+                    timer:"1500"
+                });
             }
         })
     }
@@ -74,9 +152,7 @@ export class EquipmentOnOffComponent implements OnInit {
             limit: event.itemsPerPage,
             sort_by: 'create_time',
             sort_type: 'desc',
-            search_by: {
-                bind_status: 2,
-            },
+            search_by: this.searchBy,
         })
     }
 

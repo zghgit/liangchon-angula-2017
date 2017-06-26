@@ -15,7 +15,12 @@ declare var window;
 export class EquipmentListComponent implements OnInit {
     public now: number = 1;
     public plugins: any = {};
-    public zoomInfo:any={};
+    public searchBy: any = {
+        bind_status: 2,
+    };
+    public moreCondition: boolean = false;
+    public zoomInfo: any = {};
+
     constructor(public router: Router,
                 public appHttpService: AppHttpService,
                 public uc: UC) {
@@ -51,16 +56,165 @@ export class EquipmentListComponent implements OnInit {
                 itemsPerPage: 20,
                 currentPage: 1
             }
-        }
+        };
+        this.plugins.search = [
+            {
+                title: '设备编号',
+                key: "device_no",
+                controlType: "input",
+                value: "",
+                placeholder: "请输入设备编号"
+            }, {
+                title: '设备状态',
+                key: "bind_status",
+                controlType: "select",
+                value: "0",
+                placeholder: "请选择设备状态",
+                options: [{
+                    name: '已绑定',
+                    geo_id: "2"
+                }, {
+                    name: '未分配',
+                    geo_id: "3"
+                }]
+            }, {
+                title: '设备名称',
+                key: "device_name",
+                controlType: "input",
+                value: "",
+                placeholder: "请输入设备名称"
+            }, {
+                title: '设备类型',
+                key: "device_type",
+                controlType: "select",
+                value: "0",
+                placeholder: "请选择设备类型",
+                options: [{
+                    name: '充电桩',
+                    geo_id: "1"
+                }, {
+                    name: '充值机',
+                    geo_id: "2"
+                }]
+            }, {
+                title: "设备地址",
+                key: "device_address",
+                controlType: "address",
+                hasChildGroup: true,
+                hidden: true,
+                url: this.uc.api.qc + '/get_geo_list/hash/',
+                config: {
+                    province: {
+                        name: 'province_code',
+                        value: "0",
+                        placeholder: "--请选择省--",
+                    },
+                    city: {
+                        name: 'city_code',
+                        value: '0',
+                        placeholder: "--请选择市--",
+                    },
+                    area: {
+                        name: 'district_code',
+                        value: '0',
+                        placeholder: "--请选择区--",
+                    }
+                }
+            }, {
+                title: '设备小区',
+                key: "areas_name",
+                controlType: "input",
+                value: "",
+                hidden:true,
+                placeholder: "请输入设备小区名称"
+            }
+        ]
+        this.plugins.buttons = [
+            {
+                type: "notform",
+                class: "btn-success",
+                content: "展开条件",
+                click: () => {
+                    this.moreCondition = !this.moreCondition;
+                    if (this.moreCondition) {
+                        this.plugins.buttons[0].content = "收起条件";
+                        for (let i = 4; i < this.plugins.search.length; i++) {
+                            this.plugins.search[i].hidden = false;
+                        }
+                    } else {
+                        this.plugins.buttons[0].content = "展开条件";
+                        for (let i = 4; i < this.plugins.search.length; i++) {
+                            this.plugins.search[i].hidden = true;
+                        }
+                    }
+
+                }
+            }, {
+                type: "form",
+                class: "btn-primary",
+                content: "搜索",
+                click: ({value}={value}) => {
+                    let {
+                        device_no,
+                        bind_status,
+                        device_name,
+                        device_type,
+                        device_address,
+                        areas_name,
+                    } = value;
+                    this.searchBy = {
+                        device_no: device_no ? device_no.trim() : "",
+                        bind_status: bind_status||2,
+                        device_name: device_name ? device_name.trim() : "",
+                        device_type:device_type,
+                        areas_name: areas_name ? areas_name.trim() : "",
+                        province_code: device_address.province_code,
+                        city_code: device_address.city_code,
+                        district_code: device_address.district_code
+                    }
+                    this.now = 1;
+                    this.getGridData({
+                        page_now: this.now,
+                        limit: 20,
+                        sort_by: 'create_time',
+                        sort_type: 'desc',
+                        search_by: this.searchBy,
+
+                    })
+                }
+            }, {
+                type: "form",
+                class: "btn-info",
+                content: "导出",
+                click: ({value}={value}) => {
+                    this.downloadTemplate(this.searchBy);
+                }
+            }, {
+                type: "reset",
+                class: "btn-danger",
+                content: "重置",
+                click: () => {
+                    this.searchBy = {
+                        bind_status: 2,
+                    };
+                    this.now = 1;
+                    this.getGridData({
+                        page_now: this.now,
+                        limit: 20,
+                        sort_by: 'create_time',
+                        sort_type: 'desc',
+                        search_by: this.searchBy,
+
+                    })
+                }
+            },
+        ]
         this.getGridData({
             page_now: this.now,
             limit: 20,
             sort_by: 'create_time',
             sort_type: 'desc',
-            search_by: {
-                user_name: '',
-                role: ''
-            },
+            search_by: this.searchBy,
 
         })
     }
@@ -120,7 +274,12 @@ export class EquipmentListComponent implements OnInit {
                                             }
                                         ).subscribe(res => {
                                             if (res.status) {
-                                                swal("禁用成功!", "", "success");
+                                                swal({
+                                                    title: "禁用成功!",
+                                                    text: res.error_msg,
+                                                    type: "success",
+                                                    timer: "1500"
+                                                });
                                                 this.getGridData(params);
                                             } else {
                                                 swal("禁用失败!", res.error_msg, "error");
@@ -158,7 +317,12 @@ export class EquipmentListComponent implements OnInit {
                                             }
                                         ).subscribe(res => {
                                             if (res.status) {
-                                                swal("启用成功!", "", "success");
+                                                swal({
+                                                    title: "启用成功!",
+                                                    text: res.error_msg,
+                                                    type: "success",
+                                                    timer: "1500"
+                                                });
                                                 this.getGridData(params);
                                             } else {
                                                 swal("启用失败!", res.error_msg, "error");
@@ -201,7 +365,13 @@ export class EquipmentListComponent implements OnInit {
                                         this.zoomInfo['device_no'] = device_no;
 
                                     } else {
-                                        swal("获取设备二维码失败!", res.error_msg, "error");
+                                        swal({
+                                            title: "获取设备二维码失败!",
+                                            text: res.error_msg,
+                                            type: "error",
+                                            timer: "1500"
+                                        });
+
                                     }
                                 })
                             }
@@ -255,7 +425,12 @@ export class EquipmentListComponent implements OnInit {
                                             }
                                         ).subscribe(res => {
                                             if (res.status) {
-                                                swal("解绑成功,请到未解绑一览操作此设备!", "", "success");
+                                                swal({
+                                                    title: "解绑成功,请到未解绑一览操作此设备!",
+                                                    text: "",
+                                                    type: "success",
+                                                    timer: "1500"
+                                                });
                                                 this.getGridData(params);
                                             } else {
                                                 swal("解绑失败!", res.error_msg, "error");
@@ -272,6 +447,14 @@ export class EquipmentListComponent implements OnInit {
                     this.plugins.grid.tbody.push(tds)
                 }
             }
+            else {
+                swal({
+                    title: "获取设备信息失败!",
+                    text: res.error_msg,
+                    type: "error",
+                    timer: "1500"
+                });
+            }
         })
     }
 
@@ -281,15 +464,17 @@ export class EquipmentListComponent implements OnInit {
             limit: event.itemsPerPage,
             sort_by: 'create_time',
             sort_type: 'desc',
-            search_by: {
-                bind_status: 2,
-            },
+            search_by: this.searchBy,
         })
     }
-    public closeZoom(){
-        this.zoomInfo['show']=false;
+
+    //关闭弹出窗
+    public closeZoom() {
+        this.zoomInfo['show'] = false;
     }
-    public downloadimg(){
+
+    //下载二维码
+    public downloadimg() {
         this.appHttpService.postData(this.uc.api.qc + "/download_qr_code_zip/hash/", {
                 params: {
                     device_no: this.zoomInfo['device_no'],
@@ -301,6 +486,34 @@ export class EquipmentListComponent implements OnInit {
             } else {
                 swal("下载设备二维码失败!", res.error_msg, "error");
             }
+        })
+    }
+
+    //下载导出
+    downloadTemplate(params) {
+        this.appHttpService.getBinary(this.uc.api.qc + '/download_device_info/hash/', {params: params}).subscribe(res => {
+            let disposition = res.headers._headers.get("content-disposition");
+
+            if (!disposition) {
+                swal("下载失败", res.error_msg, "error")
+            } else {
+                let blob = new Blob([res._body], {type: "application/vnd.ms-excel"});
+                let objectUrl = URL.createObjectURL(blob);
+                let a = document.createElement('a');
+                let filename = disposition[0].split(";")[1].trim().split("=")[1]
+                try {
+                    filename = JSON.parse(filename)
+                } catch (e) {
+                    console.log(e);
+                }
+                document.body.appendChild(a);
+                a.setAttribute('style', 'display:none');
+                a.setAttribute('href', objectUrl);
+                a.setAttribute('download', filename);
+                a.click();
+                URL.revokeObjectURL(objectUrl);
+            }
+
         })
     }
 

@@ -66,7 +66,12 @@ export class UserAgreementComponent implements OnInit {
         this.appHttpService.postData(this.uc.api.qc + "/update_system_config/hash", params).subscribe(
             res => {
                 if (res.status) {
-                    swal("保存用户协议成功", res.error_msg, "success")
+                    swal({
+                        title: "保存用户协议成功!",
+                        text: "",
+                        type: "success",
+                        timer:"1500"
+                    });
                 } else {
                     swal("保存用户协议失败", res.error_msg, "error")
                 }

@@ -5,12 +5,13 @@ import {HttpModule} from '@angular/http';
 import {RouterModule} from "@angular/router";
 import {appRoutes} from "./app.routes";
 import {AppComponent} from './app.component';
-import {LoginComponent} from "./index/login/login.component";
+import { LoginComponent,RepasswordComponent } from "./index";
 import {AppHttpService,DataService,UC,GlobalState} from "./plugins/globalservice";
 @NgModule({
     declarations: [
         AppComponent,
-        LoginComponent
+        LoginComponent,
+        RepasswordComponent
     ],
     imports: [
         BrowserModule,

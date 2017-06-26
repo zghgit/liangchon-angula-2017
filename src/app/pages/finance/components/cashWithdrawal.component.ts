@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AppHttpService, UC} from "../../../plugins/globalservice";
+import * as moment from 'moment';
 
 declare var swal;
 @Component({
@@ -19,6 +20,9 @@ export class CashWithdrawalComponent implements OnInit {
     public applicant_name: string="";
     public applicant_account: string="";
     public apply_type: number;//1。全选；2。部分
+    public plugins: any = {};
+    public searchBy: any = {};
+
     public radioModel = {
         value: "2",
         name: "pay_type",
@@ -28,6 +32,7 @@ export class CashWithdrawalComponent implements OnInit {
     };
     public wx: any = {
         value: "0",
+        placeholder:"请选择微信支付账户",
         options: []
     };
 
@@ -73,10 +78,94 @@ export class CashWithdrawalComponent implements OnInit {
                 }
             },
             tbody: []
-        }
+        };
+        this.plugins.search = [
+            {
+                title: "开始时间",
+                key: "start_time",
+                controlType: "time",
+                value: "",
+                config: {
+                    showTimePicker: false,
+                    format: 0,
+                },
+                placeholder: "请点击选择日期",
+            }, {
+                title: "结束时间",
+                key: "end_time",
+                controlType: "time",
+                value: "",
+                config: {
+                    showTimePicker: false,
+                    format: 0,
+                },
+                placeholder: "请点击选择日期",
+            }
+        ];
+        this.plugins.buttons = [
+             {
+                type: "form",
+                class: "btn-primary",
+                content: "搜索",
+                click: ({value}={value}) => {
+                    let {
+                        start_time,
+                        end_time,
+                    } = value;
+                    if (start_time && !end_time || !start_time && end_time) {
+                        // swal("搜索失败","开始时间和结束时间要一起填写!","error");
+                        swal({
+                            title: "开始时间和结束时间要一起填写!",
+                            text: "",
+                            type: "error",
+                            timer: "1500"
+                        });
+                        return
+                    }
+                    if (start_time > end_time) {
+                        swal({
+                            title: "开始时间不能大开结束时间!",
+                            text: "",
+                            type: "error",
+                            timer: "1500"
+                        });
+                        return
+                    }
+                    this.searchBy = {
+                        start_time: start_time ? moment(start_time).format('YYYY-MM-DD 00:00:00') : '',
+                        end_time: end_time ? moment(end_time).format('YYYY-MM-DD 23:59:59') : '',
+                    }
+                    this.now = 1;
+                    this.getGridData({
+                        page_now: this.now,
+                        limit: 20000,
+                        sort_by: 'create_time',
+                        sort_type: 'desc',
+                        search_by: this.searchBy,
+
+                    })
+                }
+            }, {
+                type: "reset",
+                class: "btn-danger",
+                content: "重置",
+                click: () => {
+                    this.searchBy = {};
+                    this.now = 1;
+                    this.getGridData({
+                        page_now: this.now,
+                        limit: 20000,
+                        sort_by: 'create_time',
+                        sort_type: 'desc',
+                        search_by: this.searchBy,
+
+                    })
+                }
+            },
+        ];
         this.getGridData({
             page_now: this.now,
-            limit: 5,
+            limit: 20000,
             sort_by: 'create_time',
             sort_type: 'desc',
             search_by: {},
@@ -84,7 +173,7 @@ export class CashWithdrawalComponent implements OnInit {
         });
         this.getWX({
             page_now: 1,
-            limit: 200,
+            limit: 20000,
             sort_by: 'create_time',
             sort_type: 'desc',
             search_by: {},
@@ -138,7 +227,8 @@ export class CashWithdrawalComponent implements OnInit {
                 swal({
                     title: "获取订单信息失败!",
                     text: res.error_msg,
-                    type: "error"
+                    type: "error",
+                    timer:"1500"
                 });
             }
         })
@@ -166,7 +256,8 @@ export class CashWithdrawalComponent implements OnInit {
                 swal({
                     title: "申请提现失败!",
                     text: res.error_msg,
-                    type: "error"
+                    type: "error",
+                    timer:"1500"
                 });
             }
         })
@@ -182,18 +273,20 @@ export class CashWithdrawalComponent implements OnInit {
         let device_ids = Array.from(this.orderSet);
         if (device_ids.length == 0) {
             swal({
-                title: "申请提现失败!",
-                text: "请添加提现订单",
-                type: "error"
+                title: "请添加提现订单!",
+                text: "",
+                type: "error",
+                timer:"1500"
             });
             return
         } else {
         }
         if (this.radioModel.value=="2"&&this.applicant_account==""){
             swal({
-                title: "申请提现失败!",
-                text: "请选择微信支付账户",
-                type: "error"
+                title: "请选择微信支付账户!",
+                text: "",
+                type: "error",
+                timer:"1500"
             });
             return
         }
@@ -224,7 +317,7 @@ export class CashWithdrawalComponent implements OnInit {
             limit: event.itemsPerPage,
             sort_by: 'create_time',
             sort_type: 'desc',
-            search_by: {},
+            search_by: this.searchBy,
         })
     }
 }

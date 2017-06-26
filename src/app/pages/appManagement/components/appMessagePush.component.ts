@@ -126,7 +126,12 @@ export class AppMessagePushComponent implements OnInit {
         let temp_user_name;
         if (push_type == 1) {
             if (user_name==""){
-                swal("推送失败", "至少选择一个用户", "error")
+                swal({
+                    title: "推送失败!",
+                    text: "至少选择一个用户",
+                    type: "error",
+                    timer:"1500"
+                });
             }else {
                 temp_user_name = JSON.parse(user_name);
                 business_address.province_code="";
@@ -136,7 +141,12 @@ export class AppMessagePushComponent implements OnInit {
 
         } else if(push_type == 2){
             if(business_address.proive_code==0&&business_address.city_code==0&&business_address.district==0){
-                swal("推送失败", "至少选择一个地区", "error")
+                swal({
+                    title: "推送失败!",
+                    text: "至少选择一个地区",
+                    type: "error",
+                    timer:"1500"
+                });
             }else {
                 temp_user_name="";
             }
@@ -159,7 +169,12 @@ export class AppMessagePushComponent implements OnInit {
         this.appHttpService.postData(this.uc.api.qc + "/push_message_to_app/hash", params).subscribe(
             res => {
                 if (res.status) {
-                    swal("推送成功", res.error_msg, "error")
+                    swal({
+                        title: "推送成功!",
+                        text: "",
+                        type: "success",
+                        timer:"1500"
+                    });
                 } else {
                     swal("推送失败", res.error_msg, "error")
                 }

@@ -123,7 +123,8 @@ export class EquipmentDetailComponent implements OnInit {
                 swal({
                     title: "获取桩详情失败!",
                     text: res.error_msg,
-                    type: "error"
+                    type: "error",
+                    timer:"1500"
                 });
             }
         })

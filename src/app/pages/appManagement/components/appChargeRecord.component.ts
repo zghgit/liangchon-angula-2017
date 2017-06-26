@@ -12,6 +12,7 @@ declare var swal;
 export class AppChargeRecordComponent implements OnInit {
     public now: number = 1;
     public plugins: any = {};
+    public searchBy: any = {};
     public app_user_name:string = "";
 
     constructor(public router: Router,
@@ -42,7 +43,104 @@ export class AppChargeRecordComponent implements OnInit {
                 currentPage: 1,
                 totalItems: 1
             }
-        }
+        };
+        this.plugins.search = [
+            {
+                title: '用户账号',
+                key: "app_user_name",
+                controlType: "input",
+                value: this.app_user_name||"",
+                placeholder: "请输入用户账号"
+            }, {
+                title: '支付类型',
+                key: "pay_type",
+                controlType: "select",
+                value: "0",
+                placeholder: "请选择支付类型",
+                options: [{
+                    name: '支付宝',
+                    geo_id: "1"
+                }, {
+                    name: '微信',
+                    geo_id: "2"
+                }, {
+                    name: '充点',
+                    geo_id: "3"
+                }]
+            }, {
+                title: '收支类型',
+                key: "specific_type",
+                controlType: "select",
+                value: "0",
+                placeholder: "请选择收支类型",
+                options: [{
+                    name: '消费',
+                    geo_id: "1"
+                }, {
+                    name: '退费',
+                    geo_id: "2"
+                }, {
+                    name: '充值',
+                    geo_id: "3"
+                }, {
+                    name: '赠点',
+                    geo_id: "4"
+                }]
+            }
+        ]
+        this.plugins.buttons = [
+            {
+                type: "form",
+                class: "btn-primary",
+                content: "搜索",
+                click: ({value}={value}) => {
+                    let {
+                        app_user_name,
+                        pay_type,
+                        specific_type,
+                    } = value;
+                    this.searchBy = {
+                        app_user_name: app_user_name ? app_user_name.trim() : "",
+                        pay_type: pay_type,
+                        specific_type: specific_type,
+                    }
+                    this.now = 1;
+                    this.getGridData({
+                        page_now: this.now,
+                        limit: 20,
+                        sort_by: 'create_time',
+                        sort_type: 'desc',
+                        search_by: this.searchBy,
+
+                    })
+                }
+            },  {
+                type: "reset",
+                class: "btn-danger",
+                content: "重置",
+                click: () => {
+                    if(this.app_user_name){
+                        setTimeout(()=>{
+                            this.plugins.search[0].value=this.app_user_name;
+                        },0)
+                        this.now = 1;
+                        this.searchBy={
+                            app_user_name:this.app_user_name
+                        };
+                    }else {
+                        this.searchBy={};
+                    }
+                    this.getGridData({
+                        page_now: this.now,
+                        limit: 20,
+                        sort_by: 'create_time',
+                        sort_type: 'desc',
+                        search_by: this.searchBy,
+
+                    })
+                }
+            },
+        ]
         this.getGridData({
             page_now: this.now,
             limit: 20,
@@ -75,6 +173,13 @@ export class AppChargeRecordComponent implements OnInit {
                     ];
                     this.plugins.grid.tbody.push(tds)
                 }
+            }else {
+                swal({
+                    title: "获取信息失败!",
+                    text: res.error_msg,
+                    type: "error",
+                    timer:"1500"
+                });
             }
         })
     };
@@ -85,7 +190,7 @@ export class AppChargeRecordComponent implements OnInit {
             limit: event.itemsPerPage,
             sort_by: 'create_time',
             sort_type: 'desc',
-            search_by: {},
+            search_by: this.searchBy,
         })
     }
 

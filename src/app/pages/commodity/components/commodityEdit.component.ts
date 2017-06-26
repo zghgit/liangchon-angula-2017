@@ -114,7 +114,12 @@ export class CommodityEditComponent implements OnInit {
                     }
                 ];
             }else {
-                swal("获取商品信息失败",res.error_msg,"error")
+                swal({
+                    title: "获取商品信息失败!",
+                    text: res.error_msg,
+                    type: "error",
+                    timer:"1500"
+                });
             }
         })
     }

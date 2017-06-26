@@ -39,7 +39,7 @@ export class UserPwdEditComponent implements OnInit {
                         label: "旧的密码",
                         key: "old_password",
                         controlType: "input",
-                        inputType: "text",
+                        inputType: "oldpassword",
                         value: "",
                         require: true,
                         placeholder: "请输入旧的密码",
@@ -59,17 +59,18 @@ export class UserPwdEditComponent implements OnInit {
                         placeholder: "请输入新的密码",
                         validator: [
                             Validators.required,
-                            Validators.pattern(this.uc.reg.PSW)
+                            Validators.pattern(this.uc.reg.PSW),
                         ],
                         errormsg: [
                             {type: "required", content: "必填项目"},
                             {type: "pattern", content: "密码长度6~16,只能包含数字、字母、._!@#"},
+                            {type: "validateEqual", content: "两次密码不一致"},
                         ]
                     }, {
                         label: "确认密码",
                         key: "repassword",
                         controlType: "input",
-                        inputType: "password",
+                        inputType: "repassword",
                         value: "",
                         require: true,
                         placeholder: "请确认密码",
@@ -83,7 +84,12 @@ export class UserPwdEditComponent implements OnInit {
                     },
                 ];
             } else {
-                swal("获取用户信息失败", res.error_msg, "error")
+                swal({
+                    title: "获取用户信息失败!",
+                    text: res.error_msg,
+                    type: "error",
+                    timer:"1500"
+                });
             }
         })
     }

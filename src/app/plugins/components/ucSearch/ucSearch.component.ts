@@ -11,6 +11,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class ucSearchComponent implements OnInit {
     @Input() searchData:any;
+    @Input() buttons:any;
     @Output() upsearhdata = new EventEmitter<any>();
     public form: FormGroup;
     constructor() { }

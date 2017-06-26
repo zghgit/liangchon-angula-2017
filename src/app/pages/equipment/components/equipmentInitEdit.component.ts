@@ -191,11 +191,21 @@ export class EquipmentInitEditComponent implements OnInit {
                                 let business_address = this.fields[7].config;
                                 let device_address = this.fields[8];
                                 if (business_address.province.content == "" && business_address.city.content == "" && business_address.area.content == "") {
-                                    swal("经纬度拾取失败", "请先选择设备所在地区", "error");
+                                    swal({
+                                        title: "请先选择设备所在地区!",
+                                        text: "",
+                                        type: "error",
+                                        timer:"1500"
+                                    });
                                     return
                                 }
                                 if (device_address.value == "") {
-                                    swal("经纬度拾取失败", "请先输入设备详细地址", "error")
+                                    swal({
+                                        title: "请先输入设备详细地址!",
+                                        text: "",
+                                        type: "error",
+                                        timer:"1500"
+                                    });
                                     return
                                 }
                                 this.showMap = true;
@@ -232,7 +242,12 @@ export class EquipmentInitEditComponent implements OnInit {
                                             });
                                         } else {
                                             this.showMap = false;
-                                            swal("经纬度拾取失败", "请重置地区和设备详细地址", "error")
+                                            swal({
+                                                title: "经纬度拾取失败!",
+                                                text: "请重置地区和设备详细地址",
+                                                type: "error",
+                                                timer:"1500"
+                                            });
                                         }
                                     });
                                 });
@@ -330,13 +345,23 @@ export class EquipmentInitEditComponent implements OnInit {
                                 }
                                 this.fields[12].options = commoditys;
                             } else {
-                                swal("获取商品失败", res.error_msg, "error")
+                                swal({
+                                    title: "获取商品信息失败!",
+                                    text: res.error_msg,
+                                    type: "error",
+                                    timer:"1500"
+                                });
                             }
                         }
                     )
                 }
             } else {
-                swal("获取设备信息失败", res.error_msg, "error")
+                swal({
+                    title: "获取设备信息失败!",
+                    text: res.error_msg,
+                    type: "error",
+                    timer:"1500"
+                });
             }
         })
     }

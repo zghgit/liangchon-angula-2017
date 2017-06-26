@@ -184,7 +184,12 @@ export class AdvertisementEditComponent implements OnInit {
                 }
                 ];
             } else {
-                swal("获取广告信息失败", res.error_msg, "error")
+                swal({
+                    title: "获取广告信息失败!",
+                    text: res.error_msg,
+                    type: "error",
+                    timer:"1500"
+                });
             }
         })
     }
@@ -193,7 +198,12 @@ export class AdvertisementEditComponent implements OnInit {
         let {advertisement_range}=value;
         let advertisementRange = JSON.parse(advertisement_range);
         if (advertisementRange.check_all == 2 && advertisementRange.selectedSet.length == 0) {
-            swal("编辑广告失败", "地址是必选的", "error");
+            swal({
+                title: "编辑广告失败!",
+                text: "地址是必选的",
+                type: "error",
+                timer:"1500"
+            });
             return
         }
         if (advertisementRange.check_all == 1){

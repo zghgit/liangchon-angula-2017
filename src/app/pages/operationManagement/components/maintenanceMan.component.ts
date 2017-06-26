@@ -40,7 +40,12 @@ export class MaintenanceManComponent implements OnInit {
                     },
                 ];
             } else {
-                swal("获取运维人员信息失败", res.error_msg, "error")
+                swal({
+                    title: "获取运维人员信息失败!",
+                    text: res.error_msg,
+                    type: "error",
+                    timer:"1500"
+                });
             }
         })
     }

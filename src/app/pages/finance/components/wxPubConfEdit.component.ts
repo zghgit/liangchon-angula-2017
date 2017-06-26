@@ -241,7 +241,13 @@ export class WxPubConfEditComponent implements OnInit {
                     }
                 ];
             } else {
-                swal("获取微信公众号配置信息失败", res.error_msg, "error")
+                swal({
+                    title: "获取微信公众号配置信息失败!",
+                    text: res.error_msg,
+                    type: "error",
+                    timer:"1500"
+                });
+
             }
         })
     }

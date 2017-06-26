@@ -288,7 +288,12 @@ export class UserEditComponent implements OnInit {
                     });
                 }
             } else {
-                swal("获取用户信息失败", res.error_msg, "error")
+                swal({
+                    title: "获取用户信息失败!",
+                    text: res.error_msg,
+                    type: "error",
+                    timer:"1500"
+                });
             }
         })
     }
@@ -297,7 +302,12 @@ export class UserEditComponent implements OnInit {
         let {whether_settlement, settlement_cycle, settlement_day} = value;
         if (whether_settlement == 1) {
             if (settlement_cycle == "" || settlement_day == "") {
-                swal("提交失败", "请确认结算周期和结算日", "error")
+                swal({
+                    title: "请确认结算周期和结算日!",
+                    text: "",
+                    type: "error",
+                    timer:"1500"
+                });
                 return
             }
         } else {

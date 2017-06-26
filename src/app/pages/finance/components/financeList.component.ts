@@ -119,7 +119,12 @@ export class FinanceListComponent implements OnInit {
                                             }
                                         ).subscribe(res=>{
                                             if (res.status){
-                                                swal("通过成功!", "", "success");
+                                                swal({
+                                                    title: "通过成功!",
+                                                    text: "",
+                                                    type: "success",
+                                                    timer:"1500"
+                                                });
                                                 this.getGridData(params);
                                             }else {
                                                 swal("通过失败!", res.error_msg, "error");
@@ -171,7 +176,12 @@ export class FinanceListComponent implements OnInit {
                                             }
                                         ).subscribe(res=>{
                                             if (res.status){
-                                                swal("打款成功!", "", "success");
+                                                swal({
+                                                    title: "打款成功!",
+                                                    text: "",
+                                                    type: "success",
+                                                    timer:"1500"
+                                                });
                                                 this.getGridData(params);
                                             }else {
                                                 swal("打款失败!", res.error_msg, "error");
@@ -187,6 +197,13 @@ export class FinanceListComponent implements OnInit {
                     tds.push({type: "operation", operation: operations})
                     this.plugins.grid.tbody.push(tds)
                 }
+            }else {
+                swal({
+                    title: "获取账务信息失败!",
+                    text: res.error_msg,
+                    type: "error",
+                    timer:"1500"
+                });
             }
         })
     };
@@ -224,7 +241,12 @@ export class FinanceListComponent implements OnInit {
                     }
                 ).subscribe(res=>{
                     if (res.status){
-                        swal("驳回成功!", "", "success");
+                        swal({
+                            title: "驳回成功!",
+                            text: "",
+                            type: "success",
+                            timer:"1500"
+                        });
                         this.getGridData({
                             page_now: this.now,
                             limit: 20,

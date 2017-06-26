@@ -75,7 +75,8 @@ export class UcAddressComponent implements OnInit {
                     swal({
                         title: "获取地址信息失败!",
                         text: responseText.error_msg,
-                        type: "error"
+                        type: "error",
+                        timer:"1500"
                     });
                 }
 

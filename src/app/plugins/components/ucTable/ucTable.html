@@ -1,32 +1,34 @@
-<table (click)="zoomImg($event)">
-    <caption *ngIf="model.caption">{{model.caption}}</caption>
-    <thead>
-    <th *ngFor="let th of model.th" [ngClass]="{'hidden':th.hidden}">
-        <ng-container>
-            {{th.content}}
-        </ng-container>
-    </th>
-    </thead>
-    <tbody>
-    <tr *ngFor="let tr of model.tbody">
-        <td *ngFor="let td of tr" [ngClass]="{'hidden':td.hidden}">
-            <ng-container [ngSwitch]="td.type">
-                <ng-container *ngSwitchCase="'img'">
-                    <img src="{{td.content}}" alt="">
-                </ng-container>
-                <ng-container *ngSwitchCase="'operation'">
-                    <ng-container>
-                        <button *ngFor="let item of td.operation" class="btn btn-sm {{item.class}}" (click)="item.click(tr)">
-                            {{item.content}}
-                        </button>
-                    </ng-container>
-                </ng-container>
-                <ng-container *ngSwitchDefault>{{td.content}}</ng-container>
+<div class="my-table">
+    <table (click)="zoomImg($event)">
+        <caption *ngIf="model.caption">{{model.caption}}</caption>
+        <thead>
+        <th *ngFor="let th of model.th" [ngClass]="{'hidden':th.hidden}">
+            <ng-container>
+                {{th.content}}
             </ng-container>
-        </td>
-    </tr>
-    </tbody>
-</table>
+        </th>
+        </thead>
+        <tbody>
+        <tr *ngFor="let tr of model.tbody">
+            <td *ngFor="let td of tr" [ngClass]="{'hidden':td.hidden}">
+                <ng-container [ngSwitch]="td.type">
+                    <ng-container *ngSwitchCase="'img'">
+                        <img src="{{td.content}}" alt="">
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'operation'">
+                        <ng-container>
+                            <button *ngFor="let item of td.operation" class="btn btn-sm {{item.class}}" (click)="item.click(tr)">
+                                {{item.content}}
+                            </button>
+                        </ng-container>
+                    </ng-container>
+                    <ng-container *ngSwitchDefault>{{td.content}}</ng-container>
+                </ng-container>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 <pagination *ngIf="model.pagination" [totalItems]="model.pagination.totalItems" [maxSize]="model.pagination.maxSize" [itemsPerPage]="model.pagination.itemsPerPage" [(ngModel)]="model.pagination.currentPage"
             firstText="首页" lastText="末页"
             previousText="上一页" nextText="下一页"

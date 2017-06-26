@@ -12,6 +12,7 @@ declare var swal;
 export class AppManagementListComponent implements OnInit {
     public now: number = 1;
     public plugins: any = {};
+    public searchBy: any = {};
 
     constructor(public router: Router,
                 public appHttpService: AppHttpService,
@@ -36,7 +37,71 @@ export class AppManagementListComponent implements OnInit {
                 currentPage: 1,
                 totalItems: 1
             }
-        }
+        };
+        this.plugins.search = [
+             {
+                title: '手机号码',
+                key: "app_user_name",
+                controlType: "input",
+                value: "",
+                placeholder: "请输入手机号码"
+            }, {
+                title: '用户状态',
+                key: "status",
+                controlType: "select",
+                value: "0",
+                placeholder: "请选择用户状态",
+                options: [{
+                    name: '启用',
+                    geo_id: "1"
+                }, {
+                    name: '禁用',
+                    geo_id: "2"
+                }]
+            }
+        ]
+        this.plugins.buttons = [
+            {
+                type: "form",
+                class: "btn-primary",
+                content: "搜索",
+                click: ({value}={value}) => {
+                    let {
+                        app_user_name,
+                        status,
+                    } = value;
+                    this.searchBy = {
+                        app_user_name: app_user_name ? app_user_name.trim() : "",
+                        status: status,
+                    }
+                    this.now = 1;
+                    this.getGridData({
+                        page_now: this.now,
+                        limit: 20,
+                        sort_by: 'create_time',
+                        sort_type: 'desc',
+                        search_by: this.searchBy,
+
+                    })
+                }
+            },  {
+                type: "reset",
+                class: "btn-danger",
+                content: "重置",
+                click: () => {
+                    this.searchBy={};
+                    this.now = 1;
+                    this.getGridData({
+                        page_now: this.now,
+                        limit: 20,
+                        sort_by: 'create_time',
+                        sort_type: 'desc',
+                        search_by: this.searchBy,
+
+                    })
+                }
+            },
+        ]
         this.getGridData({
             page_now: this.now,
             limit: 20,
@@ -123,7 +188,12 @@ export class AppManagementListComponent implements OnInit {
                                             }
                                         ).subscribe(res => {
                                             if (res.status) {
-                                                swal("禁用成功!", "", "success");
+                                                swal({
+                                                    title: "禁用成功!",
+                                                    text: "",
+                                                    type: "success",
+                                                    timer:"1500"
+                                                });
                                                 this.getGridData(params);
                                             } else {
                                                 swal("禁用失败!", res.error_msg, "error");
@@ -163,7 +233,12 @@ export class AppManagementListComponent implements OnInit {
                                             }
                                         ).subscribe(res => {
                                             if (res.status) {
-                                                swal("启用成功!", "", "success");
+                                                swal({
+                                                    title: "启用成功!",
+                                                    text: "",
+                                                    type: "success",
+                                                    timer:"1500"
+                                                });
                                                 this.getGridData(params);
                                             } else {
                                                 swal("启用失败!", res.error_msg, "error");
@@ -179,6 +254,13 @@ export class AppManagementListComponent implements OnInit {
                     tds.push({type: "operation", operation: operations})
                     this.plugins.grid.tbody.push(tds)
                 }
+            }else {
+                swal({
+                    title: "获取APP用户信息失败!",
+                    text: res.error_msg,
+                    type: "error",
+                    timer:"1500"
+                });
             }
         })
     };
@@ -189,7 +271,7 @@ export class AppManagementListComponent implements OnInit {
             limit: event.itemsPerPage,
             sort_by: 'create_time',
             sort_type: 'desc',
-            search_by: {},
+            search_by: this.searchBy,
         })
     }
 

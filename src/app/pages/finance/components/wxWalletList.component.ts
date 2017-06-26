@@ -105,7 +105,12 @@ export class WxWalletListComponent implements OnInit {
                                             }
                                         ).subscribe(res=>{
                                             if (res.status){
-                                                swal("禁用成功!", "", "success");
+                                                swal({
+                                                    title: "禁用成功!",
+                                                    text: "",
+                                                    type: "success",
+                                                    timer:"1500"
+                                                });
                                                 this.getGridData(params);
                                             }else {
                                                 swal("禁用失败!", res.error_msg, "error");
@@ -144,7 +149,12 @@ export class WxWalletListComponent implements OnInit {
                                             }
                                         ).subscribe(res=>{
                                             if (res.status){
-                                                swal("启用成功!", "", "success");
+                                                swal({
+                                                    title: "启用成功!",
+                                                    text: "",
+                                                    type: "success",
+                                                    timer:"1500"
+                                                });
                                                 this.getGridData(params);
                                             }else {
                                                 swal("启用失败!", res.error_msg, "error");
@@ -180,7 +190,12 @@ export class WxWalletListComponent implements OnInit {
                                         }
                                     ).subscribe(res=>{
                                         if (res.status){
-                                            swal("删除成功!", "", "success");
+                                            swal({
+                                                title: "删除成功!",
+                                                text: "",
+                                                type: "success",
+                                                timer:"1500"
+                                            });
                                             this.getGridData(params);
                                         }else {
                                             swal("删除失败!", res.error_msg, "error");

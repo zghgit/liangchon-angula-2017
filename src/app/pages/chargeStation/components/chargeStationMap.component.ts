@@ -35,9 +35,14 @@ export class ChargeStationMapComponent implements OnInit {
         data.subscribe(res => {
             if (res.status) {
                 let data = res.data.list;
-                this.mapInit("map-left",data)
+                this.mapInit("map-left", data)
             } else {
-                swal("获取设备信息失败", res.error_msg, "error")
+                swal({
+                    title: "获取设备信息失败!",
+                    text: res.error_msg,
+                    type: "error",
+                    timer: "1500"
+                });
             }
         })
     }
@@ -50,7 +55,7 @@ export class ChargeStationMapComponent implements OnInit {
         });
         var markers1 = [], m, gps, device_icon;
         var infoWindow = new AMap.InfoWindow({offset: new AMap.Pixel(0, -30)});
-        markers.forEach((marker)=> {
+        markers.forEach((marker) => {
             gps = this.uc.BD09ToGCJ02(marker.device_lat, marker.device_lng);
             if (marker.device_type == 1) {
                 device_icon = 'http://webapi.amap.com/theme/v1.3/markers/n/mark_b.png'
@@ -65,10 +70,10 @@ export class ChargeStationMapComponent implements OnInit {
             });
             m.content = marker.device_type_name;
             if (marker.device_type == 1) {
-                m.on('click',()=>{
-                    setTimeout(()=>{
+                m.on('click', () => {
+                    setTimeout(() => {
                         this.router.navigate(['pages/charge/chargeStatus', marker.device_id]);
-                    },100)
+                    }, 100)
                 });
             }
             m.on('mouseover', function (e) {
@@ -87,73 +92,71 @@ export class ChargeStationMapComponent implements OnInit {
     };
 
     // pie显示
-    getPieDatas(){
-        var dataTitle=[],
-            dataContent=[],
-            alarm_num	    = '告警中',
-            free_num		= '空闲中',
-            charging_num	= '充电中',
-            offline_num	    = '离线中';
+    getPieDatas() {
+        var dataTitle = [],
+            dataContent = [],
+            alarm_num = '告警中',
+            free_num = '空闲中',
+            charging_num = '充电中',
+            offline_num = '离线中';
 
         let piedata = this.appHttpService.getData(this.uc.api.qc + '/get_statistics_device_info_for_home_page/hash/')
-            piedata.subscribe(res=>{
-                if(res.status){
-                    var data=res.data;
-                    if(!data)return;
-                    dataTitle=[alarm_num,free_num,offline_num,charging_num];
-                    dataContent =[
-                        {name:alarm_num,value:data.alarm_num},
-                        {name:free_num,value:data.free_num},
-                        {name:offline_num,value:data.offline_num},
-                        {name:charging_num,value:data.charging_num},
-                    ];
-                    var pieMap = echarts.init(document.getElementById('map-right'));   // pieMapCharge 饼图ID
-                    var option = {
-                        title : {
-                            text: '充电桩信息一览',
-                            x:'center'
-                        },
-                        tooltip : {
-                            trigger: 'item',
-                            formatter: "{a} <br/>{b} : {c} ({d}%)"
-                        },
-                        legend: {
-                            width : '200px',
-                            orient: 'horizontal',
-                            bottom: '10',
-                            x:'center',
-                            data: dataTitle
-                        },
-                        series : [
-                            {
-                                name: '充电站所属桩信息',
-                                type: 'pie',
-                                radius : '60%',
-                                center: ['50%', '40%'],
-                                data:dataContent,
-                                color:['#f55753','#4bdfd2','#ccc','#15b1ef'],
-                                itemStyle: {
-                                    normal:{
-
-                                    },
-                                    emphasis: {
-                                        shadowBlur: 10,
-                                        shadowOffsetX: 0,
-                                        shadowColor: 'rgba(0, 0, 0, 0.5)'
-                                    }
-                                },
-                                label:{
-                                    normal:{
-                                        show:false,
-                                    }
+        piedata.subscribe(res => {
+            if (res.status) {
+                var data = res.data;
+                if (!data)return;
+                dataTitle = [alarm_num, free_num, offline_num, charging_num];
+                dataContent = [
+                    {name: alarm_num, value: data.alarm_num},
+                    {name: free_num, value: data.free_num},
+                    {name: offline_num, value: data.offline_num},
+                    {name: charging_num, value: data.charging_num},
+                ];
+                var pieMap = echarts.init(document.getElementById('map-right'));   // pieMapCharge 饼图ID
+                var option = {
+                    title: {
+                        text: '充电桩信息一览',
+                        x: 'center'
+                    },
+                    tooltip: {
+                        trigger: 'item',
+                        formatter: "{a} <br/>{b} : {c} ({d}%)"
+                    },
+                    legend: {
+                        width: '200px',
+                        orient: 'horizontal',
+                        bottom: '10',
+                        x: 'center',
+                        data: dataTitle
+                    },
+                    series: [
+                        {
+                            name: '充电站所属桩信息',
+                            type: 'pie',
+                            radius: '60%',
+                            center: ['50%', '40%'],
+                            data: dataContent,
+                            color: ['#f55753', '#4bdfd2', '#ccc', '#15b1ef'],
+                            itemStyle: {
+                                normal: {},
+                                emphasis: {
+                                    shadowBlur: 10,
+                                    shadowOffsetX: 0,
+                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
                                 }
-
+                            },
+                            label: {
+                                normal: {
+                                    show: false,
+                                }
                             }
-                        ]
-                    };
-                    // 为echarts对象加载数据
-                    pieMap.setOption(option);
-                }
-            })
+
+                        }
+                    ]
+                };
+                // 为echarts对象加载数据
+                pieMap.setOption(option);
+            }
+        })
     }
 }

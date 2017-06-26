@@ -137,9 +137,10 @@ export class AdvertisementDetailComponent implements OnInit {
                 ];
             } else {
                 swal({
-                    title: "获取商户信息失败!",
+                    title: "获取广告信息失败!",
                     text: res.error_msg,
-                    type: "error"
+                    type: "error",
+                    timer:"1500"
                 });
             }
         })
