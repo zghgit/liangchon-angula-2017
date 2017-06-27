@@ -18,3 +18,16 @@ body {
 .well{
     margin-bottom: 0!important;
 }
+
+input::-moz-placeholder {
+    color: #adadad;
+    font-size: 14px;
+}
+input::-webkit-input-placeholder {
+    color: #adadad;
+    font-size: 14px;
+}
+input:-ms-input-placeholder {
+    color: #adadad;
+    font-size: 14px;
+}

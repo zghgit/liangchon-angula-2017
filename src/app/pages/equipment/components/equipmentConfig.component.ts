@@ -54,7 +54,6 @@ export class EquipmentConfigComponent implements OnInit {
         let params = this.activatedRoute.params;
         params.subscribe(res => {
             this.device_no = res['id'];
-            console.log(this.device_no);
         })
         let data = this.activatedRoute.params
             .switchMap((params: Params) => this.appHttpService.postData(this.uc.api.qc + "/get_device_params_list/hash", {params: {device_no: params['id']}}));
@@ -63,7 +62,6 @@ export class EquipmentConfigComponent implements OnInit {
                 let _data = res.data;
                 this.coin_number = _data.turnover.coin_number;
                 this.card_money = _data.turnover.card_money;
-                console.log(_data);
                 //----old_params -1
                 this.oldParams.push({
                     key: 'device_no',
@@ -358,7 +356,7 @@ export class EquipmentConfigComponent implements OnInit {
     }
 
     saveData({value}={value}) {
-        console.log(value)
+        this.changeparams=[]
         let empty_turnover = 0;
         if (this.coin_number == 0 || this.card_money == 0) {
             empty_turnover = 1;

@@ -1,7 +1,7 @@
 <ng-container *ngIf="plugins.button">
     <uc-button [model]="plugins.button"></uc-button>
 </ng-container>
-<uc-search [searchData]="plugins.search" [buttons]="plugins.buttons" (upsearhdata)="searchData($event)"></uc-search>
+<uc-search [searchData]="plugins.search" [buttons]="plugins.buttons"></uc-search>
 <uc-table [model]="plugins.grid" (pageBeChanged)="pageBeChanged($event)"></uc-table>
 <div class="zoom" *ngIf="zoomInfo.show" (click)="closeZoom($event)">
     <div>

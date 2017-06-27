@@ -1,7 +1,7 @@
 /**
  * Created by max on 2017/6/22.
  */
-import { Component, OnInit, Input,Output,EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -12,7 +12,6 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class ucSearchComponent implements OnInit {
     @Input() searchData:any;
     @Input() buttons:any;
-    @Output() upsearhdata = new EventEmitter<any>();
     public form: FormGroup;
     constructor() { }
 
@@ -42,8 +41,4 @@ export class ucSearchComponent implements OnInit {
             this.form = this.toFormGroup(this.searchData);
         }
     }
-    save(value){
-        this.upsearhdata.emit(value);
-    }
-
 }
