@@ -134,7 +134,7 @@ export class OrderListComponent implements OnInit {
                 hidden: true,
                 placeholder: "请输入设备名称"
             }, {
-                title: '设备小区',
+                title: '设备小区名称',
                 key: "areas_name",
                 controlType: "input",
                 value: "",

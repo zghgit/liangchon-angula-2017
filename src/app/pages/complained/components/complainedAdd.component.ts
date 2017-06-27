@@ -5,7 +5,6 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {Validators} from '@angular/forms';
 import {AppHttpService, UC} from "../../../plugins/globalservice";
-import {ChargeDurationValidator} from  "../../../plugins/validators/chargeDurationValidator"
 
 declare var swal;
 @Component({

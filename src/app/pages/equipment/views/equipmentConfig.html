@@ -2,3 +2,20 @@
     <uc-button [model]="button"></uc-button>
 </ng-container>
 <uc-form [formData]="fields" (upformdata)="saveData($event)"></uc-form>
+<div class="zoom" *ngIf="showchangeparams" (click)="closeZoom($event)">
+    <div>
+        <ul>
+            <li *ngIf="changeparams.length==0" style="border: none"><h3>没有参数酸味发生变化,无需修改</h3></li>
+            <li *ngIf="changeparams.length>0" style="border: none"><h3>以下的参数配置项发生了变化</h3></li>
+            <li *ngFor="let item of changeparams">
+                <span>{{item.content}}：</span>
+                <span>{{item.value}}</span>
+                <span>修改为：{{item.new_value}}</span>
+            </li>
+        </ul>
+        <div class="btn-group">
+            <button class="btn btn-primary" [disabled]="changeparams.length==0" (click)="upParams()">确认修改</button>
+            <button class="btn btn-danger" (click)="closeZoom()">取消</button>
+        </div>
+    </div>
+</div>

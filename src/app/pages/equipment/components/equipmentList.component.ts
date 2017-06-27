@@ -386,18 +386,12 @@ export class EquipmentListComponent implements OnInit {
                             }
                         })
                     }
-                    if (this.uc.powerfun(this.uc.constant.set_device_params) && key.operation.indexOf(this.uc.powercontroll.update) >= 0 && key.net_status == 1) {
+                    if (key.device_type == 1&&this.uc.powerfun(this.uc.constant.set_device_params) && key.operation.indexOf(this.uc.powercontroll.update) >= 0 && key.net_status == 1) {
                         operations.push({
                             content: "参数配置",
                             class: "btn-danger",
                             click: (data) => {
-                                if (key.device_type == 1) {
-                                    this.router.navigate(['pages/equipment/equipmentConfig', key.device_no]);
-                                }
-                                if (key.device_type == 2) {
-                                    this.router.navigate(['pages/equipment/evseCardConfig', key.device_no]);
-
-                                }
+                                this.router.navigate(['pages/equipment/equipmentConfig', key.device_no]);
                             }
                         })
                     }

@@ -1,0 +1,45 @@
+.zoom {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .4);
+    z-index: 9999;
+    >div {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 500px;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 16px;
+        div{
+            display: flex;
+            button{
+                width: 50%;
+            }
+        }
+        ul{
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            li{
+                margin: 0;
+                padding: 10px 0;
+                border-bottom: 1px solid #ccc;
+                margin-bottom: 16px;
+                h3{
+                    margin: 0;
+                    color: #f44455;
+                    text-align: center;
+                }
+                span{
+                    min-width: 90px;
+                    display: inline-block;
+                }
+            }
+        }
+    }
+}

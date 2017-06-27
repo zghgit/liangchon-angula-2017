@@ -83,15 +83,13 @@ export class advertisementAddComponent implements OnInit {
             placeholder: "请输入广告显示时间",
             validator: [
                 Validators.required,
-                CustomValidators.min(0),
                 CustomValidators.number,
-                CustomValidators.max(30),
+                CustomValidators.range([0, 30]),
             ],
             errormsg: [
                 {type: "required", content: "必填项目"},
                 {type: "number", content: "只能是数字"},
-                {type: "min", content: "最少只能0秒"},
-                {type: "max", content: "最多只能30秒"},
+                {type: "range", content: "广告显示时间范围:(0-30)秒"},
             ]
         }, {
             label: "投放区域",

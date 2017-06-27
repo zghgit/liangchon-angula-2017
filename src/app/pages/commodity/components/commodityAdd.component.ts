@@ -5,7 +5,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {Validators} from '@angular/forms';
 import {AppHttpService, UC} from "../../../plugins/globalservice";
-import {ChargeDurationValidator} from  "../../../plugins/validators/chargeDurationValidator"
+import {TenValidator} from  "../../../plugins/validators/tenValidator"
 
 declare var swal;
 @Component({
@@ -63,12 +63,12 @@ export class CommodityAddComponent implements OnInit {
             validator: [
                 Validators.required,
                 Validators.pattern("^[0-9]+$"),
-                ChargeDurationValidator
+                TenValidator
             ],
             errormsg: [
                 {type: "required", content: "必填项目"},
                 {type: "pattern", content: "只能是数字"},
-                {type: "ChargeDurationValidator", content: "充电时长只能是10的倍数"},
+                {type: "TenValidator", content: "充电时长只能是10的倍数"},
             ]
         }, {
             label: "价格(元)",

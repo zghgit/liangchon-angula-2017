@@ -2,7 +2,7 @@
  * Created by max on 2017/4/24.
  */
 export class User {
-    userName: string = "admin";
-    password: string = "admin#2017";
+    userName: string = "";
+    password: string = "";
     identifyCode: string = "";
 }
