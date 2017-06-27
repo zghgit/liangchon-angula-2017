@@ -9,7 +9,13 @@
       "outDir": "release",
       "assets": [
         "assets",
-        "favicon.ico"
+        "favicon.ico",
+        "404.html",
+        "500.html",
+        "help.html",
+        "QRcode.html",
+        "userAgreement.html",
+        "webview.html"
       ],
       "index": "index.html",
       "main": "main.ts",

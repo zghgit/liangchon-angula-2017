@@ -45,8 +45,7 @@ export class EquipmentConfigComponent implements OnInit {
                     swal({
                         title: "提示!",
                         text: "营业额已清零,请重新提交配置",
-                        type: "error",
-                        timer: "1500"
+                        type: "success",
                     });
                 }
             };

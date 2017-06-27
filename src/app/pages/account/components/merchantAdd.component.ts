@@ -373,7 +373,7 @@ export class MerchantAddComponent implements OnInit {
         if (whether_settlement == 1) {
             if (settlement_cycle == "" || settlement_day == "") {
                 swal({
-                    title:"提交失败!",
+                    title:"提示!",
                     text:"请确认结算周期和结算日",
                     type:"error",
                     timer:"1500"

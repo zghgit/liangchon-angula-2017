@@ -115,8 +115,8 @@ export class CashWithdrawalComponent implements OnInit {
                     if (start_time && !end_time || !start_time && end_time) {
                         // swal("搜索失败","开始时间和结束时间要一起填写!","error");
                         swal({
-                            title: "开始时间和结束时间要一起填写!",
-                            text: "",
+                            title: "提示!",
+                            text: "开始时间和结束时间要一起填写",
                             type: "error",
                             timer: "1500"
                         });
@@ -125,7 +125,7 @@ export class CashWithdrawalComponent implements OnInit {
                     if (start_time > end_time) {
                         swal({
                             title: "开始时间不能大开结束时间!",
-                            text: "",
+                            text: "提示",
                             type: "error",
                             timer: "1500"
                         });

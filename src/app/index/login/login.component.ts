@@ -70,7 +70,7 @@ export class LoginComponent implements OnInit {
                         localStorage.setItem('powerapi', JSON.stringify(data.api));
                         // localStorage.setItem('powernav', JSON.stringify(JSON.parse(data.navigation)));
                         localStorage.setItem('powernav', JSON.stringify(this.uc.navModel));
-                        //导航
+                        //导航定位
                         this.dataService.setCookies("menu", "home");
                         this.router.navigateByUrl("/pages");
                     } else {

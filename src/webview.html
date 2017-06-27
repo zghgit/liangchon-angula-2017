@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="shortcut icon" href="static/images/favicon.png?v=0.1.0">
+    <title>资讯</title>
+    <style>
+        *{
+            margin: 0; padding: 0;
+            word-break: break-all;
+        }
+        body{
+            padding: 0 15px;
+        }
+        h2{
+            padding-top: 16px;
+            padding-bottom: 15px;
+            font-size: 18px;
+            color: #333333;
+        }
+        .information-content{
+            font-size: 15px;
+            line-height: 1.6;
+            color: #333333;
+        }
+        img{
+            width: 100%;
+            display: block;
+            margin: 15px auto;
+
+        }
+    </style>
+</head>
+<body>
+    <h2></h2>
+    <p style="color: #808080;margin-bottom: 15px;font-size: 12px;"><span style="margin-right: 1em">作者：</span><span>时间：</span></p>
+    <div class="information-content"></div>
+</body>
+<script>
+    try {
+        var query_params=window.location.href.split('?')[1].split('=')[1];
+    }catch (e){
+        alert('系统错误')
+    }
+    var url='/api/wyc/get_information/hash/';
+    var xhr=new XMLHttpRequest();
+    xhr.open('POST',url);
+    xhr.setRequestHeader("Content-type","application/json;charset=utf-8");
+    var params={
+        params:{
+            information_id:query_params
+        }
+    };
+    xhr.send(JSON.stringify(params));
+    xhr.onreadystatechange=function(){
+        if(xhr.readyState==4&&xhr.status==200){
+            var data=JSON.parse(xhr.responseText).data;
+            var title=data.information_title||'';
+            var content=data.information_content||'';
+            var author=data.updater_name ? data.updater_name:data.creater_name||'';
+            var time=data.update_time ? data.update_time:data.create_time||'';
+            document.querySelector('h2').innerHTML=title;
+            document.querySelectorAll('span')[0].innerHTML+=author;
+            document.querySelectorAll('span')[1].innerHTML+=time;
+            document.querySelector('.information-content').innerHTML=content;
+        }
+    }
+</script>
+</html>

@@ -519,7 +519,7 @@ export class UC {
             "icon": "complained",
             "submenu": [{
                 "show": true,
-                "name": "申诉",
+                "name": "申诉一览",
                 "href": "complainedList"
             }, {
                 "show": false,
@@ -529,7 +529,11 @@ export class UC {
                 "show": false,
                 "name": "查看申诉",
                 "href": "complainedDetail"
-            }]
+            },{
+                "show": true,
+                "name": "反馈一览",
+                "href": "feedbackList"
+            },]
         },
         {
             "show": true,

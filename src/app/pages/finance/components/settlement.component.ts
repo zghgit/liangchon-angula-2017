@@ -111,8 +111,8 @@ export class SettlementComponent implements OnInit {
                     } = value;
                     if(settlement_month){
                         swal({
-                            title: "请选择年份!",
-                            text: "",
+                            title: "提示!",
+                            text: "请选择年份",
                             type: "error",
                             timer: "1500"
                         });

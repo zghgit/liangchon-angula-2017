@@ -4,12 +4,16 @@
 import {Injectable} from "@angular/core";
 import {Http, Headers, Response, RequestOptions} from "@angular/http";
 import {Observable} from "rxjs";
+import {DataService} from "./uc.dataservice";
 declare var swal;
 @Injectable()
 export class AppHttpService {
     public error: Error;
 
-    constructor(public http: Http) {
+    constructor(
+        public http: Http,
+        public dataService:DataService
+    ) {
     };
 
     public postData(url: string, params?: any): Observable<any> {
@@ -26,9 +30,11 @@ export class AppHttpService {
                         type: "error",
                         confirmButtonText: "OK",
                     }).then(function () {
+                        this.dataService.clearAll()
                         location.href="";
                     });
                     setTimeout(function () {
+                        this.dataService.clearAll()
                         location.href="";
                     },5000)
                 }else {
@@ -48,8 +54,13 @@ export class AppHttpService {
                         text: "请重新登陆",
                         type: "error",
                     }).then(function () {
+                        this.dataService.clearAll()
                         location.href="";
                     });
+                    setTimeout(function () {
+                        this.dataService.clearAll()
+                        location.href="";
+                    },5000)
                 }else {
                     return result;
                 }
