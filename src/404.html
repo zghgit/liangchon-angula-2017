@@ -12,9 +12,31 @@
     <meta name="renderer" content="webkit">
 
     <title>去充监控管理系统</title>
-
-    <link rel="shortcut icon" href="static/images/favicon.png?v=0.1.0">
-    <link rel="stylesheet" href="static/styles/app.min.css?v=0.1.0">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <style>
+        .uc-error {
+            width: 100%;
+            height: 100%;
+            background: #FFF;
+        }
+        .uc-error div{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 500px;
+            height: 500px;
+            margin: -250px 0 0 -250px;
+        }
+        .uc-error .uc-404{
+            background: url("/assets/images/404.png");
+        }
+        .uc-error a{
+            position: absolute;
+            top: 60%;
+            left: 40%;
+            color: #fff;
+        }
+    </style>
 </head>
 <body>
     <div class="uc-error">
