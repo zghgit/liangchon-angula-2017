@@ -17,6 +17,7 @@ body {
 /*时间选择器去掉margin-bottom:20px*/
 .well{
     margin-bottom: 0!important;
+    background: white!important;
 }
 
 input::-moz-placeholder {

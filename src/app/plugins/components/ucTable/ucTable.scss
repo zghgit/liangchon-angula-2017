@@ -5,7 +5,7 @@
         align-self: center;
     }
     .my-table{
-        overflow-x: scroll;
+        overflow-x:auto;
         box-shadow: 0 1px 7px rgba(0, 0, 0, .1);
     }
 }
@@ -49,6 +49,8 @@ table {
                 padding: 8px 16px;
                 white-space: nowrap;
                 text-overflow: ellipsis;
+                max-width: 500px;
+                overflow: hidden;
                 &.hidden {
                     display: none;
                 }

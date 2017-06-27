@@ -148,6 +148,7 @@ export class EquipmentConfigComponent implements OnInit {
                 });
                 this.fields = [
                     {
+                        title:"基本配置",
                         label: "设备编号",
                         key: "device_no",
                         controlType: "input",
@@ -327,6 +328,7 @@ export class EquipmentConfigComponent implements OnInit {
                         },
                         placeholder: "请点击选择日期",
                     }, {
+                        title:"营业额统计",
                         label: "投币次数(次)",
                         key: "coin_number",
                         controlType: "input",
@@ -390,7 +392,6 @@ export class EquipmentConfigComponent implements OnInit {
             }
         }
         this.showchangeparams = true;
-        console.log(this.changeparams)
     }
     upParams(){
         this.appHttpService.postData(this.uc.api.qc + "/set_device_params/hash", {params:this.newparams}).subscribe(

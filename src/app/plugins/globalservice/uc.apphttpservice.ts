@@ -24,11 +24,13 @@ export class AppHttpService {
                         title: "登陆超时!",
                         text: "请重新登陆",
                         type: "error",
-                        timer:"1500"
-                    });
-                    setTimeout(()=>{
+                        confirmButtonText: "OK",
+                    }).then(function () {
                         location.href="";
-                    },2000)
+                    });
+                    setTimeout(function () {
+                        location.href="";
+                    },5000)
                 }else {
                     return result;
                 }
@@ -45,11 +47,9 @@ export class AppHttpService {
                         title: "登陆超时!",
                         text: "请重新登陆",
                         type: "error",
-                        timer:"1500"
-                    });
-                    setTimeout(()=>{
+                    }).then(function () {
                         location.href="";
-                    },2000)
+                    });
                 }else {
                     return result;
                 }
