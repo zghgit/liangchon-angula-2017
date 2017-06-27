@@ -24,8 +24,7 @@
         "../node_modules/sweetalert2/dist/sweetalert2.min.css"
       ],
       "scripts": [
-        "../node_modules/sweetalert2/dist/sweetalert2.min.js",
-        "../node_modules/moment/min/moment.min.js"
+        "../node_modules/sweetalert2/dist/sweetalert2.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

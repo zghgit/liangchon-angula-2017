@@ -4,7 +4,7 @@
 import {Component, OnInit,HostListener} from '@angular/core';
 import {AppHttpService, UC} from "../../../plugins/globalservice";
 import * as echarts from 'echarts/index.common';
-declare var moment;
+import * as moment from 'moment';
 @Component({
     selector: 'app-user-increase',
     templateUrl: '../views/appUserIncrease.html',
