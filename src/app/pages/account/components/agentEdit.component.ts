@@ -189,7 +189,7 @@ export class AgentEditComponent implements OnInit {
                         fileType: "img",
                         value: _data.certificate_img_1,
                         config: {
-                            value: _data.certificate_img_1,
+                            value: [_data.certificate_img_1],
                             accept:"image/*",
                             uploadurl: this.uc.api.qc + "/upload_file/hash/",
                             downloadurl: this.uc.api.qc + "/get_file/hash/",

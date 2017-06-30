@@ -44,7 +44,7 @@ export class EquipmentBatchSetComponent implements OnInit {
                 key: "device_no",
                 controlType: "input",
                 value: "",
-                placeholder: "请输入账户名称"
+                placeholder: "请输入设备编号"
             },{
                 title: '所属商家',
                 key: "owner_name",

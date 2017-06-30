@@ -29,12 +29,12 @@ export class AppHttpService {
                         text: "请重新登陆",
                         type: "error",
                         confirmButtonText: "OK",
-                    }).then(function () {
-                        this.dataService.clearAll()
+                    }).then(()=> {
+                        this.dataService.clearAll();
                         location.href="";
                     });
-                    setTimeout(function () {
-                        this.dataService.clearAll()
+                    setTimeout(()=>{
+                        this.dataService.clearAll();
                         location.href="";
                     },5000)
                 }else {
@@ -53,12 +53,12 @@ export class AppHttpService {
                         title: "登陆超时!",
                         text: "请重新登陆",
                         type: "error",
-                    }).then(function () {
-                        this.dataService.clearAll()
+                    }).then(()=> {
+                        this.dataService.clearAll();
                         location.href="";
                     });
-                    setTimeout(function () {
-                        this.dataService.clearAll()
+                    setTimeout(()=>{
+                        this.dataService.clearAll();
                         location.href="";
                     },5000)
                 }else {

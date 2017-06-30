@@ -18,7 +18,9 @@ export class rechargeCardRecordListComponent implements OnInit {
     public now: number = 1;
     public plugins: any = {};
     public moreCondition: boolean = false;
-    public searchBy: any = {};
+    public searchBy: any = {
+        order_no:""
+    };
 
     constructor(public router: Router,
                 public appHttpService: AppHttpService,
@@ -91,7 +93,7 @@ export class rechargeCardRecordListComponent implements OnInit {
                 key: "order_status",
                 controlType: "select",
                 value: "0",
-                placeholder: "请选择支付方式",
+                placeholder: "请选择充值状态",
                 options: [{
                     name: '已完成',
                     geo_id: "2"
@@ -300,7 +302,9 @@ export class rechargeCardRecordListComponent implements OnInit {
                 class: "btn-danger",
                 content: "重置",
                 click: () => {
-                    this.searchBy = {};
+                    this.searchBy = {
+                        order_no:""
+                    };
                     this.now = 1;
                     this.getGridData({
                         page_now: this.now,
@@ -361,7 +365,7 @@ export class rechargeCardRecordListComponent implements OnInit {
                                     text: '',
                                     type: 'warning',
                                     showCancelButton: true,
-                                    confirmButtonText: '确定!',
+                                    confirmButtonText: '确定',
                                     cancelButtonText: '取消',
                                     showLoaderOnConfirm: true,
                                     confirmButtonColor: "#DD6B55",
@@ -403,7 +407,7 @@ export class rechargeCardRecordListComponent implements OnInit {
                                     text: '',
                                     type: 'warning',
                                     showCancelButton: true,
-                                    confirmButtonText: '确定!',
+                                    confirmButtonText: '确定',
                                     cancelButtonText: '取消',
                                     showLoaderOnConfirm: true,
                                     confirmButtonColor: "#DD6B55",

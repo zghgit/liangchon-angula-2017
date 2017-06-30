@@ -54,13 +54,13 @@ export class refundRecordListComponent implements OnInit {
                 key: "order_no",
                 controlType: "input",
                 value: "",
-                placeholder: "请输入账户名称"
+                placeholder: "请输入订单编号"
             }, {
                 title: '退款方式',
                 key: "refund_type",
                 controlType: "select",
                 value: "0",
-                placeholder: "请选择订单状态",
+                placeholder: "请选择退款方式",
                 options: [{
                     name: '支付宝',
                     geo_id: "1"

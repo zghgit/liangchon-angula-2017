@@ -529,11 +529,15 @@ export class UC {
                 "show": false,
                 "name": "查看申诉",
                 "href": "complainedDetail"
-            },{
+            }, {
                 "show": true,
                 "name": "反馈一览",
                 "href": "feedbackList"
-            },]
+            }, {
+                "show": false,
+                "name": "查看反馈信息",
+                "href": "feedbackDetail"
+            }]
         },
         {
             "show": true,

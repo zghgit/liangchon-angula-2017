@@ -192,8 +192,8 @@ export class EquipmentInitEditComponent implements OnInit {
                                 let device_address = this.fields[8];
                                 if (business_address.province.content == "" && business_address.city.content == "" && business_address.area.content == "") {
                                     swal({
-                                        title: "请先选择设备所在地区!",
-                                        text: "",
+                                        title: "提示!",
+                                        text: "请先选择设备所在地区",
                                         type: "error",
                                         timer:"1500"
                                     });
@@ -201,8 +201,8 @@ export class EquipmentInitEditComponent implements OnInit {
                                 }
                                 if (device_address.value == "") {
                                     swal({
-                                        title: "请先输入设备详细地址!",
-                                        text: "",
+                                        title: "提示!",
+                                        text: "请先输入设备详细地址",
                                         type: "error",
                                         timer:"1500"
                                     });

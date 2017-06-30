@@ -63,13 +63,13 @@ export class LoginComponent implements OnInit {
                         //存在服务里
                         this.dataService.setLocalStorage("module_permission", data.module_permission);
                         this.dataService.setLocalStorage("powerapi", data.api);
-                        // this.dataService.setLocalStorage("powernav", JSON.parse(data.navigation));
-                        this.dataService.setLocalStorage("powernav", this.uc.navModel);
+                        this.dataService.setLocalStorage("powernav", JSON.parse(data.navigation));
+                        // this.dataService.setLocalStorage("powernav", this.uc.navModel);
                         //存在本地
-                        localStorage.setItem('module_permission', JSON.stringify(data.module_permission));
-                        localStorage.setItem('powerapi', JSON.stringify(data.api));
+                        // localStorage.setItem('module_permission', JSON.stringify(data.module_permission));
+                        // localStorage.setItem('powerapi', JSON.stringify(data.api));
                         // localStorage.setItem('powernav', JSON.stringify(JSON.parse(data.navigation)));
-                        localStorage.setItem('powernav', JSON.stringify(this.uc.navModel));
+                        // localStorage.setItem('powernav', JSON.stringify(this.uc.navModel));
                         //导航定位
                         this.dataService.setCookies("menu", "home");
                         this.router.navigateByUrl("/pages");

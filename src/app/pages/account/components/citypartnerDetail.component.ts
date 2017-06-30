@@ -93,7 +93,7 @@ export class CitypartnerDetailComponent implements OnInit {
                     {
                         type: 'img',
                         label: '营业执照-照片',
-                        src: basesrc+_data.certificate_img_1
+                        src: [basesrc+_data.certificate_img_1]
                     }, {
                         type: 'text',
                         label: '税务登记证-登记号',
@@ -101,7 +101,7 @@ export class CitypartnerDetailComponent implements OnInit {
                     }, {
                         type: 'img',
                         label: '税务登记证-照片',
-                        src: basesrc+_data.certificate_img_2
+                        src: [basesrc+_data.certificate_img_2]
                     }, {
                         type: 'text',
                         label: '组织结构代码',
@@ -109,7 +109,7 @@ export class CitypartnerDetailComponent implements OnInit {
                     }, {
                         type: 'img',
                         label: '组织结构代码-照片',
-                        src: basesrc+_data.certificate_img_3
+                        src: [basesrc+_data.certificate_img_3]
                     }, {
                         type: 'text',
                         label: '性质',

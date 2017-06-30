@@ -1,0 +1,65 @@
+<ng-container *ngIf="plugins.button">
+    <uc-button [model]="plugins.button"></uc-button>
+</ng-container>
+<!--<uc-details [model]="plugins.table"></uc-details>-->
+<div class="feedback" (click)="zoomImg($event)">
+    <section>
+        <div>
+            <p>用户<span>{{feedbackInfo.user_name}}</span>的反馈:</p>
+            <small>{{feedbackInfo.create_time}}</small>
+        </div>
+        <div>
+            <label>反馈内容:</label>
+            <p class="feedback-content">{{feedbackInfo.feedback_content}}</p>
+            <ng-container *ngIf="feedbackInfo.feedback_img">
+                <ng-container *ngFor="let item of feedbackInfo.feedback_img">
+                    <img src="{{baseurl}}{{item}}">
+                </ng-container>
+            </ng-container>
+        </div>
+    </section>
+    <ng-container *ngFor="let item of replyList">
+        <section>
+            <div>
+                <p *ngIf="item.user_id==user_id">用户<span>{{item.user_name}}</span>的回复:</p>
+                <p *ngIf="item.user_id!=user_id">管理员<span>{{item.user_name}}</span>的回复:</p>
+                <small>{{item.create_time}}</small>
+            </div>
+            <div>
+                <label>回复内容:</label>
+                <p class="feedback-content">{{item.feedback_content}}</p>
+                <ng-container *ngIf="item.feedback_img">
+                    <ng-container *ngFor="let subitem of item.feedback_img">
+                        <img src="{{baseurl}}{{subitem}}">
+                    </ng-container>
+                </ng-container>
+            </div>
+        </section>
+    </ng-container>
+</div>
+<div class="map-container" *ngIf="showFeedback" (click)="zoomImg($event)">
+    <form #form="ngForm">
+        <header>管理员回复</header>
+        <div class="form-group">
+            <label><span>*</span>回复内容</label>
+            <div class="main-content">
+                <textarea class="form-control" placeholder="请输入回复内容" rows="5" [(ngModel)]="reply_content" name="reply_content" required></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>图片上传<i>{{img_error}}</i></label>
+            <div class="main-content">
+                <input class="form-control" type="hidden" [value]="reply_img" name="reply_img">
+                <div [ngClass]="{'disabled':notallowload}"></div>
+                <base-upfile [model]="uploadconfig" (fileready)="filehasup($event)"></base-upfile>
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="button" class="btn btn-primary" [disabled]="!form.form.valid" (click)="uploadformdata()">确认回复</button>
+            <button type="button" class="btn btn-danger" (click)="closeFeedback()">取消回复</button>
+        </div>
+    </form>
+</div>
+<div class="zoom" *ngIf="showZoom" (click)="closeZoomImg($event)">
+    <img src="{{zoomSrc}}" alt="">
+</div>

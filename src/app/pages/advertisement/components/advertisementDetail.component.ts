@@ -104,7 +104,7 @@ export class AdvertisementDetailComponent implements OnInit {
                     }, {
                         type: 'img',
                         label: '广告图片',
-                        src: basesrc+_data.advertisement_url
+                        src: [basesrc+_data.advertisement_url]
                     }, {
                         type: 'text',
                         label: '链接地址',

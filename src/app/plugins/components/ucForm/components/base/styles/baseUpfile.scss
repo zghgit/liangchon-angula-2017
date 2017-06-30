@@ -1,6 +1,6 @@
-.main-file{
-    >div{
-        span{
+.main-file {
+    > div {
+        span {
             margin-top: -3px;
             padding: 2px 6px 3px;
             border: 1px solid #C0C0C0;
@@ -22,11 +22,14 @@
         width: 0;
         border-radius: .25rem;
         transition: width 1.8s linear;
-        &.fileError{
+        &.fileError {
+            transition: none;
+        }
+        &.multi{
             transition: none;
         }
     }
-    img{
+    img {
         width: 140px;
         height: 88px;
         margin-top: 8px;

@@ -19,7 +19,9 @@ export class OrderListComponent implements OnInit {
     public plugins: any = {};
     public timecount = Number(new Date().getTime());
     public moreCondition: boolean = false;
-    public searchBy: any = {};
+    public searchBy: any = {
+        order_no:""
+    };
 
     constructor(public router: Router,
                 public appHttpService: AppHttpService,
@@ -69,7 +71,7 @@ export class OrderListComponent implements OnInit {
                 key: "order_no",
                 controlType: "input",
                 value: "",
-                placeholder: "请输入账户名称"
+                placeholder: "请输入订单编号"
             }, {
                 title: '订单状态',
                 key: "order_status",
@@ -290,7 +292,9 @@ export class OrderListComponent implements OnInit {
                 class: "btn-danger",
                 content: "重置",
                 click: () => {
-                    this.searchBy={};
+                    this.searchBy={
+                        order_no:""
+                    };
                     this.now = 1;
                     this.getGridData({
                         page_now: this.now,
@@ -387,7 +391,7 @@ export class OrderListComponent implements OnInit {
                                     text: '',
                                     type: 'warning',
                                     showCancelButton: true,
-                                    confirmButtonText: '确定!',
+                                    confirmButtonText: '确定',
                                     cancelButtonText: '取消',
                                     showLoaderOnConfirm: true,
                                     confirmButtonColor: "#DD6B55",
@@ -429,7 +433,7 @@ export class OrderListComponent implements OnInit {
                                     text: '',
                                     type: 'warning',
                                     showCancelButton: true,
-                                    confirmButtonText: '确定!',
+                                    confirmButtonText: '确定',
                                     cancelButtonText: '取消',
                                     showLoaderOnConfirm: true,
                                     confirmButtonColor: "#DD6B55",
@@ -471,7 +475,7 @@ export class OrderListComponent implements OnInit {
                                     text: '',
                                     type: 'warning',
                                     showCancelButton: true,
-                                    confirmButtonText: '确定!',
+                                    confirmButtonText: '确定',
                                     cancelButtonText: '取消',
                                     showLoaderOnConfirm: true,
                                     confirmButtonColor: "#DD6B55",
@@ -529,7 +533,6 @@ export class OrderListComponent implements OnInit {
     downloadTemplate(params) {
         this.appHttpService.getBinary(this.uc.api.qc + '/download_order_info/hash/',{params:params}).subscribe(res => {
             let disposition = res.headers._headers.get("content-disposition");
-
             if (!disposition) {
                 swal("下载失败", res.error_msg, "error")
             } else {

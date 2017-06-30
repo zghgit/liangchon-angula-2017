@@ -7,7 +7,9 @@
                     <td *ngSwitchCase="'text'">{{item.content}}</td>
                     <td *ngSwitchCase="'html'">{{item.content}}</td>
                     <td *ngSwitchCase="'img'">
-                        <img src="{{item.src}}" alt="{{item.alt}}">
+                        <ng-container *ngFor="let imgitem of item.src">
+                            <img src="{{imgitem}}">
+                        </ng-container>
                     </td>
                 </ng-container>
             </tr>

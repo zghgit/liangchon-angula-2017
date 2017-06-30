@@ -68,11 +68,12 @@ export class complainedAddComponent implements OnInit {
             controlType: "input",
             inputType: "text",
             value: "",
-            placeholder: "请输入价格",
+            placeholder: "请输入备注",
         }
     ];
 
     saveData({value}={value}) {
+        console.log(value);
         let params = {
             params: value
         }

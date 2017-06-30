@@ -7,7 +7,9 @@ import { ComplainComponent } from './complained.component';
 import {
     complainedAddComponent,
     complainedDetailComponent,
-    complainedListComponent
+    complainedListComponent,
+    FeedbackListComponent,
+    FeedbackDetailComponent,
 } from './components';
 export const ComplainRoutes :Routes = [
     { path: "",
@@ -17,6 +19,8 @@ export const ComplainRoutes :Routes = [
             { path: 'complainedList', component: complainedListComponent },
             { path: 'complainedAdd', component: complainedAddComponent },
             { path: 'complainedDetail/:id', component: complainedDetailComponent },
+            { path: 'feedbackDetail/:id', component: FeedbackDetailComponent },
+            { path: 'feedbackList', component: FeedbackListComponent },
         ]
     },
 ];

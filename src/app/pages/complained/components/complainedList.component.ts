@@ -173,7 +173,7 @@ export class complainedListComponent implements OnInit {
                                     text: '',
                                     type: 'warning',
                                     showCancelButton: true,
-                                    confirmButtonText: '确定!',
+                                    confirmButtonText: '确定',
                                     cancelButtonText: '取消',
                                     showLoaderOnConfirm: true,
                                     confirmButtonColor: "#DD6B55",

@@ -231,11 +231,11 @@ export class EquipmentConfigComponent implements OnInit {
                         value: _data.modify_parameter.card_deduction,
                         placeholder: "请输入一次刷卡扣费的金额",
                         validator: [
-                            CustomValidators.range([0, 25.5]),
+                            CustomValidators.range([0.1, 25.5]),
                             Validators.pattern('^[0-9]+\.?[0-9]{0,1}$'),
                         ],
                         errormsg: [
-                            {type: "range", content: "扣费金额范围:(0-25.5)"},
+                            {type: "range", content: "扣费金额范围:(0.1-25.5)"},
                             {type: "pattern", content: "扣费金额只能是数字，保留两位有效数字；如：0.1"},
 
                         ]
@@ -247,11 +247,11 @@ export class EquipmentConfigComponent implements OnInit {
                         value: _data.modify_parameter.card_time,
                         placeholder: "请输入刷卡一次增加的时间",
                         validator: [
-                            CustomValidators.range([0, 2550]),
+                            CustomValidators.range([10, 2550]),
                             TenValidator
                         ],
                         errormsg: [
-                            {type: "range", content: "刷卡时间范围:(0-2550)分钟"},
+                            {type: "range", content: "刷卡时间范围:(10-2550)分钟"},
                             {type: "TenValidator", content: "刷卡时间范围只能是10的倍数"},
                         ]
                     }, {
@@ -262,11 +262,11 @@ export class EquipmentConfigComponent implements OnInit {
                         value: _data.modify_parameter.coin_time,
                         placeholder: "请输入投币一次增加的时间",
                         validator: [
-                            CustomValidators.range([0, 2550]),
+                            CustomValidators.range([10, 2550]),
                             TenValidator
                         ],
                         errormsg: [
-                            {type: "range", content: "投币时间范围:(0-2550)分钟"},
+                            {type: "range", content: "投币时间范围:(10-2550)分钟"},
                             {type: "TenValidator", content: "投币时间范围只能是10的倍数"},
                         ]
                     }, {
@@ -277,11 +277,11 @@ export class EquipmentConfigComponent implements OnInit {
                         value: _data.modify_parameter.standard_current,
                         placeholder: "请输入标准电流",
                         validator: [
-                            CustomValidators.range([0, 25.5]),
+                            CustomValidators.range([0.1, 25.5]),
                             Validators.pattern('^[0-9]+\.?[0-9]{0,1}$'),
                         ],
                         errormsg: [
-                            {type: "range", content: "标准电流范围:(0-25.5)"},
+                            {type: "range", content: "标准电流范围:(0.1-25.5)"},
                             {type: "pattern", content: "标准电流只能是数字，保留一位有效数字；如：0.1A"},
                         ]
                     }, {
@@ -292,11 +292,11 @@ export class EquipmentConfigComponent implements OnInit {
                         value: _data.modify_parameter.maxinum_current,
                         placeholder: "请输入最大电流",
                         validator: [
-                            CustomValidators.range([0, 25.5]),
+                            CustomValidators.range([0.1, 25.5]),
                             Validators.pattern('^[0-9]+\.?[0-9]{0,1}$'),
                         ],
                         errormsg: [
-                            {type: "range", content: "最大电流范围:(0-25.5)"},
+                            {type: "range", content: "最大电流范围:(0.1-25.5)"},
                             {type: "pattern", content: "最大电流只能是数字，保留一位有效数字；如：0.1A"},
 
                         ]

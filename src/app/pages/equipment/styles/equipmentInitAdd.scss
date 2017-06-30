@@ -1,4 +1,4 @@
-form{
+form {
     margin-bottom: 16px;
     padding: 16px;
     background: #fff;
@@ -7,12 +7,12 @@ form{
     border: 1px solid #dfdfdf;
     background: white;
     box-shadow: 0 1px 7px rgba(0, 0, 0, 0.1);
-    >div{
-        >label{
+    > div {
+        > label {
             font-size: 14px;
             font-weight: 500;
             position: relative;
-            >span{
+            > span {
                 color: #f44455;
                 position: absolute;
                 top: -5px;
@@ -21,32 +21,34 @@ form{
         }
     }
 }
+
 //地图窗口
-.map-container{
+.map-container {
     width: 100vw;
     height: 100vh;
     position: fixed;
     top: 0;
     left: 0;
     text-align: center;
-    background: rgba(0,0,0,.74);
+    background: rgba(0, 0, 0, 0.4);
     z-index: 9999;
-    .map-wrap{
+    .map-wrap {
         padding: 24px;
         background: #fff;
         background: white;
         position: absolute;
         top: 50%;
         left: 50%;
-        -webkit-transform: translate(-50%,-50%);
-        transform: translate(-50%,-50%);
-        button{
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        button {
             margin-top: 16px;
         }
     }
 }
+
 //地图容器
-#coordinate{
+#coordinate {
     height: 360px;
     width: 480px;
 }

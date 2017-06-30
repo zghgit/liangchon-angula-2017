@@ -17,7 +17,9 @@ export class OrganizationStatisticsComponent implements OnInit {
     public now: number = 1;
     public plugins: any = {};
     public moreCondition: boolean = false;
-    public searchBy: any = {};
+    public searchBy: any = {
+        user_name:""
+    };
 
     constructor(public router: Router,
                 public appHttpService: AppHttpService,
@@ -275,6 +277,7 @@ export class OrganizationStatisticsComponent implements OnInit {
         this.plugins.grid = {
             th: [
                 {content: 'ID', hidden: true},
+                {content: '时间'},
                 {content: '机构名称'},
                 {content: '机构类型'},
                 {content: '设备名称'},
@@ -337,6 +340,7 @@ export class OrganizationStatisticsComponent implements OnInit {
                     let tds: Array<any>;
                     tds = [
                         {content: key.order_id, hidden: true},
+                        {content: key.year + '-' + key.month + '-' + key.day},
                         {content: key.user_name},
                         {content: key.role_name},
                         {content: key.device_name},
