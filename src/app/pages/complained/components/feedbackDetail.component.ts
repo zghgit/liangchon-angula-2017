@@ -58,6 +58,26 @@ export class FeedbackDetailComponent implements OnInit {
             downloadurl: this.uc.api.qc + "/get_file/hash/",
             capsule: "feedbackimg"
         }
+        this.getFeedback()
+    }
+    filehasup(ev){
+        console.log(ev)
+        this.reply_img=JSON.parse(ev.value);
+        if (this.reply_img.length>=4){
+            this.notallowload = true;
+            this.img_error = "最多只能上传4张图片!";
+            setTimeout(()=>{
+                this.img_error = "";
+            },2000);
+            swal({
+                title: "提示!",
+                text: "最多只能上传4张图片",
+                type: "error",
+                timer: "1500"
+            });
+        }
+    }
+    getFeedback(){
         let data = this.activatedRoute.params
             .switchMap((params: Params) => this.appHttpService.postData(this.uc.api.qc + "/get_feedback_info/hash", {params: {feedback_id: params['id']}}));
         data.subscribe((res) => {
@@ -77,24 +97,6 @@ export class FeedbackDetailComponent implements OnInit {
             }
         })
     }
-    filehasup(ev){
-        console.log(ev)
-        this.reply_img=JSON.parse(ev.value);
-        if (this.reply_img.length>=4){
-            this.notallowload = true;
-            this.img_error = "最多只能上传4张图片!";
-            setTimeout(()=>{
-                this.img_error = "";
-            },2000);
-            swal({
-                title: "提示!",
-                text: "最多只能上传4张图片",
-                type: "error",
-                timer: "1500"
-            });
-        }
-    }
-
     //上传文件
     uploadformdata(){
         let params = {
@@ -108,6 +110,7 @@ export class FeedbackDetailComponent implements OnInit {
             res => {
                 if (res.status) {
                     this.closeFeedback();
+                    this.getFeedback()
                     swal({
                         title: "回复反馈成功!",
                         text: "",

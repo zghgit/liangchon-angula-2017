@@ -70,10 +70,10 @@ export class HomeComponent implements OnInit {
                 });
                 dataTitle=[alarm_num,free_num,offline_num,charging_num];
                 dataContent =[
-                    {name:alarm_num,value:data.alarm_num},
-                    {name:free_num,value:data.free_num},
-                    {name:offline_num,value:data.offline_num},
-                    {name:charging_num,value:data.charging_num},
+                    {name:alarm_num,value:data.alarm_num||0},
+                    {name:free_num,value:data.free_num||0},
+                    {name:offline_num,value:data.offline_num||0},
+                    {name:charging_num,value:data.charging_num||0},
                 ];
                 let pieChart = {
                     title : {
