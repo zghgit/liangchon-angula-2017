@@ -39,11 +39,11 @@ declare var swal: any;
 })
 export class BaseUpfileComponent implements OnInit {
     @Input() model;
-    public selectedFile;
-    public progressBar: number = 0;
-    public fileError: boolean = false;
-    public file;
-    public fileSrc:Array<any>=[];
+    public selectedFile;//选择的文件的DOM标签
+    public progressBar: number = 0;//进度条
+    public fileError: boolean = false;//上传错误
+    public file;//要上传的文件
+    public fileSrc:Array<any>=[];//图片的src
     public isprogress:boolean=false;
     @Output() fileready = new EventEmitter<any>();
 
@@ -71,10 +71,28 @@ export class BaseUpfileComponent implements OnInit {
         this.isprogress = true;
         this.progressBar = 0;
         this.fileError = false;
-        var xhr = new XMLHttpRequest();
         this.selectedFile = document.getElementById(this.model.capsule)
         this.file = this.selectedFile.files[0];
+        if(this.model.accept=='image/*'&&!/(.jgp)|(.png)|(.jpeg)/.test((this.file.type || this.file.name).toLowerCase())){
+            swal({
+                title: "提示!",
+                text: "只能上传jpg,png,jpep格式的图片",
+                type: "error"
+            });
+            this.selectedFile.value = "";
+            return
+        }
+        if(this.model.size&&(this.file.size>=this.model.size*1024*1024)){
+            swal({
+                title: "提示!",
+                text: "上传文件过大,只允许上传"+this.model.size+"MB以下的文件",
+                type: "error"
+            });
+            this.selectedFile.value = "";
+            return
+        }
         if (this.file) {
+            let xhr = new XMLHttpRequest();
             let fd = new FormData();
             fd.append("capsule", this.model.capsule);
             fd.append("file", this.file);

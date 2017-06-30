@@ -59,6 +59,7 @@ export class EquipmentImportComponent implements OnInit {
         this.fileError = false;
         this.selectedFile = document.getElementById(this.id)
         this.file = this.selectedFile.files[0];
+        console.log(this.file)
         if (this.file) {
             this.cannotupload = false;
         } else {

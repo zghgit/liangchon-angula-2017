@@ -69,6 +69,7 @@ export class AdvertisementEditComponent implements OnInit {
                     config: {
                         value: _data.advertisement_url,
                         accept:"image/*",
+                        size:2,
                         uploadurl: this.uc.api.qc + "/upload_file/hash/",
                         downloadurl: this.uc.api.qc + "/get_file/hash/",
                         capsule: "advertisement_url"

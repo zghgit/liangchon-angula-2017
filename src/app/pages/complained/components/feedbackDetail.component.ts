@@ -54,6 +54,7 @@ export class FeedbackDetailComponent implements OnInit {
             value: '',
             accept: "image/*",
             multi:true,
+            size:4,
             uploadurl: this.uc.api.qc + "/upload_file/hash/",
             downloadurl: this.uc.api.qc + "/get_file/hash/",
             capsule: "feedbackimg"
