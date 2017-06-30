@@ -1,41 +1,39 @@
-<ng-container *ngIf="plugins.button">
-    <uc-button [model]="plugins.button"></uc-button>
-</ng-container>
 <!--<uc-details [model]="plugins.table"></uc-details>-->
 <div class="feedback" (click)="zoomImg($event)">
     <section>
         <div>
             <p>用户<span>{{feedbackInfo.user_name}}</span>的反馈:</p>
-            <small>{{feedbackInfo.create_time}}</small>
         </div>
         <div>
-            <label>反馈内容:</label>
             <p class="feedback-content">{{feedbackInfo.feedback_content}}</p>
-            <ng-container *ngIf="feedbackInfo.feedback_img">
+            <div *ngIf="feedbackInfo.feedback_img">
                 <ng-container *ngFor="let item of feedbackInfo.feedback_img">
                     <img src="{{baseurl}}{{item}}">
                 </ng-container>
-            </ng-container>
+            </div>
         </div>
+        <small>{{feedbackInfo.create_time}}</small>
     </section>
     <ng-container *ngFor="let item of replyList">
         <section>
             <div>
                 <p *ngIf="item.user_id==user_id">用户<span>{{item.user_name}}</span>的回复:</p>
                 <p *ngIf="item.user_id!=user_id">管理员<span>{{item.user_name}}</span>的回复:</p>
-                <small>{{item.create_time}}</small>
             </div>
             <div>
-                <label>回复内容:</label>
                 <p class="feedback-content">{{item.feedback_content}}</p>
-                <ng-container *ngIf="item.feedback_img">
+                <div *ngIf="item.feedback_img">
                     <ng-container *ngFor="let subitem of item.feedback_img">
                         <img src="{{baseurl}}{{subitem}}">
                     </ng-container>
-                </ng-container>
+                </div>
             </div>
+            <small>{{item.create_time}}</small>
         </section>
     </ng-container>
+</div>
+<div *ngIf="plugins.button" style="margin-top: 16px">
+    <uc-button [model]="plugins.button"></uc-button>
 </div>
 <div class="map-container" *ngIf="showFeedback" (click)="zoomImg($event)">
     <form #form="ngForm">

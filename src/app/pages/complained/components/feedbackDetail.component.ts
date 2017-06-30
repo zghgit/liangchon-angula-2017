@@ -24,7 +24,7 @@ export class FeedbackDetailComponent implements OnInit {
     public showFeedback: boolean = false;
 
     public reply_content:string;
-    public reply_img:string;
+    public reply_img:Array<any>=[];
     public img_error:string="";
     public feedbackInfo: any = {};//反馈信息
     public replyList: Array<any> = [];//反馈信息

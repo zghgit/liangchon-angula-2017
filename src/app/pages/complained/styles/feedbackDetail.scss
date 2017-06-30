@@ -77,25 +77,25 @@
     section{
         background: white;
         padding: 16px;
-        margin-bottom: 16px;
         border: 1px solid #dfdfdf;
         box-shadow: 0 1px 7px rgba(0, 0, 0, 0.1);
         >div{
+            >div{
+                margin-bottom: 16px;
+            }
             span{
                 color:rgb(25,140,239);
-            }
-            small{
-                display: inline-block;
-                margin-bottom: 10px;
             }
             img{
                 width: 144px;
                 height: 88px;
             }
             .feedback-content{
-                margin: 10px 0;
                 color: #115dc4;
             }
+        }
+        small{
+            display: inline-block;
         }
     }
 }

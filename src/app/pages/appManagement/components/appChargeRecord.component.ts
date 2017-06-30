@@ -178,7 +178,6 @@ export class AppChargeRecordComponent implements OnInit {
                     title: "获取信息失败!",
                     text: res.error_msg,
                     type: "error",
-                    timer:"1500"
                 });
             }
         })

@@ -72,11 +72,11 @@ export class FeedbackListComponent implements OnInit {
                 },
                 placeholder: "请点击选择日期",
             }, {
-                title: '手机号码',
+                title: '反馈用户',
                 key: "phone_no",
                 controlType: "input",
                 value: "",
-                placeholder: "请输入手机号码"
+                placeholder: "请输入反馈用户"
             }
         ]
         this.plugins.buttons = [
