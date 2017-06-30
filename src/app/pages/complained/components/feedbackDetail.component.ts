@@ -61,7 +61,6 @@ export class FeedbackDetailComponent implements OnInit {
         this.getFeedback()
     }
     filehasup(ev){
-        console.log(ev)
         this.reply_img=JSON.parse(ev.value);
         if (this.reply_img.length>=4){
             this.notallowload = true;

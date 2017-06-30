@@ -74,14 +74,29 @@
     }
 }
 .feedback{
+    background: white;
+    padding: 0 16px;
+    border: 1px solid #dfdfdf;
+    box-shadow: 0 1px 7px rgba(0, 0, 0, 0.1);
     section{
-        background: white;
-        padding: 16px;
-        border: 1px solid #dfdfdf;
-        box-shadow: 0 1px 7px rgba(0, 0, 0, 0.1);
+        border-bottom: 1px solid #d9d9d9;
         >div{
-            >div{
-                margin-bottom: 16px;
+            &.feedback-header{
+                height: 55px;
+                border-bottom: 1px dashed #cdcecf;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                p{
+                    margin: 0;
+                }
+            }
+            &.feedback-content{
+                padding-top: 20px;
+                margin-bottom: 22px;
+                .admin{
+                    color: #115dc4;
+                }
             }
             span{
                 color:rgb(25,140,239);
@@ -90,9 +105,7 @@
                 width: 144px;
                 height: 88px;
             }
-            .feedback-content{
-                color: #115dc4;
-            }
+
         }
         small{
             display: inline-block;

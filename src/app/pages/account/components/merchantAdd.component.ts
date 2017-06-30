@@ -7,6 +7,7 @@ import {Validators} from '@angular/forms';
 import {AppHttpService, UC, DataService} from "../../../plugins/globalservice";
 import {phoneValidator} from "../../../plugins/validators/phoneValidator";
 import {emailValidator} from "../../../plugins/validators/emailValidator";
+import {CustomValidators} from 'ng2-validation';
 
 declare var swal;
 @Component({
@@ -354,8 +355,14 @@ export class MerchantAddComponent implements OnInit {
             inputType: "text",
             require: true,
             hidden: true,
-            value: "",
-            placeholder: "请输入结算周期"
+            value: "1",
+            placeholder: "请输入结算周期",
+            validator: [
+                CustomValidators.range([1, 12]),
+            ],
+            errormsg: [
+                {type: "range", content: "结算周期范围:[1-12]月"},
+            ]
         }, {
             label: "结算日(日)",
             key: "settlement_day",
@@ -363,8 +370,14 @@ export class MerchantAddComponent implements OnInit {
             inputType: "text",
             require: true,
             hidden: true,
-            value: "",
-            placeholder: "请输入结算日"
+            value: "1",
+            placeholder: "请输入结算日",
+            validator: [
+                CustomValidators.range([1, 28]),
+            ],
+            errormsg: [
+                {type: "range", content: "结算周期范围:[1-28]日"},
+            ]
         }
     ];
 
@@ -380,6 +393,7 @@ export class MerchantAddComponent implements OnInit {
                 });
                 return
             }
+
         }else {
             settlement_cycle ="";
             settlement_day ="";
