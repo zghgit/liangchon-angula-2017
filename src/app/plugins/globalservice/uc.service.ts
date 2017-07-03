@@ -135,6 +135,7 @@ export class UC {
     };
     public powerfun = function (params) {
         var apis = localStorage.getItem('powerapi');
+        if(!apis)return false;
         return apis.indexOf(params) >= 0;
     };
     public powercontroll = {

@@ -10,10 +10,8 @@ declare var swal;
 export class AppHttpService {
     public error: Error;
 
-    constructor(
-        public http: Http,
-        public dataService:DataService
-    ) {
+    constructor(public http: Http,
+                public dataService: DataService) {
     };
 
     public postData(url: string, params?: any): Observable<any> {
@@ -23,21 +21,21 @@ export class AppHttpService {
             .post(url, JSON.stringify(params), {headers: headers})
             .map((res: Response) => {
                 let result = res.json();
-                if (result.error_code === 901 || result.error_code === 102){
+                if (result.error_code === 901 || result.error_code === 102) {
                     swal({
                         title: "登陆超时!",
                         text: "请重新登陆",
                         type: "error",
                         confirmButtonText: "OK",
-                    }).then(()=> {
+                    }).then(() => {
                         this.dataService.clearAll();
-                        location.href="";
+                        location.href = "";
                     });
-                    setTimeout(()=>{
+                    setTimeout(() => {
                         this.dataService.clearAll();
-                        location.href="";
-                    },5000)
-                }else {
+                        location.href = "";
+                    }, 5000)
+                } else {
                     return result;
                 }
             })
@@ -48,20 +46,20 @@ export class AppHttpService {
         return this.http.get(url)
             .map((res: Response) => {
                 let result = res.json();
-                if (result.error_code === 901 || result.error_code === 102){
+                if (result.error_code === 901 || result.error_code === 102) {
                     swal({
                         title: "登陆超时!",
                         text: "请重新登陆",
                         type: "error",
-                    }).then(()=> {
+                    }).then(() => {
                         this.dataService.clearAll();
-                        location.href="";
+                        location.href = "";
                     });
-                    setTimeout(()=>{
+                    setTimeout(() => {
                         this.dataService.clearAll();
-                        location.href="";
-                    },5000)
-                }else {
+                        location.href = "";
+                    }, 5000)
+                } else {
                     return result;
                 }
             })

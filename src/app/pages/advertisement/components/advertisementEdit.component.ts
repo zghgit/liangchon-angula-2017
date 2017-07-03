@@ -154,7 +154,7 @@ export class AdvertisementEditComponent implements OnInit {
                     label: "是否设为默认广告",
                     key: "default_display",
                     controlType: "radio",
-                    value: _data.show_position,
+                    value: _data.default_display,
                     require: true,
                     options: [
                         {value: "1", content: "是"},
@@ -231,7 +231,8 @@ export class AdvertisementEditComponent implements OnInit {
                     advertisement_range_info: advertisementRange.selectedSet
                 }
             }
-        }
+        };
+        console.log(value.default_display)
         this.appHttpService.postData(this.uc.api.qc + "/update_advertisement/hash", params).subscribe(
             res => {
                 if (res.status) {

@@ -5,6 +5,9 @@
 import {Component} from "@angular/core";
 import {Router} from '@angular/router';
 import {DataService, GlobalState} from "../../plugins/globalservice";
+
+declare var swal;
+
 @Component({
     selector: "uc-menu",
     templateUrl: "ucMenu.html",
@@ -57,6 +60,17 @@ export class UcMenuComponent {
 
     public ngOnInit(): void {
         this.menu = this.dataService.getLocalStorage("powernav");
+        if(!this.menu){
+            swal({
+                title: "登陆超时!",
+                text: "请重新登陆",
+                type: "error",
+                confirmButtonText: "OK",
+            }).then(()=> {
+                this.dataService.clearAll();
+                location.href="";
+            });
+        }
         // for (let i in this.ucMenu) {
         //     this.menu.push(this.ucMenu[i])
         // }
