@@ -124,7 +124,7 @@ export class CommodityListComponent implements OnInit {
                                                     title: "删除成功!",
                                                     text: "",
                                                     type: "success",
-                                                    timer:"1500"
+                                                    timer:"2000"
                                                 });
                                                 this.getGridData(params);
                                             }else {
@@ -146,7 +146,7 @@ export class CommodityListComponent implements OnInit {
                     title: "获取商品信息失败!",
                     text: res.error_msg,
                     type: "error",
-                    timer:"1500"
+                    timer:"2000"
                 });
             }
         })

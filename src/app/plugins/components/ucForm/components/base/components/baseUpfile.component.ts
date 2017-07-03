@@ -29,10 +29,11 @@ declare var swal: any;
             </div>
             <div class="progressBar" [style.width]="progressBar+'%'" [ngClass]="{'fileError':fileError,'multi':isprogress}"></div>
             <ng-container *ngIf="model.accept=='image/*'">
-                <ng-container *ngFor="let item of fileSrc">
+                <div class="showimg" *ngFor="let item of fileSrc">
                     <img src="{{model.downloadurl}}{{item}}" alt="">
-                </ng-container>
+                </div>
             </ng-container>
+            <div class="clearfix"></div>
         </div>
     `,
     styleUrls: ["../styles/baseUpfile.scss"]

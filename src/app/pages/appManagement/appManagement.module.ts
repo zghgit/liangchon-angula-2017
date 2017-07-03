@@ -22,6 +22,7 @@ import {
     AppMessagePushComponent,
     AppInformationEditComponent,
     AppInformationDetailComponent,
+    AppVersionCtlComponent,
 }from "./components";
 
 @NgModule({
@@ -43,6 +44,7 @@ import {
         AppMessagePushComponent,
         AppInformationEditComponent,
         AppInformationDetailComponent,
+        AppVersionCtlComponent,
     ],
     providers: [],
 })

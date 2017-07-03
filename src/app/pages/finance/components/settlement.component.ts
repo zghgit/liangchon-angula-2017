@@ -114,7 +114,7 @@ export class SettlementComponent implements OnInit {
                             title: "提示!",
                             text: "请选择年份",
                             type: "error",
-                            timer: "1500"
+                            timer:"2000"
                         });
                     }
                     this.searchBy = {
@@ -212,7 +212,7 @@ export class SettlementComponent implements OnInit {
                                                     title: "结算成功!",
                                                     text: "",
                                                     type: "success",
-                                                    timer:"1500"
+                                                    timer:"2000"
                                                 });
                                                 this.getGridData(params);
                                             }else {
@@ -259,7 +259,7 @@ export class SettlementComponent implements OnInit {
                     title: "获取结算信息失败!",
                     text: res.error_msg,
                     type: "error",
-                    timer:"1500"
+                    timer:"2000"
                 });
             }
         })

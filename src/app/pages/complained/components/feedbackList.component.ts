@@ -25,14 +25,6 @@ export class FeedbackListComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.plugins.button = {
-            class: 'btn-primary',
-            content: '新增申诉',
-            click: () => {
-                this.router.navigateByUrl('pages/complained/complainedAdd');
-            }
-        };
-
         this.plugins.grid = {
             th: [
                 {content: '反馈ID', hidden: true},
@@ -96,7 +88,7 @@ export class FeedbackListComponent implements OnInit {
                             title: "提示!",
                             text: "开始时间和结束时间要一起填写",
                             type: "error",
-                            timer: "1500"
+                            timer:"2000"
                         });
                         return
                     }
@@ -105,7 +97,7 @@ export class FeedbackListComponent implements OnInit {
                             title: "提示!",
                             text: "开始时间不能大开结束时间",
                             type: "error",
-                            timer: "1500"
+                            timer:"2000"
                         });
                         return
                     }
@@ -172,7 +164,7 @@ export class FeedbackListComponent implements OnInit {
                         {content: key.create_time},
                     ];
                     let operations = [];
-                    if (this.uc.powerfun(this.uc.constant.get_complained)) {
+                    if (this.uc.powerfun(this.uc.constant.get_feedback_info)) {
                         operations.push({
                             content: "查看反馈",
                             class: "btn-info",
@@ -190,7 +182,7 @@ export class FeedbackListComponent implements OnInit {
                     title: "获取申诉信息失败!",
                     text: res.error_msg,
                     type: "error",
-                    timer: "1500"
+                    timer:"2000"
                 });
             }
         })

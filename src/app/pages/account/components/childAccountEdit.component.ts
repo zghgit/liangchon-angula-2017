@@ -245,7 +245,7 @@ export class ChildAccountEditComponent implements OnInit {
                     title:"获取城子账户信息失败!",
                     text:res.error_msg,
                     type:"error",
-                    timer:"1500"
+                    timer:"2000"
                 });
             }
         })

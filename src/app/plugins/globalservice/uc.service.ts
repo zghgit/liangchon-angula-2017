@@ -132,6 +132,9 @@ export class UC {
         get_settlement_list: "api/wyc/api/get_settlement_list",//结算列表
         update_settlement_fine: "api/wyc/api/update_settlement_fine",//结算处理
         download_device_turnover_info: "api/wyc/api/download_device_turnover_info",//下载结算详情
+        add_feedback_reply: "api/wyc/api/add_feedback_reply",//回复app用户反馈
+        get_feedback_info: "api/wyc/api/get_feedback_info",//获取app用户反馈详情
+
     };
     public powerfun = function (params) {
         var apis = localStorage.getItem('powerapi');

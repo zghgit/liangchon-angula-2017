@@ -156,7 +156,7 @@ export class refundRecordListComponent implements OnInit {
                     title: "获取退款信息失败!",
                     text: res.error_msg,
                     type: "error",
-                    timer:"1500"
+                    timer:"2000"
                 });
             }
         })

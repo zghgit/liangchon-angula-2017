@@ -7,11 +7,11 @@
         </div>
         <div class="feedback-content">
             <p>{{feedbackInfo.feedback_content}}</p>
-            <div *ngIf="feedbackInfo.feedback_img">
-                <ng-container *ngFor="let item of feedbackInfo.feedback_img">
+            <ng-container *ngIf="feedbackInfo.feedback_img">
+                <div *ngFor="let item of feedbackInfo.feedback_img">
                     <img src="{{baseurl}}{{item}}">
-                </ng-container>
-            </div>
+                </div>
+            </ng-container>
         </div>
     </section>
     <ng-container *ngFor="let item of replyList">
@@ -23,11 +23,11 @@
             </div>
             <div class="feedback-content">
                 <p [ngClass]="{'admin': item.user_id!=user_id}">{{item.feedback_content}}</p>
-                <div *ngIf="item.feedback_img">
-                    <ng-container *ngFor="let subitem of item.feedback_img">
+                <ng-container *ngIf="item.feedback_img">
+                    <div *ngFor="let subitem of item.feedback_img">
                         <img src="{{baseurl}}{{subitem}}">
-                    </ng-container>
-                </div>
+                    </div>
+                </ng-container>
             </div>
         </section>
     </ng-container>

@@ -189,7 +189,7 @@ export class AdvertisementEditComponent implements OnInit {
                     title: "获取广告信息失败!",
                     text: res.error_msg,
                     type: "error",
-                    timer:"1500"
+                    timer:"2000"
                 });
             }
         })
@@ -203,7 +203,7 @@ export class AdvertisementEditComponent implements OnInit {
                 title: "编辑广告失败!",
                 text: "地址是必选的",
                 type: "error",
-                timer:"1500"
+                timer:"2000"
             });
             return
         }
@@ -232,7 +232,6 @@ export class AdvertisementEditComponent implements OnInit {
                 }
             }
         };
-        console.log(value.default_display)
         this.appHttpService.postData(this.uc.api.qc + "/update_advertisement/hash", params).subscribe(
             res => {
                 if (res.status) {

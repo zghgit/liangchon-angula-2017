@@ -193,7 +193,7 @@ export class complainedListComponent implements OnInit {
                                                     title: "处理成功!",
                                                     text: "",
                                                     type: "success",
-                                                    timer: "1500"
+                                                    timer:"2000"
                                                 });
                                                 this.getGridData(params);
                                             } else {
@@ -215,7 +215,7 @@ export class complainedListComponent implements OnInit {
                     title: "获取申诉信息失败!",
                     text: res.error_msg,
                     type: "error",
-                    timer: "1500"
+                    timer:"2000"
                 });
             }
         })

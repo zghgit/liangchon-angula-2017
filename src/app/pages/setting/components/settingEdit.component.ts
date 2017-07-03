@@ -36,7 +36,7 @@ export class SettingEditComponent implements OnInit,AfterViewInit {
                     title: "获取系统设置信息失败!",
                     text: res.error_msg,
                     type: "error",
-                    timer:"1500"
+                    timer:"2000"
                 });
             }
         })
@@ -171,7 +171,7 @@ export class SettingEditComponent implements OnInit,AfterViewInit {
                         title: "配置保存成功!",
                         text: "",
                         type: "success",
-                        timer:"1500"
+                        timer:"2000"
                     });
                 } else {
                     swal("配置保存失败", res.error_msg, "error")

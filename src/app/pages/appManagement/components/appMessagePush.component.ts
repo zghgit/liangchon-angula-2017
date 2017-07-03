@@ -127,10 +127,10 @@ export class AppMessagePushComponent implements OnInit {
         if (push_type == 1) {
             if (user_name==""){
                 swal({
-                    title: "推送失败!",
+                    title: "提示!",
                     text: "至少选择一个用户",
                     type: "error",
-                    timer:"1500"
+                    timer:"2000"
                 });
             }else {
                 temp_user_name = JSON.parse(user_name);
@@ -142,10 +142,10 @@ export class AppMessagePushComponent implements OnInit {
         } else if(push_type == 2){
             if(business_address.proive_code==0&&business_address.city_code==0&&business_address.district==0){
                 swal({
-                    title: "推送失败!",
+                    title: "提示!",
                     text: "至少选择一个地区",
                     type: "error",
-                    timer:"1500"
+                    timer:"2000"
                 });
             }else {
                 temp_user_name="";
@@ -173,7 +173,7 @@ export class AppMessagePushComponent implements OnInit {
                         title: "推送成功!",
                         text: "",
                         type: "success",
-                        timer:"1500"
+                        timer:"2000"
                     });
                 } else {
                     swal("推送失败", res.error_msg, "error")

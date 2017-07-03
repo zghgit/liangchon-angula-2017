@@ -261,7 +261,7 @@ export class ChildAccountOtherEditComponent implements OnInit {
                     title:"获取子账户信息失败!",
                     text:res.error_msg,
                     type:"error",
-                    timer:"1500"
+                    timer:"2000"
                 });
             }
         })

@@ -124,7 +124,7 @@ export class EquipmentDetailComponent implements OnInit {
                     title: "获取桩详情失败!",
                     text: res.error_msg,
                     type: "error",
-                    timer:"1500"
+                    timer:"2000"
                 });
             }
         })

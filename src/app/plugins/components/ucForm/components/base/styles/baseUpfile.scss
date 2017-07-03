@@ -29,11 +29,16 @@
             transition: none;
         }
     }
-    img {
-        width: 140px;
-        height: 88px;
+    .showimg{
+        width: 144px;
+        height: 144px;
         margin-top: 8px;
         margin-right: 8px;
+        float: left;
         overflow: hidden;
+        img {
+            max-width: 100%;
+        }
     }
+
 }

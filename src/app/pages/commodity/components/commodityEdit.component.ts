@@ -88,11 +88,13 @@ export class CommodityEditComponent implements OnInit {
                         placeholder: "请输入价格",
                         validator: [
                             Validators.required,
-                            Validators.pattern("^[0-9]+$")
+                            Validators.pattern("^[0-9]+(\.[0-9]{1,2})?$"),
+                            Validators.min(0.01),
                         ],
                         errormsg: [
                             {type: "required", content: "必填项目"},
-                            {type: "pattern", content: "只能是数字"},
+                            {type: "pattern", content: "请填写正确的价格(如：1.00)元"},
+                            {type: "min", content: "商品最低价格为0.01元"},
                         ]
                     },
                     {
@@ -118,7 +120,7 @@ export class CommodityEditComponent implements OnInit {
                     title: "获取商品信息失败!",
                     text: res.error_msg,
                     type: "error",
-                    timer:"1500"
+                    timer:"2000"
                 });
             }
         })

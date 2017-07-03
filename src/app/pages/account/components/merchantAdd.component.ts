@@ -389,7 +389,7 @@ export class MerchantAddComponent implements OnInit {
                     title:"提示!",
                     text:"请确认结算周期和结算日",
                     type:"error",
-                    timer:"1500"
+                    timer:"2000"
                 });
                 return
             }

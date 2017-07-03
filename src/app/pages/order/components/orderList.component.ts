@@ -236,7 +236,7 @@ export class OrderListComponent implements OnInit {
                             title: "提示!",
                             text: "开始时间和结束时间要一起填写",
                             type: "error",
-                            timer: "1500"
+                            timer:"2000"
                         });
                         return
                     }
@@ -245,7 +245,7 @@ export class OrderListComponent implements OnInit {
                             title: "提示!",
                             text: "开始时间不能大开结束时间",
                             type: "error",
-                            timer: "1500"
+                            timer:"2000"
                         });
                         return
                     }
@@ -408,7 +408,7 @@ export class OrderListComponent implements OnInit {
                                                     title: "完成成功!",
                                                     text: "",
                                                     type: "success",
-                                                    timer: "1500"
+                                                    timer:"2000"
                                                 });
                                                 this.getGridData(params);
                                             } else {
@@ -450,7 +450,7 @@ export class OrderListComponent implements OnInit {
                                                     title: "完成成功!",
                                                     text: "",
                                                     type: "success",
-                                                    timer: "1500"
+                                                    timer:"2000"
                                                 });
                                                 this.getGridData(params);
                                             } else {
@@ -492,7 +492,7 @@ export class OrderListComponent implements OnInit {
                                                     title: "退费成功!",
                                                     text: "",
                                                     type: "success",
-                                                    timer: "1500"
+                                                    timer:"2000"
                                                 });
                                                 this.getGridData(params);
                                             } else {
@@ -514,7 +514,7 @@ export class OrderListComponent implements OnInit {
                     title: "获取订单信息失败!",
                     text: res.error_msg,
                     type: "error",
-                    timer:"1500"
+                    timer:"2000"
                 });
             }
         })

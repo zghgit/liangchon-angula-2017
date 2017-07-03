@@ -123,7 +123,7 @@ export class AgentListComponent implements OnInit {
                                                     title:"禁用成功!",
                                                     text:res.error_msg,
                                                     type:"success",
-                                                    timer:"1500"
+                                                    timer:"2000"
                                                 });
                                                 this.getGridData(params);
                                             } else {
@@ -161,7 +161,7 @@ export class AgentListComponent implements OnInit {
                                                     title:"启用成功!",
                                                     text:"",
                                                     type:"success",
-                                                    timer:"1500"
+                                                    timer:"2000"
                                                 });
                                                 this.getGridData(params);
                                             } else {
@@ -193,7 +193,7 @@ export class AgentListComponent implements OnInit {
                     title: "获取代理信息失败!",
                     text: res.error_msg,
                     type: "error",
-                    timer:"1500"
+                    timer:"2000"
                 });
             }
         })

@@ -109,7 +109,7 @@ export class WxWalletListComponent implements OnInit {
                                                     title: "禁用成功!",
                                                     text: "",
                                                     type: "success",
-                                                    timer:"1500"
+                                                    timer:"2000"
                                                 });
                                                 this.getGridData(params);
                                             }else {
@@ -153,7 +153,7 @@ export class WxWalletListComponent implements OnInit {
                                                     title: "启用成功!",
                                                     text: "",
                                                     type: "success",
-                                                    timer:"1500"
+                                                    timer:"2000"
                                                 });
                                                 this.getGridData(params);
                                             }else {
@@ -194,7 +194,7 @@ export class WxWalletListComponent implements OnInit {
                                                 title: "删除成功!",
                                                 text: "",
                                                 type: "success",
-                                                timer:"1500"
+                                                timer:"2000"
                                             });
                                             this.getGridData(params);
                                         }else {

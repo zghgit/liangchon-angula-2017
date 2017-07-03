@@ -118,7 +118,7 @@ export class CashWithdrawalComponent implements OnInit {
                             title: "提示!",
                             text: "开始时间和结束时间要一起填写",
                             type: "error",
-                            timer: "1500"
+                            timer:"2000"
                         });
                         return
                     }
@@ -127,7 +127,7 @@ export class CashWithdrawalComponent implements OnInit {
                             title: "开始时间不能大开结束时间!",
                             text: "提示",
                             type: "error",
-                            timer: "1500"
+                            timer:"2000"
                         });
                         return
                     }
@@ -228,7 +228,7 @@ export class CashWithdrawalComponent implements OnInit {
                     title: "获取订单信息失败!",
                     text: res.error_msg,
                     type: "error",
-                    timer:"1500"
+                    timer:"2000"
                 });
             }
         })
@@ -257,7 +257,7 @@ export class CashWithdrawalComponent implements OnInit {
                     title: "申请提现失败!",
                     text: res.error_msg,
                     type: "error",
-                    timer:"1500"
+                    timer:"2000"
                 });
             }
         })
@@ -276,7 +276,7 @@ export class CashWithdrawalComponent implements OnInit {
                 title: "请添加提现订单!",
                 text: "",
                 type: "error",
-                timer:"1500"
+                timer:"2000"
             });
             return
         } else {
@@ -286,7 +286,7 @@ export class CashWithdrawalComponent implements OnInit {
                 title: "请选择微信支付账户!",
                 text: "",
                 type: "error",
-                timer:"1500"
+                timer:"2000"
             });
             return
         }

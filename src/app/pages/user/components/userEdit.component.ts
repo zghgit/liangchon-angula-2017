@@ -305,7 +305,7 @@ export class UserEditComponent implements OnInit {
                     title: "获取用户信息失败!",
                     text: res.error_msg,
                     type: "error",
-                    timer:"1500"
+                    timer:"2000"
                 });
             }
         })
@@ -319,7 +319,7 @@ export class UserEditComponent implements OnInit {
                     title: "请确认结算周期和结算日!",
                     text: "",
                     type: "error",
-                    timer:"1500"
+                    timer:"2000"
                 });
                 return
             }

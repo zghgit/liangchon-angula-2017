@@ -132,7 +132,7 @@ export class AgentDetailComponent implements OnInit {
                     title: "获取代理商信息失败!",
                     text: res.error_msg,
                     type: "error",
-                    timer:"1500"
+                    timer:"2000"
                 });
             }
         })

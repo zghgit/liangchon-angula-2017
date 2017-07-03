@@ -388,7 +388,7 @@ export class MerchantEditComponent implements OnInit {
                     title: "获取商户信息失败!",
                     text: res.error_msg,
                     type: "error",
-                    timer:"1500"
+                    timer:"2000"
                 });
             }
         })
@@ -402,7 +402,7 @@ export class MerchantEditComponent implements OnInit {
                     title: "提示!",
                     text: "请确认结算周期和结算日",
                     type: "error",
-                    timer:"1500"
+                    timer:"2000"
                 });
                 return
             }

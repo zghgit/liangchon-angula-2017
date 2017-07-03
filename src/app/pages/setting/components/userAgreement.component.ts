@@ -70,7 +70,7 @@ export class UserAgreementComponent implements OnInit {
                         title: "保存用户协议成功!",
                         text: "",
                         type: "success",
-                        timer:"1500"
+                        timer:"2000"
                     });
                 } else {
                     swal("保存用户协议失败", res.error_msg, "error")

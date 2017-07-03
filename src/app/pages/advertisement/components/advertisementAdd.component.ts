@@ -170,7 +170,7 @@ export class advertisementAddComponent implements OnInit {
                 title: "新增广告失败!",
                 text: "地址是必选的",
                 type: "error",
-                timer:"1500"
+                timer:"2000"
             });
             return
         }

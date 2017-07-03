@@ -73,7 +73,25 @@ export class complainedAddComponent implements OnInit {
     ];
 
     saveData({value}={value}) {
-        console.log(value);
+        let {complained_content}=value;
+        if (!(complained_content.trim())) {
+            swal({
+                title: "提示!",
+                text: "申诉内容不能为空",
+                type: "error",
+                timer:"2000"
+            });
+            return
+        }
+        if(complained_content.length>=500) {
+            swal({
+                title: "提示!",
+                text: "申诉内容不能超过500字",
+                type: "error",
+                timer:"2000"
+            });
+            return
+        }
         let params = {
             params: value
         }

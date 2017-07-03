@@ -278,7 +278,7 @@ export class EquipmentListComponent implements OnInit {
                                                     title: "禁用成功!",
                                                     text: res.error_msg,
                                                     type: "success",
-                                                    timer: "1500"
+                                                    timer:"2000"
                                                 });
                                                 this.getGridData(params);
                                             } else {
@@ -321,7 +321,7 @@ export class EquipmentListComponent implements OnInit {
                                                     title: "启用成功!",
                                                     text: res.error_msg,
                                                     type: "success",
-                                                    timer: "1500"
+                                                    timer:"2000"
                                                 });
                                                 this.getGridData(params);
                                             } else {
@@ -369,7 +369,7 @@ export class EquipmentListComponent implements OnInit {
                                             title: "获取设备二维码失败!",
                                             text: res.error_msg,
                                             type: "error",
-                                            timer: "1500"
+                                            timer:"2000"
                                         });
 
                                     }
@@ -423,7 +423,7 @@ export class EquipmentListComponent implements OnInit {
                                                     title: "解绑成功,请到未解绑一览操作此设备!",
                                                     text: "",
                                                     type: "success",
-                                                    timer: "1500"
+                                                    timer:"2000"
                                                 });
                                                 this.getGridData(params);
                                             } else {
@@ -446,7 +446,7 @@ export class EquipmentListComponent implements OnInit {
                     title: "获取设备信息失败!",
                     text: res.error_msg,
                     type: "error",
-                    timer: "1500"
+                    timer:"2000"
                 });
             }
         })

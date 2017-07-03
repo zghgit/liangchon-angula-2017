@@ -10,3 +10,4 @@ export * from "./appInformationEdit.component";
 export * from "./appInformationDetail.component";
 export * from "./appChargeRecord.component";
 export * from "./appMessagePush.component";
+export * from "./appVersionCtl.component";

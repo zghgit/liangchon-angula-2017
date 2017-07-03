@@ -174,7 +174,7 @@ export class EquipmentBatchSetComponent implements OnInit {
                     title: "获取商品信息失败!",
                     text: res.error_msg,
                     type: "error",
-                    timer:"1500"
+                    timer:"2000"
                 });
             }
         })
@@ -224,7 +224,7 @@ export class EquipmentBatchSetComponent implements OnInit {
                     title: "获取设备信息失败!",
                     text: res.error_msg,
                     type: "error",
-                    timer:"1500"
+                    timer:"2000"
                 });
             }
         })

@@ -245,7 +245,7 @@ export class WxPubConfEditComponent implements OnInit {
                     title: "获取微信公众号配置信息失败!",
                     text: res.error_msg,
                     type: "error",
-                    timer:"1500"
+                    timer:"2000"
                 });
 
             }

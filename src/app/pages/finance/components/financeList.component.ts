@@ -123,7 +123,7 @@ export class FinanceListComponent implements OnInit {
                                                     title: "通过成功!",
                                                     text: "",
                                                     type: "success",
-                                                    timer:"1500"
+                                                    timer:"2000"
                                                 });
                                                 this.getGridData(params);
                                             }else {
@@ -180,7 +180,7 @@ export class FinanceListComponent implements OnInit {
                                                     title: "打款成功!",
                                                     text: "",
                                                     type: "success",
-                                                    timer:"1500"
+                                                    timer:"2000"
                                                 });
                                                 this.getGridData(params);
                                             }else {
@@ -202,7 +202,7 @@ export class FinanceListComponent implements OnInit {
                     title: "获取账务信息失败!",
                     text: res.error_msg,
                     type: "error",
-                    timer:"1500"
+                    timer:"2000"
                 });
             }
         })
@@ -245,7 +245,7 @@ export class FinanceListComponent implements OnInit {
                             title: "驳回成功!",
                             text: "",
                             type: "success",
-                            timer:"1500"
+                            timer:"2000"
                         });
                         this.getGridData({
                             page_now: this.now,

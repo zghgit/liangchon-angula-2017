@@ -13,6 +13,7 @@ import {
     AppUserDetailComponent,
     AppChargeRecordComponent,
     AppMessagePushComponent,
+    AppVersionCtlComponent,
 } from "./components";
 export const appManagementRoutes: Routes = [
     {
@@ -31,6 +32,7 @@ export const appManagementRoutes: Routes = [
             {path: "appChargeRecord/:id", component: AppChargeRecordComponent},
             {path: "appMessagePush", component: AppMessagePushComponent},
             {path: "appMessagePush/:id", component: AppMessagePushComponent},
+            {path: "appVersionCtl", component: AppVersionCtlComponent},
         ]
     }
 ]

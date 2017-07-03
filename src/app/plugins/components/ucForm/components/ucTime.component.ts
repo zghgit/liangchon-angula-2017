@@ -1,7 +1,9 @@
 /**
  * Created by max on 2017/5/24.
  * 本组件基于ngx-bootstrap,并修改了源码
- * 在ngx-bootstrap/datepicker/daypicker.component.js里的63进行了如下修改:
+ * 在ngx-bootstrap/datepicker/daypicker.component.metadata.json
+ * <template>改为<ng-template>
+ * * 在ngx-bootstrap/datepicker/daypicker.component.js里的63进行了如下修改:
  *
  *var abbr = this.dateFilter(days[j].date, this.formatDayHeader);
  *var abbrCn;

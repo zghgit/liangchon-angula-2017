@@ -305,7 +305,7 @@ export class CitypartnerEditComponent implements OnInit {
                     title:"获取城市合伙人信息失败!",
                     text:res.error_msg,
                     type:"error",
-                    timer:"1500"
+                    timer:"2000"
                 });
             }
         })

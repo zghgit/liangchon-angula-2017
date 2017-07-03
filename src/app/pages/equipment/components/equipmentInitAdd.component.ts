@@ -208,7 +208,7 @@ export class EquipmentInitAddComponent implements OnInit {
                                             title: "提示!",
                                             text: "请先选择设备所在地区",
                                             type: "error",
-                                            timer:"1500"
+                                            timer:"2000"
                                         });
                                         return
                                     }
@@ -217,7 +217,7 @@ export class EquipmentInitAddComponent implements OnInit {
                                             title: "提示!",
                                             text: "请先输入设备详细地址",
                                             type: "error",
-                                            timer:"1500"
+                                            timer:"2000"
                                         });
                                         return
                                     }
@@ -259,7 +259,7 @@ export class EquipmentInitAddComponent implements OnInit {
                                                     title: "提经纬度拾取失败示!",
                                                     text: "请重置地区和设备详细地址",
                                                     type: "error",
-                                                    timer:"1500"
+                                                    timer:"2000"
                                                 });
                                             }
                                         });
@@ -362,7 +362,7 @@ export class EquipmentInitAddComponent implements OnInit {
                                         title: "获取商品失败!",
                                         text: res.error_msg,
                                         type: "error",
-                                        timer:"1500"
+                                        timer:"2000"
                                     });
                                 }
                             }

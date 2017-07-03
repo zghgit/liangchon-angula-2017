@@ -94,18 +94,25 @@
             &.feedback-content{
                 padding-top: 20px;
                 margin-bottom: 22px;
+                overflow: hidden;
                 .admin{
                     color: #115dc4;
+                }
+                >div{
+                    width: 144px;
+                    height: 144px;
+                    margin-top: 8px;
+                    margin-right: 8px;
+                    float: left;
+                    overflow: hidden;
+                    img {
+                        max-width: 100%;
+                    }
                 }
             }
             span{
                 color:rgb(25,140,239);
             }
-            img{
-                width: 144px;
-                height: 88px;
-            }
-
         }
         small{
             display: inline-block;
