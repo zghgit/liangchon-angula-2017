@@ -115,7 +115,7 @@ export class AlipayConfAddComponent implements OnInit {
                 status: value.status
             }
         };
-        this.appHttpService.postData(this.uc.api.qc + "/add_alipay_config/hash", params).subscribe(
+        this.appHttpService.postData(this.uc.api.qc + "/add_alipay_config", params).subscribe(
             res => {
                 if (res.status) {
                     this.router.navigateByUrl('pages/finance/payConfigList');

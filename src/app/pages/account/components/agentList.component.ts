@@ -61,7 +61,7 @@ export class AgentListComponent implements OnInit {
     }
 
     public getGridData = function (params) {
-        let data = this.appHttpService.postData(this.uc.api.qc + "/get_agent_user_list/hash", {params: params})
+        let data = this.appHttpService.postData(this.uc.api.qc + "/get_agent_user_list", {params: params})
         data.subscribe(res => {
             if (res.status) {
                 let data = res.data;
@@ -116,7 +116,11 @@ export class AgentListComponent implements OnInit {
                                     confirmButtonColor: "#DD6B55",
                                 }).then((isConfirm) => {
                                     if (isConfirm === true) {
-                                        this.appHttpService.postData(this.uc.api.qc + "/disable_user/hash/" + id
+                                        this.appHttpService.postData(this.uc.api.qc + "/disable_user/",{
+                                                params:{
+                                                    user_id:id
+                                                }
+                                            }
                                         ).subscribe(res => {
                                             if (res.status) {
                                                 swal({
@@ -154,7 +158,11 @@ export class AgentListComponent implements OnInit {
                                     confirmButtonColor: "#DD6B55",
                                 }).then((isConfirm) => {
                                     if (isConfirm === true) {
-                                        this.appHttpService.postData(this.uc.api.qc + "/start_user/hash/"+id
+                                        this.appHttpService.postData(this.uc.api.qc + "/start_user/",{
+                                                params:{
+                                                    user_id:id
+                                                }
+                                            }
                                         ).subscribe(res => {
                                             if (res.status) {
                                                 swal({

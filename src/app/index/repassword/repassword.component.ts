@@ -27,7 +27,7 @@ export class RepasswordComponent implements OnInit {
     };
 
     ngOnInit() {
-        this.identifyCodeSrc = "/api/wyc/get_identifying_code/hash";
+        this.identifyCodeSrc = "/api/quchong/web/get_identifying_code";
     }
 
     public doSendMobileCode(): void {
@@ -59,7 +59,7 @@ export class RepasswordComponent implements OnInit {
         }
         if (this.canAjax && falg) {
             this.canAjax = false;
-            let data = this.appHttpService.postData(this.uc.api.qc + "/send_mobile_code/hash", params);
+            let data = this.appHttpService.postData(this.uc.api.qc + "/send_mobile_code", params);
             data.subscribe(
                 res => {
                     this.canAjax = true;
@@ -117,7 +117,7 @@ export class RepasswordComponent implements OnInit {
         }
         if (this.canAjax) {
             this.canAjax = false;
-            let data = this.appHttpService.postData(this.uc.api.qc + "/reset_password/hash", params);
+            let data = this.appHttpService.postData(this.uc.api.qc + "/reset_password", params);
             data.subscribe(
                 res => {
                     this.canAjax = true;
@@ -148,7 +148,7 @@ export class RepasswordComponent implements OnInit {
         }
     }
     public reloadIdentifyCode(): void {
-        this.identifyCodeSrc = this.uc.api.qc + '/get_identifying_code/hash?ran=' + new Date().getTime();
+        this.identifyCodeSrc = this.uc.api.qc + '/get_identifying_code?ran=' + new Date().getTime();
     }
     public goBack(){
         this.router.navigateByUrl("/login");

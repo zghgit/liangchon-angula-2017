@@ -52,7 +52,7 @@ export class AppInformationAddComponent implements OnInit {
                 information_content:this.editorContent
             }
         };
-        this.appHttpService.postData(this.uc.api.qc + "/add_information/hash", params).subscribe(
+        this.appHttpService.postData(this.uc.api.qc + "/add_information", params).subscribe(
             res => {
                 if (res.status) {
                     this.router.navigateByUrl('pages/appManagement/appInformationList');

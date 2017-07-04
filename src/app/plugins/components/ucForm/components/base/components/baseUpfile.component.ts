@@ -4,8 +4,8 @@
  *    value: [_data.certificate_img_1],//回填数据,当multi为ture时,传入一个数组,当multi为false时,传入一个字符串
  *    accept:"image/*",//定义上传文件类型
  *    multi:true,//多图片上传
- *    uploadurl: this.uc.api.qc + "/upload_file/hash/",//上传地址
- *    downloadurl: this.uc.api.qc + "/get_file/hash/",//下载地址
+ *    uploadurl: this.uc.api.qc + "/upload_file/",//上传地址
+ *    downloadurl: this.uc.api.qc + "/get_file/",//下载地址
  *    capsule: "certificate_img_11"//后台建立文件夹的名字
  *   }
  *当multi==true时,回传一个数组,
@@ -67,7 +67,6 @@ export class BaseUpfileComponent implements OnInit {
         let file = document.getElementById(this.model.capsule);
         file.click()
     }
-
     public canup(data) {
         this.isprogress = true;
         this.progressBar = 0;

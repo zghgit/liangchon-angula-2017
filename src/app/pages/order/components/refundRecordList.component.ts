@@ -129,7 +129,7 @@ export class refundRecordListComponent implements OnInit {
     }
 
     public getGridData = function (params) {
-        let data = this.appHttpService.postData(this.uc.api.qc + "/get_refund_list/hash", {params: params})
+        let data = this.appHttpService.postData(this.uc.api.qc + "/get_refund_list", {params: params})
         data.subscribe(res => {
             if (res.status) {
                 let data = res.data;

@@ -63,14 +63,14 @@ export class AdvertisementListComponent implements OnInit {
     }
 
     public getGridData = function (params) {
-        let data = this.appHttpService.postData(this.uc.api.qc + "/get_advertisement_list/hash", {params: params})
+        let data = this.appHttpService.postData(this.uc.api.qc + "/get_advertisement_list", {params: params})
         data.subscribe(res => {
             if (res.status) {
                 let data = res.data;
                 let list = data.list;
                 this.plugins.grid.pagination.totalItems = data.total_num;
                 this.plugins.grid.tbody = [];
-                let basesrc=this.uc.api.qc+"/get_file/hash/";
+                let basesrc=this.uc.api.qc+"/get_file/";
                 for (let key of list) {
                     let tds: Array<any>;
                     var show_position;
@@ -140,7 +140,7 @@ export class AdvertisementListComponent implements OnInit {
                                     confirmButtonColor: "#DD6B55",
                                 }).then((isConfirm) => {
                                     if (isConfirm === true) {
-                                        this.appHttpService.postData(this.uc.api.qc + "/update_advertisement/hash/", {
+                                        this.appHttpService.postData(this.uc.api.qc + "/update_advertisement/", {
                                                 params: {
                                                     advertisement_id: id,
                                                     advertisement_info: {
@@ -185,7 +185,7 @@ export class AdvertisementListComponent implements OnInit {
                                     confirmButtonColor: "#DD6B55",
                                 }).then((isConfirm) => {
                                     if (isConfirm === true) {
-                                        this.appHttpService.postData(this.uc.api.qc + "/update_advertisement/hash/", {
+                                        this.appHttpService.postData(this.uc.api.qc + "/update_advertisement/", {
                                                 params: {
                                                     advertisement_id: id,
                                                     advertisement_info: {
@@ -230,7 +230,7 @@ export class AdvertisementListComponent implements OnInit {
                                     confirmButtonColor: "#DD6B55",
                                 }).then((isConfirm) => {
                                     if (isConfirm === true) {
-                                        this.appHttpService.postData(this.uc.api.qc + "/update_advertisement/hash/", {
+                                        this.appHttpService.postData(this.uc.api.qc + "/update_advertisement/", {
                                                 params: {
                                                     advertisement_id: id,
                                                     advertisement_info: {
@@ -275,7 +275,7 @@ export class AdvertisementListComponent implements OnInit {
                                     confirmButtonColor: "#DD6B55",
                                 }).then((isConfirm) => {
                                     if (isConfirm === true) {
-                                        this.appHttpService.postData(this.uc.api.qc + "/delete_advertisement/hash/", {
+                                        this.appHttpService.postData(this.uc.api.qc + "/delete_advertisement/", {
                                                 params: {
                                                     advertisement_id: id,
                                                     advertisement_info: {

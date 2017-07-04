@@ -26,13 +26,17 @@ export class AdvertisementDetailComponent implements OnInit {
         let params = this.activatedRoute.params;
         params.subscribe(res=>{
             this.advertisement_id = res.id;
-        })
-        if (this.uc.powerfun(this.uc.constant.add_city_partner_user)) {
+        });
+        if (this.uc.powerfun(this.uc.constant.update_advertisement_to_zero)) {
             this.plugins.button = {
                 class: 'btn-danger',
                 content: '广告点击次数清零',
                 click: () => {
-                    this.appHttpService.postData(this.uc.api.qc+'/update_advertisement_to_zero/hash/'+this.advertisement_id).subscribe(
+                    this.appHttpService.postData(this.uc.api.qc+'/update_advertisement_to_zero/',{
+                        params:{
+                            advertisement_id:this.advertisement_id
+                        }
+                    }).subscribe(
                         res=>{
                             if (res.status){
                                 location.reload();
@@ -50,13 +54,13 @@ export class AdvertisementDetailComponent implements OnInit {
         }
 
         let data = this.activatedRoute.params
-            .switchMap((params: Params) => this.appHttpService.postData(this.uc.api.qc + "/get_advertisement/hash/", {
+            .switchMap((params: Params) => this.appHttpService.postData(this.uc.api.qc + "/get_advertisement/", {
                 params: {
                     advertisement_id: params['id']
                 }
             }));
         data.subscribe((res) => {
-            let basesrc=this.uc.api.qc+"/get_file/hash/";
+            let basesrc=this.uc.api.qc+"/get_file/";
             if (res.status) {
                 let _data = res.data;
                 let show_position;

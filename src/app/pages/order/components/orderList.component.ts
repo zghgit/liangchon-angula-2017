@@ -148,7 +148,7 @@ export class OrderListComponent implements OnInit {
                 controlType: "address",
                 hasChildGroup: true,
                 hidden: true,
-                url: this.uc.api.qc + '/get_geo_list/hash/',
+                url: this.uc.api.qc + '/get_geo_list/',
                 config: {
                     province: {
                         name: 'province_code',
@@ -172,7 +172,7 @@ export class OrderListComponent implements OnInit {
                 controlType: "address",
                 hasChildGroup: true,
                 hidden: true,
-                url: this.uc.api.qc + '/get_geo_list/hash/',
+                url: this.uc.api.qc + '/get_geo_list/',
                 config: {
                     province: {
                         name: 'province_code',
@@ -349,7 +349,7 @@ export class OrderListComponent implements OnInit {
     }
 
     public getGridData = function (params) {
-        let data = this.appHttpService.postData(this.uc.api.qc + "/get_order_list/hash", {params: params})
+        let data = this.appHttpService.postData(this.uc.api.qc + "/get_order_list", {params: params})
         data.subscribe(res => {
             if (res.status) {
                 let data = res.data;
@@ -397,7 +397,7 @@ export class OrderListComponent implements OnInit {
                                     confirmButtonColor: "#DD6B55",
                                 }).then((isConfirm) => {
                                     if (isConfirm === true) {
-                                        this.appHttpService.postData(this.uc.api.qc + "/order_finish/hash/", {
+                                        this.appHttpService.postData(this.uc.api.qc + "/order_finish/", {
                                                 params: {
                                                     order_id: id
                                                 }
@@ -439,7 +439,7 @@ export class OrderListComponent implements OnInit {
                                     confirmButtonColor: "#DD6B55",
                                 }).then((isConfirm) => {
                                     if (isConfirm === true) {
-                                        this.appHttpService.postData(this.uc.api.qc + "/order_finish/hash/", {
+                                        this.appHttpService.postData(this.uc.api.qc + "/order_finish/", {
                                                 params: {
                                                     order_id: id
                                                 }
@@ -481,7 +481,7 @@ export class OrderListComponent implements OnInit {
                                     confirmButtonColor: "#DD6B55",
                                 }).then((isConfirm) => {
                                     if (isConfirm === true) {
-                                        this.appHttpService.postData(this.uc.api.qc + "/order_refund/hash/", {
+                                        this.appHttpService.postData(this.uc.api.qc + "/order_refund/", {
                                                 params: {
                                                     order_id: id
                                                 }
@@ -531,7 +531,7 @@ export class OrderListComponent implements OnInit {
     }
     //下载
     downloadTemplate(params) {
-        this.appHttpService.getBinary(this.uc.api.qc + '/download_order_info/hash/',{params:params}).subscribe(res => {
+        this.appHttpService.getBinary(this.uc.api.qc + '/download_order_info/',{params:params}).subscribe(res => {
             let disposition = res.headers._headers.get("content-disposition");
             if (!disposition) {
                 swal("下载失败", res.error_msg, "error")

@@ -141,7 +141,7 @@ export class EquipmentBatchSetComponent implements OnInit {
     }
     //获取商品信息
     public getCommodityData = function () {
-        let data = this.appHttpService.postData(this.uc.api.qc + "/get_commodity_list/hash", {params:{
+        let data = this.appHttpService.postData(this.uc.api.qc + "/get_commodity_list", {params:{
             page_now: 1,
             limit: 200000,
             sort_by:'create_time',
@@ -181,7 +181,7 @@ export class EquipmentBatchSetComponent implements OnInit {
     };
     //获取设备信息
     public getGridData = function (params) {
-        let data = this.appHttpService.postData(this.uc.api.qc + "/get_device_list/hash", {params: params})
+        let data = this.appHttpService.postData(this.uc.api.qc + "/get_device_list", {params: params})
         data.subscribe(res => {
             if (res.status) {
                 let data = res.data;
@@ -264,7 +264,7 @@ export class EquipmentBatchSetComponent implements OnInit {
                 commodity_ids       :   commodity_ids,
             }
         }
-        this.appHttpService.postData(this.uc.api.qc + "/batch_set_device/hash", params).subscribe(
+        this.appHttpService.postData(this.uc.api.qc + "/batch_set_device", params).subscribe(
             res => {
                 if (res.status) {
                     this.router.navigateByUrl('pages/equipment/equipmentList');

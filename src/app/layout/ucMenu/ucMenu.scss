@@ -40,6 +40,7 @@ aside{
                 line-height: 18px;
                 color: #fff;
                 display: block;
+                cursor: pointer;
                 transition: background-color .4s;
                 text-decoration: none;
                 font-weight: 300;
@@ -118,7 +119,7 @@ aside{
                     //    transform: rotate(-180deg);
                     //}
                     span{
-                        transform: rotate3d(0, 0, 1, -180deg);
+                        transform: rotate3d(0, 0.1, 1, -180deg);
                     }
                 }
             }
@@ -127,11 +128,11 @@ aside{
                 transition: all 0.4s;
                 display: none;
                 ////height: 0;
-                animation: fadeIn .4s linear;
-                @keyframes fadeIn {
-                    from {opacity: 0;}
-                    to {opacity: 1;}
-                }
+                //animation: fadeIn .4s;
+                //@keyframes fadeIn {
+                //    from {opacity: 0;}
+                //    to {opacity: 1;}
+                //}
                 &.showSubMenu{
                     display: block;
                     //height: auto;

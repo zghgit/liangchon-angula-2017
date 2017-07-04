@@ -55,7 +55,7 @@ export class EquipmentConfigComponent implements OnInit {
             this.device_no = res['id'];
         })
         let data = this.activatedRoute.params
-            .switchMap((params: Params) => this.appHttpService.postData(this.uc.api.qc + "/get_device_params_list/hash", {params: {device_no: params['id']}}));
+            .switchMap((params: Params) => this.appHttpService.postData(this.uc.api.qc + "/get_device_params_list", {params: {device_no: params['id']}}));
         data.subscribe(res => {
             if (res.status) {
                 let _data = res.data;
@@ -393,7 +393,7 @@ export class EquipmentConfigComponent implements OnInit {
         this.showchangeparams = true;
     }
     upParams(){
-        this.appHttpService.postData(this.uc.api.qc + "/set_device_params/hash", {params:this.newparams}).subscribe(
+        this.appHttpService.postData(this.uc.api.qc + "/set_device_params", {params:this.newparams}).subscribe(
             res => {
                 if (res.status) {
                     this.router.navigateByUrl('pages/equipment/equipmentList');

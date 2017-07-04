@@ -95,7 +95,7 @@ export class complainedAddComponent implements OnInit {
         let params = {
             params: value
         }
-        this.appHttpService.postData(this.uc.api.qc + "/add_complained/hash", params).subscribe(
+        this.appHttpService.postData(this.uc.api.qc + "/add_complained", params).subscribe(
             res => {
                 if (res.status) {
                     this.router.navigateByUrl('pages/complained/complainedList');

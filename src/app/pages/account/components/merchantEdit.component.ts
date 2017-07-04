@@ -31,7 +31,11 @@ export class MerchantEditComponent implements OnInit {
         })
 
         let data = this.activatedRoute.params
-            .switchMap((params: Params) => this.appHttpService.getData(this.uc.api.qc + "/get_business_user/hash/" + params['id']));
+            .switchMap((params: Params) => this.appHttpService.postData(this.uc.api.qc + "/get_business_user/",{
+                params: {
+                    business_id: params['id']
+                }
+            }));
         data.subscribe(res => {
             if (res.status) {
                 let _data = res.data;
@@ -160,7 +164,7 @@ export class MerchantEditComponent implements OnInit {
                         key: "business_address",
                         controlType: "address",
                         hasChildGroup: true,
-                        url: this.uc.api.qc + '/get_geo_list/hash/',
+                        url: this.uc.api.qc + '/get_geo_list/',
                         config: {
                             province: {
                                 name: 'province_code',
@@ -194,8 +198,8 @@ export class MerchantEditComponent implements OnInit {
                         config: {
                             value: _data.certificate_img_1,
                             accept:"image/*",
-                            uploadurl: this.uc.api.qc + "/upload_file/hash/",
-                            downloadurl: this.uc.api.qc + "/get_file/hash/",
+                            uploadurl: this.uc.api.qc + "/upload_file/",
+                            downloadurl: this.uc.api.qc + "/get_file/",
                             capsule: "certificate_img_1"
                         },
                     }, {
@@ -214,8 +218,8 @@ export class MerchantEditComponent implements OnInit {
                         config: {
                             value: _data.certificate_img_2,
                             accept:"image/*",
-                            uploadurl: this.uc.api.qc + "/upload_file/hash/",
-                            downloadurl: this.uc.api.qc + "/get_file/hash/",
+                            uploadurl: this.uc.api.qc + "/upload_file/",
+                            downloadurl: this.uc.api.qc + "/get_file/",
                             capsule: "certificate_img_2"
                         },
                     }, {
@@ -234,8 +238,8 @@ export class MerchantEditComponent implements OnInit {
                         config: {
                             value: _data.certificate_img_3,
                             accept:"image/*",
-                            uploadurl: this.uc.api.qc + "/upload_file/hash/",
-                            downloadurl: this.uc.api.qc + "/get_file/hash/",
+                            uploadurl: this.uc.api.qc + "/upload_file/",
+                            downloadurl: this.uc.api.qc + "/get_file/",
                             capsule: "certificate_img_3"
                         },
                     }, {
@@ -450,7 +454,7 @@ export class MerchantEditComponent implements OnInit {
                 }
             }
         };
-        this.appHttpService.postData(this.uc.api.qc + "/update_business_user/hash", params).subscribe(
+        this.appHttpService.postData(this.uc.api.qc + "/update_business_user", params).subscribe(
             res => {
                 if (res.status) {
                     this.router.navigateByUrl('pages/account/merchantList');

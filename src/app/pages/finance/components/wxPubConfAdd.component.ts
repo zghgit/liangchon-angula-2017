@@ -92,8 +92,8 @@ export class WxPubConfAddComponent implements OnInit {
             config: {
                 value: "",
                 accept: "",
-                uploadurl: this.uc.api.qc + "/upload_file/hash/",
-                downloadurl: this.uc.api.qc + "/get_file/hash/",
+                uploadurl: this.uc.api.qc + "/upload_file/",
+                downloadurl: this.uc.api.qc + "/get_file/",
                 capsule: "apiclient_cert_p" + new Date().getTime()
             },
             validator: [
@@ -111,8 +111,8 @@ export class WxPubConfAddComponent implements OnInit {
             config: {
                 value: "",
                 accept: "",
-                uploadurl: this.uc.api.qc + "/upload_file/hash/",
-                downloadurl: this.uc.api.qc + "/get_file/hash/",
+                uploadurl: this.uc.api.qc + "/upload_file/",
+                downloadurl: this.uc.api.qc + "/get_file/",
                 capsule: "apiclient_key_p" + new Date().getTime()
             },
             validator: [
@@ -187,8 +187,8 @@ export class WxPubConfAddComponent implements OnInit {
             config: {
                 value: "",
                 accept: "",
-                uploadurl: this.uc.api.qc + "/upload_file/hash/",
-                downloadurl: this.uc.api.qc + "/get_file/hash/",
+                uploadurl: this.uc.api.qc + "/upload_file/",
+                downloadurl: this.uc.api.qc + "/get_file/",
                 capsule: "apiclient_cert_g" + new Date().getTime()
             },
             validator: [
@@ -206,8 +206,8 @@ export class WxPubConfAddComponent implements OnInit {
             config: {
                 value: "",
                 accept: "",
-                uploadurl: this.uc.api.qc + "/upload_file/hash/",
-                downloadurl: this.uc.api.qc + "/get_file/hash/",
+                uploadurl: this.uc.api.qc + "/upload_file/",
+                downloadurl: this.uc.api.qc + "/get_file/",
                 capsule: "apiclient_key_g" + new Date().getTime()
             },
             validator: [
@@ -253,7 +253,7 @@ export class WxPubConfAddComponent implements OnInit {
                 apiclient_key_g: value.apiclient_key_g
             }
         };
-        this.appHttpService.postData(this.uc.api.qc + "/add_wxpay_config/hash", params).subscribe(
+        this.appHttpService.postData(this.uc.api.qc + "/add_wxpay_config", params).subscribe(
             res => {
                 if (res.status) {
                     this.router.navigateByUrl('pages/finance/payConfigList');

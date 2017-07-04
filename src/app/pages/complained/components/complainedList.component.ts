@@ -135,7 +135,7 @@ export class complainedListComponent implements OnInit {
     }
 
     public getGridData = function (params) {
-        let data = this.appHttpService.postData(this.uc.api.qc + "/get_complained_list/hash", {params: params})
+        let data = this.appHttpService.postData(this.uc.api.qc + "/get_complained_list", {params: params})
         data.subscribe(res => {
             if (res.status) {
                 let data = res.data;
@@ -179,7 +179,7 @@ export class complainedListComponent implements OnInit {
                                     confirmButtonColor: "#DD6B55",
                                 }).then((isConfirm) => {
                                     if (isConfirm === true) {
-                                        this.appHttpService.postData(this.uc.api.qc + "/update_complained/hash/", {
+                                        this.appHttpService.postData(this.uc.api.qc + "/update_complained/", {
                                                 params: {
                                                     complained_id: id,
                                                     complained_info: {

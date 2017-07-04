@@ -31,7 +31,7 @@ export class PagesComponent implements OnInit {
         this.config.role = decodeURI(role);
         this.config.user_name = this.dataService.getCookies("user_name");
         this.config.logout = () => {
-            let data = this.appHttpService.postData(this.uc.api.qc + "/logout/hash");
+            let data = this.appHttpService.postData(this.uc.api.qc + "/logout");
             data.subscribe((res) => {
                 if (res.status) {
                     this.router.navigateByUrl("/login");

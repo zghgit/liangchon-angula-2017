@@ -113,7 +113,7 @@ export class AppManagementListComponent implements OnInit {
     }
 
     public getGridData = function (params) {
-        let data = this.appHttpService.postData(this.uc.api.qc + "/get_app_user_list/hash", {params: params})
+        let data = this.appHttpService.postData(this.uc.api.qc + "/get_app_user_list", {params: params})
         data.subscribe(res => {
             if (res.status) {
                 let data = res.data;
@@ -178,7 +178,7 @@ export class AppManagementListComponent implements OnInit {
                                     confirmButtonColor: "#DD6B55",
                                 }).then((isConfirm) => {
                                     if (isConfirm === true) {
-                                        this.appHttpService.postData(this.uc.api.qc + "/update_app_user/hash/", {
+                                        this.appHttpService.postData(this.uc.api.qc + "/update_app_user/", {
                                                 params: {
                                                     app_user_id: id,
                                                     app_user_info: {
@@ -223,7 +223,7 @@ export class AppManagementListComponent implements OnInit {
                                     confirmButtonColor: "#DD6B55",
                                 }).then((isConfirm) => {
                                     if (isConfirm === true) {
-                                        this.appHttpService.postData(this.uc.api.qc + "/update_app_user/hash/", {
+                                        this.appHttpService.postData(this.uc.api.qc + "/update_app_user/", {
                                                 params: {
                                                     app_user_id: id,
                                                     app_user_info: {

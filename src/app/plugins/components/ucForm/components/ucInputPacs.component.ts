@@ -128,8 +128,15 @@ export class UcInputPacsComponent implements OnInit {
     //封装的ajax
     public ajax = (params, value?) => {
         let xhr = new XMLHttpRequest();
-        xhr.open("GET", this.model.url + params + '/' + value);
-        xhr.send();
+        xhr.open("post", this.model.url);
+        xhr.setRequestHeader("Content-type","application/json");
+        let _param={
+            params:{
+                level:params,
+                geo_id:value,
+            }
+        }
+        xhr.send(JSON.stringify(_param));
         xhr.onload = () => {
             if (xhr.status == 200) {
                 let responseText = JSON.parse(xhr.responseText);

@@ -23,11 +23,15 @@ export class merchantDetailComponent implements OnInit {
 
     ngOnInit() {
         let data = this.activatedRoute.params
-            .switchMap((params: Params) => this.appHttpService.getData(this.uc.api.qc + "/get_business_user/hash/"+params['id']));
+            .switchMap((params: Params) => this.appHttpService.postData(this.uc.api.qc + "/get_business_user/",{
+                params: {
+                    business_id: params['id']
+                }
+            }));
         data.subscribe((res) => {
             if (res.status) {
                 let _data = res.data;
-                let basesrc=this.uc.api.qc+"/get_file/hash/";
+                let basesrc=this.uc.api.qc+"/get_file/";
                 let module_permission = '';
                 for (let i = 0; i < _data.module_permission.length; i++) {
                     module_permission += _data.module_permission[i].content + ', '

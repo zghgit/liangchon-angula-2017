@@ -31,7 +31,7 @@ export class UserEditComponent implements OnInit {
             this.user_id = res.id;
         })
         let data = this.activatedRoute.params
-            .switchMap((params: Params) => this.appHttpService.getData(this.uc.api.qc + "/get_user/hash/" + params['id']));
+            .switchMap((params: Params) => this.appHttpService.getData(this.uc.api.qc + "/get_user/" + params['id']));
         data.subscribe(res => {
             if (res.status) {
                 let _data = res.data;
@@ -138,7 +138,7 @@ export class UserEditComponent implements OnInit {
                         key: "business_address1",
                         controlType: "address",
                         hasChildGroup: true,
-                        url: this.uc.api.qc + '/get_geo_list/hash/',
+                        url: this.uc.api.qc + '/get_geo_list/',
                         config: {
                             province: {
                                 name: 'province_code',
@@ -349,7 +349,7 @@ export class UserEditComponent implements OnInit {
                 }
             }
         };
-        this.appHttpService.postData(this.uc.api.qc + "/update_user_info/hash", params).subscribe(
+        this.appHttpService.postData(this.uc.api.qc + "/update_user_info", params).subscribe(
             res => {
                 if (res.status) {
                     this.router.navigateByUrl('pages/user/userInfo/' + this.user_id);

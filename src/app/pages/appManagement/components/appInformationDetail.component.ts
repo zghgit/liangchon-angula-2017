@@ -25,7 +25,7 @@ export class AppInformationDetailComponent implements OnInit {
 
     ngOnInit() {
         let data = this.activatedRoute.params
-            .switchMap((params: Params) => this.appHttpService.postData(this.uc.api.qc + "/get_information/hash/", {
+            .switchMap((params: Params) => this.appHttpService.postData(this.uc.api.qc + "/get_information/", {
                 params: {
                     information_id: params['id']
                 }

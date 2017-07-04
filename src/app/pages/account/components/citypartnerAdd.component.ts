@@ -7,7 +7,7 @@ import {Validators} from '@angular/forms';
 import {AppHttpService, UC, DataService} from "../../../plugins/globalservice";
 import {phoneValidator} from "../../../plugins/validators/phoneValidator";
 import {emailValidator} from "../../../plugins/validators/emailValidator";
-
+import {Md5} from "ts-md5/dist/md5";
 declare var swal;
 @Component({
     selector: 'citypartner-add',
@@ -168,7 +168,7 @@ export class CitypartnerAddComponent implements OnInit {
             key: "business_address",
             controlType: "address",
             hasChildGroup: true,
-            url: this.uc.api.qc + '/get_geo_list/hash/',
+            url: this.uc.api.qc + '/get_geo_list/',
             config: {
                 province: {
                     name: 'province_code',
@@ -202,8 +202,8 @@ export class CitypartnerAddComponent implements OnInit {
             config: {
                 value: "",
                 accept:"image/*",
-                uploadurl: this.uc.api.qc + "/upload_file/hash/",
-                downloadurl: this.uc.api.qc + "/get_file/hash/",
+                uploadurl: this.uc.api.qc + "/upload_file/",
+                downloadurl: this.uc.api.qc + "/get_file/",
                 capsule: "certificate_img_21"
             },
         }, {
@@ -222,8 +222,8 @@ export class CitypartnerAddComponent implements OnInit {
             config: {
                 value: "",
                 accept:"image/*",
-                uploadurl: this.uc.api.qc + "/upload_file/hash/",
-                downloadurl: this.uc.api.qc + "/get_file/hash/",
+                uploadurl: this.uc.api.qc + "/upload_file/",
+                downloadurl: this.uc.api.qc + "/get_file/",
                 capsule: "certificate_img_22"
             },
         }, {
@@ -242,8 +242,8 @@ export class CitypartnerAddComponent implements OnInit {
             config: {
                 value: "",
                 accept:"image/*",
-                uploadurl: this.uc.api.qc + "/upload_file/hash/",
-                downloadurl: this.uc.api.qc + "/get_file/hash/",
+                uploadurl: this.uc.api.qc + "/upload_file/",
+                downloadurl: this.uc.api.qc + "/get_file/",
                 capsule: "certificate_img_23"
             },
         }, {
@@ -327,7 +327,7 @@ export class CitypartnerAddComponent implements OnInit {
                 position: ''
             }
         };
-        this.appHttpService.postData(this.uc.api.qc + "/add_city_partner_user/hash", params).subscribe(
+        this.appHttpService.postData(this.uc.api.qc + "/add_city_partner_user", params).subscribe(
             res => {
                 if (res.status) {
                     this.router.navigateByUrl('pages/account/citypartnerList');

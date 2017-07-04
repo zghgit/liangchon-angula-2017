@@ -24,12 +24,16 @@ export class CitypartnerDetailComponent implements OnInit {
 
     ngOnInit() {
         let data = this.activatedRoute.params
-            .switchMap((params: Params) => this.appHttpService.getData(this.uc.api.qc + "/get_city_partner_user/hash/"+params['id']));
+            .switchMap((params: Params) => this.appHttpService.postData(this.uc.api.qc + "/get_city_partner_user/",{
+                params: {
+                    city_partner_id: params['id']
+                }
+            }));
         data.subscribe((res) => {
             if (res.status) {
                 let _data = res.data;
                 let module_permission = '';
-                let basesrc=this.uc.api.qc+"/get_file/hash/";
+                let basesrc=this.uc.api.qc+"/get_file/";
                 for (let i = 0; i < _data.module_permission.length; i++) {
                     module_permission += _data.module_permission[i].content + ', '
                 }
@@ -93,7 +97,7 @@ export class CitypartnerDetailComponent implements OnInit {
                     {
                         type: 'img',
                         label: '营业执照-照片',
-                        src: [basesrc+_data.certificate_img_1]
+                        src: _data.certificate_img_1?[basesrc+_data.certificate_img_1]:""
                     }, {
                         type: 'text',
                         label: '税务登记证-登记号',
@@ -101,7 +105,7 @@ export class CitypartnerDetailComponent implements OnInit {
                     }, {
                         type: 'img',
                         label: '税务登记证-照片',
-                        src: [basesrc+_data.certificate_img_2]
+                        src: _data.certificate_img_2?[basesrc+_data.certificate_img_2]:""
                     }, {
                         type: 'text',
                         label: '组织结构代码',
@@ -109,7 +113,7 @@ export class CitypartnerDetailComponent implements OnInit {
                     }, {
                         type: 'img',
                         label: '组织结构代码-照片',
-                        src: [basesrc+_data.certificate_img_3]
+                        src: _data.certificate_img_3?[basesrc+_data.certificate_img_3]:""
                     }, {
                         type: 'text',
                         label: '性质',

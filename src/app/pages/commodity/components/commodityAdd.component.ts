@@ -111,7 +111,7 @@ export class CommodityAddComponent implements OnInit {
         let params = {
             params: value
         }
-        this.appHttpService.postData(this.uc.api.qc + "/add_commodity/hash", params).subscribe(
+        this.appHttpService.postData(this.uc.api.qc + "/add_commodity", params).subscribe(
             res => {
                 if (res.status) {
                     this.router.navigateByUrl('pages/commodity/commodityList');

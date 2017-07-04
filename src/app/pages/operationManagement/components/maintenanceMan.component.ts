@@ -20,7 +20,7 @@ export class MaintenanceManComponent implements OnInit {
     }
 
     ngOnInit() {
-        let data = this.appHttpService.getData(this.uc.api.qc+"/get_user/hash/");
+        let data = this.appHttpService.getData(this.uc.api.qc+"/get_user/");
         data.subscribe(res => {
             if (res.status) {
                 let _data = res.data;
@@ -63,7 +63,7 @@ export class MaintenanceManComponent implements OnInit {
                 }
             }
         };
-        this.appHttpService.postData(this.uc.api.qc + "/update_user_info/hash", params).subscribe(
+        this.appHttpService.postData(this.uc.api.qc + "/update_user_info", params).subscribe(
             res => {
                 if (res.status) {
                     location.reload();

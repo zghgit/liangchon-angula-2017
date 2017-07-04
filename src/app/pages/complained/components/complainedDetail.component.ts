@@ -23,7 +23,7 @@ export class complainedDetailComponent implements OnInit {
 
     ngOnInit() {
         let data = this.activatedRoute.params
-            .switchMap((params: Params) => this.appHttpService.postData(this.uc.api.qc + "/get_complained/hash", {params: {complained_id: params['id']}}));
+            .switchMap((params: Params) => this.appHttpService.postData(this.uc.api.qc + "/get_complained", {params: {complained_id: params['id']}}));
         data.subscribe((res) => {
             if (res.status) {
                 let _data = res.data;

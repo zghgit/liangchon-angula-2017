@@ -8,7 +8,7 @@ import {AppHttpService, UC, DataService} from "../../../plugins/globalservice";
 import {phoneValidator} from "../../../plugins/validators/phoneValidator";
 import {emailValidator} from "../../../plugins/validators/emailValidator";
 import {CustomValidators} from 'ng2-validation';
-
+import {Md5} from "ts-md5/dist/md5";
 declare var swal;
 @Component({
     selector: 'merchant-add',
@@ -168,7 +168,7 @@ export class MerchantAddComponent implements OnInit {
             key: "business_address",
             controlType: "address",
             hasChildGroup: true,
-            url: this.uc.api.qc + '/get_geo_list/hash/',
+            url: this.uc.api.qc + '/get_geo_list/',
             config: {
                 province: {
                     name: 'province_code',
@@ -202,8 +202,8 @@ export class MerchantAddComponent implements OnInit {
             config: {
                 value: "",
                 accept:"image/*",
-                uploadurl: this.uc.api.qc + "/upload_file/hash/",
-                downloadurl: this.uc.api.qc + "/get_file/hash/",
+                uploadurl: this.uc.api.qc + "/upload_file/",
+                downloadurl: this.uc.api.qc + "/get_file/",
                 capsule: "certificate_img_1"
             },
         }, {
@@ -222,8 +222,8 @@ export class MerchantAddComponent implements OnInit {
             config: {
                 value: "",
                 accept:"image/*",
-                uploadurl: this.uc.api.qc + "/upload_file/hash/",
-                downloadurl: this.uc.api.qc + "/get_file/hash/",
+                uploadurl: this.uc.api.qc + "/upload_file/",
+                downloadurl: this.uc.api.qc + "/get_file/",
                 capsule: "certificate_img_2"
             },
         }, {
@@ -242,8 +242,8 @@ export class MerchantAddComponent implements OnInit {
             config: {
                 value: "",
                 accept:"image/*",
-                uploadurl: this.uc.api.qc + "/upload_file/hash/",
-                downloadurl: this.uc.api.qc + "/get_file/hash/",
+                uploadurl: this.uc.api.qc + "/upload_file/",
+                downloadurl: this.uc.api.qc + "/get_file/",
                 capsule: "certificate_img_3"
             },
         }, {
@@ -437,7 +437,7 @@ export class MerchantAddComponent implements OnInit {
                 settlement_day: settlement_day,
             }
         };
-        this.appHttpService.postData(this.uc.api.qc + "/add_business_user/hash", params).subscribe(
+        this.appHttpService.postData(this.uc.api.qc + "/add_business_user", params).subscribe(
             res => {
                 if (res.status) {
                     this.router.navigateByUrl('pages/account/merchantList');

@@ -102,7 +102,7 @@ export class EquipmentListComponent implements OnInit {
                 controlType: "address",
                 hasChildGroup: true,
                 hidden: true,
-                url: this.uc.api.qc + '/get_geo_list/hash/',
+                url: this.uc.api.qc + '/get_geo_list/',
                 config: {
                     province: {
                         name: 'province_code',
@@ -220,7 +220,7 @@ export class EquipmentListComponent implements OnInit {
     }
 
     public getGridData = function (params) {
-        let data = this.appHttpService.postData(this.uc.api.qc + "/get_device_list/hash", {params: params})
+        let data = this.appHttpService.postData(this.uc.api.qc + "/get_device_list", {params: params})
         data.subscribe(res => {
             if (res.status) {
                 let data = res.data;
@@ -267,7 +267,7 @@ export class EquipmentListComponent implements OnInit {
                                     confirmButtonColor: "#DD6B55",
                                 }).then((isConfirm) => {
                                     if (isConfirm === true) {
-                                        this.appHttpService.postData(this.uc.api.qc + "/disable_device/hash/", {
+                                        this.appHttpService.postData(this.uc.api.qc + "/disable_device/", {
                                                 params: {
                                                     device_id: id,
                                                 }
@@ -310,7 +310,7 @@ export class EquipmentListComponent implements OnInit {
                                     confirmButtonColor: "#DD6B55",
                                 }).then((isConfirm) => {
                                     if (isConfirm === true) {
-                                        this.appHttpService.postData(this.uc.api.qc + "/start_device/hash/", {
+                                        this.appHttpService.postData(this.uc.api.qc + "/start_device/", {
                                                 params: {
                                                     device_id: id,
                                                 }
@@ -353,7 +353,7 @@ export class EquipmentListComponent implements OnInit {
                             class: "btn-purple",
                             click: (data) => {
                                 let device_no = data[1].content;
-                                this.appHttpService.postData(this.uc.api.qc + "/generate_qr_code/hash/", {
+                                this.appHttpService.postData(this.uc.api.qc + "/generate_qr_code/", {
                                         params: {
                                             device_no: device_no,
                                         }
@@ -412,7 +412,7 @@ export class EquipmentListComponent implements OnInit {
                                     confirmButtonColor: "#DD6B55",
                                 }).then((isConfirm) => {
                                     if (isConfirm === true) {
-                                        this.appHttpService.postData(this.uc.api.qc + "/device_unbundling/hash/", {
+                                        this.appHttpService.postData(this.uc.api.qc + "/device_unbundling/", {
                                                 params: {
                                                     device_id: id,
                                                 }
@@ -469,7 +469,7 @@ export class EquipmentListComponent implements OnInit {
 
     //下载二维码
     public downloadimg() {
-        this.appHttpService.postData(this.uc.api.qc + "/download_qr_code_zip/hash/", {
+        this.appHttpService.postData(this.uc.api.qc + "/download_qr_code_zip/", {
                 params: {
                     device_no: this.zoomInfo['device_no'],
                 }
@@ -485,7 +485,7 @@ export class EquipmentListComponent implements OnInit {
 
     //下载导出
     downloadTemplate(params) {
-        this.appHttpService.getBinary(this.uc.api.qc + '/download_device_info/hash/', {params: params}).subscribe(res => {
+        this.appHttpService.getBinary(this.uc.api.qc + '/download_device_info/', {params: params}).subscribe(res => {
             let disposition = res.headers._headers.get("content-disposition");
 
             if (!disposition) {

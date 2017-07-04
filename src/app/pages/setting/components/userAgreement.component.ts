@@ -37,7 +37,7 @@ export class UserAgreementComponent implements OnInit {
 
 
     ngOnInit() {
-        let data = this.appHttpService.getData(this.uc.api.qc+'/get_system_config/hash/');
+        let data = this.appHttpService.getData(this.uc.api.qc+'/get_system_config/');
         data.subscribe(res=>{
             if(res.status){
                 let data = res.data;
@@ -63,7 +63,7 @@ export class UserAgreementComponent implements OnInit {
         let params = {
             params: {system_configs: commiteArry}
         };
-        this.appHttpService.postData(this.uc.api.qc + "/update_system_config/hash", params).subscribe(
+        this.appHttpService.postData(this.uc.api.qc + "/update_system_config", params).subscribe(
             res => {
                 if (res.status) {
                     swal({

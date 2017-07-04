@@ -24,7 +24,11 @@ export class ChildAccountDetailComponent implements OnInit {
 
     ngOnInit() {
         let data = this.activatedRoute.params
-            .switchMap((params: Params) => this.appHttpService.getData(this.uc.api.qc + "/get_sub_user/hash/" + params['id']));
+            .switchMap((params: Params) => this.appHttpService.postData(this.uc.api.qc + "/get_sub_user/", {
+                params: {
+                    sub_user_id: params['id']
+                }
+            }));
         data.subscribe((res) => {
             if (res.status) {
                 let _data = res.data;
@@ -102,7 +106,7 @@ export class ChildAccountDetailComponent implements OnInit {
                     }
                 ];
                 if (admin_flg == 2) {
-                    this.plugins.table.data.splice(13,0,{
+                    this.plugins.table.data.splice(13, 0, {
                         type: 'text',
                         label: '最小提现额度',
                         content: _data.min_withdraw_cash + " 元"
@@ -113,7 +117,7 @@ export class ChildAccountDetailComponent implements OnInit {
                     title: "获取子账户信息失败!",
                     text: res.error_msg,
                     type: "error",
-                    timer:"2000"
+                    timer: "2000"
                 });
             }
         })

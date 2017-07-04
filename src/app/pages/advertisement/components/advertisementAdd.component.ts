@@ -48,8 +48,8 @@ export class advertisementAddComponent implements OnInit {
                 value: "",
                 accept:"image/*",
                 size:2,
-                uploadurl: this.uc.api.qc + "/upload_file/hash/",
-                downloadurl: this.uc.api.qc + "/get_file/hash/",
+                uploadurl: this.uc.api.qc + "/upload_file/",
+                downloadurl: this.uc.api.qc + "/get_file/",
                 capsule: "advertisement_url"
             },
             validator: [
@@ -102,7 +102,7 @@ export class advertisementAddComponent implements OnInit {
             content: "确认",
             options: [],
             check_all: true,
-            url: this.uc.api.qc + '/get_geo_list/hash/',
+            url: this.uc.api.qc + '/get_geo_list/',
             validator: [
                 Validators.required
             ],
@@ -198,7 +198,7 @@ export class advertisementAddComponent implements OnInit {
                 }
             }
         }
-        this.appHttpService.postData(this.uc.api.qc + "/add_advertisement/hash", params).subscribe(
+        this.appHttpService.postData(this.uc.api.qc + "/add_advertisement", params).subscribe(
             res => {
                 if (res.status) {
                     this.router.navigateByUrl('pages/advertisement/advertisementList');

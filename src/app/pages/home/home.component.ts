@@ -58,7 +58,7 @@ export class HomeComponent implements OnInit {
             free_num		= '空闲枪口',
             offline_num	= '离线枪口',
             charging_num	= '充电中枪口';
-        let data =  this.appHttpService.getData(this.uc.api.qc+'/get_statistics_device_info_for_home_page/hash/');
+        let data =  this.appHttpService.postData(this.uc.api.qc+'get_statistics_device_info_for_home_page');
         data.subscribe(res=>{
             if(res.status){
                 let data = res.data;
@@ -128,7 +128,7 @@ export class HomeComponent implements OnInit {
         })
     }
     public getChargingInfo(){
-        let data =  this.appHttpService.getData(this.uc.api.qc+'/get_realtime_device_info_for_home_page/hash/');
+        let data =  this.appHttpService.postData(this.uc.api.qc+'get_realtime_device_info_for_home_page');
         data.subscribe(res=>{
             if (res.status){
                 let data = res.data;
@@ -140,7 +140,7 @@ export class HomeComponent implements OnInit {
         })
     }
     public  getchargingData(){
-        let data =  this.appHttpService.getData(this.uc.api.qc+'/get_today_device_times_for_home_page/hash/');
+        let data =  this.appHttpService.postData(this.uc.api.qc+'get_today_device_times_for_home_page');
         data.subscribe(res=>{
             if(res.status){
                 let data = res.data

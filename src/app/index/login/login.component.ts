@@ -5,6 +5,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {User} from "../loginDataModel";
 import {AppHttpService, DataService, UC} from "../../plugins/globalservice";
+import {Md5} from "ts-md5/dist/md5";
 declare var swal: any;
 
 @Component({
@@ -24,7 +25,7 @@ export class LoginComponent implements OnInit {
     };
 
     ngOnInit() {
-        this.identifyCodeSrc = "/api/wyc/get_identifying_code/hash";
+        this.identifyCodeSrc = this.uc.api.qc+ "get_identifying_code/";
     }
 
     public doLogin(): void {
@@ -42,12 +43,13 @@ export class LoginComponent implements OnInit {
             params: {
                 user_name: this.user.userName,
                 password: this.user.password,
+                // password: Md5.hashStr(this.user.password).toString(),
                 validate_code: this.user.identifyCode
             }
         }
         if (this.canAjax && falg) {
             this.canAjax = false;
-            let data = this.appHttpService.postData(this.uc.api.qc + "/login/hash", params);
+            let data = this.appHttpService.postData(this.uc.api.qc + "/login", params);
             data.subscribe(
                 res => {
                     this.canAjax = true;
@@ -92,6 +94,6 @@ export class LoginComponent implements OnInit {
     }
 
     public reloadIdentifyCode(): void {
-        this.identifyCodeSrc = this.uc.api.qc + '/get_identifying_code/hash?ran=' + new Date().getTime();
+        this.identifyCodeSrc = this.uc.api.qc + '/get_identifying_code?ran=' + new Date().getTime();
     }
 }

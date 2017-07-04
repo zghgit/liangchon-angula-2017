@@ -30,7 +30,7 @@ export class EquipmentImportComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.uploadurl = this.uc.api.qc + "/create_device_by_excel/hash/"
+        this.uploadurl = this.uc.api.qc + "/create_device_by_excel/"
     }
 
     filehasup(ev) {
@@ -97,7 +97,7 @@ export class EquipmentImportComponent implements OnInit {
     }
 
     downloadTemplate() {
-        this.appHttpService.getBinary(this.uc.api.qc + '/download_device_template/hash/').subscribe(res => {
+        this.appHttpService.getBinary(this.uc.api.qc + '/download_device_template/').subscribe(res => {
             let disposition = res.headers._headers.get("content-disposition");
 
             if (!disposition) {

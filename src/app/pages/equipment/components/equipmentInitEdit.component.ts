@@ -31,7 +31,7 @@ export class EquipmentInitEditComponent implements OnInit {
 
     ngOnInit() {
         let data = this.activatedRoute.params
-            .switchMap((params: Params) => this.appHttpService.postData(this.uc.api.qc + "/get_device/hash", {params: {device_id: params['id']}}));
+            .switchMap((params: Params) => this.appHttpService.postData(this.uc.api.qc + "/get_device", {params: {device_id: params['id']}}));
         data.subscribe(res => {
             if (res.status) {
                 let _data = res.data;
@@ -151,7 +151,7 @@ export class EquipmentInitEditComponent implements OnInit {
                         controlType: "address",
                         hasChildGroup: true,
                         require: true,
-                        url: this.uc.api.qc + '/get_geo_list/hash/',
+                        url: this.uc.api.qc + '/get_geo_list/',
                         config: {
                             province: {
                                 name: 'province_code',
@@ -323,7 +323,7 @@ export class EquipmentInitEditComponent implements OnInit {
                             {type: "required", content: "必填项目"}
                         ]
                     })
-                    this.appHttpService.postData(this.uc.api.qc + "/get_commodity_list/hash", {
+                    this.appHttpService.postData(this.uc.api.qc + "/get_commodity_list", {
                         params: {
                             page_now: 1,
                             limit: 500,
@@ -393,7 +393,7 @@ export class EquipmentInitEditComponent implements OnInit {
                 commodity_ids: commodity_ids
             }
         }
-        this.appHttpService.postData(this.uc.api.qc + "/update_device/hash", params).subscribe(
+        this.appHttpService.postData(this.uc.api.qc + "/update_device", params).subscribe(
             res => {
                 if (res.status) {
                     this.router.navigateByUrl('pages/equipment/equipmentList');

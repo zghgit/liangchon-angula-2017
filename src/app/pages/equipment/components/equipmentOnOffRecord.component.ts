@@ -118,7 +118,7 @@ export class EquipmentOnOffComponent implements OnInit {
     }
 
     public getGridData = function (params) {
-        let data = this.appHttpService.postData(this.uc.api.qc + "/get_device_net_log_list/hash", {params: params})
+        let data = this.appHttpService.postData(this.uc.api.qc + "/get_device_net_log_list", {params: params})
         data.subscribe(res => {
             if (res.status) {
                 let data = res.data;

@@ -51,7 +51,7 @@ export class EquipmentUnbindComponent implements OnInit {
     }
 
     public getGridData = function (params) {
-        let data = this.appHttpService.postData(this.uc.api.qc + "/get_device_list/hash", {params: params})
+        let data = this.appHttpService.postData(this.uc.api.qc + "/get_device_list", {params: params})
         data.subscribe(res => {
             if (res.status) {
                 let data = res.data;
@@ -97,7 +97,7 @@ export class EquipmentUnbindComponent implements OnInit {
                                     confirmButtonColor: "#DD6B55",
                                 }).then((isConfirm) => {
                                     if (isConfirm === true) {
-                                        this.appHttpService.postData(this.uc.api.qc + "/delete_device/hash/", {
+                                        this.appHttpService.postData(this.uc.api.qc + "/delete_device/", {
                                                 params: {
                                                     device_id: id
                                                 }

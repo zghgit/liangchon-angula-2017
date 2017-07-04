@@ -44,7 +44,7 @@ export class EquipmentInitAddComponent implements OnInit {
                 device_no: this.device_no
             }
         };
-        this.appHttpService.postData(this.uc.api.qc + "/validate_device_no/hash", params).subscribe(
+        this.appHttpService.postData(this.uc.api.qc + "/validate_device_no", params).subscribe(
             res => {
                 if (res.status) {
                     this.showForm = true;
@@ -164,7 +164,7 @@ export class EquipmentInitAddComponent implements OnInit {
                             controlType: "address",
                             hasChildGroup: true,
                             require: true,
-                            url: this.uc.api.qc + '/get_geo_list/hash/',
+                            url: this.uc.api.qc + '/get_geo_list/',
                             config: {
                                 province: {
                                     name: 'province_code',
@@ -336,7 +336,7 @@ export class EquipmentInitAddComponent implements OnInit {
                                 {type: "required", content: "必填项目"}
                             ]
                         })
-                        this.appHttpService.postData(this.uc.api.qc + "/get_commodity_list/hash", {
+                        this.appHttpService.postData(this.uc.api.qc + "/get_commodity_list", {
                             params: {
                                 page_now: 1,
                                 limit: 500,
@@ -402,7 +402,7 @@ export class EquipmentInitAddComponent implements OnInit {
                 commodity_ids: commodity_ids
             }
         }
-        this.appHttpService.postData(this.uc.api.qc + "/device_binding/hash", params).subscribe(
+        this.appHttpService.postData(this.uc.api.qc + "/device_binding", params).subscribe(
             res => {
                 if (res.status) {
                     this.router.navigateByUrl('pages/equipment/equipmentList');

@@ -71,7 +71,7 @@ export class ChargeStatusComponent implements OnInit {
         }
     }
     getStatus(params){
-        let data = this.appHttpService.postData(this.uc.api.qc + "/get_device_statistics/hash", {params: {device_id: params}});
+        let data = this.appHttpService.postData(this.uc.api.qc + "/get_device_statistics", {params: {device_id: params}});
         data.subscribe(res=>{
             if (res.status){
                 let data=res.data;
@@ -188,7 +188,7 @@ export class ChargeStatusComponent implements OnInit {
         })
     };
     getGridData = function (params) {
-        let data = this.appHttpService.postData(this.uc.api.qc + "/get_order_list/hash", {params: params})
+        let data = this.appHttpService.postData(this.uc.api.qc + "/get_order_list", {params: params})
         data.subscribe(res => {
             if (res.status) {
                 let data = res.data;

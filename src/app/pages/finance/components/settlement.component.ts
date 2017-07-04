@@ -162,7 +162,7 @@ export class SettlementComponent implements OnInit {
     }
 
     public getGridData = function (params) {
-        let data = this.appHttpService.postData(this.uc.api.qc + "/get_settlement_list/hash", {params: params})
+        let data = this.appHttpService.postData(this.uc.api.qc + "/get_settlement_list", {params: params})
         data.subscribe(res => {
             if (res.status) {
                 let data = res.data;
@@ -201,7 +201,7 @@ export class SettlementComponent implements OnInit {
                                     confirmButtonColor: "#DD6B55",
                                 }).then((isConfirm) => {
                                     if (isConfirm === true) {
-                                        this.appHttpService.postData(this.uc.api.qc + "/update_settlement_fine/hash/", {
+                                        this.appHttpService.postData(this.uc.api.qc + "/update_settlement_fine/", {
                                                 params: {
                                                     commodity_id: id
                                                 }
@@ -276,7 +276,7 @@ export class SettlementComponent implements OnInit {
     }
 //下载
     downloadTemplate(params) {
-        this.appHttpService.getBinary(this.uc.api.qc + '/download_order_info/hash/',{params:params}).subscribe(res => {
+        this.appHttpService.getBinary(this.uc.api.qc + '/download_order_info/',{params:params}).subscribe(res => {
             let disposition = res.headers._headers.get("content-disposition");
 
             if (!disposition) {

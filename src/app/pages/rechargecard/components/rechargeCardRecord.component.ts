@@ -158,7 +158,7 @@ export class rechargeCardRecordListComponent implements OnInit {
                 controlType: "address",
                 hasChildGroup: true,
                 hidden: true,
-                url: this.uc.api.qc + '/get_geo_list/hash/',
+                url: this.uc.api.qc + '/get_geo_list/',
                 config: {
                     province: {
                         name: 'province_code',
@@ -182,7 +182,7 @@ export class rechargeCardRecordListComponent implements OnInit {
                 controlType: "address",
                 hasChildGroup: true,
                 hidden: true,
-                url: this.uc.api.qc + '/get_geo_list/hash/',
+                url: this.uc.api.qc + '/get_geo_list/',
                 config: {
                     province: {
                         name: 'province_code',
@@ -328,7 +328,7 @@ export class rechargeCardRecordListComponent implements OnInit {
     }
 
     public getGridData = function (params) {
-        let data = this.appHttpService.postData(this.uc.api.qc + "/get_charge_card_record_list/hash", {params: params})
+        let data = this.appHttpService.postData(this.uc.api.qc + "/get_charge_card_record_list", {params: params})
         data.subscribe(res => {
             if (res.status) {
                 let data = res.data;
@@ -371,7 +371,7 @@ export class rechargeCardRecordListComponent implements OnInit {
                                     confirmButtonColor: "#DD6B55",
                                 }).then((isConfirm) => {
                                     if (isConfirm === true) {
-                                        this.appHttpService.postData(this.uc.api.qc + "/card_order_finish/hash/", {
+                                        this.appHttpService.postData(this.uc.api.qc + "/card_order_finish/", {
                                                 params: {
                                                     order_id: id
                                                 }
@@ -413,7 +413,7 @@ export class rechargeCardRecordListComponent implements OnInit {
                                     confirmButtonColor: "#DD6B55",
                                 }).then((isConfirm) => {
                                     if (isConfirm === true) {
-                                        this.appHttpService.postData(this.uc.api.qc + "/card_order_refund/hash/", {
+                                        this.appHttpService.postData(this.uc.api.qc + "/card_order_refund/", {
                                                 params: {
                                                     order_id: id
                                                 }
@@ -464,7 +464,7 @@ export class rechargeCardRecordListComponent implements OnInit {
 
     //下载
     downloadTemplate(params) {
-        this.appHttpService.getBinary(this.uc.api.qc + '/download_card_info/hash/', {params: params}).subscribe(res => {
+        this.appHttpService.getBinary(this.uc.api.qc + '/download_card_info/', {params: params}).subscribe(res => {
             let disposition = res.headers._headers.get("content-disposition");
 
             if (!disposition) {

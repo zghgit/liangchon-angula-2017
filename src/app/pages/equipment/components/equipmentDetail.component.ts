@@ -23,7 +23,7 @@ export class EquipmentDetailComponent implements OnInit {
 
     ngOnInit() {
         let data = this.activatedRoute.params
-            .switchMap((params: Params) => this.appHttpService.postData(this.uc.api.qc + "/get_device/hash", {params: {device_id: params['id']}}));
+            .switchMap((params: Params) => this.appHttpService.postData(this.uc.api.qc + "/get_device", {params: {device_id: params['id']}}));
         data.subscribe((res) => {
             if (res.status) {
                 let _data = res.data;
@@ -90,7 +90,7 @@ export class EquipmentDetailComponent implements OnInit {
                     }
                 ];
                 if (_data.device_type == 1) {
-                    let data = this.appHttpService.postData(this.uc.api.qc + "/get_commodity_list/hash/", {
+                    let data = this.appHttpService.postData(this.uc.api.qc + "/get_commodity_list/", {
                         params: {
                             page_now: 1,
                             limit: 500,

@@ -40,7 +40,7 @@ export class FeedbackDetailComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.baseurl = this.uc.api.qc + "/get_file/hash/";
+        this.baseurl = this.uc.api.qc + "/get_file/";
 
         if (this.uc.powerfun(this.uc.constant.add_feedback_reply)) {
             this.plugins.button = {
@@ -56,8 +56,8 @@ export class FeedbackDetailComponent implements OnInit {
             accept: "image/*",
             multi: true,
             size: 4,
-            uploadurl: this.uc.api.qc + "/upload_file/hash/",
-            downloadurl: this.uc.api.qc + "/get_file/hash/",
+            uploadurl: this.uc.api.qc + "/upload_file/",
+            downloadurl: this.uc.api.qc + "/get_file/",
             capsule: "feedbackimg"
         }
         this.getFeedback()
@@ -73,7 +73,7 @@ export class FeedbackDetailComponent implements OnInit {
 
     getFeedback() {
         let data = this.activatedRoute.params
-            .switchMap((params: Params) => this.appHttpService.postData(this.uc.api.qc + "/get_feedback_info/hash", {params: {feedback_id: params['id']}}));
+            .switchMap((params: Params) => this.appHttpService.postData(this.uc.api.qc + "/get_feedback_info", {params: {feedback_id: params['id']}}));
         data.subscribe((res) => {
             if (res.status) {
                 let _data = res.data;
@@ -120,7 +120,7 @@ export class FeedbackDetailComponent implements OnInit {
                 feedback_img: this.reply_img
             }
         };
-        this.appHttpService.postData(this.uc.api.qc + "/add_feedback_reply/hash", params).subscribe(
+        this.appHttpService.postData(this.uc.api.qc + "/add_feedback_reply", params).subscribe(
             res => {
                 if (res.status) {
                     this.closeFeedback();

@@ -22,7 +22,7 @@ export class UserPwdEditComponent implements OnInit {
 
     ngOnInit() {
         let data = this.activatedRoute.params
-            .switchMap((params: Params) => this.appHttpService.getData(this.uc.api.qc + "/get_user/hash/" + params['id']));
+            .switchMap((params: Params) => this.appHttpService.getData(this.uc.api.qc + "/get_user/" + params['id']));
         data.subscribe(res => {
             if (res.status) {
                 let _data = res.data;
@@ -101,7 +101,7 @@ export class UserPwdEditComponent implements OnInit {
                 old_password: value.old_password
             }
         };
-        this.appHttpService.postData(this.uc.api.qc + "/update_user_password/hash", params).subscribe(
+        this.appHttpService.postData(this.uc.api.qc + "/update_user_password", params).subscribe(
             res => {
                 if (res.status) {
                     this.router.navigateByUrl('login');

@@ -23,7 +23,11 @@ export class AllChildAccountDetailComponent implements OnInit {
 
     ngOnInit() {
         let data = this.activatedRoute.params
-            .switchMap((params: Params) => this.appHttpService.getData(this.uc.api.qc + "/get_sub_user/hash/" + params['id']));
+            .switchMap((params: Params) => this.appHttpService.postData(this.uc.api.qc + "/get_sub_user/",{
+                params: {
+                    sub_user_id: params['id']
+                }
+            }));
         data.subscribe((res) => {
             if (res.status) {
                 let _data = res.data;

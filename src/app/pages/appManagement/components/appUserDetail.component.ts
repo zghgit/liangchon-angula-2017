@@ -27,7 +27,7 @@ export class AppUserDetailComponent implements OnInit {
 
     ngOnInit() {
         let data = this.activatedRoute.params
-            .switchMap((params: Params) => this.appHttpService.postData(this.uc.api.qc + "/get_app_user/hash/", {
+            .switchMap((params: Params) => this.appHttpService.postData(this.uc.api.qc + "/get_app_user/", {
                 params: {
                     app_user_id: params['id']
                 }

@@ -7,7 +7,7 @@ import {Validators} from '@angular/forms';
 import {AppHttpService, UC, DataService} from "../../../plugins/globalservice";
 import {phoneValidator} from "../../../plugins/validators/phoneValidator";
 import {emailValidator} from "../../../plugins/validators/emailValidator";
-
+import {Md5} from "ts-md5/dist/md5";
 declare var swal;
 @Component({
     selector: 'childaccount-add',
@@ -284,7 +284,7 @@ export class ChildAccountAddComponent implements OnInit {
                 module_permission: value.module_permission,
             }
         };
-        this.appHttpService.postData(this.uc.api.qc + "/add_sub_user/hash", params).subscribe(
+        this.appHttpService.postData(this.uc.api.qc + "/add_sub_user", params).subscribe(
             res => {
                 if (res.status) {
                     this.router.navigateByUrl('pages/account/childAccountList');

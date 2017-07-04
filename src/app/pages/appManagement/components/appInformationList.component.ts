@@ -57,7 +57,7 @@ export class AppInformationComponent implements OnInit {
     }
 
     public getGridData = function (params) {
-        let data = this.appHttpService.postData(this.uc.api.qc + "/get_information_list/hash", {params: params})
+        let data = this.appHttpService.postData(this.uc.api.qc + "/get_information_list", {params: params})
         data.subscribe(res => {
             if (res.status) {
                 let data = res.data;
@@ -112,7 +112,7 @@ export class AppInformationComponent implements OnInit {
                                     confirmButtonColor: "#DD6B55",
                                 }).then((isConfirm) => {
                                     if (isConfirm === true) {
-                                        this.appHttpService.postData(this.uc.api.qc + "/delete_information/hash/", {
+                                        this.appHttpService.postData(this.uc.api.qc + "/delete_information/", {
                                                 params: {
                                                     information_id: id
                                                 }

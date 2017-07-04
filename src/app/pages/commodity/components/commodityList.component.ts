@@ -60,7 +60,7 @@ export class CommodityListComponent implements OnInit {
     }
 
     public getGridData = function (params) {
-        let data = this.appHttpService.postData(this.uc.api.qc + "/get_commodity_list/hash", {params: params})
+        let data = this.appHttpService.postData(this.uc.api.qc + "/get_commodity_list", {params: params})
         data.subscribe(res => {
             if (res.status) {
                 let data = res.data;
@@ -113,7 +113,7 @@ export class CommodityListComponent implements OnInit {
                                     confirmButtonColor: "#DD6B55",
                                 }).then((isConfirm) => {
                                     if (isConfirm === true) {
-                                        this.appHttpService.postData(this.uc.api.qc + "/delete_commodity/hash/", {
+                                        this.appHttpService.postData(this.uc.api.qc + "/delete_commodity/", {
                                                 params: {
                                                     commodity_id: id
                                                 }

@@ -64,7 +64,7 @@ export class FinanceListComponent implements OnInit {
     }
 
     public getGridData = function (params) {
-        let data = this.appHttpService.postData(this.uc.api.qc + "/get_withdraw_cash_list/hash", {params: params})
+        let data = this.appHttpService.postData(this.uc.api.qc + "/get_withdraw_cash_list", {params: params})
         data.subscribe(res => {
             if (res.status) {
                 let data = res.data;
@@ -112,7 +112,7 @@ export class FinanceListComponent implements OnInit {
                                     confirmButtonColor: "#DD6B55",
                                 }).then((isConfirm) => {
                                     if (isConfirm === true) {
-                                        this.appHttpService.postData(this.uc.api.qc + "/accept_withdraw_cash/hash/", {
+                                        this.appHttpService.postData(this.uc.api.qc + "/accept_withdraw_cash/", {
                                                 params: {
                                                     cash_id: id
                                                 }
@@ -169,7 +169,7 @@ export class FinanceListComponent implements OnInit {
                                     confirmButtonColor: "#DD6B55",
                                 }).then((isConfirm) => {
                                     if (isConfirm === true) {
-                                        this.appHttpService.postData(this.uc.api.qc + "/paid_withdraw_cash/hash/", {
+                                        this.appHttpService.postData(this.uc.api.qc + "/paid_withdraw_cash/", {
                                                 params: {
                                                     cash_id: id
                                                 }
@@ -233,7 +233,7 @@ export class FinanceListComponent implements OnInit {
             confirmButtonColor: "#DD6B55",
         }).then((isConfirm) => {
             if (isConfirm === true) {
-                this.appHttpService.postData(this.uc.api.qc + "/reject_withdraw_cash/hash/", {
+                this.appHttpService.postData(this.uc.api.qc + "/reject_withdraw_cash/", {
                         params: {
                             cash_id: data.cash_id,
                             reject_reason:data.reject_reason

@@ -23,7 +23,7 @@ export class CommodityEditComponent implements OnInit {
     public commodity_id:string;
     ngOnInit() {
         let data = this.activatedRoute.params
-            .switchMap((params: Params) => this.appHttpService.postData(this.uc.api.qc + "/get_commodity/hash", {params: {commodity_id: params['id']}}));
+            .switchMap((params: Params) => this.appHttpService.postData(this.uc.api.qc + "/get_commodity", {params: {commodity_id: params['id']}}));
         data.subscribe(res=>{
             if (res.status){
                 let _data = res.data;
@@ -219,7 +219,7 @@ export class CommodityEditComponent implements OnInit {
                 commodity_id:this.commodity_id
             }
         };
-        this.appHttpService.postData(this.uc.api.qc + "/update_commodity/hash", params).subscribe(
+        this.appHttpService.postData(this.uc.api.qc + "/update_commodity", params).subscribe(
             res => {
                 if (res.status) {
                     this.router.navigateByUrl('pages/commodity/commodityList');

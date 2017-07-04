@@ -128,7 +128,7 @@ export class EquipmentAddComponent implements OnInit {
                 meters_no :    value.meters_no,
             }
         };
-        this.appHttpService.postData(this.uc.api.qc + "/add_device/hash", params).subscribe(
+        this.appHttpService.postData(this.uc.api.qc + "/add_device", params).subscribe(
             res => {
                 if (res.status) {
                     this.router.navigateByUrl('pages/equipment/equipmentList');

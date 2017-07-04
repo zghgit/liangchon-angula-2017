@@ -23,7 +23,7 @@ export class CommodityDetailComponent implements OnInit {
 
     ngOnInit() {
         let data = this.activatedRoute.params
-            .switchMap((params: Params) => this.appHttpService.postData(this.uc.api.qc + "/get_commodity/hash", {params: {commodity_id: params['id']}}));
+            .switchMap((params: Params) => this.appHttpService.postData(this.uc.api.qc + "/get_commodity", {params: {commodity_id: params['id']}}));
         data.subscribe((res) => {
             if (res.status) {
                 let _data = res.data;

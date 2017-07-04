@@ -184,7 +184,7 @@ export class CashWithdrawalComponent implements OnInit {
 
     //获取订单信息
     public getGridData(params) {
-        let data = this.appHttpService.postData(this.uc.api.qc + "/get_can_withdraw_cash_list/hash", {params: params})
+        let data = this.appHttpService.postData(this.uc.api.qc + "/get_can_withdraw_cash_list", {params: params})
         data.subscribe(res => {
             if (res.status) {
                 let data = res.data;
@@ -236,7 +236,7 @@ export class CashWithdrawalComponent implements OnInit {
 
     //获取微信支付信息
     public getWX(params) {
-        let data = this.appHttpService.postData(this.uc.api.qc + "/get_foucs_wyc_wx_user/hash", {params: params})
+        let data = this.appHttpService.postData(this.uc.api.qc + "/get_foucs_wyc_wx_user", {params: params})
         data.subscribe(res => {
             if (res.status) {
                 let data = res.data.foucs_config;
@@ -299,7 +299,7 @@ export class CashWithdrawalComponent implements OnInit {
                 applicant_name: this.applicant_name,
             }
         }
-        this.appHttpService.postData(this.uc.api.qc + "/withdraw_cash/hash", params).subscribe(
+        this.appHttpService.postData(this.uc.api.qc + "/withdraw_cash", params).subscribe(
             res => {
                 if (res.status) {
                     this.router.navigateByUrl('pages/equipment/equipmentList');

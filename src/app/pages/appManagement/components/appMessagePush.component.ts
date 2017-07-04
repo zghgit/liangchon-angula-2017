@@ -87,7 +87,7 @@ export class AppMessagePushComponent implements OnInit {
             require: true,
             hidden:true,
             hasChildGroup: true,
-            url: this.uc.api.qc + '/get_geo_list/hash/',
+            url: this.uc.api.qc + '/get_geo_list/',
             config: {
                 province: {
                     name: 'province_code',
@@ -166,7 +166,7 @@ export class AppMessagePushComponent implements OnInit {
                 user_name       : temp_user_name
             }
         };
-        this.appHttpService.postData(this.uc.api.qc + "/push_message_to_app/hash", params).subscribe(
+        this.appHttpService.postData(this.uc.api.qc + "/push_message_to_app", params).subscribe(
             res => {
                 if (res.status) {
                     swal({

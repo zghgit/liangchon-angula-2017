@@ -31,7 +31,7 @@ export class ChargeStationMapComponent implements OnInit {
     }
 
     getMapDatas(params) {
-        let data = this.appHttpService.postData(this.uc.api.qc + "/get_device_list/hash/", {params: params});
+        let data = this.appHttpService.postData(this.uc.api.qc + "/get_device_list/", {params: params});
         data.subscribe(res => {
             if (res.status) {
                 let data = res.data.list;
@@ -100,7 +100,7 @@ export class ChargeStationMapComponent implements OnInit {
             charging_num = '充电中',
             offline_num = '离线中';
 
-        let piedata = this.appHttpService.getData(this.uc.api.qc + '/get_statistics_device_info_for_home_page/hash/')
+        let piedata = this.appHttpService.getData(this.uc.api.qc + '/get_statistics_device_info_for_home_page/')
         piedata.subscribe(res => {
             if (res.status) {
                 var data = res.data;

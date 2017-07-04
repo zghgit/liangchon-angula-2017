@@ -24,7 +24,7 @@ export class WxWalletListComponent implements OnInit {
     }
 
     ngOnInit() {
-        let data = this.appHttpService.getData(this.uc.api.qc+"get_foucs_wx_user_qrcode/hash/");
+        let data = this.appHttpService.getData(this.uc.api.qc+"get_foucs_wx_user_qrcode/");
 
         data.subscribe(res=>{
             this.QRcode = res.data.src;
@@ -57,7 +57,7 @@ export class WxWalletListComponent implements OnInit {
     }
 
     public getGridData = function (params) {
-        let data = this.appHttpService.postData(this.uc.api.qc + "/get_foucs_wyc_wx_user/hash", {params: params})
+        let data = this.appHttpService.postData(this.uc.api.qc + "/get_foucs_wyc_wx_user", {params: params})
         data.subscribe(res => {
             if (res.status) {
                 let data = res.data.foucs_config;
@@ -95,7 +95,7 @@ export class WxWalletListComponent implements OnInit {
                                     confirmButtonColor: "#DD6B55",
                                 }).then((isConfirm) => {
                                     if (isConfirm === true) {
-                                        this.appHttpService.postData(this.uc.api.qc + "/update_wx_user/hash/", {
+                                        this.appHttpService.postData(this.uc.api.qc + "/update_wx_user/", {
                                                 params: {
                                                     wx_user_id: id,
                                                     wx_user_info: {
@@ -139,7 +139,7 @@ export class WxWalletListComponent implements OnInit {
                                     confirmButtonColor: "#DD6B55",
                                 }).then((isConfirm) => {
                                     if (isConfirm === true) {
-                                        this.appHttpService.postData(this.uc.api.qc + "/update_wx_user/hash/", {
+                                        this.appHttpService.postData(this.uc.api.qc + "/update_wx_user/", {
                                                 params: {
                                                     wx_user_id: id,
                                                     wx_user_info: {
@@ -183,7 +183,7 @@ export class WxWalletListComponent implements OnInit {
                                 confirmButtonColor: "#DD6B55",
                             }).then((isConfirm) => {
                                 if (isConfirm === true) {
-                                    this.appHttpService.postData(this.uc.api.qc + "/delete_wx_user/hash/", {
+                                    this.appHttpService.postData(this.uc.api.qc + "/delete_wx_user/", {
                                             params: {
                                                 wx_user_id: id
                                             }

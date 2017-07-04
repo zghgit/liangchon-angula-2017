@@ -3,6 +3,7 @@
  */
 import {NgModule} from '@angular/core';
 import {RouterModule} from "@angular/router";
+import {CommonModule} from "@angular/common"
 import {UcFormModule} from "../../plugins/UcFormModule";
 
 import {AppManagementComponent} from './appManagement.component';
@@ -30,7 +31,8 @@ import {
         UcFormModule,
         RouterModule.forChild(appManagementRoutes),
         QuillEditorModule,
-        FormsModule
+        FormsModule,
+        CommonModule
     ],
     exports: [],
     declarations: [

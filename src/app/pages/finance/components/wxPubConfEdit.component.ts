@@ -26,7 +26,7 @@ export class WxPubConfEditComponent implements OnInit {
     public commodity_id: string;
 
     ngOnInit() {
-        let data = this.appHttpService.getData(this.uc.api.qc + "/get_wxpay_config/hash")
+        let data = this.appHttpService.getData(this.uc.api.qc + "/get_wxpay_config")
         data.subscribe(res => {
             if (res.status) {
                 let _data = res.data.wxpay_config;
@@ -98,8 +98,8 @@ export class WxPubConfEditComponent implements OnInit {
                         config: {
                             value: _data.apiclient_cert_p,
                             accept: "",
-                            uploadurl: this.uc.api.qc + "/upload_file/hash/",
-                            downloadurl: this.uc.api.qc + "/get_file/hash/",
+                            uploadurl: this.uc.api.qc + "/upload_file/",
+                            downloadurl: this.uc.api.qc + "/get_file/",
                             capsule: "apiclient_cert_p" + new Date().getTime()
                         },
                         validator: [
@@ -117,8 +117,8 @@ export class WxPubConfEditComponent implements OnInit {
                         config: {
                             value: _data.apiclient_key_p,
                             accept: "",
-                            uploadurl: this.uc.api.qc + "/upload_file/hash/",
-                            downloadurl: this.uc.api.qc + "/get_file/hash/",
+                            uploadurl: this.uc.api.qc + "/upload_file/",
+                            downloadurl: this.uc.api.qc + "/get_file/",
                             capsule: "apiclient_key_p" + new Date().getTime()
                         },
                         validator: [
@@ -193,8 +193,8 @@ export class WxPubConfEditComponent implements OnInit {
                         config: {
                             value: _data.apiclient_cert_g,
                             accept: "",
-                            uploadurl: this.uc.api.qc + "/upload_file/hash/",
-                            downloadurl: this.uc.api.qc + "/get_file/hash/",
+                            uploadurl: this.uc.api.qc + "/upload_file/",
+                            downloadurl: this.uc.api.qc + "/get_file/",
                             capsule: "apiclient_cert_g" + new Date().getTime()
                         },
                         validator: [
@@ -212,8 +212,8 @@ export class WxPubConfEditComponent implements OnInit {
                         config: {
                             value: _data.apiclient_key_g,
                             accept: "",
-                            uploadurl: this.uc.api.qc + "/upload_file/hash/",
-                            downloadurl: this.uc.api.qc + "/get_file/hash/",
+                            uploadurl: this.uc.api.qc + "/upload_file/",
+                            downloadurl: this.uc.api.qc + "/get_file/",
                             capsule: "apiclient_key_g" + new Date().getTime()
                         },
                         validator: [
@@ -273,7 +273,7 @@ export class WxPubConfEditComponent implements OnInit {
                 }
             }
         };
-        this.appHttpService.postData(this.uc.api.qc + "/update_wxpay_config/hash", params).subscribe(
+        this.appHttpService.postData(this.uc.api.qc + "/update_wxpay_config", params).subscribe(
             res => {
                 if (res.status) {
                     this.router.navigateByUrl('pages/finance/payConfigList');

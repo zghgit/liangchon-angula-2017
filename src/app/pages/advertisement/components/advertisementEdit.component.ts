@@ -29,7 +29,7 @@ export class AdvertisementEditComponent implements OnInit {
         })
 
         let data = this.activatedRoute.params
-            .switchMap((params: Params) => this.appHttpService.postData(this.uc.api.qc + "/get_advertisement/hash/",{
+            .switchMap((params: Params) => this.appHttpService.postData(this.uc.api.qc + "/get_advertisement/",{
                 params:{
                     advertisement_id:params['id']
                 }
@@ -70,8 +70,8 @@ export class AdvertisementEditComponent implements OnInit {
                         value: _data.advertisement_url,
                         accept:"image/*",
                         size:2,
-                        uploadurl: this.uc.api.qc + "/upload_file/hash/",
-                        downloadurl: this.uc.api.qc + "/get_file/hash/",
+                        uploadurl: this.uc.api.qc + "/upload_file/",
+                        downloadurl: this.uc.api.qc + "/get_file/",
                         capsule: "advertisement_url"
                     },
                     validator: [
@@ -125,7 +125,7 @@ export class AdvertisementEditComponent implements OnInit {
                     content: "添加",
                     options: temp_advertisement_range,
                     check_all: check_all,
-                    url: this.uc.api.qc + '/get_geo_list/hash/',
+                    url: this.uc.api.qc + '/get_geo_list/',
                     validator: [
                         Validators.required
                     ],
@@ -232,7 +232,7 @@ export class AdvertisementEditComponent implements OnInit {
                 }
             }
         };
-        this.appHttpService.postData(this.uc.api.qc + "/update_advertisement/hash", params).subscribe(
+        this.appHttpService.postData(this.uc.api.qc + "/update_advertisement", params).subscribe(
             res => {
                 if (res.status) {
                     this.router.navigateByUrl('pages/advertisement/advertisementList');

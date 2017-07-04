@@ -154,7 +154,7 @@ export class AppChargeRecordComponent implements OnInit {
     }
 
     public getGridData = function (params) {
-        let data = this.appHttpService.postData(this.uc.api.qc + "/get_app_user_deposit_detail/hash", {params: params})
+        let data = this.appHttpService.postData(this.uc.api.qc + "/get_app_user_deposit_detail", {params: params})
         data.subscribe(res => {
             if (res.status) {
                 let data = res.data;

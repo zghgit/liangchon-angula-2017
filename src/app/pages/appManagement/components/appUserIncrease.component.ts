@@ -32,7 +32,7 @@ export class AppUserIncreaseComponent implements OnInit {
     }
 
     public  getAppUserData(params) {
-        let data = this.appHttpService.postData(this.uc.api.qc + '/get_app_user_growth_statistics/hash/',params);
+        let data = this.appHttpService.postData(this.uc.api.qc + '/get_app_user_growth_statistics/',params);
         data.subscribe(res => {
             if (res.status){
                 let _data = res.data;

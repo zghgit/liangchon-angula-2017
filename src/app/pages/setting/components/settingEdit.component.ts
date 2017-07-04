@@ -22,7 +22,7 @@ export class SettingEditComponent implements OnInit,AfterViewInit {
     }
 
     ngOnInit() {
-        let data = this.appHttpService.getData(this.uc.api.qc + '/get_system_config/hash/');
+        let data = this.appHttpService.getData(this.uc.api.qc + '/get_system_config/');
         data.subscribe(res => {
             if (res.status) {
                 let data = res.data;
@@ -43,8 +43,8 @@ export class SettingEditComponent implements OnInit,AfterViewInit {
         this.apkconfig = {
             value: '',
             accept: ".apk",
-            uploadurl: this.uc.api.qc + "/upload_file/hash/",
-            downloadurl: this.uc.api.qc + "/get_file/hash/",
+            uploadurl: this.uc.api.qc + "/upload_file/",
+            downloadurl: this.uc.api.qc + "/get_file/",
             capsule: "apk_address"
         }
 
@@ -164,7 +164,7 @@ export class SettingEditComponent implements OnInit,AfterViewInit {
         let params = {
             params: {system_configs: commiteArry}
         };
-        this.appHttpService.postData(this.uc.api.qc + "/update_system_config/hash", params).subscribe(
+        this.appHttpService.postData(this.uc.api.qc + "/update_system_config", params).subscribe(
             res => {
                 if (res.status) {
                     swal({

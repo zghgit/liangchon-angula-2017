@@ -35,7 +35,7 @@ export class payConfigListComponent implements OnInit {
     }
 
     public getAilpayConfig = function () {
-        let data = this.appHttpService.getData(this.uc.api.qc + "/get_alipay_config/hash");
+        let data = this.appHttpService.getData(this.uc.api.qc + "/get_alipay_config");
         data.subscribe(res => {
             if (res.status) {
                 let _data = res.data.ailpay_config;
@@ -77,7 +77,7 @@ export class payConfigListComponent implements OnInit {
         })
     };
     public getWxpayConfig = function () {
-        let data = this.appHttpService.getData(this.uc.api.qc + "/get_wxpay_config/hash");
+        let data = this.appHttpService.getData(this.uc.api.qc + "/get_wxpay_config");
         data.subscribe(res => {
             if (res.status) {
                 let _data = res.data.wxpay_config;

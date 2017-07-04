@@ -32,7 +32,12 @@ export class ChildAccountOtherEditComponent implements OnInit {
         })
 
         let data = this.activatedRoute.params
-            .switchMap((params: Params) => this.appHttpService.getData(this.uc.api.qc + "/get_sub_user/hash/" + params['id']));
+            .switchMap((params: Params) => this.appHttpService.postData(this.uc.api.qc + "/get_sub_user/",
+                {
+                    params: {
+                        sub_user_id: params['id']
+                    }
+                }));
         data.subscribe(res => {
             if (res.status) {
                 let _data = res.data;
@@ -290,7 +295,7 @@ export class ChildAccountOtherEditComponent implements OnInit {
                 }
             }
         };
-        this.appHttpService.postData(this.uc.api.qc + "/update_sub_user/hash", params).subscribe(
+        this.appHttpService.postData(this.uc.api.qc + "/update_sub_user", params).subscribe(
             res => {
                 if (res.status) {
                     this.router.navigateByUrl('pages/account/childAccountList');

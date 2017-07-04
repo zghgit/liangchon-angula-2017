@@ -98,7 +98,7 @@ export class FinancialStatisticsComponent implements OnInit {
                 key: "business_address",
                 controlType: "address",
                 hasChildGroup: true,
-                url: this.uc.api.qc + '/get_geo_list/hash/',
+                url: this.uc.api.qc + '/get_geo_list/',
                 config: {
                     province: {
                         name: 'province_code',
@@ -198,7 +198,7 @@ export class FinancialStatisticsComponent implements OnInit {
     }
 
     public getGridData = function (params) {
-        let data = this.appHttpService.postData(this.uc.api.qc + "/get_statistics_charge_station_list/hash", {params: params})
+        let data = this.appHttpService.postData(this.uc.api.qc + "/get_statistics_charge_station_list", {params: params})
         data.subscribe(res => {
             if (res.status) {
                 let data = res.data;

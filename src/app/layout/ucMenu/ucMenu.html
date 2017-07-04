@@ -10,11 +10,12 @@
                [ngClass]="{'actived':menuItemSelected[menuItem.title]}">
                 <i class="uc-icon-{{menuItem.icon}}"></i>
                 {{menuItem.name}}</a>
-            <a href="javascript:void(0)" *ngIf="menuItem.hasSubmenu && menuItem.show && !menuItem.hideSubmenu" class="folded" (click)="showSubmenu(menuItem.title)"
+            <a *ngIf="menuItem.hasSubmenu && menuItem.show && !menuItem.hideSubmenu" class="folded" (click)="showSubmenu(menuItem.title)"
                [ngClass]="{'actived':menuItemSelected[menuItem.title]}">
                 <i class="uc-icon-{{menuItem.icon}}"></i>
+                {{menuItem.name}}
                 <span class="glyphicon glyphicon-chevron-down"></span>
-                {{menuItem.name}}</a>
+            </a>
             <ul *ngIf="menuItem.hasSubmenu" [ngClass]="{'showSubMenu': isShowSubmenu[menuItem.title]}">
                 <ng-container *ngFor="let subMenuItem of menuItem.submenu">
                     <li *ngIf="subMenuItem.show">

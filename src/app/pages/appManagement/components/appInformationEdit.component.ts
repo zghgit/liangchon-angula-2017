@@ -50,7 +50,7 @@ export class AppInformationEditComponent implements OnInit {
             this.information_id = res.id;
         });
         let data = this.activatedRoute.params
-            .switchMap((params: Params) => this.appHttpService.postData(this.uc.api.qc + "/get_information/hash/", {
+            .switchMap((params: Params) => this.appHttpService.postData(this.uc.api.qc + "/get_information/", {
                 params: {
                     information_id: params['id']
                 }
@@ -74,7 +74,7 @@ export class AppInformationEditComponent implements OnInit {
                 information_content: this.editorContent
             }
         };
-        this.appHttpService.postData(this.uc.api.qc + "/add_information/hash", params).subscribe(
+        this.appHttpService.postData(this.uc.api.qc + "/add_information", params).subscribe(
             res => {
                 if (res.status) {
                     this.router.navigateByUrl('pages/appManagement/appInformationList');

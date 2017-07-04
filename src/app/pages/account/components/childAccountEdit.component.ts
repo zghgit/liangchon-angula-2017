@@ -32,7 +32,11 @@ export class ChildAccountEditComponent implements OnInit {
         })
 
         let data = this.activatedRoute.params
-            .switchMap((params: Params) => this.appHttpService.getData(this.uc.api.qc + "/get_sub_user/hash/" + params['id']));
+            .switchMap((params: Params) => this.appHttpService.postData(this.uc.api.qc + "/get_sub_user/", {
+                params: {
+                    sub_user_id: params['id']
+                }
+            }));
         data.subscribe(res => {
             if (res.status) {
                 let _data = res.data;
@@ -242,10 +246,10 @@ export class ChildAccountEditComponent implements OnInit {
                 ];
             } else {
                 swal({
-                    title:"获取城子账户信息失败!",
-                    text:res.error_msg,
-                    type:"error",
-                    timer:"2000"
+                    title: "获取城子账户信息失败!",
+                    text: res.error_msg,
+                    type: "error",
+                    timer: "2000"
                 });
             }
         })
@@ -273,7 +277,7 @@ export class ChildAccountEditComponent implements OnInit {
                 }
             }
         };
-        this.appHttpService.postData(this.uc.api.qc + "/update_sub_user/hash", params).subscribe(
+        this.appHttpService.postData(this.uc.api.qc + "/update_sub_user", params).subscribe(
             res => {
                 if (res.status) {
                     this.router.navigateByUrl('pages/account/childAccountList');

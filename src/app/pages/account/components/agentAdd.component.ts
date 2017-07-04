@@ -170,7 +170,7 @@ export class AgentAddComponent implements OnInit {
             key: "business_address",
             controlType: "address",
             hasChildGroup: true,
-            url: this.uc.api.qc + '/get_geo_list/hash/',
+            url: this.uc.api.qc + '/get_geo_list/',
             config: {
                 province: {
                     name: 'province_code',
@@ -204,8 +204,8 @@ export class AgentAddComponent implements OnInit {
             config: {
                 value: "",
                 accept:"image/*",
-                uploadurl: this.uc.api.qc + "/upload_file/hash/",
-                downloadurl: this.uc.api.qc + "/get_file/hash/",
+                uploadurl: this.uc.api.qc + "/upload_file/",
+                downloadurl: this.uc.api.qc + "/get_file/",
                 capsule: "certificate_img_11"
             },
         }, {
@@ -224,8 +224,8 @@ export class AgentAddComponent implements OnInit {
             config: {
                 value: "",
                 accept:"image/*",
-                uploadurl: this.uc.api.qc + "/upload_file/hash/",
-                downloadurl: this.uc.api.qc + "/get_file/hash/",
+                uploadurl: this.uc.api.qc + "/upload_file/",
+                downloadurl: this.uc.api.qc + "/get_file/",
                 capsule: "certificate_img_12"
             },
         }, {
@@ -244,8 +244,8 @@ export class AgentAddComponent implements OnInit {
             config: {
                 value: "",
                 accept:"image/*",
-                uploadurl: this.uc.api.qc + "/upload_file/hash/",
-                downloadurl: this.uc.api.qc + "/get_file/hash/",
+                uploadurl: this.uc.api.qc + "/upload_file/",
+                downloadurl: this.uc.api.qc + "/get_file/",
                 capsule: "certificate_img_13"
             },
         }, {
@@ -329,7 +329,7 @@ export class AgentAddComponent implements OnInit {
                 position: ''
             }
         };
-        this.appHttpService.postData(this.uc.api.qc + "/add_agent_user/hash", params).subscribe(
+        this.appHttpService.postData(this.uc.api.qc + "/add_agent_user", params).subscribe(
             res => {
                 if (res.status) {
                     this.router.navigateByUrl('pages/account/agentAccountList');

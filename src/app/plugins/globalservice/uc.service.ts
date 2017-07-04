@@ -6,8 +6,7 @@ import {Injectable} from "@angular/core";
 export class UC {
     public version = '0.0.1';
     public api = {
-        qc: (location.origin || location.protocol + "/" + location.host) + '/api/wyc',
-        pub: (location.origin || location.host) + '/api/pub'
+        qc: (location.origin || location.protocol + "/" + location.host) + '/api/quchong/web/',
     };
     public reg = {
         PSW: "^[A-Za-z0-9._!@#]{6,16}$",
@@ -30,110 +29,110 @@ export class UC {
         W_URL: "^(http|https|ftp)\:\/\/([a-zA-Z0-9\.\-]+(\:[a-zA-Z0-9\.&amp;%\$\-]+)*@)?((25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9])\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[0-9])|([a-zA-Z0-9\-]+\.)*[a-zA-Z0-9\-]+\.[a-zA-Z]{2,4})(\:[0-9]+)?(\/[^/][a-zA-Z0-9\.\,\?\'\\/\+&amp;%\$#\=~_\-@]*)*$"
     };
     public constant = {
-        start_user: "api/wyc/api/start_user",//启用用户
-        disable_user: "api/wyc/api/disable_user",//禁用用户
-        add_sub_user: "api/wyc/api/add_sub_user",// "添加子账户信息",
-        get_sub_user: "api/wyc/api/get_sub_user",// "获取子账户信息",
-        get_sub_user_list: "api/wyc/api/get_sub_user_list",// "获取子账户信息列表",
-        update_sub_user: "api/wyc/api/update_sub_user",// "更新子账户信息",
-        update_sub_user_password: "api/wyc/api/update_sub_user_password",// "更新子账户密码",
-        delete_sub_user: "api/wyc/api/delete_sub_user",// "删除子账户",
-        add_city_partner_user: "api/wyc/api/add_city_partner_user",// "添加城市合伙人信息",
-        get_city_partner_user: "api/wyc/api/get_city_partner_user",// "获取城市合伙人信息",
-        get_city_partner_user_list: "api/wyc/api/get_city_partner_user_list",// "获取城市合伙人信息列表",
-        update_city_partner_user: "api/wyc/api/update_city_partner_user",// "更新城市合伙人信息",
-        delete_city_partner_user: "api/wyc/api/delete_city_partner_user",// "删除城市合伙人",
-        add_agent_user: "api/wyc/api/add_agent_user",// "添加代理商信息",
-        get_agent_user: "api/wyc/api/get_agent_user",// "获取代理商信息",
-        get_agent_user_list: "api/wyc/api/get_agent_user_list",// "获取代理商信息列表",
-        update_agent_user: "api/wyc/api/update_agent_user",// "更新代理商信息",
-        delete_agent_user: "api/wyc/api/delete_agent_user",// "删除代理商",
-        add_commodity: "api/wyc/api/add_commodity",// "添加商品信息",
-        get_commodity: "api/wyc/api/get_commodity",// "获取商品信息",
-        get_commodity_list: "api/wyc/api/get_commodity_list",// "获取商品信息列表",
-        update_commodity: "api/wyc/api/update_commodity",// "更新商品信息",
-        delete_commodity: "api/wyc/api/delete_commodity",// "删除商品",
-        add_device: "api/wyc/api/add_device",// "wyc登录设备信息",
-        get_device_list: "api/wyc/api/get_device_list",// "获取设备列表",
-        update_device: "api/wyc/api/update_device",// "更新设备信息",
-        disable_device: "api/wyc/api/disable_device",// "禁止设备",
-        get_device: "api/wyc/api/get_device",// "获去设备",
-        validate_device_no: "api/wyc/api/validate_device_no",// "校验设备编号",
-        start_device: "api/wyc/api/start_device",// "启用设备",
-        download_device_template: "api/wyc/api/download_device_template",// "下载批量上传模板",
-        create_device_by_excel: "api/wyc/api/create_device_by_excel",// "批量上传设备",
-        generate_qr_code: "api/wyc/api/generate_qr_code",// "生成二维码",
-        batch_set_device: "api/wyc/api/batch_set_device",// "批量设置",
-        get_device_net_log_list: "api/wyc/api/get_device_net_log_list",// "获取上下线记录",
-        download_device_info: "api/wyc/api/download_device_info",// "下载设备信息",
-        delete_device: "api/wyc/api/delete_device",// "删除设备信息",
-        get_order_list: "api/wyc/api/get_order_list",// "获取订单一览",
-        get_order_info: "api/wyc/api/get_order_info",// "获取订单信息",
-        download_order_info: "api/wyc/api/download_order_info",// "下载订单信息",
-        order_refund: "api/wyc/api/order_refund",// "订单退费",
-        order_finish: "api/wyc/api/order_finish",// "订单完成",
-        withdraw_cash: "api/wyc/api/withdraw_cash",//申请提现
-        accept_withdraw_cash: "api/wyc/api/accept_withdraw_cash",// "通过申请提现",
-        reject_withdraw_cash: "api/wyc/api/reject_withdraw_cash",// "拒绝提现申请",
-        get_withdraw_cash_list: "api/wyc/api/get_withdraw_cash_list",// "获取提现申请列表",
-        paid_withdraw_cash: "api/wyc/api/paid_withdraw_cash",// "已打款",
-        get_can_withdraw_cash_list: "api/wyc/api/get_can_withdraw_cash_list",// "获取我可以提现订单列表",
-        get_withdraw_cash_info: "api/wyc/api/get_withdraw_cash_info",// "获取提现详情",
-        add_advertisement: "api/wyc/api/add_advertisement",// "添加广告",
-        update_advertisement: "api/wyc/api/update_advertisement",// "更新广告",
-        delete_advertisement: "api/wyc/api/delete_advertisement",// "删除广告",
-        get_advertisement: "api/wyc/api/get_advertisement",// "获取广告",
-        get_advertisement_list: "api/wyc/api/get_advertisement_list",// "获取广告列表",
-        update_advertisement_to_zero: "api/wyc/api/update_advertisement_to_zero",// "修改广告的点击次数",
-        disable_or_enable_advertisement: "api/wyc/api/disable_or_enable_advertisement",// "禁用或者启用广告",
-        get_app_user_list: "api/wyc/api/get_app_user_list",// "获取app用户列表",
-        get_app_user: "api/wyc/api/get_app_user",// "获取app用户",
-        delete_app_user: "api/wyc/api/delete_app_user",// "删除app用户",
-        get_deposit_detail_list: "api/wyc/api/get_deposit_detail_list",// "获取app用户充值记录一览",
-        get_app_user_deposit_detail: "api/wyc/api/get_app_user_deposit_detail",// "获取app用户充值记录",
-        push_message_to_app_user: "api/wyc/api/push_message_to_app_user",// "消息推送给app用户",
-        push_message_to_app: "api/wyc/api/push_message_to_app",// "消息推送给app用户",
-        get_complained_list: "api/wyc/api/get_complained_list",// "获得申诉列表",
-        get_complained: "api/wyc/api/get_complained",// "获得申诉详情",
-        update_complained: "api/wyc/api/update_complained",// " 更新申诉信息",
-        add_complained: "api/wyc/api/add_complained",// "添加申诉",
-        add_information: "api/wyc/api/add_information",// "添加资讯信息",
-        get_information: "api/wyc/api/get_information",// "获取资讯信息",
-        update_information: "api/wyc/api/update_information",// "更新资讯信息",
-        delete_information: "api/wyc/api/delete_information",// "删除资讯信息",
-        get_information_list: "api/wyc/api/get_information_list",// "资讯信息列表",
-        add_alipay_config: "api/wyc/api/add_alipay_config",// "添加支付宝配置",
-        get_alipay_config: "api/wyc/api/get_alipay_config",// "获取支付宝配置信息",
-        update_alipay_config: "api/wyc/api/update_alipay_config",// " 更新支付宝配置信息",
-        add_wxpay_config: "api/wyc/api/add_wxpay_config",// "添加微信配置信息",
-        get_wxpay_config: "api/wyc/api/get_wxpay_config",// "获取微信宝配置信息",
-        update_wxpay_config: "api/wyc/api/update_wxpay_config",// "更新微信配置信息",
-        add_foucs_wyc_wx_user: "api/wyc/api/add_foucs_wyc_wx_user",// "绑定微信零钱包",
-        get_foucs_wyc_wx_user: "api/wyc/api/get_foucs_wyc_wx_user",// "获取微信零钱包用户数据",
-        update_foucs_wyc_wx_user: "api/wyc/api/update_foucs_wyc_wx_user",// "更新微信零钱包用户数据",
-        get_foucs_wx_user_qrcode: "api/wyc/api/get_foucs_wx_user_qrcode",// "获得绑定二维码",
-        get_device_error_log_list: "api/wyc/api/get_device_error_log_list",// "获取设备故障信息列表",
-        get_statistics_charge_station_list: "api/wyc/api/get_statistics_charge_station_list",// "统计商户、代理商、城市合伙人统计电量",
-        set_system_config: "api/wyc/api/set_system_config",// "设定系统参数",
-        get_action_log_list: "api/wyc/api/get_action_log_list",// "获取系统日志列表",
-        get_system_config: "api/wyc/api/get_system_config",// "获取系统参数",
-        update_system_config: "api/wyc/api/update_system_config",// "修改系统参数"
-        get_business_user: "api/wyc/api/get_business_user",//获得商户信息
-        update_business_user: "api/wyc/api/update_business_user",//更新商户信息
-        device_unbundling: "api/wyc/api/device_unbundling",//解绑设备
-        update_app_user: "api/wyc/api/update_app_user",//更新app用户信息
-        add_business_user: "api/wyc/api/add_business_user",//添加商户
-        device_binding: "api/wyc/api/device_binding",//解绑设备
-        get_user: "api/wyc/api/get_user",//获取个人信息
-        update_user_info: "api/wyc/api/update_user_info",//更新个人信息
-        update_user_password: "api/wyc/api/update_user_password",//获取个人信息
-        set_device_params: "api/wyc/api/set_device_params",
-        get_device_statistics: "api/wyc/api/get_device_statistics",//获取桩状态
-        get_settlement_list: "api/wyc/api/get_settlement_list",//结算列表
-        update_settlement_fine: "api/wyc/api/update_settlement_fine",//结算处理
-        download_device_turnover_info: "api/wyc/api/download_device_turnover_info",//下载结算详情
-        add_feedback_reply: "api/wyc/api/add_feedback_reply",//回复app用户反馈
-        get_feedback_info: "api/wyc/api/get_feedback_info",//获取app用户反馈详情
+        start_user: "api/quchong/web/start_user",//启用用户
+        disable_user: "api/quchong/web/disable_user",//禁用用户
+        add_sub_user: "api/quchong/web/add_sub_user",// "添加子账户信息",
+        get_sub_user: "api/quchong/web/get_sub_user",// "获取子账户信息",
+        get_sub_user_list: "api/quchong/web/get_sub_user_list",// "获取子账户信息列表",
+        update_sub_user: "api/quchong/web/update_sub_user",// "更新子账户信息",
+        update_sub_user_password: "api/quchong/web/update_sub_user_password",// "更新子账户密码",
+        delete_sub_user: "api/quchong/web/delete_sub_user",// "删除子账户",
+        add_city_partner_user: "api/quchong/web/add_city_partner_user",// "添加城市合伙人信息",
+        get_city_partner_user: "api/quchong/web/get_city_partner_user",// "获取城市合伙人信息",
+        get_city_partner_user_list: "api/quchong/web/get_city_partner_user_list",// "获取城市合伙人信息列表",
+        update_city_partner_user: "api/quchong/web/update_city_partner_user",// "更新城市合伙人信息",
+        delete_city_partner_user: "api/quchong/web/delete_city_partner_user",// "删除城市合伙人",
+        add_agent_user: "api/quchong/web/add_agent_user",// "添加代理商信息",
+        get_agent_user: "api/quchong/web/get_agent_user",// "获取代理商信息",
+        get_agent_user_list: "api/quchong/web/get_agent_user_list",// "获取代理商信息列表",
+        update_agent_user: "api/quchong/web/update_agent_user",// "更新代理商信息",
+        delete_agent_user: "api/quchong/web/delete_agent_user",// "删除代理商",
+        add_commodity: "api/quchong/web/add_commodity",// "添加商品信息",
+        get_commodity: "api/quchong/web/get_commodity",// "获取商品信息",
+        get_commodity_list: "api/quchong/web/get_commodity_list",// "获取商品信息列表",
+        update_commodity: "api/quchong/web/update_commodity",// "更新商品信息",
+        delete_commodity: "api/quchong/web/delete_commodity",// "删除商品",
+        add_device: "api/quchong/web/add_device",// "wyc登录设备信息",
+        get_device_list: "api/quchong/web/get_device_list",// "获取设备列表",
+        update_device: "api/quchong/web/update_device",// "更新设备信息",
+        disable_device: "api/quchong/web/disable_device",// "禁止设备",
+        get_device: "api/quchong/web/get_device",// "获去设备",
+        validate_device_no: "api/quchong/web/validate_device_no",// "校验设备编号",
+        start_device: "api/quchong/web/start_device",// "启用设备",
+        download_device_template: "api/quchong/web/download_device_template",// "下载批量上传模板",
+        create_device_by_excel: "api/quchong/web/create_device_by_excel",// "批量上传设备",
+        generate_qr_code: "api/quchong/web/generate_qr_code",// "生成二维码",
+        batch_set_device: "api/quchong/web/batch_set_device",// "批量设置",
+        get_device_net_log_list: "api/quchong/web/get_device_net_log_list",// "获取上下线记录",
+        download_device_info: "api/quchong/web/download_device_info",// "下载设备信息",
+        delete_device: "api/quchong/web/delete_device",// "删除设备信息",
+        get_order_list: "api/quchong/web/get_order_list",// "获取订单一览",
+        get_order_info: "api/quchong/web/get_order_info",// "获取订单信息",
+        download_order_info: "api/quchong/web/download_order_info",// "下载订单信息",
+        order_refund: "api/quchong/web/order_refund",// "订单退费",
+        order_finish: "api/quchong/web/order_finish",// "订单完成",
+        withdraw_cash: "api/quchong/web/withdraw_cash",//申请提现
+        accept_withdraw_cash: "api/quchong/web/accept_withdraw_cash",// "通过申请提现",
+        reject_withdraw_cash: "api/quchong/web/reject_withdraw_cash",// "拒绝提现申请",
+        get_withdraw_cash_list: "api/quchong/web/get_withdraw_cash_list",// "获取提现申请列表",
+        paid_withdraw_cash: "api/quchong/web/paid_withdraw_cash",// "已打款",
+        get_can_withdraw_cash_list: "api/quchong/web/get_can_withdraw_cash_list",// "获取我可以提现订单列表",
+        get_withdraw_cash_info: "api/quchong/web/get_withdraw_cash_info",// "获取提现详情",
+        add_advertisement: "api/quchong/web/add_advertisement",// "添加广告",
+        update_advertisement: "api/quchong/web/update_advertisement",// "更新广告",
+        delete_advertisement: "api/quchong/web/delete_advertisement",// "删除广告",
+        get_advertisement: "api/quchong/web/get_advertisement",// "获取广告",
+        get_advertisement_list: "api/quchong/web/get_advertisement_list",// "获取广告列表",
+        update_advertisement_to_zero: "api/quchong/web/update_advertisement_to_zero",// "修改广告的点击次数",
+        disable_or_enable_advertisement: "api/quchong/web/disable_or_enable_advertisement",// "禁用或者启用广告",
+        get_app_user_list: "api/quchong/web/get_app_user_list",// "获取app用户列表",
+        get_app_user: "api/quchong/web/get_app_user",// "获取app用户",
+        delete_app_user: "api/quchong/web/delete_app_user",// "删除app用户",
+        get_deposit_detail_list: "api/quchong/web/get_deposit_detail_list",// "获取app用户充值记录一览",
+        get_app_user_deposit_detail: "api/quchong/web/get_app_user_deposit_detail",// "获取app用户充值记录",
+        push_message_to_app_user: "api/quchong/web/push_message_to_app_user",// "消息推送给app用户",
+        push_message_to_app: "api/quchong/web/push_message_to_app",// "消息推送给app用户",
+        get_complained_list: "api/quchong/web/get_complained_list",// "获得申诉列表",
+        get_complained: "api/quchong/web/get_complained",// "获得申诉详情",
+        update_complained: "api/quchong/web/update_complained",// " 更新申诉信息",
+        add_complained: "api/quchong/web/add_complained",// "添加申诉",
+        add_information: "api/quchong/web/add_information",// "添加资讯信息",
+        get_information: "api/quchong/web/get_information",// "获取资讯信息",
+        update_information: "api/quchong/web/update_information",// "更新资讯信息",
+        delete_information: "api/quchong/web/delete_information",// "删除资讯信息",
+        get_information_list: "api/quchong/web/get_information_list",// "资讯信息列表",
+        add_alipay_config: "api/quchong/web/add_alipay_config",// "添加支付宝配置",
+        get_alipay_config: "api/quchong/web/get_alipay_config",// "获取支付宝配置信息",
+        update_alipay_config: "api/quchong/web/update_alipay_config",// " 更新支付宝配置信息",
+        add_wxpay_config: "api/quchong/web/add_wxpay_config",// "添加微信配置信息",
+        get_wxpay_config: "api/quchong/web/get_wxpay_config",// "获取微信宝配置信息",
+        update_wxpay_config: "api/quchong/web/update_wxpay_config",// "更新微信配置信息",
+        add_foucs_wyc_wx_user: "api/quchong/web/add_foucs_wyc_wx_user",// "绑定微信零钱包",
+        get_foucs_wyc_wx_user: "api/quchong/web/get_foucs_wyc_wx_user",// "获取微信零钱包用户数据",
+        update_foucs_wyc_wx_user: "api/quchong/web/update_foucs_wyc_wx_user",// "更新微信零钱包用户数据",
+        get_foucs_wx_user_qrcode: "api/quchong/web/get_foucs_wx_user_qrcode",// "获得绑定二维码",
+        get_device_error_log_list: "api/quchong/web/get_device_error_log_list",// "获取设备故障信息列表",
+        get_statistics_charge_station_list: "api/quchong/web/get_statistics_charge_station_list",// "统计商户、代理商、城市合伙人统计电量",
+        set_system_config: "api/quchong/web/set_system_config",// "设定系统参数",
+        get_action_log_list: "api/quchong/web/get_action_log_list",// "获取系统日志列表",
+        get_system_config: "api/quchong/web/get_system_config",// "获取系统参数",
+        update_system_config: "api/quchong/web/update_system_config",// "修改系统参数"
+        get_business_user: "api/quchong/web/get_business_user",//获得商户信息
+        update_business_user: "api/quchong/web/update_business_user",//更新商户信息
+        device_unbundling: "api/quchong/web/device_unbundling",//解绑设备
+        update_app_user: "api/quchong/web/update_app_user",//更新app用户信息
+        add_business_user: "api/quchong/web/add_business_user",//添加商户
+        device_binding: "api/quchong/web/device_binding",//解绑设备
+        get_user: "api/quchong/web/get_user",//获取个人信息
+        update_user_info: "api/quchong/web/update_user_info",//更新个人信息
+        update_user_password: "api/quchong/web/update_user_password",//获取个人信息
+        set_device_params: "api/quchong/web/set_device_params",
+        get_device_statistics: "api/quchong/web/get_device_statistics",//获取桩状态
+        get_settlement_list: "api/quchong/web/get_settlement_list",//结算列表
+        update_settlement_fine: "api/quchong/web/update_settlement_fine",//结算处理
+        download_device_turnover_info: "api/quchong/web/download_device_turnover_info",//下载结算详情
+        add_feedback_reply: "api/quchong/web/add_feedback_reply",//回复app用户反馈
+        get_feedback_info: "api/quchong/web/get_feedback_info",//获取app用户反馈详情
 
     };
     public powerfun = function (params) {
