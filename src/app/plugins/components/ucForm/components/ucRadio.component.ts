@@ -16,7 +16,7 @@ import {Component, OnInit, Input} from '@angular/core';
     </div>
     <div class="item-content">
         <ng-container *ngFor="let item of model.options">
-            <label><input type="radio" [(ngModel)]="model.value" [formControlName]="model.key" [value]="item.value" (click)="model.click?model.click(item.value):0" (change)="hasChanged(model.value)">{{item.content}}</label>
+            <label><input type="radio" [(ngModel)]="model.value" [formControlName]="model.key" [value]="item.value" (click)="model.click?model.click(item.value):0" (change)="hasChanged(model.value)"><span>{{item.content}}</span></label>
         </ng-container>
     </div>
 </div>

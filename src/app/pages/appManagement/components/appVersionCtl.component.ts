@@ -1,31 +1,34 @@
 /**
  * Created by max on 2017/7/3.
  */
-import { Component, OnInit,ViewChild,AfterViewInit } from '@angular/core';
-import {UC} from "../../../plugins/globalservice";
+import {Component, OnInit, ViewChild, AfterViewInit} from '@angular/core';
+import {UC, AppHttpService} from "../../../plugins/globalservice";
 import {NgForm} from "@angular/forms";
+import {Validators} from '@angular/forms';
+declare var swal;
 
 @Component({
     selector: 'app-version-ctl',
     templateUrl: '../views/appVersionCtl.html',
-    styleUrls:["../styles/appVersionCtl.scss"]
+    styleUrls: ["../styles/appVersionCtl.scss"]
 })
 export class AppVersionCtlComponent implements OnInit,AfterViewInit {
-
+    public fields: Array<any>;
     //test
-    enforced_update;
-    download_link;
-    reply_content;
-    uploadformdata(){};
-
+    force_update;
+    ver_link;
+    ver_description;
+    public notAndroid = false;
+    public notIos = true;
     public apkconfig: any = {};//安卓上传配置
     public notallowload: boolean = true;//不允许上传
-    public apktip:string;//安卓apk提示
-    public version_number:string="1.0.0";//安卓apk版本号
+    public apktip: string;//安卓apk提示
+    public old_ver_code: string = "1.0.0";//安卓apk版本号
+    public ver_code;
 
-    constructor(
-        public uc:UC
-    ) { }
+    constructor(public uc: UC,
+                public appHttpService: AppHttpService) {
+    }
 
     ngOnInit() {
         this.apkconfig = {
@@ -34,38 +37,138 @@ export class AppVersionCtlComponent implements OnInit,AfterViewInit {
             uploadurl: this.uc.api.qc + "/upload_file/",
             downloadurl: this.uc.api.qc + "/get_file/",
             capsule: "apk_address"
-        }
-    }
-    filehasup(ev) {
-        console.log(ev)
-    }
-    iscanupload(e){
+        };
+        this.getDataforIos();
+        this.getDataforAndroid();
 
-        let version_number = this.version_number;
-        if (!this.version_number)return;
+    }
+
+    getDataforIos() {
+        //获取苹果的数据
+        let data = this.appHttpService.postData(this.uc.api.qc + "get_last_version", {
+            params: {
+                phone_type: 2
+            }
+        });
+        data.subscribe(res => {
+            if (res.status) {
+                let _data = res.data;
+                this.fields = [
+                    {
+                        title: "APP版本管理(IOS)",
+                        label: "强制更新",
+                        key: "force_update",
+                        controlType: "radio",
+                        value: _data.force_update||"1",
+                        require: true,
+                        options: [
+                            {value: "1", content: "启用"},
+                            {value: "2", content: "禁用"}
+                        ],
+                        validator: [
+                            Validators.required
+                        ],
+                        errormsg: [
+                            {type: "required", content: "必填项目"}
+                        ]
+                    }, {
+                        label: "目标版本号",
+                        key: "ver_code",
+                        controlType: "input",
+                        inputType: "text",
+                        require: true,
+                        value: _data.ver_code,
+                        placeholder: "请输入目标版本号",
+                        validator: [
+                            Validators.required,
+                            Validators.pattern("[0-9]+(\.[0-9]+){2}"),
+                        ],
+                        errormsg: [
+                            {type: "required", content: "必填项目"},
+                            {type: "pattern", content: "目标版本格式错误(例:1.0.0)"}
+                        ]
+                    }, {
+                        label: "版本描述",
+                        key: "ver_description",
+                        controlType: "input",
+                        require: true,
+                        inputType: "textarea",
+                        placeholder: "请输入版本描述",
+                        value:_data.ver_description,
+                        validator: [
+                            Validators.required,
+                        ],
+                        errormsg: [
+                            {type: "required", content: "必填项目"},
+                        ]
+                    }
+                ];
+            } else {
+                swal({
+                    title: "获取APP版本信息失败",
+                    text: res.error_msg,
+                    type: "error",
+                    timer: 2000
+                })
+            }
+        })
+    }
+    getDataforAndroid(){
+        let data = this.appHttpService.postData(this.uc.api.qc + "get_last_version", {
+            params: {
+                phone_type: 1
+            }
+        });
+        data.subscribe(res=>{
+            if (res.status){
+                let _data = res.data;
+                this.force_update = _data.force_update||"1";
+                this.ver_code = _data.ver_code;
+                this.ver_link = _data.ver_link;
+                this.ver_description = _data.ver_description;
+            }else {
+                swal({
+                    title:"获取安卓版本信息失败",
+                    text:res.error_msg,
+                    type: "error",
+                    timer: 2000
+                })
+            }
+        })
+    }
+
+    filehasup(ev) {
+        this.apktip = "apk已经上传成功!";
+        this.ver_link = ev.value;
+    }
+
+    iscanupload(e) {
+        if (!this.ver_code)return;
         if (!e)return
-        let oldVersion = this.version_number.split(".");
+        let oldVersion = this.old_ver_code.split(".");
         let newVersion = e.value.split(".");
-        console.log(e.value,version_number)
-        for(let i =0;i<newVersion.length;i++){
-            let o1=Number(oldVersion[i]);
-            let n1=Number(newVersion[i]);
-            if(n1>o1){
+        for (let i = 0; i < newVersion.length; i++) {
+            let o1 = Number(oldVersion[i]);
+            let n1 = Number(newVersion[i]);
+            if (n1 > o1) {
                 this.notallowload = false;
-                this.apktip="请上传apk版本"
+                this.apktip = "请上传apk版本";
                 return
             }
         }
         this.notallowload = true;
-        this.apktip='只有在目标版本大于当前版本( ' + this.version_number + ' )时才能上传apk文件';
+        this.apktip = '只有在目标版本大于当前版本( ' + this.old_ver_code + ' )时才能上传apk文件';
 
     }
+
     ngAfterViewInit(): void {
         //订阅表单值改变事件
         this.form.valueChanges.subscribe(data => this.onValueChanged(data));
     }
+
     //找到表单
     @ViewChild('form') form: NgForm;
+
     onValueChanged(data) {
 
         for (const field in this.formErrors) {
@@ -89,56 +192,92 @@ export class AppVersionCtlComponent implements OnInit,AfterViewInit {
 
     //存储错误信息
     formErrors = {
-        'generation_collection': '',
-        'edit_resource': '',
-        'development_of_line':'',
-        'yunbi_pay':'',
-        'pay_success':'',
-        'welcome_page':'',
-        'banner_page':'',
-        'settlement_page':'',
-        'version_number':'',
-        'download_link':'',
-        'enforced_update':'',
+        'force_update': '',
+        'ver_code': '',
+        'ver_link': '',
+        'ver_description': '',
     };
     //错误对应的提示
     validationMessages = {
-        'generation_collection': {
-            'required': '代收款扣除比例必须填写.',
-            'pattern': '代收款扣除比例格式不正确且不能超过100%',
+        'force_update': {
+            'required': '必选项目'
         },
-        'edit_resource': {
-            'required': '必选项目',
-        },
-        'development_of_line':{
-            'required': '必选项目',
-        },
-        'yunbi_pay':{
-            'required':'必选项目'
-        },
-        'pay_success':{
-            'required':'必选项目'
-        },
-        'welcome_page':{
-            'required':'必选项目'
-        },
-        'banner_page':{
-            'required':'必选项目'
-        },
-        'settlement_page':{
-            'required':'必选项目'
-        },
-        'version_number':{
+        'ver_code': {
             'required': '目标版本必须填写.',
             'pattern': '目标版本格式错误(例:1.0.0)',
         },
-        'download_link':{
-            'required':'apk下载链接缺失,请重新上传apk版本'
+        'ver_link': {
+            'required': 'apk下载链接缺失,请重新上传apk版本'
         },
-        'enforced_update':{
-            'required':'必选项目'
+        'edit_resource': {
+            'ver_description': '必选项目',
         }
-
     };
+
+    //ios数据
+
+
+    upAndrord() {
+        let params = {
+            params: {
+                "ver_code": this.ver_code,                                     //版本号 格式1.0.0
+                "ver_link": this.ver_link,                                     //版本链接
+                "ver_description": this.ver_description,                       //版本描述
+                "force_update": this.force_update,                             //强制更新标识:1=是、0=否
+                "phone_type": "1"                                              //手机类型:1=安卓、2=苹果
+            }
+        }
+        this.appHttpService.postData(this.uc.api.qc + "/add_version", params).subscribe(
+            res => {
+                if (res.status) {
+                    swal({
+                        title:"修改成功",
+                        text:res.error_msg,
+                        type: "success",
+                        timer: 2000
+                    })
+                } else {
+                    swal("修改APP版本失败", res.error_msg, "error")
+                }
+            }
+        )
+    };
+
+    upIos({value}={value}) {
+        let params = {
+            params: {
+                "ver_code": value.ver_code,                                  //版本号 格式1.0.0
+                "ver_link": value.ver_link,                                  //版本链接
+                "ver_description": value.ver_description,                    //版本描述
+                "force_update": value.force_update,                          //强制更新标识:1=是、0=否
+                "phone_type": "2"                                            //手机类型:1=安卓、2=苹果
+            }
+        }
+        this.appHttpService.postData(this.uc.api.qc + "/add_version", params).subscribe(
+            res => {
+                if (res.status) {
+                    swal({
+                        title:"修改成功",
+                        text:res.error_msg,
+                        type: "success",
+                        timer: 2000
+                    })
+                } else {
+                    swal("修改APP版本失败", res.error_msg, "error")
+                }
+            }
+        )
+    }
+
+    //切换版本
+    changeCtl1() {
+        this.notAndroid = false;
+        this.notIos = true;
+    }
+
+    changeCtl2() {
+        this.notAndroid = true;
+        this.notIos = false;
+    }
 
 }
