@@ -60,7 +60,6 @@ export class AdvertisementDetailComponent implements OnInit {
                 }
             }));
         data.subscribe((res) => {
-            let basesrc=this.uc.api.qc+"/get_file/";
             if (res.status) {
                 let _data = res.data;
                 let show_position;
@@ -108,7 +107,7 @@ export class AdvertisementDetailComponent implements OnInit {
                     }, {
                         type: 'img',
                         label: '广告图片',
-                        src: [basesrc+_data.advertisement_url]
+                        src: [_data.advertisement_url]
                     }, {
                         type: 'text',
                         label: '链接地址',

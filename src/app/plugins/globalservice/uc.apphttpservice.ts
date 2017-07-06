@@ -31,13 +31,10 @@ export class AppHttpService {
                         this.dataService.clearAll();
                         location.href = "";
                     });
-                    // setTimeout(() => {
-                    //     this.dataService.clearAll();
-                    //     location.href = "";
-                    // }, 5000)
-                    return Observable.create(ob=>{
-                        ob.error("http错误")
-                    })
+                    setTimeout(() => {
+                        this.dataService.clearAll();
+                        location.href = "";
+                    }, 5000)
                 } else {
                     return result;
                 }
@@ -58,13 +55,10 @@ export class AppHttpService {
                         this.dataService.clearAll();
                         location.href = "";
                     });
-                    // setTimeout(() => {
-                    //     this.dataService.clearAll();
-                    //     location.href = "";
-                    // }, 5000)
-                    return Observable.create(ob=>{
-                        ob.error("http错误")
-                    })
+                    setTimeout(() => {
+                        this.dataService.clearAll();
+                        location.href = "";
+                    }, 5000)
                 } else {
                     return result;
                 }

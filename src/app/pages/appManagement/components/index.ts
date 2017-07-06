@@ -11,3 +11,6 @@ export * from "./appInformationDetail.component";
 export * from "./appChargeRecord.component";
 export * from "./appMessagePush.component";
 export * from "./appVersionCtl.component";
+export * from "./appVersionList.component";
+export * from "./appVersionDetail.component";
+export * from "./appVersionEdit.component";

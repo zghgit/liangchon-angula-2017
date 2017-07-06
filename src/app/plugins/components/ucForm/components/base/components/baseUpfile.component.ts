@@ -14,7 +14,7 @@
  *
  *
  */
-import {Component, OnInit, Output,Input, EventEmitter} from '@angular/core';
+import {Component, OnInit, Output, Input, EventEmitter} from '@angular/core';
 declare var swal: any;
 
 @Component({
@@ -24,13 +24,14 @@ declare var swal: any;
             <input type="file" id="{{model.capsule}}" class="form-control" (change)="canup($event)" [ngClass]="{'fileError':fileError}" [accept]="model.accept">
         </div>
         <div class="main-file">
+            <div [ngClass]="{'disabled':model.disabled}"></div>
             <div class="form-control" [ngClass]="{'fileError':fileError}">
                 <span (click)="selectFile()">选择文件</span>
             </div>
             <div class="progressBar" [style.width]="progressBar+'%'" [ngClass]="{'fileError':fileError,'multi':isprogress}"></div>
             <ng-container *ngIf="model.accept=='image/*'">
                 <div class="showimg" *ngFor="let item of fileSrc">
-                    <img src="{{model.downloadurl}}{{item}}" alt="">
+                    <img src="{{item}}" alt="">
                 </div>
             </ng-container>
             <div class="clearfix"></div>
@@ -44,20 +45,21 @@ export class BaseUpfileComponent implements OnInit {
     public progressBar: number = 0;//进度条
     public fileError: boolean = false;//上传错误
     public file;//要上传的文件
-    public fileSrc:Array<any>=[];//图片的src
-    public isprogress:boolean=false;
+    public fileSrc: Array<any> = [];//图片的src
+    public backSrc: Array<any> = [];
+    public isprogress: boolean = false;
     @Output() fileready = new EventEmitter<any>();
 
     constructor() {
     }
 
     ngOnInit() {
-        if(this.model.value&&this.model.multi){
-            for (let item of this.model.value){
+        if (this.model.value && this.model.multi) {
+            for (let item of this.model.value) {
                 this.fileSrc.push(item)
             }
         }
-        if(this.model.value&&!this.model.multi){
+        if (this.model.value && !this.model.multi) {
             this.fileSrc.push(this.model.value);
         }
 
@@ -67,13 +69,14 @@ export class BaseUpfileComponent implements OnInit {
         let file = document.getElementById(this.model.capsule);
         file.click()
     }
+
     public canup(data) {
         this.isprogress = true;
         this.progressBar = 0;
         this.fileError = false;
         this.selectedFile = document.getElementById(this.model.capsule)
         this.file = this.selectedFile.files[0];
-        if(this.model.accept=='image/*'&&!/(.jgp)|(.png)|(.jpeg)/.test((this.file.type || this.file.name).toLowerCase())){
+        if (this.model.accept == 'image/*' && !/(.jgp)|(.png)|(.jpeg)/.test((this.file.type || this.file.name).toLowerCase())) {
             swal({
                 title: "提示!",
                 text: "只能上传jpg,png,jpep格式的图片",
@@ -82,10 +85,10 @@ export class BaseUpfileComponent implements OnInit {
             this.selectedFile.value = "";
             return
         }
-        if(this.model.size&&(this.file.size>=this.model.size*1024*1024)){
+        if (this.model.size && (this.file.size >= this.model.size * 1024 * 1024)) {
             swal({
                 title: "提示!",
-                text: "上传文件过大,只允许上传"+this.model.size+"MB以下的文件",
+                text: "上传文件过大,只允许上传" + this.model.size + "MB以下的文件",
                 type: "error"
             });
             this.selectedFile.value = "";
@@ -117,19 +120,20 @@ export class BaseUpfileComponent implements OnInit {
             // this.fileSrc = this.model.downloadurl + "/" + responseText.data.capsule + "/" + responseText.data.md5;
             this.selectedFile.value = "";
             this.progressBar = 100;
-            if(this.model.multi){
-                this.fileSrc.push( responseText.data.capsule + "/" + responseText.data.md5)
+            if (this.model.multi) {
+                this.fileSrc.push(responseText.data.url);
+                this.backSrc.push(responseText.data.capsule + "/" + responseText.data.md5);
                 this.fileready.emit(
                     {
-                        value: JSON.stringify(this.fileSrc)
+                        value: JSON.stringify(this.backSrc)
                     }
                 );
-            }else {
-                this.fileSrc=[];
-                this.fileSrc.push(responseText.data.capsule + "/" + responseText.data.md5)
+            } else {
+                this.fileSrc = [];
+                this.fileSrc.push(responseText.data.url)
                 this.fileready.emit(
                     {
-                        value:  responseText.data.capsule + "/" + responseText.data.md5
+                        value: responseText.data.capsule + "/" + responseText.data.md5
                     }
                 );
             }

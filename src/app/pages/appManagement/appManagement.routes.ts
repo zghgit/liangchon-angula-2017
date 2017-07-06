@@ -14,6 +14,9 @@ import {
     AppChargeRecordComponent,
     AppMessagePushComponent,
     AppVersionCtlComponent,
+    AppVersionListComponent,
+    AppVersionDetailComponent,
+    appVersionEditComponent,
 } from "./components";
 export const appManagementRoutes: Routes = [
     {
@@ -33,6 +36,9 @@ export const appManagementRoutes: Routes = [
             {path: "appMessagePush", component: AppMessagePushComponent},
             {path: "appMessagePush/:id", component: AppMessagePushComponent},
             {path: "appVersionCtl", component: AppVersionCtlComponent},
+            {path: "appVersionList", component: AppVersionListComponent},
+            {path: "appVersionDetail/:id", component: AppVersionDetailComponent},
+            {path: "appVersionEdit/:id", component: appVersionEditComponent},
         ]
     }
 ]

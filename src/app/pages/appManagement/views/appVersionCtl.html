@@ -15,7 +15,7 @@
         <div class="form-group">
             <label><span>*</span>目标版本号<i>{{formErrors.ver_code}}</i></label>
             <div class="main-content">
-                <input class="form-control" pattern="\d+(\.\d+){2}" type="text" placeholder="请输入目标版本号" [(ngModel)]="ver_code" #evn (change)="iscanupload(evn)" name="ver_code" required>
+                <input class="form-control" pattern="^([1-9]\d{0,2})(\.\d{1,3}){2}$" type="text" placeholder="请输入目标版本号" [(ngModel)]="ver_code" #evn (change)="iscanupload(evn)" name="ver_code" required>
             </div>
         </div>
         <div class="form-group">

@@ -25,7 +25,7 @@ export class CitypartnerListComponent implements OnInit {
         if (this.uc.powerfun(this.uc.constant.add_city_partner_user)) {
             this.plugins.button = {
                 class: 'btn-primary',
-                content: '新增合伙人',
+                content: '新增城市合伙人',
                 click: () => {
                     this.router.navigateByUrl('pages/account/citypartnerAdd');
                 }

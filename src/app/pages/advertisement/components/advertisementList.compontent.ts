@@ -70,7 +70,7 @@ export class AdvertisementListComponent implements OnInit {
                 let list = data.list;
                 this.plugins.grid.pagination.totalItems = data.total_num;
                 this.plugins.grid.tbody = [];
-                let basesrc=this.uc.api.qc+"/get_file/";
+                let basesrc = this.uc.api.qc + "/get_file/";
                 for (let key of list) {
                     let tds: Array<any>;
                     var show_position;
@@ -94,7 +94,7 @@ export class AdvertisementListComponent implements OnInit {
                     tds = [
                         {content: key.advertisement_id, hidden: true},
                         {content: key.advertisement_name},  // 广告名称
-                        {type:"img",content: basesrc+key.advertisement_url},   // 图片
+                        {type: "img", content: key.advertisement_url},   // 图片
                         {content: key.link_url},  // 链接
                         {content: key.show_duration},   // 显示时间
                         {content: key.click_times},   // 点击次数
@@ -154,7 +154,7 @@ export class AdvertisementListComponent implements OnInit {
                                                     title: "设置默认广告成功!",
                                                     text: "",
                                                     type: "success",
-                                                    timer:"2000"
+                                                    timer: "2000"
                                                 });
                                                 this.getGridData(params);
                                             } else {
@@ -199,7 +199,7 @@ export class AdvertisementListComponent implements OnInit {
                                                     title: "禁用成功!",
                                                     text: "",
                                                     type: "success",
-                                                    timer:"2000"
+                                                    timer: "2000"
                                                 });
                                                 this.getGridData(params);
                                             } else {
@@ -212,7 +212,8 @@ export class AdvertisementListComponent implements OnInit {
 
                             }
                         })
-                    };
+                    }
+                    ;
                     if (this.uc.powerfun(this.uc.constant.update_advertisement) && key.status == '2') {
                         operations.push({
                             content: "启用",
@@ -244,7 +245,7 @@ export class AdvertisementListComponent implements OnInit {
                                                     title: "启用成功!",
                                                     text: "",
                                                     type: "success",
-                                                    timer:"2000"
+                                                    timer: "2000"
                                                 });
                                                 this.getGridData(params);
                                             } else {
@@ -257,7 +258,8 @@ export class AdvertisementListComponent implements OnInit {
 
                             }
                         })
-                    };
+                    }
+                    ;
                     if (this.uc.powerfun(this.uc.constant.delete_advertisement)) {
                         operations.push({
                             content: "删除",
@@ -289,7 +291,7 @@ export class AdvertisementListComponent implements OnInit {
                                                     title: "删除成功!",
                                                     text: "",
                                                     type: "success",
-                                                    timer:"2000"
+                                                    timer: "2000"
                                                 });
                                                 this.getGridData(params);
                                             } else {
@@ -302,17 +304,18 @@ export class AdvertisementListComponent implements OnInit {
 
                             }
                         })
-                    };
+                    }
+                    ;
 
                     tds.push({type: "operation", operation: operations})
                     this.plugins.grid.tbody.push(tds)
                 }
-            }else {
+            } else {
                 swal({
                     title: "获取广告信息失败!",
                     text: res.error_msg,
                     type: "error",
-                    timer:"2000"
+                    timer: "2000"
                 });
             }
         })

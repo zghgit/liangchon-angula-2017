@@ -24,6 +24,9 @@ import {
     AppInformationEditComponent,
     AppInformationDetailComponent,
     AppVersionCtlComponent,
+    AppVersionListComponent,
+    AppVersionDetailComponent,
+    appVersionEditComponent,
 }from "./components";
 
 @NgModule({
@@ -47,6 +50,9 @@ import {
         AppInformationEditComponent,
         AppInformationDetailComponent,
         AppVersionCtlComponent,
+        AppVersionListComponent,
+        AppVersionDetailComponent,
+        appVersionEditComponent,
     ],
     providers: [],
 })

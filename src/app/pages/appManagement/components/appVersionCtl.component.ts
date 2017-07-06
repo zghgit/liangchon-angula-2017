@@ -23,7 +23,7 @@ export class AppVersionCtlComponent implements OnInit,AfterViewInit {
     public apkconfig: any = {};//安卓上传配置
     public notallowload: boolean = true;//不允许上传
     public apktip: string;//安卓apk提示
-    public old_ver_code: string = "1.0.0";//安卓apk版本号
+    public old_ver_code: string;//安卓apk版本号
     public ver_code;
 
     constructor(public uc: UC,
@@ -47,7 +47,7 @@ export class AppVersionCtlComponent implements OnInit,AfterViewInit {
         //获取苹果的数据
         let data = this.appHttpService.postData(this.uc.api.qc + "get_last_version", {
             params: {
-                phone_type: 2
+                phone_type: 20
             }
         });
         data.subscribe(res => {
@@ -81,11 +81,11 @@ export class AppVersionCtlComponent implements OnInit,AfterViewInit {
                         placeholder: "请输入目标版本号",
                         validator: [
                             Validators.required,
-                            Validators.pattern("[0-9]+(\.[0-9]+){2}"),
+                            Validators.pattern("^([1-9][0-9]{0,2})(\.[0-9]{1,3}){2}$"),
                         ],
                         errormsg: [
                             {type: "required", content: "必填项目"},
-                            {type: "pattern", content: "目标版本格式错误(例:1.0.0)"}
+                            {type: "pattern", content: "目标版本格式错误(最小:1.0.0; 最大:999.999.999)"}
                         ]
                     }, {
                         label: "版本描述",
@@ -105,7 +105,7 @@ export class AppVersionCtlComponent implements OnInit,AfterViewInit {
                 ];
             } else {
                 swal({
-                    title: "获取APP版本信息失败",
+                    title: "获取IOS版本信息失败",
                     text: res.error_msg,
                     type: "error",
                     timer: 2000
@@ -116,7 +116,7 @@ export class AppVersionCtlComponent implements OnInit,AfterViewInit {
     getDataforAndroid(){
         let data = this.appHttpService.postData(this.uc.api.qc + "get_last_version", {
             params: {
-                phone_type: 1
+                phone_type: 10
             }
         });
         data.subscribe(res=>{
@@ -126,6 +126,7 @@ export class AppVersionCtlComponent implements OnInit,AfterViewInit {
                 this.ver_code = _data.ver_code;
                 this.ver_link = _data.ver_link;
                 this.ver_description = _data.ver_description;
+                this.old_ver_code = _data.ver_code;
             }else {
                 swal({
                     title:"获取安卓版本信息失败",
@@ -143,8 +144,11 @@ export class AppVersionCtlComponent implements OnInit,AfterViewInit {
     }
 
     iscanupload(e) {
-        if (!this.ver_code)return;
-        if (!e)return
+        if (!this.ver_code){
+            this.notallowload = true;
+            this.apktip = '只有在目标版本大于当前版本( ' + this.old_ver_code + ' )时才能上传apk文件';
+            return
+        };
         let oldVersion = this.old_ver_code.split(".");
         let newVersion = e.value.split(".");
         for (let i = 0; i < newVersion.length; i++) {
@@ -153,6 +157,11 @@ export class AppVersionCtlComponent implements OnInit,AfterViewInit {
             if (n1 > o1) {
                 this.notallowload = false;
                 this.apktip = "请上传apk版本";
+                return
+            }
+            if (n1 < o1) {
+                this.notallowload = true;
+                this.apktip = '只有在目标版本大于当前版本( ' + this.old_ver_code + ' )时才能上传apk文件';
                 return
             }
         }
@@ -204,7 +213,7 @@ export class AppVersionCtlComponent implements OnInit,AfterViewInit {
         },
         'ver_code': {
             'required': '目标版本必须填写.',
-            'pattern': '目标版本格式错误(例:1.0.0)',
+            'pattern': '目标版本格式错误(最小:1.0.0; 最大:999.999.999)',
         },
         'ver_link': {
             'required': 'apk下载链接缺失,请重新上传apk版本'
@@ -224,7 +233,7 @@ export class AppVersionCtlComponent implements OnInit,AfterViewInit {
                 "ver_link": this.ver_link,                                     //版本链接
                 "ver_description": this.ver_description,                       //版本描述
                 "force_update": this.force_update,                             //强制更新标识:1=是、0=否
-                "phone_type": "1"                                              //手机类型:1=安卓、2=苹果
+                "phone_type": "10"                                              //手机类型:10=安卓、20=苹果
             }
         }
         this.appHttpService.postData(this.uc.api.qc + "/add_version", params).subscribe(
@@ -250,7 +259,7 @@ export class AppVersionCtlComponent implements OnInit,AfterViewInit {
                 "ver_link": value.ver_link,                                  //版本链接
                 "ver_description": value.ver_description,                    //版本描述
                 "force_update": value.force_update,                          //强制更新标识:1=是、0=否
-                "phone_type": "2"                                            //手机类型:1=安卓、2=苹果
+                "phone_type": "20"                                            //手机类型:10=安卓、20=苹果
             }
         }
         this.appHttpService.postData(this.uc.api.qc + "/add_version", params).subscribe(
