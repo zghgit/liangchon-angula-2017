@@ -97,15 +97,17 @@ export class BaseUpfileComponent implements OnInit {
         if (this.file) {
             let xhr = new XMLHttpRequest();
             let fd = new FormData();
+            let secret_token = localStorage.getItem("secret_token");
             fd.append("capsule", this.model.capsule);
             fd.append("file", this.file);
+            /* 下面的url一定要改成你要发送文件的服务器url */
+            xhr.open("POST", this.model.uploadurl);
+            xhr.setRequestHeader('Authrization', JSON.parse(secret_token))
+            xhr.send(fd);
             xhr.upload.addEventListener("progress", this.uploadProgress, false);
             xhr.addEventListener("load", this.uploadComplete, false);
             xhr.addEventListener("error", this.uploadFailed, false);
             xhr.addEventListener("abort", this.uploadCanceled, false);
-            /* 下面的url一定要改成你要发送文件的服务器url */
-            xhr.open("POST", this.model.uploadurl);
-            xhr.send(fd);
         }
     }
 

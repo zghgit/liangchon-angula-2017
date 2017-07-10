@@ -5,7 +5,6 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {User} from "../loginDataModel";
 import {AppHttpService, DataService, UC} from "../../plugins/globalservice";
-import {Md5} from "ts-md5/dist/md5";
 declare var swal: any;
 
 @Component({
@@ -42,14 +41,13 @@ export class LoginComponent implements OnInit {
         let params = {
             params: {
                 user_name: this.user.userName,
-                password: this.user.password,
-                // password: Md5.hashStr(this.user.password).toString(),
+                password: this.uc.toMD5(this.user.password,this.user.userName),
                 validate_code: this.user.identifyCode
             }
         }
         if (this.canAjax && falg) {
             this.canAjax = false;
-            let data = this.appHttpService.postData(this.uc.api.qc + "/login", params);
+            let data = this.appHttpService.login(this.uc.api.qc + "/login", params);
             data.subscribe(
                 res => {
                     this.canAjax = true;
@@ -66,6 +64,7 @@ export class LoginComponent implements OnInit {
                         this.dataService.setLocalStorage("module_permission", data.module_permission);
                         this.dataService.setLocalStorage("powerapi", data.api);
                         this.dataService.setLocalStorage("powernav", JSON.parse(data.navigation));
+                        this.dataService.setLocalStorage("secret_token",data.secret_token);
                         // this.dataService.setLocalStorage("powernav", this.uc.navModel);
                         //存在本地
                         // localStorage.setItem('module_permission', JSON.stringify(data.module_permission));

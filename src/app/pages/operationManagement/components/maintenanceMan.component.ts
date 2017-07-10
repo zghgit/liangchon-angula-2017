@@ -20,7 +20,7 @@ export class MaintenanceManComponent implements OnInit {
     }
 
     ngOnInit() {
-        let data = this.appHttpService.getData(this.uc.api.qc+"/get_user/");
+        let data = this.appHttpService.postData(this.uc.api.qc+"/get_user/");
         data.subscribe(res => {
             if (res.status) {
                 let _data = res.data;

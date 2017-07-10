@@ -26,7 +26,7 @@ export class AlipayConfEditComponent implements OnInit {
     public commodity_id: string;
 
     ngOnInit() {
-        let data = this.appHttpService.getData(this.uc.api.qc + "/get_alipay_config")
+        let data = this.appHttpService.postData(this.uc.api.qc + "/get_alipay_config")
         data.subscribe(res => {
             if (res.status) {
                 let _data = res.data.ailpay_config;

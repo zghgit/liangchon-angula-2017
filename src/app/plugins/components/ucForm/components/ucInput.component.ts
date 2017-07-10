@@ -24,7 +24,7 @@ import {Component, OnInit, Input} from '@angular/core';
             <input class="form-control" [ngClass]="{'has-error':form.get(model.key).invalid&&form.get(model.key).touched}" type="password" [(ngModel)]="model.value" [formControlName]="model.key" placeholder="{{model.placeholder}}" />
         </ng-container>
         <ng-container *ngSwitchCase="'password'">
-            <input class="form-control" validateEqual="repassword" [ngClass]="{'has-error':form.get(model.key).invalid&&form.get(model.key).touched}" type="password" [(ngModel)]="model.value" [formControlName]="model.key" placeholder="{{model.placeholder}}" />
+            <input class="form-control" validateEqual="repassword" reverse=true [ngClass]="{'has-error':form.get(model.key).invalid&&form.get(model.key).touched}" type="password" [(ngModel)]="model.value" [formControlName]="model.key" placeholder="{{model.placeholder}}" />
         </ng-container>
         <ng-container *ngSwitchCase="'repassword'">
             <input class="form-control" validateEqual="password" [ngClass]="{'has-error':form.get(model.key).invalid&&form.get(model.key).touched}" type="password" [(ngModel)]="model.value" [formControlName]="model.key" placeholder="{{model.placeholder}}" />

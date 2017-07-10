@@ -15,6 +15,10 @@ import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
     styleUrls: ["../styles/ucSelect.scss"]
 })
 export class ucSelectComponent implements OnInit {
+    /*
+    *
+    *
+    * */
     @Input() model;
     @Input() options;
     @Input() error;

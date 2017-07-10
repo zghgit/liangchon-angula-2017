@@ -2,6 +2,7 @@
  * Created by max on 2017/4/24.
  */
 import {Injectable} from "@angular/core";
+import {Md5} from "ts-md5/dist/md5";
 @Injectable()
 export class UC {
     public version = '0.0.1';
@@ -133,13 +134,15 @@ export class UC {
         download_device_turnover_info: "api/quchong/web/download_device_turnover_info",//下载结算详情
         add_feedback_reply: "api/quchong/web/add_feedback_reply",//回复app用户反馈
         get_feedback_info: "api/quchong/web/get_feedback_info",//获取app用户反馈详情
-
     };
     public powerfun = function (params) {
         var apis = localStorage.getItem('powerapi');
         if(!apis)return false;
         return apis.indexOf(params) >= 0;
     };
+    public toMD5(pwd:string|number,account:string|number){
+        return Md5.hashStr(pwd+'@{'+account+'}').toString()
+    }
     public powercontroll = {
         read: 'R',
         update: 'U',

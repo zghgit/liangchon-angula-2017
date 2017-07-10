@@ -2,7 +2,7 @@
  * Created by max on 2017/5/17.
  */
 
-import {Component, OnInit, Input,Output,EventEmitter,OnChanges,AfterContentChecked} from '@angular/core';
+import {Component, OnInit, Input,Output,EventEmitter,OnChanges,AfterContentChecked,AfterViewInit} from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 @Component({
     selector: 'uc-form',
@@ -17,6 +17,12 @@ export class UcFormComponent implements OnInit {
 
     ngOnInit() {
         if(this.formData){
+            this.form = this.toFormGroup(this.formData);
+        }
+    }
+    ngAfterViewInit(): void {
+        //订阅表单值改变事件
+        if (this.formData){
             this.form = this.toFormGroup(this.formData);
         }
     }

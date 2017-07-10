@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --proxy-config proxy.conf.json",
+    "start": "ng serve --proxy-config proxy.conf.json --host 0.0.0.0 --disable-host-check",
     "dev": "ng serve --proxy-config proxy.conf.json --prod --aot",
     "build": "ng build --prod --aot",
     "test": "ng test",
@@ -40,7 +40,7 @@
     "zone.js": "^0.8.4"
   },
   "devDependencies": {
-    "@angular/cli": "1.0.0",
+    "@angular/cli": "^1.0.0",
     "@angular/compiler-cli": "^4.0.0",
     "@angular/language-service": "^4.1.0",
     "@types/jasmine": "2.5.38",

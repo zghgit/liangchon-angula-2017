@@ -41,13 +41,15 @@ export class EquipmentImportComponent implements OnInit {
         var xhr = new XMLHttpRequest();
         let fd = new FormData();
         fd.append("file", this.file);
+        /* 下面的url一定要改成你要发送文件的服务器url */
+        xhr.open("POST", this.uploadurl);
+        let secret_token = localStorage.getItem("secret_token");
+        xhr.setRequestHeader('Authrization', JSON.parse(secret_token))
+        xhr.send(fd);
         xhr.upload.addEventListener("progress", this.uploadProgress, false);
         xhr.addEventListener("load", this.uploadComplete, false);
         xhr.addEventListener("error", this.uploadFailed, false);
         xhr.addEventListener("abort", this.uploadCanceled, false);
-        /* 下面的url一定要改成你要发送文件的服务器url */
-        xhr.open("POST", this.uploadurl);
-        xhr.send(fd);
     }
 
     public selectFile() {
@@ -99,7 +101,6 @@ export class EquipmentImportComponent implements OnInit {
     downloadTemplate() {
         this.appHttpService.getBinary(this.uc.api.qc + '/download_device_template/').subscribe(res => {
             let disposition = res.headers._headers.get("content-disposition");
-
             if (!disposition) {
                 swal("下载模板失败", res.error_msg, "error")
             } else {

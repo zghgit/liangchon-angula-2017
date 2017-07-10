@@ -22,7 +22,7 @@ export class SettingEditComponent implements OnInit,AfterViewInit {
     }
 
     ngOnInit() {
-        let data = this.appHttpService.getData(this.uc.api.qc + '/get_system_config/');
+        let data = this.appHttpService.postData(this.uc.api.qc + '/get_system_config/');
         data.subscribe(res => {
             if (res.status) {
                 let data = res.data;

@@ -12,7 +12,7 @@ declare var swal;
 })
 export class UserPwdEditComponent implements OnInit {
     public fields: Array<any>;
-
+    public user_name;
     constructor(public uc: UC,
                 public appHttpService: AppHttpService,
                 public router: Router,
@@ -22,10 +22,11 @@ export class UserPwdEditComponent implements OnInit {
 
     ngOnInit() {
         let data = this.activatedRoute.params
-            .switchMap((params: Params) => this.appHttpService.getData(this.uc.api.qc + "/get_user/" + params['id']));
+            .switchMap((params: Params) => this.appHttpService.postData(this.uc.api.qc + "/get_user/" + params['id']));
         data.subscribe(res => {
             if (res.status) {
                 let _data = res.data;
+                this.user_name = _data.user_name;
                 this.fields = [
                     {
                         label: "账户名称",
@@ -97,8 +98,8 @@ export class UserPwdEditComponent implements OnInit {
     saveData({value}={value}) {
         let params = {
             params: {
-                new_password: value.password,
-                old_password: value.old_password
+                new_password: this.uc.toMD5(value.password,this.user_name),
+                old_password: this.uc.toMD5(value.old_password,this.user_name)
             }
         };
         this.appHttpService.postData(this.uc.api.qc + "/update_user_password", params).subscribe(

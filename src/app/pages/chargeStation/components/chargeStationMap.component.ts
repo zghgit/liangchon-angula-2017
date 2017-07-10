@@ -100,7 +100,7 @@ export class ChargeStationMapComponent implements OnInit {
             charging_num = '充电中',
             offline_num = '离线中';
 
-        let piedata = this.appHttpService.getData(this.uc.api.qc + '/get_statistics_device_info_for_home_page/')
+        let piedata = this.appHttpService.postData(this.uc.api.qc + '/get_statistics_device_info_for_home_page/')
         piedata.subscribe(res => {
             if (res.status) {
                 var data = res.data;

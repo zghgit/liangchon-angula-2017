@@ -24,7 +24,6 @@ export class AgentAddComponent implements OnInit {
     }
 
     ngOnInit() {
-
     }
 
     //form数据
@@ -306,7 +305,7 @@ export class AgentAddComponent implements OnInit {
             params: {
                 user_name: value.user_name.trim(),
                 business_name: value.business_name.trim(),
-                password: value.password,
+                password: this.uc.toMD5(value.password,value.user_name.trim()),
                 real_name: value.real_name.trim(),
                 service_phone: value.service_phone,
                 email: value.email,

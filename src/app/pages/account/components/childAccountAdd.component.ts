@@ -7,7 +7,6 @@ import {Validators} from '@angular/forms';
 import {AppHttpService, UC, DataService} from "../../../plugins/globalservice";
 import {phoneValidator} from "../../../plugins/validators/phoneValidator";
 import {emailValidator} from "../../../plugins/validators/emailValidator";
-import {Md5} from "ts-md5/dist/md5";
 declare var swal;
 @Component({
     selector: 'childaccount-add',
@@ -270,7 +269,7 @@ export class ChildAccountAddComponent implements OnInit {
             params: {
                 user_name: value.user_name.trim(),
                 business_name: value.business_name.trim(),
-                password: value.password,
+                password: this.uc.toMD5(value.password,value.user_name.trim()),
                 real_name: value.real_name.trim(),
                 service_phone: value.service_phone,
                 email: value.email,

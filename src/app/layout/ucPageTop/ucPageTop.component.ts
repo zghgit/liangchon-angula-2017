@@ -64,6 +64,8 @@ export class UcPageTopComponent {
             if (this.menu[key].hasSubmenu) {
                 let submenu = this.menu[key].submenu;
                 for (let key in submenu) {
+                    if(submenu[key].href=='userEdit'){
+                    }
                     if (submenu[key].href && path.indexOf(submenu[key].href) >= 0) {
                         return submenu[key].name;
                     }

@@ -17,6 +17,7 @@ export class AppVersionCtlComponent implements OnInit,AfterViewInit {
     //test
     force_update;
     ver_link;
+    old_link;
     ver_description;
     public notAndroid = false;
     public notIos = true;
@@ -125,6 +126,7 @@ export class AppVersionCtlComponent implements OnInit,AfterViewInit {
                 this.force_update = _data.force_update||"1";
                 this.ver_code = _data.ver_code;
                 this.ver_link = _data.ver_link;
+                this.old_link = _data.ver_link;
                 this.ver_description = _data.ver_description;
                 this.old_ver_code = _data.ver_code;
             }else {
@@ -154,6 +156,10 @@ export class AppVersionCtlComponent implements OnInit,AfterViewInit {
         for (let i = 0; i < newVersion.length; i++) {
             let o1 = Number(oldVersion[i]);
             let n1 = Number(newVersion[i]);
+            if(n1>999){
+                this.notallowload = true;
+                return
+            }
             if (n1 > o1) {
                 this.notallowload = false;
                 this.apktip = "请上传apk版本";
@@ -227,6 +233,17 @@ export class AppVersionCtlComponent implements OnInit,AfterViewInit {
 
 
     upAndrord() {
+        if(!this.notallowload){
+            if(this.old_link ==this.ver_link){
+                swal({
+                    title:"提示!",
+                    text:"目标版本已经大于当前版本,请重新上传apk文件",
+                    type: "success",
+                    timer: 2000
+                })
+                return
+            }
+        }
         let params = {
             params: {
                 "ver_code": this.ver_code,                                     //版本号 格式1.0.0

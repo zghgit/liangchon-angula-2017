@@ -31,7 +31,7 @@ export class UserEditComponent implements OnInit {
             this.user_id = res.id;
         })
         let data = this.activatedRoute.params
-            .switchMap((params: Params) => this.appHttpService.getData(this.uc.api.qc + "/get_user/" + params['id']));
+            .switchMap((params: Params) => this.appHttpService.postData(this.uc.api.qc + "/get_user/" + params['id']));
         data.subscribe(res => {
             if (res.status) {
                 let _data = res.data;

@@ -32,6 +32,7 @@ export class UcMenuComponent {
         rechargeCard: false,
         setting: false,
         operationManagement:false,
+        user:false
     };
     public menuItemSelected: any = {
         home: false,
@@ -48,6 +49,7 @@ export class UcMenuComponent {
         rechargeCard: false,
         setting: false,
         operationManagement:false,
+        user:false
     };
 
     constructor(public router: Router,

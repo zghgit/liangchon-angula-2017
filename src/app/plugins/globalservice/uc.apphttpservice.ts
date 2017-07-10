@@ -13,10 +13,39 @@ export class AppHttpService {
     constructor(public http: Http,
                 public dataService: DataService) {
     };
+    public login(url: string, params?: any): Observable<any> {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        return this.http
+            .post(url, JSON.stringify(params), {headers: headers})
+            .map((res: Response) => {
+                let result = res.json();
+                if (result.error_code === 901 || result.error_code === 102) {
+                    swal({
+                        title: "登陆超时!",
+                        text: "请重新登陆",
+                        type: "error",
+                        confirmButtonText: "OK",
+                    }).then(() => {
+                        this.dataService.clearAll();
+                        location.href = "";
+                    });
+                    setTimeout(() => {
+                        this.dataService.clearAll();
+                        location.href = "";
+                    }, 5000)
+                } else {
+                    return result;
+                }
+            })
+            .catch((error: any) => Observable.throw(error || 'Server error'));
+    };
 
     public postData(url: string, params?: any): Observable<any> {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
+        let secret_token = this.dataService.getLocalStorage("secret_token");
+        headers.append('Authrization', secret_token);
         return this.http
             .post(url, JSON.stringify(params), {headers: headers})
             .map((res: Response) => {
@@ -68,7 +97,9 @@ export class AppHttpService {
 
     public getBinary(url: string, params?: any): Observable<any> {
         let headers = new Headers();
+        let secret_token = this.dataService.getLocalStorage("secret_token");
         headers.append('Content-Type', 'application/json');
+        headers.append('Authrization', secret_token);
         let options = new RequestOptions({headers: headers, responseType: 2});
         return this.http
             .post(url, JSON.stringify(params), options).map(res => {

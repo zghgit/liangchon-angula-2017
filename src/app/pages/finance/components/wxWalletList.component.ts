@@ -24,7 +24,7 @@ export class WxWalletListComponent implements OnInit {
     }
 
     ngOnInit() {
-        let data = this.appHttpService.getData(this.uc.api.qc+"get_foucs_wx_user_qrcode/");
+        let data = this.appHttpService.postData(this.uc.api.qc+"get_foucs_wx_user_qrcode/");
 
         data.subscribe(res=>{
             this.QRcode = res.data.src;
