@@ -159,5 +159,7 @@ export class FeedbackDetailComponent implements OnInit {
     public clearreply(){
         this.reply_content = "";
         this.reply_img = [];
+        this.notallowload =false;
+        this.img_error = "";
     }
 }
