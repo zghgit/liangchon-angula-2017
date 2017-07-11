@@ -9,7 +9,6 @@ declare var swal;
 @Injectable()
 export class AppHttpService {
     public error: Error;
-
     constructor(public http: Http,
                 public dataService: DataService) {
     };
@@ -41,7 +40,6 @@ export class AppHttpService {
             })
             .catch((error: any) => Observable.throw(error || 'Server error'));
     };
-
     public postData(url: string, params?: any): Observable<any> {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');

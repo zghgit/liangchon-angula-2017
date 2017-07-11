@@ -104,7 +104,7 @@ export class FeedbackDetailComponent implements OnInit {
             });
             return
         }
-        if(reply_content.length>=200) {
+        if(reply_content.length>200) {
             swal({
                 title: "提示!",
                 text: "回复内容不能超过200字",
