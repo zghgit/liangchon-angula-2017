@@ -9,7 +9,7 @@
             <p>{{feedbackInfo.feedback_content}}</p>
             <ng-container *ngIf="feedbackInfo.feedback_img">
                 <div *ngFor="let item of feedbackInfo.feedback_img">
-                    <img src="{{baseurl}}{{item}}">
+                    <img src="{{item}}">
                 </div>
             </ng-container>
         </div>
@@ -25,7 +25,8 @@
                 <p [ngClass]="{'admin': item.user_id!=user_id}">{{item.feedback_content}}</p>
                 <ng-container *ngIf="item.feedback_img">
                     <div *ngFor="let subitem of item.feedback_img">
-                        <img src="{{baseurl}}{{subitem}}">
+                        <img src="{{subitem}}">
+                        {{subitem}}
                     </div>
                 </ng-container>
             </div>

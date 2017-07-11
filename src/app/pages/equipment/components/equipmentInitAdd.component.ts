@@ -119,9 +119,10 @@ export class EquipmentInitAddComponent implements OnInit {
                             label: "通讯方式",
                             key: "communicate_type",
                             controlType: "radio",
-                            value: _data.communicate_type,
+                            value: _data.communicate_type||"2",
                             require: true,
-                            options: _data.communicate_type==1? [{value: "1", content: "wifi"}]:[{value: "2", content: "gprs"}],
+                            options: _data.communicate_type==null? [{value: "1", content: "wifi"},{value: "2", content: "gprs"}]:_data.communicate_type==1?[{value: "1", content: "wifi"}]:[{value: "2", content: "gprs"}],
+                            // options: _data.communicate_type==1? [{value: "1", content: "wifi"}]:[{value: "2", content: "gprs"}],
                             validator: [
                                 Validators.required
                             ],
@@ -134,7 +135,6 @@ export class EquipmentInitAddComponent implements OnInit {
                             controlType: "input",
                             inputType: "text",
                             require: true,
-                            disabled: true,
                             value: _data.soft_ver,
                             placeholder: "请输入固定版本",
                             validator: [
@@ -149,7 +149,6 @@ export class EquipmentInitAddComponent implements OnInit {
                             controlType: "input",
                             inputType: "text",
                             require: true,
-                            disabled: true,
                             value: _data.meters_no,
                             placeholder: "请输入电表编号",
                             validator: [
@@ -397,6 +396,8 @@ export class EquipmentInitAddComponent implements OnInit {
                     device_lat: gps.lat,
                     device_lng: gps.lon,
                     communicate_type: value.communicate_type,
+                    soft_ver:value.soft_ver,
+                    meters_no:value.meters_no,
                 },
                 device_no: this.device_no,
                 commodity_ids: commodity_ids

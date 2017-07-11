@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
         if (this.user.userName == "") {
             swal({
                 title: "登录失败!",
-                text: "111",
+                text: "手机号为空",
                 type: "error"
             });
             falg = false;

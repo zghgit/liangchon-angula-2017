@@ -1,9 +1,11 @@
 /**
  * Created by max on 2017/6/16.
  * config: {
- *    value: [_data.certificate_img_1],//回填数据,当multi为ture时,传入一个数组,当multi为false时,传入一个字符串
+ *    value: _data.certificate_img_1,//回填数据,当multi为ture时,传入一个数组,当multi为false时,传入一个字符串
  *    accept:"image/*",//定义上传文件类型
  *    multi:true,//多图片上传
+ *    size:文件大小,//MB
+ *    count:文件数量,//
  *    uploadurl: this.uc.api.qc + "/upload_file/",//上传地址
  *    downloadurl: this.uc.api.qc + "/get_file/",//下载地址
  *    capsule: "certificate_img_11"//后台建立文件夹的名字
@@ -46,8 +48,9 @@ export class BaseUpfileComponent implements OnInit {
     public fileError: boolean = false;//上传错误
     public file;//要上传的文件
     public fileSrc: Array<any> = [];//图片的src
-    public backSrc: Array<any> = [];
-    public isprogress: boolean = false;
+    public backSrc: Array<any> = [];//返回的src
+    public isprogress: boolean = false;//进度订
+    public filecount:number=0;
     @Output() fileready = new EventEmitter<any>();
 
     constructor() {
@@ -94,20 +97,35 @@ export class BaseUpfileComponent implements OnInit {
             this.selectedFile.value = "";
             return
         }
+        if(this.model.count&&this.filecount>=this.model.count){
+            swal({
+                title: "提示!",
+                text: "最多只能上传"+this.model.count+"个文件",
+                type: "error"
+            });
+            this.selectedFile.value = "";
+            return
+        }
         if (this.file) {
-            let xhr = new XMLHttpRequest();
-            let fd = new FormData();
             let secret_token = localStorage.getItem("secret_token");
-            fd.append("capsule", this.model.capsule);
-            fd.append("file", this.file);
+            let xhr = new XMLHttpRequest();
+            let formData = new FormData();
+            formData.append("capsule", this.model.capsule);
+            formData.append("file", this.file);
+
             /* 下面的url一定要改成你要发送文件的服务器url */
+
             xhr.open("POST", this.model.uploadurl);
-            xhr.setRequestHeader('Authrization', JSON.parse(secret_token))
-            xhr.send(fd);
+            xhr.setRequestHeader('Authrization', JSON.parse(secret_token));
+            // xhr.setRequestHeader("Content-Type","multipart/form-data");
+
+
             xhr.upload.addEventListener("progress", this.uploadProgress, false);
             xhr.addEventListener("load", this.uploadComplete, false);
             xhr.addEventListener("error", this.uploadFailed, false);
             xhr.addEventListener("abort", this.uploadCanceled, false);
+
+            xhr.send(formData);
         }
     }
 
@@ -122,6 +140,7 @@ export class BaseUpfileComponent implements OnInit {
             // this.fileSrc = this.model.downloadurl + "/" + responseText.data.capsule + "/" + responseText.data.md5;
             this.selectedFile.value = "";
             this.progressBar = 100;
+            this.filecount++;
             if (this.model.multi) {
                 this.fileSrc.push(responseText.data.url);
                 this.backSrc.push(responseText.data.capsule + "/" + responseText.data.md5);
@@ -152,10 +171,14 @@ export class BaseUpfileComponent implements OnInit {
     }
 
     public uploadFailed() {
-        console.log("error")
+        console.log("error");
+        this.progressBar = 0;
+        this.fileError = true;
+        this.selectedFile.value = "";
     }
 
     public uploadCanceled() {
-        console.log("abort")
+        console.log("abort");
+
     }
 }

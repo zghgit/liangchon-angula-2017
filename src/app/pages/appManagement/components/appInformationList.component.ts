@@ -21,7 +21,7 @@ export class AppInformationComponent implements OnInit {
     }
 
     ngOnInit() {
-        if(this.uc.powerfun(this.uc.constant.add_commodity)){
+        if(this.uc.powerfun(this.uc.constant.add_information)){
             this.plugins.button = {
                 class:'btn-primary',
                 content:'新增资讯',

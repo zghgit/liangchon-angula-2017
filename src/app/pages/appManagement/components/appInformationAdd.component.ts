@@ -45,7 +45,6 @@ export class AppInformationAddComponent implements OnInit {
     ngOnInit() {
     }
     uploaddata(){
-
         let params = {
             params: {
                 information_title:this.information_title,

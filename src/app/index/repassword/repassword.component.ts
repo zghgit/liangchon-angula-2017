@@ -35,7 +35,7 @@ export class RepasswordComponent implements OnInit {
         if (this.mobileNo == "") {
             swal({
                 title: "登录失败!",
-                text: "111",
+                text: "手机号为空",
                 type: "error"
             });
             falg = false;
@@ -44,7 +44,7 @@ export class RepasswordComponent implements OnInit {
         if (!(/^1(3|4|5|7|8)\d{9}$/.test(this.mobileNo))) {
             swal({
                 title: "提示!",
-                text: "手机号码有误，请重新填写!",
+                text: "手机号码格式有误，请重新填写!",
                 type: "error"
             });
             return;
@@ -111,7 +111,7 @@ export class RepasswordComponent implements OnInit {
         let params = {
             params: {
                 user_name: this.mobileNo,
-                password: 10,
+                password: this.uc.toMD5(this.mobileNo,this.password),
                 validation_code:this.mobileNoCode
             }
         }

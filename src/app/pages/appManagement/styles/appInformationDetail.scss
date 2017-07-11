@@ -19,11 +19,14 @@
         margin-left: 10px;
         display: inline-block;
     }
-    >section{
+    >section /deep/{
         min-height: 300px;
         word-wrap: break-word;
         border: 1px solid #dfdfdf;
         box-shadow: 0 1px 7px rgba(0,0,0,.1);
         padding: 10px;
+        img{
+            max-width: 100%;
+        }
     }
 }

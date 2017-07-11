@@ -29,8 +29,9 @@ export class AppHttpService {
                     }).then(() => {
                         this.dataService.clearAll();
                         location.href = "";
+                        clearTimeout(timer);
                     });
-                    setTimeout(() => {
+                    var timer = setTimeout(() => {
                         this.dataService.clearAll();
                         location.href = "";
                     }, 5000)

@@ -363,13 +363,7 @@ export class MerchantEditComponent implements OnInit {
                         require: true,
                         hidden: _data.whether_settlement==2,
                         value: _data.settlement_cycle==0?1 :_data.settlement_cycle,
-                        placeholder: "请输入结算周期",
-                        validator: [
-                            CustomValidators.range([1, 12]),
-                        ],
-                        errormsg: [
-                            {type: "range", content: "结算周期范围:[1-12]月"},
-                        ]
+                        placeholder: "请输入结算周期"
                     }, {
                         label: "结算日(日)",
                         key: "settlement_day",
@@ -378,13 +372,7 @@ export class MerchantEditComponent implements OnInit {
                         require: true,
                         hidden: _data.whether_settlement==2,
                         value: _data.settlement_day==0?1:_data.settlement_day,
-                        placeholder: "请输入结算日",
-                        validator: [
-                            CustomValidators.range([1, 28]),
-                        ],
-                        errormsg: [
-                            {type: "range", content: "结算周期范围:[1-28]日"},
-                        ]
+                        placeholder: "请输入结算日"
                     }
                 ];
             } else {
@@ -401,18 +389,27 @@ export class MerchantEditComponent implements OnInit {
     saveData({value}={value}) {
         let {whether_settlement, settlement_cycle, settlement_day,maintenance_man_mobile} = value;
         if (whether_settlement == 1) {
-            if (settlement_cycle == "" || settlement_day == "") {
+            if (settlement_cycle <= 0 || settlement_cycle > 12) {
                 swal({
                     title: "提示!",
-                    text: "请确认结算周期和结算日",
+                    text: "结算周期范围是[1-12]月",
+                    type: "error",
+                    timer:"2000"
+                });
+                return
+            }
+            if (settlement_day <= 0 || settlement_day > 28) {
+                swal({
+                    title: "提示!",
+                    text: "结算日范围是[1-28]日",
                     type: "error",
                     timer:"2000"
                 });
                 return
             }
         }else {
-            settlement_cycle ="";
-            settlement_day ="";
+            settlement_cycle ="0";
+            settlement_day ="0";
         }
         let _maintenance_man_mobile = "";
         if (maintenance_man_mobile){

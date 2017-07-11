@@ -56,6 +56,7 @@ export class FeedbackDetailComponent implements OnInit {
             accept: "image/*",
             multi: true,
             size: 4,
+            count:4,
             uploadurl: this.uc.api.qc + "/upload_file/",
             downloadurl: this.uc.api.qc + "/get_file/",
             capsule: "feedbackimg"
@@ -124,7 +125,8 @@ export class FeedbackDetailComponent implements OnInit {
             res => {
                 if (res.status) {
                     this.closeFeedback();
-                    this.getFeedback()
+                    this.getFeedback();
+                    this.clearreply();
                     swal({
                         title: "回复反馈成功!",
                         text: "",
@@ -153,5 +155,10 @@ export class FeedbackDetailComponent implements OnInit {
     //关闭图片窗口
     public closeZoomImg() {
         this.showZoom = false;
+    }
+    //清空内容
+    public clearreply(){
+        this.reply_content = "";
+        this.reply_img = [];
     }
 }

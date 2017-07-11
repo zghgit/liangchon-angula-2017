@@ -141,7 +141,7 @@ export class UC {
         return apis.indexOf(params) >= 0;
     };
     public toMD5(pwd:string|number,account:string|number){
-        return Md5.hashStr(pwd+'@{'+account+'}').toString()
+        return Md5.hashStr(pwd+'@{'+account+'}').toString();
     }
     public powercontroll = {
         read: 'R',

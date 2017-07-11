@@ -45,10 +45,6 @@ export class AppInformationEditComponent implements OnInit {
     }
 
     ngOnInit() {
-        let params = this.activatedRoute.params;
-        params.subscribe(res => {
-            this.information_id = res.id;
-        });
         let data = this.activatedRoute.params
             .switchMap((params: Params) => this.appHttpService.postData(this.uc.api.qc + "/get_information/", {
                 params: {
@@ -70,11 +66,14 @@ export class AppInformationEditComponent implements OnInit {
 
         let params = {
             params: {
-                information_title: this.information_title,
-                information_content: this.editorContent
+                information_id:this.information_id,
+                information_info:{
+                    information_title: this.information_title,
+                    information_content: this.editorContent
+                }
             }
         };
-        this.appHttpService.postData(this.uc.api.qc + "/add_information", params).subscribe(
+        this.appHttpService.postData(this.uc.api.qc + "/update_information", params).subscribe(
             res => {
                 if (res.status) {
                     this.router.navigateByUrl('pages/appManagement/appInformationList');

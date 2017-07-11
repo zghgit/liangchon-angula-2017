@@ -23,7 +23,7 @@ export class AgentListComponent implements OnInit {
     }
 
     ngOnInit() {
-        if (this.uc.powerfun(this.uc.constant.add_city_partner_user)) {
+        if (this.uc.powerfun(this.uc.constant.add_agent_user)) {
             this.plugins.button = {
                 class: 'btn-primary',
                 content: '新增代理商',
