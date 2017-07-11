@@ -58,7 +58,6 @@ export class FeedbackDetailComponent implements OnInit {
             size: 4,
             count:4,
             uploadurl: this.uc.api.qc + "/upload_file/",
-            downloadurl: this.uc.api.qc + "/get_file/",
             capsule: "feedbackimg"
         }
         this.getFeedback()

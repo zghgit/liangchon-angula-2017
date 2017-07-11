@@ -71,7 +71,6 @@ export class AdvertisementEditComponent implements OnInit {
                         accept:"image/*",
                         size:2,
                         uploadurl: this.uc.api.qc + "/upload_file/",
-                        downloadurl: this.uc.api.qc + "/get_file/",
                         capsule: "advertisement_url"
                     },
                     validator: [

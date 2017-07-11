@@ -13,10 +13,10 @@ declare var swal;
 })
 export class SettingEditComponent implements OnInit,AfterViewInit {
     public settingData = new SettingModel();
-    public version_number:string;
-    public apkconfig:any={};
-    public apktip:string;
-    public notallowload:boolean = true;
+    // public version_number:string;
+    // public apkconfig:any={};
+    // public apktip:string;
+    // public notallowload:boolean = true;
     constructor(public appHttpService: AppHttpService,
                 public uc: UC) {
     }
@@ -29,8 +29,8 @@ export class SettingEditComponent implements OnInit,AfterViewInit {
                 for (let item of data) {
                     this.settingData[item.config_key] = item.config_value
                 }
-                this.version_number = this.settingData['version_number'];
-                this.apktip='只有在目标版本大于当前版本( ' + this.version_number + ' )时才能上传apk文件';
+                // this.version_number = this.settingData['version_number'];
+                // this.apktip='只有在目标版本大于当前版本( ' + this.version_number + ' )时才能上传apk文件';
             } else {
                 swal({
                     title: "获取系统设置信息失败!",
@@ -40,37 +40,36 @@ export class SettingEditComponent implements OnInit,AfterViewInit {
                 });
             }
         })
-        this.apkconfig = {
-            value: '',
-            accept: ".apk",
-            uploadurl: this.uc.api.qc + "/upload_file/",
-            downloadurl: this.uc.api.qc + "/get_file/",
-            capsule: "apk_address"
-        }
+        // this.apkconfig = {
+        //     value: '',
+        //     accept: ".apk",
+        //     uploadurl: this.uc.api.qc + "/upload_file/",
+        //     capsule: "apk_address"
+        // }
 
     }
-    filehasup(ev){
-        this.settingData['download_link'] = (ev.value).substring(13);
-    }
-    iscanupload(e){
-
-        let version_number = this.settingData['version_number'];
-        if (!this.version_number)return
-        if (!e)return
-        let oldVersion = this.version_number.split(".");
-        let newVersion = e.value.split(".");
-        for(let i =0;i<newVersion.length;i++){
-            let o1=Number(oldVersion[i]);
-            let n1=Number(newVersion[i]);
-            if(n1>o1){
-                this.notallowload = false;
-                this.apktip="请上传apk版本"
-                return
-            }
-        }
-        this.notallowload = true;
-        this.apktip='只有在目标版本大于当前版本( ' + this.version_number + ' )时才能上传apk文件';
-    }
+    // filehasup(ev){
+    //     this.settingData['download_link'] = (ev.value).substring(13);
+    // }
+    // iscanupload(e){
+    //
+    //     let version_number = this.settingData['version_number'];
+    //     if (!this.version_number)return
+    //     if (!e)return
+    //     let oldVersion = this.version_number.split(".");
+    //     let newVersion = e.value.split(".");
+    //     for(let i =0;i<newVersion.length;i++){
+    //         let o1=Number(oldVersion[i]);
+    //         let n1=Number(newVersion[i]);
+    //         if(n1>o1){
+    //             this.notallowload = false;
+    //             this.apktip="请上传apk版本"
+    //             return
+    //         }
+    //     }
+    //     this.notallowload = true;
+    //     this.apktip='只有在目标版本大于当前版本( ' + this.version_number + ' )时才能上传apk文件';
+    // }
     ngAfterViewInit(): void {
         //订阅表单值改变事件
         this.form.valueChanges.subscribe(data => this.onValueChanged(data));
@@ -108,9 +107,9 @@ export class SettingEditComponent implements OnInit,AfterViewInit {
         'welcome_page':'',
         'banner_page':'',
         'settlement_page':'',
-        'version_number':'',
-        'download_link':'',
-        'enforced_update':'',
+        // 'version_number':'',
+        // 'download_link':'',
+        // 'enforced_update':'',
     };
     //错误对应的提示
     validationMessages = {
@@ -139,16 +138,16 @@ export class SettingEditComponent implements OnInit,AfterViewInit {
         'settlement_page':{
             'required':'必选项目'
         },
-        'version_number':{
-            'required': '目标版本必须填写.',
-            'pattern': '目标版本格式错误(例:1.0.0)',
-        },
-        'download_link':{
-            'required':'apk下载链接缺失,请重新上传apk版本'
-        },
-        'enforced_update':{
-            'required':'必选项目'
-        }
+        // 'version_number':{
+        //     'required': '目标版本必须填写.',
+        //     'pattern': '目标版本格式错误(例:1.0.0)',
+        // },
+        // 'download_link':{
+        //     'required':'apk下载链接缺失,请重新上传apk版本'
+        // // },
+        // 'enforced_update':{
+        //     'required':'必选项目'
+        // }
 
     };
     //上传文件

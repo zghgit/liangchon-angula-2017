@@ -202,7 +202,6 @@ export class MerchantAddComponent implements OnInit {
                 value: "",
                 accept:"image/*",
                 uploadurl: this.uc.api.qc + "/upload_file/",
-                downloadurl: this.uc.api.qc + "/get_file/",
                 capsule: "certificate_img_1"
             },
         }, {
@@ -222,7 +221,6 @@ export class MerchantAddComponent implements OnInit {
                 value: "",
                 accept:"image/*",
                 uploadurl: this.uc.api.qc + "/upload_file/",
-                downloadurl: this.uc.api.qc + "/get_file/",
                 capsule: "certificate_img_2"
             },
         }, {
@@ -242,7 +240,6 @@ export class MerchantAddComponent implements OnInit {
                 value: "",
                 accept:"image/*",
                 uploadurl: this.uc.api.qc + "/upload_file/",
-                downloadurl: this.uc.api.qc + "/get_file/",
                 capsule: "certificate_img_3"
             },
         }, {

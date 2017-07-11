@@ -7,7 +7,6 @@
  *    size:文件大小,//MB
  *    count:文件数量,//
  *    uploadurl: this.uc.api.qc + "/upload_file/",//上传地址
- *    downloadurl: this.uc.api.qc + "/get_file/",//下载地址
  *    capsule: "certificate_img_11"//后台建立文件夹的名字
  *   }
  *当multi==true时,回传一个数组,
@@ -137,7 +136,6 @@ export class BaseUpfileComponent implements OnInit {
     public uploadComplete = ({currentTarget}={currentTarget}) => {
         let responseText = JSON.parse(currentTarget.responseText);
         if (responseText.status) {
-            // this.fileSrc = this.model.downloadurl + "/" + responseText.data.capsule + "/" + responseText.data.md5;
             this.selectedFile.value = "";
             this.progressBar = 100;
             this.filecount++;

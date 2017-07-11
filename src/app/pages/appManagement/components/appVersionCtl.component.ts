@@ -36,7 +36,6 @@ export class AppVersionCtlComponent implements OnInit,AfterViewInit {
             value: '',
             accept: ".apk",
             uploadurl: this.uc.api.qc + "/upload_file/",
-            downloadurl: this.uc.api.qc + "/get_file/",
             capsule: "apk_address"
         };
         this.getDataforIos();

@@ -62,30 +62,30 @@
             </div>
         </div>
     </section>
-    <section style="display: none">
-        <header>APP版本管理</header>
-        <div class="form-group">
-            <label><span>*</span>强制更新</label>
-            <div class="main-content">
-                <label><input type="radio" value="1" [(ngModel)]="settingData.enforced_update" name="enforced_update"><span>启用</span></label>
-                <label><input type="radio" value="2" [(ngModel)]="settingData.enforced_update" name="enforced_update"><span>禁用</span></label>
-            </div>
-        </div>
-        <div class="form-group">
-            <label><span>*</span>目标版本号<i>{{formErrors.version_number}}</i></label>
-            <div class="main-content">
-                <input class="form-control" pattern="\d+(\.\d+){2}" type="text" placeholder="请输入目标版本号" [(ngModel)]="settingData.version_number" #evn (change)="iscanupload(evn)" name="version_number" required>
-            </div>
-        </div>
-        <div class="form-group">
-            <label><span>*</span>上传apk版本<i *ngIf="!formErrors.download_link">{{apktip}}</i><i>{{formErrors.download_link}}</i></label>
-            <div class="main-content">
-                <input class="form-control" type="hidden" [value]="settingData.download_link" name="download_link" required>
-                <base-upfile [model]="apkconfig" (fileready)="filehasup($event)"></base-upfile>
-                <div [ngClass]="{'disabled':notallowload}"></div>
-            </div>
-        </div>
-    </section>
+    <!--<section>-->
+        <!--<header>APP版本管理</header>-->
+        <!--<div class="form-group">-->
+            <!--<label><span>*</span>强制更新</label>-->
+            <!--<div class="main-content">-->
+                <!--<label><input type="radio" value="1" [(ngModel)]="settingData.enforced_update" name="enforced_update"><span>启用</span></label>-->
+                <!--<label><input type="radio" value="2" [(ngModel)]="settingData.enforced_update" name="enforced_update"><span>禁用</span></label>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label><span>*</span>目标版本号<i>{{formErrors.version_number}}</i></label>-->
+            <!--<div class="main-content">-->
+                <!--<input class="form-control" pattern="\d+(\.\d+){2}" type="text" placeholder="请输入目标版本号" [(ngModel)]="settingData.version_number" #evn (change)="iscanupload(evn)" name="version_number" required>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label><span>*</span>上传apk版本<i *ngIf="!formErrors.download_link">{{apktip}}</i><i>{{formErrors.download_link}}</i></label>-->
+            <!--<div class="main-content">-->
+                <!--<input class="form-control" type="hidden" [value]="settingData.download_link" name="download_link" required>-->
+                <!--<base-upfile [model]="apkconfig" (fileready)="filehasup($event)"></base-upfile>-->
+                <!--<div [ngClass]="{'disabled':notallowload}"></div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</section>-->
     <section>
         <button type="button" class="btn btn-primary" [disabled]="!form.form.valid" (click)="uploadformdata()">保存</button>
     </section>

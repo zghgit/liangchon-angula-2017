@@ -196,7 +196,6 @@ export class AgentEditComponent implements OnInit {
                             value: _data.certificate_img_1,
                             accept: "image/*",
                             uploadurl: this.uc.api.qc + "/upload_file/",
-                            downloadurl: this.uc.api.qc + "/get_file/",
                             capsule: "certificate_img_11"
                         },
                     }, {
@@ -216,7 +215,6 @@ export class AgentEditComponent implements OnInit {
                             value: _data.certificate_img_2,
                             accept: "image/*",
                             uploadurl: this.uc.api.qc + "/upload_file/",
-                            downloadurl: this.uc.api.qc + "/get_file/",
                             capsule: "certificate_img_12"
                         },
                     }, {
@@ -236,7 +234,6 @@ export class AgentEditComponent implements OnInit {
                             value: _data.certificate_img_3,
                             accept: "image/*",
                             uploadurl: this.uc.api.qc + "/upload_file/",
-                            downloadurl: this.uc.api.qc + "/get_file/",
                             capsule: "certificate_img_13"
                         },
                     }, {

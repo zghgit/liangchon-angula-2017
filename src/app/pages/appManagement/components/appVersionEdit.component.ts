@@ -54,7 +54,6 @@ export class appVersionEditComponent implements OnInit {
                         accept: ".apk",
                         disabled:true,
                         uploadurl: this.uc.api.qc + "/upload_file/",
-                        downloadurl: this.uc.api.qc + "/get_file/",
                         capsule: "ver_link"
                     }
                 }, {

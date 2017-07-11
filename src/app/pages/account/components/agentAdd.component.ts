@@ -204,7 +204,6 @@ export class AgentAddComponent implements OnInit {
                 value: "",
                 accept:"image/*",
                 uploadurl: this.uc.api.qc + "/upload_file/",
-                downloadurl: this.uc.api.qc + "/get_file/",
                 capsule: "certificate_img_11"
             },
         }, {
@@ -224,7 +223,6 @@ export class AgentAddComponent implements OnInit {
                 value: "",
                 accept:"image/*",
                 uploadurl: this.uc.api.qc + "/upload_file/",
-                downloadurl: this.uc.api.qc + "/get_file/",
                 capsule: "certificate_img_12"
             },
         }, {
@@ -244,7 +242,6 @@ export class AgentAddComponent implements OnInit {
                 value: "",
                 accept:"image/*",
                 uploadurl: this.uc.api.qc + "/upload_file/",
-                downloadurl: this.uc.api.qc + "/get_file/",
                 capsule: "certificate_img_13"
             },
         }, {

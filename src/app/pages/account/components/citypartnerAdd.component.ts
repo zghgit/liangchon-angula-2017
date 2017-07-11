@@ -202,7 +202,6 @@ export class CitypartnerAddComponent implements OnInit {
                 value: "",
                 accept:"image/*",
                 uploadurl: this.uc.api.qc + "/upload_file/",
-                downloadurl: this.uc.api.qc + "/get_file/",
                 capsule: "certificate_img_21"
             },
         }, {
@@ -222,7 +221,6 @@ export class CitypartnerAddComponent implements OnInit {
                 value: "",
                 accept:"image/*",
                 uploadurl: this.uc.api.qc + "/upload_file/",
-                downloadurl: this.uc.api.qc + "/get_file/",
                 capsule: "certificate_img_22"
             },
         }, {
@@ -242,7 +240,6 @@ export class CitypartnerAddComponent implements OnInit {
                 value: "",
                 accept:"image/*",
                 uploadurl: this.uc.api.qc + "/upload_file/",
-                downloadurl: this.uc.api.qc + "/get_file/",
                 capsule: "certificate_img_23"
             },
         }, {

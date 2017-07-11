@@ -99,7 +99,6 @@ export class WxPubConfEditComponent implements OnInit {
                             value: _data.apiclient_cert_p,
                             accept: "",
                             uploadurl: this.uc.api.qc + "/upload_file/",
-                            downloadurl: this.uc.api.qc + "/get_file/",
                             capsule: "apiclient_cert_p" + new Date().getTime()
                         },
                         validator: [
@@ -118,7 +117,6 @@ export class WxPubConfEditComponent implements OnInit {
                             value: _data.apiclient_key_p,
                             accept: "",
                             uploadurl: this.uc.api.qc + "/upload_file/",
-                            downloadurl: this.uc.api.qc + "/get_file/",
                             capsule: "apiclient_key_p" + new Date().getTime()
                         },
                         validator: [
@@ -194,7 +192,6 @@ export class WxPubConfEditComponent implements OnInit {
                             value: _data.apiclient_cert_g,
                             accept: "",
                             uploadurl: this.uc.api.qc + "/upload_file/",
-                            downloadurl: this.uc.api.qc + "/get_file/",
                             capsule: "apiclient_cert_g" + new Date().getTime()
                         },
                         validator: [
@@ -213,7 +210,6 @@ export class WxPubConfEditComponent implements OnInit {
                             value: _data.apiclient_key_g,
                             accept: "",
                             uploadurl: this.uc.api.qc + "/upload_file/",
-                            downloadurl: this.uc.api.qc + "/get_file/",
                             capsule: "apiclient_key_g" + new Date().getTime()
                         },
                         validator: [
