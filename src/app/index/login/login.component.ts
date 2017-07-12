@@ -29,12 +29,15 @@ export class LoginComponent implements OnInit {
 
     public doLogin(): void {
         let falg = true;
-        if (this.user.userName == "") {
-            swal({
-                title: "登录失败!",
-                text: "手机号为空",
-                type: "error"
-            });
+        if (!this.user.userName) {
+            falg = false;
+            return
+        }
+        if (!this.user.password) {
+            falg = false;
+            return
+        }
+        if (!this.user.identifyCode) {
             falg = false;
             return
         }
@@ -44,7 +47,7 @@ export class LoginComponent implements OnInit {
                 password: this.uc.toMD5(this.user.password,this.user.userName),
                 validate_code: this.user.identifyCode
             }
-        }
+        };
         if (this.canAjax && falg) {
             this.canAjax = false;
             let data = this.appHttpService.login(this.uc.api.qc + "/login", params);

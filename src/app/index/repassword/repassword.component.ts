@@ -111,7 +111,7 @@ export class RepasswordComponent implements OnInit {
         let params = {
             params: {
                 user_name: this.mobileNo,
-                password: this.uc.toMD5(this.mobileNo,this.password),
+                password: this.uc.toMD5(this.password,this.mobileNo),
                 validation_code:this.mobileNoCode
             }
         }
