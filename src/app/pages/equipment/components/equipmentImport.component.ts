@@ -59,7 +59,7 @@ export class EquipmentImportComponent implements OnInit {
 
     public canup(data) {
         this.fileError = false;
-        this.selectedFile = document.getElementById(this.id)
+        this.selectedFile = document.getElementById(this.id);
         this.file = this.selectedFile.files[0];
         if (this.file) {
             this.cannotupload = false;
@@ -77,6 +77,19 @@ export class EquipmentImportComponent implements OnInit {
         if (responseText.status) {
             this.flag = false;
             this.progressBar = 100;
+            swal({
+                title: "导入成功!",
+                text: "导入成功,请到未绑设备一览查看",
+                type: "success",
+                confirmButtonText: "OK",
+                timer:5000
+            }).then(() => {
+                clearTimeout(timer);
+                this.router.navigateByUrl('pages/equipment/equipmentUnbind');
+            });
+            var timer = setTimeout(() => {
+                this.router.navigateByUrl('pages/equipment/equipmentUnbind');
+            }, 5000)
         } else {
             this.flag = true;
             this.progressBar = 0;
