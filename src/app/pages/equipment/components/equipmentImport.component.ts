@@ -54,13 +54,14 @@ export class EquipmentImportComponent implements OnInit {
     }
 
     public selectFile() {
+        clearTimeout(clicktimer);
         let file = document.getElementById(this.id);
         if(this.canClick){
             file.click();
             this.canClick = false;
-            setTimeout(()=>{
+            var clicktimer = setTimeout(()=>{
                 this.canClick = true;
-            },500)
+            },1000)
         }
     }
 

@@ -69,13 +69,14 @@ export class BaseUpfileComponent implements OnInit {
     }
 
     public selectFile() {
+        clearTimeout(clicktimer);
         let file = document.getElementById(this.model.capsule);
         if(this.canClick){
             file.click();
             this.canClick = false;
-            setTimeout(()=>{
+            var clicktimer = setTimeout(()=>{
                this.canClick = true;
-            },500)
+            },1000)
         }
     }
 
