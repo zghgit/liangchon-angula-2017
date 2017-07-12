@@ -216,7 +216,7 @@ export class FinancialStatisticsComponent implements OnInit {
                         {content: key.device_address},
                         {content: key.charge_order_sum},
                         {content: key.cash_status_done_sum},
-                        {content: key.cash_status_sum}
+                        {content: key.cash_status_none_sum}
                     ];
                     this.plugins.grid.tbody.push(tds)
                 }
