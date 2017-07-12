@@ -8,6 +8,7 @@ import {AppHttpService, UC, DataService} from "../../../plugins/globalservice";
 import {phoneValidator} from "../../../plugins/validators/phoneValidator";
 import {emailValidator} from "../../../plugins/validators/emailValidator";
 import {CustomValidators} from 'ng2-validation';
+
 declare var swal;
 @Component({
     selector: 'merchant-add',
@@ -286,13 +287,13 @@ export class MerchantAddComponent implements OnInit {
             placeholder: "请输入提现额度",
             validator: [
                 Validators.required,
-                Validators.maxLength(7),
-                Validators.pattern(this.uc.reg.ARITHMETIC_NUMBER)
+                Validators.pattern(this.uc.reg.ARITHMETIC_NUMBER),
+                CustomValidators.range([0, this.uc.reg.MAX_NUMBER]),
             ],
             errormsg: [
                 {type: "required", content: "必填项目"},
-                {type: "maxlength", content: "提现最大额度不能超过1,000,000 元"},
                 {type: "pattern", content: "输入的格式不正确(例：1.00)"},
+                {type: "range", content: "提现额度范围:(0-"+this.uc.reg.MAX_NUMBER+")"},
             ]
         }, {
             label: "运维人员手机号码",
@@ -310,12 +311,12 @@ export class MerchantAddComponent implements OnInit {
             value: "",
             placeholder: "请输入电费单价",
             validator: [
-                Validators.maxLength(7),
-                Validators.pattern(this.uc.reg.ARITHMETIC_NUMBER)
+                Validators.pattern(this.uc.reg.ARITHMETIC_NUMBER),
+                CustomValidators.range([0, this.uc.reg.MAX_NUMBER]),
             ],
             errormsg: [
                 {type: "pattern", content: "输入的格式不正确(例：1.00)"},
-                {type: "maxlength", content: "提现最大额度不能超过1,000,000 元"},
+                {type: "range", content: "电费单价范围:(0-"+this.uc.reg.MAX_NUMBER+")"},
             ]
         }, {
             label: "结算",

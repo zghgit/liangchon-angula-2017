@@ -7,6 +7,7 @@ import {Router, ActivatedRoute, Params} from "@angular/router";
 import {AppHttpService, UC, DataService} from "../../../plugins/globalservice";
 import {phoneValidator} from "../../../plugins/validators/phoneValidator";
 import {emailValidator} from "../../../plugins/validators/emailValidator";
+import {CustomValidators} from 'ng2-validation';
 
 declare var swal;
 @Component({
@@ -280,11 +281,13 @@ export class AgentEditComponent implements OnInit {
                         placeholder: "请输入提现额度",
                         validator: [
                             Validators.required,
-                            Validators.pattern(this.uc.reg.ARITHMETIC_NUMBER)
+                            Validators.pattern(this.uc.reg.ARITHMETIC_NUMBER),
+                            CustomValidators.range([0, this.uc.reg.MAX_NUMBER]),
                         ],
                         errormsg: [
                             {type: "required", content: "必填项目"},
                             {type: "pattern", content: "输入的格式不正确(例：1.00)"},
+                            {type: "range", content: "提现额度范围:(0-"+this.uc.reg.MAX_NUMBER+")"},
                         ]
                     }, {
                         label: "权限模块",

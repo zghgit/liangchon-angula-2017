@@ -402,7 +402,7 @@ export class EquipmentInitAddComponent implements OnInit {
                 device_no: this.device_no,
                 commodity_ids: commodity_ids
             }
-        }
+        };
         this.appHttpService.postData(this.uc.api.qc + "/device_binding", params).subscribe(
             res => {
                 if (res.status) {

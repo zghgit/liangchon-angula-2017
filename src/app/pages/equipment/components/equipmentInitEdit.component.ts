@@ -391,7 +391,7 @@ export class EquipmentInitEditComponent implements OnInit {
                 device_id: this.device_id,
                 commodity_ids: commodity_ids
             }
-        }
+        };
         this.appHttpService.postData(this.uc.api.qc + "/update_device", params).subscribe(
             res => {
                 if (res.status) {
