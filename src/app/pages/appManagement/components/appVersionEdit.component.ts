@@ -63,8 +63,8 @@ export class appVersionEditComponent implements OnInit {
                     value: _data.force_update||"1",
                     require: true,
                     options: [
-                        {value: "1", content: "启用"},
-                        {value: "2", content: "禁用"}
+                        {value: "1", content: "是"},
+                        {value: "2", content: "否"}
                     ],
                     validator: [
                         Validators.required

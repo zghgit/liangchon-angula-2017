@@ -110,7 +110,7 @@ export class CommodityAddComponent implements OnInit {
     saveData({value}={value}) {
         let params = {
             params: value
-        }
+        };
         this.appHttpService.postData(this.uc.api.qc + "/add_commodity", params).subscribe(
             res => {
                 if (res.status) {
