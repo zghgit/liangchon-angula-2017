@@ -23,6 +23,7 @@ export class EquipmentImportComponent implements OnInit {
     public uploadurl: string;
     public accept: string = "application/vnd.ms-excel";
     public cannotupload:boolean = true;
+    public canClick:boolean = true;//可以触发点击了吗
 
     constructor(public uc: UC,
                 public appHttpService: AppHttpService,
@@ -54,7 +55,13 @@ export class EquipmentImportComponent implements OnInit {
 
     public selectFile() {
         let file = document.getElementById(this.id);
-        file.click()
+        if(this.canClick){
+            file.click();
+            this.canClick = false;
+            setTimeout(()=>{
+                this.canClick = true;
+            },500)
+        }
     }
 
     public canup(data) {

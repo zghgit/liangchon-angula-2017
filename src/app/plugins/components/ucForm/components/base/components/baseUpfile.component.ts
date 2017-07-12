@@ -50,6 +50,7 @@ export class BaseUpfileComponent implements OnInit {
     public backSrc: Array<any> = [];//返回的src
     public isprogress: boolean = false;//进度订
     public filecount:number=0;
+    public canClick:boolean = true;//可以触发点击了吗
     @Output() fileready = new EventEmitter<any>();
 
     constructor() {
@@ -69,7 +70,13 @@ export class BaseUpfileComponent implements OnInit {
 
     public selectFile() {
         let file = document.getElementById(this.model.capsule);
-        file.click()
+        if(this.canClick){
+            file.click();
+            this.canClick = false;
+            setTimeout(()=>{
+               this.canClick = true;
+            },500)
+        }
     }
 
     public canup(data) {
