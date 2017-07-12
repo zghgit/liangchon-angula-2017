@@ -34,10 +34,12 @@ export class CommodityAddComponent implements OnInit {
             value: "",
             placeholder: "请输入商品名称",
             validator: [
-                Validators.required
+                Validators.required,
+                Validators.maxLength(12),
             ],
             errormsg: [
-                {type: "required", content: "必填项目"}
+                {type: "required", content: "必填项目"},
+                {type: "maxlength", content: "商品名称最长12个字"},
             ]
         }, {
             label: "商品描述",
