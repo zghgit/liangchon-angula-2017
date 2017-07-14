@@ -39,7 +39,7 @@ import {Component, OnInit, Input} from '@angular/core';
 export class UcInputAddComponent implements OnInit {
     @Input() model: any;
     @Input() form;
-    public reg = /^(0[0-9]{2,3}\-)?([2-9][0-9]{6,7})+(\-[0-9]{1,4})?$|(^(13[0-9]|15[0|3|6|7|8|9]|18[0-9])\d{8}$)|^[400|800]\d{7,9}$/;
+    public reg = /^(0[0-9]{2,3}\-)?([2-9][0-9]{6,7})+(\-[0-9]{1,4})?$|(^(1[3|5|7|8][0-9])\d{8}$)|^[400|800]\d{7,9}$/;
     public canConfirm:boolean = true;//不可以添加
     public error:boolean=false;//验证不通过
     public errorMsg:string = "";//验证提示
