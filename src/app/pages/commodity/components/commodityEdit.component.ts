@@ -72,12 +72,14 @@ export class CommodityEditComponent implements OnInit {
                         validator: [
                             Validators.required,
                             Validators.pattern("^[0-9]+$"),
-                            TenValidator
+                            TenValidator,
+                            Validators.max(2550),
                         ],
                         errormsg: [
                             {type: "required", content: "必填项目"},
                             {type: "pattern", content: "只能是数字"},
                             {type: "TenValidator", content: "充电时长只能是10的倍数"},
+                            {type: "max", content: "充电时长最多2550分钟"},
                         ]
                     },
                     {
