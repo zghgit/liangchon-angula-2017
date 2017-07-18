@@ -81,7 +81,7 @@ export class ChargeStatusComponent implements OnInit {
                     title:data.device_name,
                     chargeCount:data.total_num,
                     chargeTime:total_order_duration,
-                    chargeDegree:'0',
+                    chargeDegree:data.charge_power,
                     contIsSmall:false,
                     timeIsSmall:false,
                     degreeIsSmall:false
