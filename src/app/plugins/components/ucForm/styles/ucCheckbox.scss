@@ -22,6 +22,9 @@ div{
     padding-left: 1em;
     label{
         font-weight: normal;
+        input{
+            margin-right: 5px;
+        }
     }
 }
 .item-content{
@@ -34,5 +37,8 @@ div{
         font-size: 14px;
         font-weight: normal;
         margin-right: 1em;
+        input{
+            margin-right: 5px;
+        }
     }
 }
