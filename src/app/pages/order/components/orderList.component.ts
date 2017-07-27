@@ -382,7 +382,7 @@ export class OrderListComponent implements OnInit {
                     let endTimd = Number(new Date(key.create_time).getTime());
                     if (key.order_status == '5' && (this.timecount - endTimd) >= 24 * 60 * 60 * 1000) {
                         operations.push({
-                            content: "启用",
+                            content: "完成",
                             class: "btn-success",
                             click: (data) => {
                                 let id = data[0].content;
