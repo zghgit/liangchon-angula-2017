@@ -109,19 +109,30 @@ export class SettlementComponent implements OnInit {
                         settlement_year,
                         settlement_month,
                     } = value;
-                    if(settlement_month){
+                    console.log(settlement_month,settlement_year)
+                    if((settlement_month!=0||settlement_month)&&(settlement_year==0)||!settlement_year){
                         swal({
                             title: "提示!",
                             text: "请选择年份",
                             type: "error",
                             timer:"2000"
                         });
+                        return
+                    }
+                    if((settlement_month==0||!settlement_month)&&(settlement_year!=0||settlement_year)){
+                        swal({
+                            title: "提示!",
+                            text: "请选择月份",
+                            type: "error",
+                            timer:"2000"
+                        });
+                        return
                     }
                     this.searchBy = {
                         merchant_name: merchant_name ? merchant_name.trim() : "",
-                        settlement_type:settlement_type,
-                        settlement_year:settlement_year,
-                        settlement_month:settlement_month,
+                        settlement_type:settlement_type||"",
+                        settlement_year:settlement_year||"",
+                        settlement_month:settlement_month||"",
                     }
                     this.now = 1;
                     this.getGridData({
