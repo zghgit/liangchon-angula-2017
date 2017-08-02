@@ -5,12 +5,14 @@ form {
     width: 100%;
     border: 1px solid #dfdfdf;
     box-shadow: 0 1px 7px rgba(0, 0, 0, .1);
+    min-width: 850px;
     section{
         //display: flex;
         //flex-wrap: wrap;
         > div {
             margin-right: 1em;
             float: left;
+            height: 34px;
             >div{
                 height: 34px;
                 .nothing{
