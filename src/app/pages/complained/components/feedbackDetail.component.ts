@@ -116,7 +116,7 @@ export class FeedbackDetailComponent implements OnInit {
         let params = {
             params: {
                 feedback_id: this.feedback_id,
-                feedback_content: this.reply_content,
+                feedback_content: (this.reply_content).replace(/(\n)|(\r\n)/g,"<br/>").replace(/\s/g,"&nbsp;"),
                 feedback_img: this.reply_img
             }
         };

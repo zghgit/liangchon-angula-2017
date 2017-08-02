@@ -6,7 +6,7 @@
             <small>{{feedbackInfo.create_time}}</small>
         </div>
         <div class="feedback-content">
-            <p>{{feedbackInfo.feedback_content}}</p>
+            <p [innerHtml]="feedbackInfo.feedback_content"></p>
             <ng-container *ngIf="feedbackInfo.feedback_img">
                 <div *ngFor="let item of feedbackInfo.feedback_img">
                     <img src="{{item}}">
@@ -22,7 +22,7 @@
                 <small>{{item.create_time}}</small>
             </div>
             <div class="feedback-content">
-                <p [ngClass]="{'admin': item.user_id!=user_id}">{{item.feedback_content}}</p>
+                <p [ngClass]="{'admin': item.user_id!=user_id}" [innerHtml]="item.feedback_content"></p>
                 <ng-container *ngIf="item.feedback_img">
                     <div *ngFor="let subitem of item.feedback_img">
                         <img src="{{subitem}}">
