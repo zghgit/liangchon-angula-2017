@@ -109,7 +109,6 @@ export class SettlementComponent implements OnInit {
                         settlement_year,
                         settlement_month,
                     } = value;
-                    console.log(settlement_month,settlement_year)
                     if((settlement_month!=0||settlement_month)&&(settlement_year==0)||!settlement_year){
                         swal({
                             title: "提示!",
