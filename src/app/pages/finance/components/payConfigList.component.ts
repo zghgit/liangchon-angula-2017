@@ -29,9 +29,15 @@ export class payConfigListComponent implements OnInit {
             ],
             tbody: [],
         };
-        this.getAilpayConfig();
-        this.getWxpayConfig();
-        this.getWalletConf();
+        if(this.uc.powerfun(this.uc.constant.get_foucs_wx_user_qrcode)){
+            this.getWalletConf();
+        }
+        if(this.uc.powerfun(this.uc.constant.get_alipay_config)){
+            this.getAilpayConfig();
+        }
+        if(this.uc.powerfun(this.uc.constant.get_wxpay_config)){
+            this.getWxpayConfig();
+        }
     }
 
     public getAilpayConfig = function () {

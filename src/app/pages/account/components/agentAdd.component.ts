@@ -23,10 +23,8 @@ export class AgentAddComponent implements OnInit {
                 public router: Router,
                 public dataService: DataService) {
     }
-
     ngOnInit() {
     }
-
     //form数据
     public fields: Array<any> = [
         {
@@ -300,7 +298,7 @@ export class AgentAddComponent implements OnInit {
         }
     ];
 
-    saveData({value}={value}) {
+     saveData({value}={value}) {
         let params = {
             params: {
                 user_name: value.user_name.trim(),

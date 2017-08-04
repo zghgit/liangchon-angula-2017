@@ -199,7 +199,7 @@ export class CashWithdrawalComponent implements OnInit {
                         {type: "checkbox", value: key.order_id},
                         {content: key.order_no},
                         {content: key.device_name},
-                        {content: key.receipts_sum}
+                        {content: key.order_sum}
                     ];
                     this.grids.tbody.push({
                         array: tds,
